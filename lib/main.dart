@@ -1,3 +1,4 @@
+import 'package:card_x/view/splashScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,12 +32,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: splashScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+/*class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
@@ -123,3 +124,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+*/
