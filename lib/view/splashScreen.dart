@@ -5,12 +5,14 @@ class splashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: Colors.white70,
 
-      body: Center(
+      body:
+      Center(
         child: Column(
           children:[
-            SizedBox(
+           SizedBox(
               height: 120,
             ),
             Row(
