@@ -25,7 +25,7 @@ SizedBox(
 ),
                   TextField(
                     decoration: InputDecoration(
-                        labelText: "Date Of Birth",
+                        labelText: "DD/MM/YY",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.10))),
                   ),
@@ -34,11 +34,19 @@ SizedBox(
                   ),
                   TextField(
                     decoration:InputDecoration(
-                      labelText: "Enter father name",
+                      labelText: "Enter Father Name",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.9)
                       )
 
+                    ),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: "Mobile number",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.9)
+                      )
                     ),
                   )
                  ],
