@@ -36,7 +36,7 @@ SizedBox(
                     decoration:InputDecoration(
                       labelText: "Enter father name",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.10)
+                        borderRadius: BorderRadius.circular(10.9)
                       )
 
                     ),
