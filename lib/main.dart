@@ -1,3 +1,4 @@
+import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/view/splashScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: splashScreen(),
+      home: mainForm(),
     );
   }
 }
