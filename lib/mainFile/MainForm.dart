@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
- class mainForm extends StatelessWidget {
+import 'package:flutter/services.dart';
+
+
+class mainForm extends StatelessWidget {
    const mainForm({super.key});
 
    @override
    Widget build(BuildContext context) {
      return Scaffold(
        body: Padding(
-         padding: const EdgeInsets.all(18.0),
+
+         padding: const EdgeInsets.all(20.0),
+         child:SingleChildScrollView(
          child: Form(
-            child: Column(
-                children: [
+           child: Column(
+             children: [
                   SizedBox(
                     height: 100,
                   ),
@@ -17,6 +22,9 @@ import 'package:flutter/material.dart';
                        TextField(
                          decoration: InputDecoration(
                            labelText: "Username",
+                             labelStyle: TextStyle(
+                                 fontStyle: FontStyle.italic
+                             ) ,
                            border: OutlineInputBorder(
                                borderRadius: BorderRadius.circular(10.10))),
                          ),
@@ -25,7 +33,11 @@ SizedBox(
 ),
                   TextField(
                     decoration: InputDecoration(
-                        labelText: "DD/MM/YY",
+                      labelText: "DD/MM/YY",
+                        labelStyle: TextStyle(
+                            fontStyle: FontStyle.italic
+                        ) ,
+
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.10))),
                   ),
@@ -33,26 +45,63 @@ SizedBox(
                     height: 20,
                   ),
                   TextField(
+                    keyboardType: TextInputType.name,
                     decoration:InputDecoration(
-                      labelText: "Enter Father Name",
-                      border: OutlineInputBorder(
+                      labelText: "Father Name",
+                        labelStyle: TextStyle(
+                          fontStyle: FontStyle.italic
+                        ) ,
+                        border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.9)
                       )
 
                     ),
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     decoration: InputDecoration(
-                      labelText: "Mobile number",
+                        labelText: "Mobile number",
+                       labelStyle: TextStyle(
+                            fontStyle: FontStyle.italic
+                        ) ,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.9)
                       )
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextField(
+
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      labelText: "Email address",
+                      labelStyle: TextStyle(
+                        fontStyle: FontStyle.italic
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.10)
+
+                      )
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+
+
                  ],
                ),
            ),
        ),
+       )
 
        );
    }
