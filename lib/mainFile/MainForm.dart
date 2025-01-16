@@ -25,12 +25,14 @@ class mainForm extends StatelessWidget {
                              labelStyle: TextStyle(
                                  fontStyle: FontStyle.italic
                              ) ,
+
                            border: OutlineInputBorder(
-                               borderRadius: BorderRadius.circular(10.10))),
+                               borderRadius: BorderRadius.circular(10.10)))  ,
+
                          ),
-SizedBox(
-  height: 20,
-),
+                        SizedBox(
+                       height: 20,
+                       ) ,
                   TextField(
                     decoration: InputDecoration(
                       labelText: "DD/MM/YY",
@@ -95,9 +97,8 @@ SizedBox(
                   SizedBox(
                     height: 20,
                   ),
-
-
-                 ],
+             ElevatedButton(onPressed: "On Pressed", child: Text("SUBMIT"))
+             ],
                ),
            ),
        ),
