@@ -13,18 +13,21 @@ class mainForm extends StatelessWidget {
          padding: const EdgeInsets.all(20.0),
          child:SingleChildScrollView(
          child: Form(
+
            child: Column(
              children: [
                   SizedBox(
                     height: 100,
                   ),
-                       Text("Enter Your Details",style: TextStyle(fontSize: 15,fontStyle: FontStyle.italic),),
+                       Text("Enter Your Details",style: TextStyle(fontSize: 15,fontStyle: FontStyle.italic,),),
                        TextField(
                          decoration: InputDecoration(
                            labelText: "Username",
                              labelStyle: TextStyle(
-                                 fontStyle: FontStyle.italic
+                                 fontStyle: FontStyle.italic,
+
                              ) ,
+
 
                            border: OutlineInputBorder(
                                borderRadius: BorderRadius.circular(10.10)))  ,
@@ -97,7 +100,19 @@ class mainForm extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-             ElevatedButton(onPressed: "On Pressed", child: Text("SUBMIT"))
+
+               ElevatedButton(
+                 onPressed: () {
+                   print("Button pressed");
+                 },
+                 child: Text("Submit"),
+                 style: ElevatedButton.styleFrom(
+                   foregroundColor: Colors.blueGrey,  // Text (foreground) color
+                   elevation: 15, // Shadow elevation
+                 ),
+               )
+
+
              ],
                ),
            ),
