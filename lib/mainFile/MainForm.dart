@@ -19,14 +19,19 @@ class mainForm extends StatelessWidget {
                   SizedBox(
                     height: 100,
                   ),
-                       Text("Enter Your Details",style: TextStyle(fontSize: 15,fontStyle: FontStyle.italic,),),
+                       Text("Enter Your Details",style:
+
+                         TextStyle(fontSize: 15,fontStyle: FontStyle.italic,),),
                        TextField(
+
                          decoration: InputDecoration(
-                           labelText: "Username",
+                             labelText: "Username",
                              labelStyle: TextStyle(
                                  fontStyle: FontStyle.italic,
 
+
                              ) ,
+
 
 
                            border: OutlineInputBorder(
@@ -100,12 +105,17 @@ class mainForm extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-
+               FloatingActionButton(
+                 onPressed: () {
+                   print("Floating Action Button Pressed");
+                 },
+                 child: Icon(Icons.add), // Icon inside the button
+               ),
                ElevatedButton(
                  onPressed: () {
                    print("Button pressed");
                  },
-                 child: Text("Submit"),
+                 child: Text("Submit",style: TextStyle(fontSize: 17,fontStyle: FontStyle.italic),),
                  style: ElevatedButton.styleFrom(
                    foregroundColor: Colors.blueGrey,  // Text (foreground) color
                    elevation: 15, // Shadow elevation
