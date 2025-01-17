@@ -36,8 +36,6 @@ class mainForm extends StatelessWidget {
                              labelText: "Username",
                              labelStyle: TextStyle(
                                  fontStyle: FontStyle.italic,
-
-
                              ) ,
                              border: OutlineInputBorder(
                                borderRadius: BorderRadius.circular(10.10))),
@@ -110,6 +108,23 @@ class mainForm extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+             TextField(
+               keyboardType: TextInputType.visiblePassword,
+
+               decoration: InputDecoration(
+                 labelText: "Password",
+                 labelStyle: TextStyle(
+                   fontStyle:FontStyle.italic,
+
+                 ),
+                 border: OutlineInputBorder(
+                   borderRadius: BorderRadius.circular(10.10)
+                 )
+
+               ),
+             )
+
+             ,
 
                ElevatedButton(
                  onPressed: () {
