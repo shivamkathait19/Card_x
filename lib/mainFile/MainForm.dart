@@ -1,3 +1,4 @@
+import 'package:floating_action_bubble_custom/floating_action_bubble_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,11 +6,14 @@ import 'package:flutter/services.dart';
 class mainForm extends StatelessWidget {
    const mainForm({super.key});
 
+
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-       body: Padding(
-
+       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+       body:
+         Padding(
          padding: const EdgeInsets.all(20.0),
          child:SingleChildScrollView(
          child: Form(
@@ -19,9 +23,13 @@ class mainForm extends StatelessWidget {
                   SizedBox(
                     height: 100,
                   ),
+
                        Text("Enter Your Details",style:
 
-                         TextStyle(fontSize: 15,fontStyle: FontStyle.italic,),),
+                         TextStyle(fontSize: 17,fontStyle: FontStyle.italic)),
+                      SizedBox(
+                        height: 20,
+                      ),
                        TextField(
 
                          decoration: InputDecoration(
@@ -31,11 +39,8 @@ class mainForm extends StatelessWidget {
 
 
                              ) ,
-
-
-
-                           border: OutlineInputBorder(
-                               borderRadius: BorderRadius.circular(10.10)))  ,
+                             border: OutlineInputBorder(
+                               borderRadius: BorderRadius.circular(10.10))),
 
                          ),
                         SizedBox(
@@ -105,12 +110,7 @@ class mainForm extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-               FloatingActionButton(
-                 onPressed: () {
-                   print("Floating Action Button Pressed");
-                 },
-                 child: Icon(Icons.add), // Icon inside the button
-               ),
+
                ElevatedButton(
                  onPressed: () {
                    print("Button pressed");
@@ -120,8 +120,7 @@ class mainForm extends StatelessWidget {
                    foregroundColor: Colors.blueGrey,  // Text (foreground) color
                    elevation: 15, // Shadow elevation
                  ),
-               )
-
+               ),
 
              ],
                ),
