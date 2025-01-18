@@ -6,18 +6,14 @@ import 'package:flutter/services.dart';
 class mainForm extends StatelessWidget {
    const mainForm({super.key});
 
-
-
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-       body:
+         body:
          Padding(
          padding: const EdgeInsets.all(20.0),
          child:SingleChildScrollView(
          child: Form(
-
            child: Column(
              children: [
                   SizedBox(
@@ -30,6 +26,7 @@ class mainForm extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
+
                        TextField(
 
                          decoration: InputDecoration(
@@ -145,4 +142,4 @@ class mainForm extends StatelessWidget {
 
        );
    }
- }
+}
