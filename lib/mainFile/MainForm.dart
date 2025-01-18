@@ -98,7 +98,11 @@ class _mainFormState extends State<mainForm> {
                   ),
                   SizedBox(
                     height: 20,
-                  ),
+                  ),ListTile(
+                 leading: Icon(Icons.phone),
+                 title:
+
+
                   TextField(
                     keyboardType: TextInputType.number,
                     inputFormatters: [
@@ -114,11 +118,16 @@ class _mainFormState extends State<mainForm> {
                       )
                     ),
                   ),
+               ),
                   SizedBox(
                     height: 20,
                   ),
-                  TextField(
 
+                   ListTile(
+                     leading: Icon(Icons.email),
+                     title:
+
+                  TextField(
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: "Email address",
@@ -131,6 +140,7 @@ class _mainFormState extends State<mainForm> {
                       )
                     ),
                   ),
+                   ),
                   SizedBox(
                     height: 20,
                   ),
