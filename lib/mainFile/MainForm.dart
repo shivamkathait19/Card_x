@@ -144,6 +144,11 @@ class _mainFormState extends State<mainForm> {
                   SizedBox(
                     height: 20,
                   ),
+
+             ListTile(
+               leading: Icon(Icons.password),
+               title:
+
              TextField(
                keyboardType: TextInputType.visiblePassword,
 
@@ -159,8 +164,8 @@ class _mainFormState extends State<mainForm> {
 
                ),
              )
+             ),
 
-             ,
                   ButtonTheme(child: ElevatedButton(
                       onPressed: (){}, child: Text("Save")))
 
