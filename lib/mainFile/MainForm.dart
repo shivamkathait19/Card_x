@@ -3,9 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 
-class mainForm extends StatelessWidget {
-   const mainForm({super.key});
+class mainForm extends StatefulWidget {
+    mainForm({super.key});
 
+  @override
+  State<mainForm> createState() => _mainFormState();
+}
+
+
+
+class _mainFormState extends State<mainForm> {
+  /* nextScreen () {
+     if(_key.currentState=null){
+       _key.cureentState!save();
+       Navigator.push(context,
+           MaterialPageRoute(builder: (BuildContext context)=>cardScreen(),
+           )
+       )
+     }
+   } */
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -26,9 +42,9 @@ class mainForm extends StatelessWidget {
                       SizedBox(
                         height: 20,
                       ),
-
-                       TextField(
-
+                     ListTile(
+                       leading: Icon(Icons.person),
+                       title: TextField(
                          decoration: InputDecoration(
                              labelText: "Username",
                              labelStyle: TextStyle(
@@ -38,9 +54,15 @@ class mainForm extends StatelessWidget {
                                borderRadius: BorderRadius.circular(10.10))),
 
                          ),
+                     ),
                         SizedBox(
                        height: 20,
                        ) ,
+                 
+                 ListTile(
+                   leading: Icon(Icons.calendar_today),
+                   title:
+
                   TextField(
                     decoration: InputDecoration(
                       labelText: "DD/MM/YY",
@@ -51,9 +73,15 @@ class mainForm extends StatelessWidget {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.10))),
                   ),
+                 ),
                   SizedBox(
                     height: 20,
                   ),
+
+                  ListTile(
+                    leading: Icon(Icons.person),
+                    title:
+
                   TextField(
                     keyboardType: TextInputType.name,
                     decoration:InputDecoration(
@@ -66,6 +94,7 @@ class mainForm extends StatelessWidget {
                       )
 
                     ),
+                  ),
                   ),
                   SizedBox(
                     height: 20,
@@ -122,17 +151,9 @@ class mainForm extends StatelessWidget {
              )
 
              ,
+                  ButtonTheme(child: ElevatedButton(
+                      onPressed: (){}, child: Text("Save")))
 
-               ElevatedButton(
-                 onPressed: () {
-                   print("Button pressed");
-                 },
-                 child: Text("Submit",style: TextStyle(fontSize: 17,fontStyle: FontStyle.italic),),
-                 style: ElevatedButton.styleFrom(
-                   foregroundColor: Colors.blueGrey,  // Text (foreground) color
-                   elevation: 15, // Shadow elevation
-                 ),
-               ),
 
              ],
                ),
