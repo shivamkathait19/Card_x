@@ -77,7 +77,7 @@ class _mainFormState extends State<mainForm> {
                         ) ,
 
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0))),
+                            borderRadius: BorderRadius.circular(10.10))),
                   ),
                  ),
                   SizedBox(
@@ -96,7 +96,7 @@ class _mainFormState extends State<mainForm> {
                           fontStyle: FontStyle.italic
                         ) ,
                         border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.9)
+                        borderRadius: BorderRadius.circular(10.9)
                       )
 
                     ),
