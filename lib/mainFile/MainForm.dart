@@ -32,6 +32,9 @@ class _mainFormState extends State<mainForm> {
       _key.currentState!.save();
 
     }
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>cardScreen(),
+    )
+    );
   }
 
 
