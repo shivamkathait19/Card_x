@@ -1,5 +1,4 @@
 import 'package:card_x/mainFile/cardScreen.dart';
-import 'package:floating_action_bubble_custom/floating_action_bubble_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -23,7 +22,9 @@ class _mainFormState extends State<mainForm> {
        );
      }
    }
-  var username,Dateofbirth,fathername,mobilenumber,emailaddress,password;
+  var usernmae,date,father,mother,mobile,email,password;
+
+
   GlobalKey<FormState> _key = new GlobalKey();
 
    @override
@@ -49,13 +50,13 @@ class _mainFormState extends State<mainForm> {
                      ListTile(
                        leading: Icon(Icons.person),
                        title:TextField(
-
+                         onSubmitted: (input)=>usernmae=input,
                          decoration: InputDecoration(
-
-                             labelText: "Username",
+                           labelText: "Username",
                              labelStyle: TextStyle(
-                                 fontStyle: FontStyle.italic,
-                             ) ,
+                               fontStyle: FontStyle.italic,
+                             ),
+                            // onSaved,
                              border: OutlineInputBorder(
                                borderRadius: BorderRadius.circular(10.10)),
                          ),
@@ -70,8 +71,9 @@ class _mainFormState extends State<mainForm> {
                    title:
 
                   TextField(
+                    onSubmitted: (input)=>date=input,
                     decoration: InputDecoration(
-                      labelText: "DATE OF BIRTH",
+                      labelText: "Date Of Birth",
                         labelStyle: TextStyle(
                             fontStyle: FontStyle.italic
                         ) ,
@@ -88,6 +90,7 @@ class _mainFormState extends State<mainForm> {
                     leading: Icon(Icons.person),
                     title:
                     TextField(
+                      onSubmitted: (input)=>father=input,
                     keyboardType: TextInputType.name,
                     decoration:InputDecoration(
                       labelText: "Father Name",
@@ -95,6 +98,7 @@ class _mainFormState extends State<mainForm> {
                         labelStyle: TextStyle(
                           fontStyle: FontStyle.italic
                         ) ,
+
                         border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.9)
                       )
@@ -107,12 +111,14 @@ class _mainFormState extends State<mainForm> {
                     title:
 
                   TextField(
+                    onSubmitted: (input)=>mother=input,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
                       labelText: "Mother Name",
                       labelStyle: TextStyle(
                         fontStyle: FontStyle.italic
                       ),
+
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0)
                       )
@@ -131,6 +137,7 @@ class _mainFormState extends State<mainForm> {
 
 
                   TextField(
+                    onSubmitted: (input)=>mobile=input,
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly
@@ -155,6 +162,7 @@ class _mainFormState extends State<mainForm> {
                      title:
 
                   TextField(
+                    onSubmitted: (input)=>email=input,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: "Email address",
@@ -177,6 +185,7 @@ class _mainFormState extends State<mainForm> {
                title:
 
              TextField(
+               onSubmitted: (input)=>password=input,
                keyboardType: TextInputType.visiblePassword,
 
                decoration: InputDecoration(
