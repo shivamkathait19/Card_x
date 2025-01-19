@@ -1,3 +1,4 @@
+import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:floating_action_bubble_custom/floating_action_bubble_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,15 +14,18 @@ class mainForm extends StatefulWidget {
 
 
 class _mainFormState extends State<mainForm> {
-  /* nextScreen () {
-     if(_key.currentState=null){
-       _key.cureentState!save();
+   nextScreen () {
+     if( _key.currentState!=null){
+       _key.currentState!.save();
        Navigator.push(context,
-           MaterialPageRoute(builder: (BuildContext context)=>cardScreen(),
+           MaterialPageRoute(builder: (BuildContext context) =>  cardScreen(),
            )
-       )
+       );
      }
-   } */
+   }
+  var username,Dateofbirth,fathername,mobilenumber,emailaddress,password;
+  GlobalKey<FormState> _key = new GlobalKey();
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -29,34 +33,36 @@ class _mainFormState extends State<mainForm> {
          Padding(
          padding: const EdgeInsets.all(20.0),
          child:SingleChildScrollView(
-         child: Form(
+         child: Form(key:  _key,
            child: Column(
              children: [
                   SizedBox(
-                    height: 100,
+                    height: 50,
                   ),
 
                        Text("Enter Your Details",style:
 
                          TextStyle(fontSize: 17,fontStyle: FontStyle.italic)),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                      ListTile(
                        leading: Icon(Icons.person),
-                       title: TextField(
+                       title:TextField(
+
                          decoration: InputDecoration(
+
                              labelText: "Username",
                              labelStyle: TextStyle(
                                  fontStyle: FontStyle.italic,
                              ) ,
                              border: OutlineInputBorder(
-                               borderRadius: BorderRadius.circular(10.10))),
-
+                               borderRadius: BorderRadius.circular(10.10)),
+                         ),
                          ),
                      ),
                         SizedBox(
-                       height: 20,
+                       height: 10,
                        ) ,
                  
                  ListTile(
@@ -65,40 +71,61 @@ class _mainFormState extends State<mainForm> {
 
                   TextField(
                     decoration: InputDecoration(
-                      labelText: "DD/MM/YY",
+                      labelText: "DATE OF BIRTH",
                         labelStyle: TextStyle(
                             fontStyle: FontStyle.italic
                         ) ,
 
                         border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.10))),
+                            borderRadius: BorderRadius.circular(20.0))),
                   ),
                  ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
 
                   ListTile(
                     leading: Icon(Icons.person),
                     title:
-
-                  TextField(
+                    TextField(
                     keyboardType: TextInputType.name,
                     decoration:InputDecoration(
                       labelText: "Father Name",
+
                         labelStyle: TextStyle(
                           fontStyle: FontStyle.italic
                         ) ,
                         border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.9)
+                        borderRadius: BorderRadius.circular(20.9)
                       )
 
                     ),
                   ),
                   ),
+                  ListTile(
+                    leading: Icon(Icons.person_2),
+                    title:
+
+                  TextField(
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      labelText: "Mother Name",
+                      labelStyle: TextStyle(
+                        fontStyle: FontStyle.italic
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0)
+                      )
+                    ),
+                  ),
+                  ),
+                  
                   SizedBox(
-                    height: 20,
-                  ),ListTile(
+                    height: 10,
+                  ),
+               
+               
+               ListTile(
                  leading: Icon(Icons.phone),
                  title:
 
@@ -120,7 +147,7 @@ class _mainFormState extends State<mainForm> {
                   ),
                ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
 
                    ListTile(
@@ -142,11 +169,11 @@ class _mainFormState extends State<mainForm> {
                   ),
                    ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
 
              ListTile(
-               leading: Icon(Icons.password),
+               leading: Icon(Icons.password,size: 23,),
                title:
 
              TextField(
