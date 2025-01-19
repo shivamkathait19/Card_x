@@ -27,6 +27,14 @@ class _mainFormState extends State<mainForm> {
 
   GlobalKey<FormState> _key = new GlobalKey();
 
+  NextScreen(){
+    if(_key.currentState!=null){
+      _key.currentState!.save();
+
+    }
+  }
+
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -34,7 +42,7 @@ class _mainFormState extends State<mainForm> {
          Padding(
          padding: const EdgeInsets.all(20.0),
          child:SingleChildScrollView(
-         child: Form(key:  _key,
+         child: Form(key: _key,
            child: Column(
              children: [
                   SizedBox(
@@ -56,7 +64,6 @@ class _mainFormState extends State<mainForm> {
                              labelStyle: TextStyle(
                                fontStyle: FontStyle.italic,
                              ),
-                            // onSaved,
                              border: OutlineInputBorder(
                                borderRadius: BorderRadius.circular(10.10)),
                          ),
@@ -203,7 +210,7 @@ class _mainFormState extends State<mainForm> {
              ),
 
                   ButtonTheme(child: ElevatedButton(
-                      onPressed: (){}, child: Text("Save")))
+                      onPressed: (){}, child: Text("Submit")))
 
 
              ],
