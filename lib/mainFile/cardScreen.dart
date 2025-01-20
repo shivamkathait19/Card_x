@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
 class cardScreen extends StatelessWidget {
+
+  var usernmae,date,father,mother,mobile,email,password;
+
   cardScreen(
-  {Key? Key}
+  {Key?key}
+      required this.username,
+  required this.date
+  required this.father,
+  required this.mother,
+  required this.mobile,
+  required this.email,
+  required this.password,
+
+
       ):super(key: key);
 
   @override
