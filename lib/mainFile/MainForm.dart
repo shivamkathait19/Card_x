@@ -22,7 +22,7 @@ class _mainFormState extends State<mainForm> {
        );
      }
    }
-  var usernmae,date,father,mother,mobile,email,password;
+  var username,date,father,mother,mobile,email,password;
 
 
   GlobalKey<FormState> _key = new GlobalKey();
@@ -61,7 +61,7 @@ class _mainFormState extends State<mainForm> {
                      ListTile(
                        leading: Icon(Icons.person),
                        title:TextField(
-                         onSubmitted: (input)=>usernmae=input,
+                         onSubmitted: (input)=>username=input,
                          decoration: InputDecoration(
                            labelText: "Username",
                              labelStyle: TextStyle(
