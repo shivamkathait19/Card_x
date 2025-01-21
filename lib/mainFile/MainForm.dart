@@ -13,18 +13,7 @@ class mainForm extends StatefulWidget {
 
 
 class _mainFormState extends State<mainForm> {
-   nextScreen () {
-     if( _key.currentState!=null){
-       _key.currentState!.save();
-       Navigator.push(context,
-           MaterialPageRoute(builder: (BuildContext context) =>  cardScreen(),
-           )
-       );
-     }
-   }
   var username,date,father,mother,mobile,email,password;
-
-
   GlobalKey<FormState> _key = new GlobalKey();
 
   NextScreen(){
@@ -32,7 +21,16 @@ class _mainFormState extends State<mainForm> {
       _key.currentState!.save();
 
     }
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>cardScreen(),
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>cardScreen(
+        username: username,
+      date:date,
+      father:father,
+      mother: mother,
+      mobile: mobile,
+      email: email,
+      password: password,
+
+    ),
     )
     );
   }
