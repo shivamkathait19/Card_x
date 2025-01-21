@@ -17,6 +17,28 @@ class cardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          " Enter your details"
+        ),
+      ),
+      body: Form(
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(70.10),
+          ),
+        child: Column(
+          children: [
+            <widget>[
+              Padding(padding: EdgeInsets.all(10.0),),
+            ],
+          ],
+        ),
+        ),
+
+      ),
+    );
   }
 }
