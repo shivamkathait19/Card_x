@@ -31,9 +31,12 @@ class cardScreen extends StatelessWidget {
           ),
         child: Column(
           children: [
-            <widget>[
+
               Padding(padding: EdgeInsets.all(10.0),),
-            ],
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text(username),
+            )
           ],
         ),
         ),
