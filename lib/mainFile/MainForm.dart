@@ -211,7 +211,7 @@ class _mainFormState extends State<mainForm> {
              ),
 
                   ButtonTheme(child: ElevatedButton(
-                      onPressed: (){}, child: Text("Submit")))
+                      onPressed: NextScreen, child: Text("Submit")))
 
 
              ],
