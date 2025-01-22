@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 class cardScreen extends StatelessWidget {
 
-  var username,date,father,mother,mobile,email,password;
+  String username;
+  String date;
+  String father;
+  String mother;
+  String mobile;
+  String email;
+  String password;
 
   cardScreen({Key?key,
   required this.username,
