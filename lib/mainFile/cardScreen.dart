@@ -35,11 +35,11 @@ class cardScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(70.10),
           ),
-        child: Column(
+          child: Column(
           children: [
-
-              Padding(padding: EdgeInsets.all(10.0),),
+            Padding(padding: EdgeInsets.all(10.0),),
             ListTile(
+               
               leading: Icon(Icons.person),
               title: Text(username),
             )
