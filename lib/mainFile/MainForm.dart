@@ -13,7 +13,14 @@ class mainForm extends StatefulWidget {
 
 
 class _mainFormState extends State<mainForm> {
-  var username,date,father,mother,mobile,email,password;
+  var
+      username,
+      date,
+      father,
+      mother,
+      mobile,
+      email,
+      password;
   GlobalKey<FormState> _key = new GlobalKey();
 
   NextScreen(){
@@ -22,7 +29,7 @@ class _mainFormState extends State<mainForm> {
 
     }
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>cardScreen(
-        username: username,
+      username: username,
       date:date,
       father:father,
       mother: mother,
