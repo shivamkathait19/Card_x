@@ -13,8 +13,8 @@ class mainForm extends StatefulWidget {
 
 
 class _mainFormState extends State<mainForm> {
-  var
-      username,
+        var
+        username,
       date,
       father,
       mother,
