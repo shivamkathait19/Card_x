@@ -10,7 +10,7 @@ class cardScreen extends StatelessWidget {
   String password;
 
   cardScreen({Key?key,
-  required this.username,
+    required this.username,
     required this.date,
     required this.father,
     required this.mother,
@@ -30,23 +30,25 @@ class cardScreen extends StatelessWidget {
           " Enter your details"
         ),
       ),
-      body: Form(
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(70.10),
+      body: SingleChildScrollView(
+        child: Form(
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(70.10),
+            ),
+            child: Column(
+            children: [
+              Padding(padding: EdgeInsets.all(10.0),),
+              ListTile(
+        
+                leading: Icon(Icons.person),
+                title: Text(username),
+              )
+            ],
           ),
-          child: Column(
-          children: [
-            Padding(padding: EdgeInsets.all(10.0),),
-            ListTile(
-               
-              leading: Icon(Icons.person),
-              title: Text(username),
-            )
-          ],
+          ),
+        
         ),
-        ),
-
       ),
     );
   }
