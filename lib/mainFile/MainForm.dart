@@ -125,6 +125,9 @@ class _mainFormState extends State<mainForm> {
                       ),
                     ),
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ListTile(
                       leading: Icon(Icons.person),
                       title:
@@ -220,6 +223,7 @@ class _mainFormState extends State<mainForm> {
                  ),
                )
                ),
+                    Si
 
                     ButtonTheme(child: ElevatedButton(
                         onPressed: NextScreen, child: Text("Submit")))
