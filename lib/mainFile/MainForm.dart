@@ -47,8 +47,9 @@ class _mainFormState extends State<mainForm> {
    Widget build(BuildContext context) {
      return Scaffold(
          body:
+
          Padding(
-         padding: const EdgeInsets.all(20.0),
+         padding: EdgeInsets.all(20.0),
 
          child: SingleChildScrollView(
 
@@ -68,6 +69,7 @@ class _mainFormState extends State<mainForm> {
                        ListTile(
                          leading: Icon(Icons.person),
                          title:TextField(
+
                            onSubmitted: (input)=>username=input,
                            decoration: InputDecoration(
                              labelText: "Username",
@@ -75,7 +77,7 @@ class _mainFormState extends State<mainForm> {
                                  fontStyle: FontStyle.italic,
                                ),
                                border: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(10.10)),
+                                 borderRadius: BorderRadius.circular(10.0)),
                            ),
                            ),
                        ),
@@ -96,7 +98,7 @@ class _mainFormState extends State<mainForm> {
                           ) ,
 
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.10))),
+                              borderRadius: BorderRadius.circular(10.0))),
                     ),
                    ),
                     SizedBox(
@@ -117,7 +119,7 @@ class _mainFormState extends State<mainForm> {
                           ) ,
 
                           border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.9)
+                          borderRadius: BorderRadius.circular(10.0)
                         )
 
                       ),
@@ -165,7 +167,7 @@ class _mainFormState extends State<mainForm> {
                               fontStyle: FontStyle.italic
                           ) ,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.9)
+                          borderRadius: BorderRadius.circular(10.0)
                         )
                       ),
                     ),
@@ -187,7 +189,7 @@ class _mainFormState extends State<mainForm> {
                           fontStyle: FontStyle.italic
                         ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.10)
+                          borderRadius: BorderRadius.circular(10.0)
 
                         )
                       ),
@@ -212,7 +214,7 @@ class _mainFormState extends State<mainForm> {
 
                    ),
                    border: OutlineInputBorder(
-                     borderRadius: BorderRadius.circular(10.10)
+                     borderRadius: BorderRadius.circular(10.0)
                    )
 
                  ),
