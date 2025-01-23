@@ -106,7 +106,7 @@ class _mainFormState extends State<mainForm> {
                     ),
 
                     ListTile(
-                      leading: Icon(Icons.person),
+                      leading: Icon(Icons.person_2),
                       title:
                       TextField(
                         onSubmitted: (input)=>father=input,
@@ -126,7 +126,7 @@ class _mainFormState extends State<mainForm> {
                     ),
                     ),
                     ListTile(
-                      leading: Icon(Icons.person_2),
+                      leading: Icon(Icons.person),
                       title:
 
                     TextField(
