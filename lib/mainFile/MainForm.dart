@@ -223,7 +223,9 @@ class _mainFormState extends State<mainForm> {
                  ),
                )
                ),
-                    Si
+                    SizedBox(
+                      height: 10,
+                    ),
 
                     ButtonTheme(child: ElevatedButton(
                         onPressed: NextScreen, child: Text("Submit")))
