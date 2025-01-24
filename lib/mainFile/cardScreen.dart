@@ -9,7 +9,7 @@ class cardScreen extends StatelessWidget {
   String email;
   String password;
 
-  cardScreen({Key?key,
+  cardScreen({super.key,
     required this.username,
     required this.date,
     required this.father,
@@ -19,12 +19,11 @@ class cardScreen extends StatelessWidget {
     required this.password,
   }
 
-      ):super(key: key);
+      );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: SingleChildScrollView(
         child: Form(
           child: Card(
