@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 class cardScreen extends StatelessWidget {
 
-  final String? username;
-  final String? date;
+   final String? username;
+   final String? date;
    final String? father;
-    final String? mother;
-    final String? mobile;
-    final String? email;
-    final String? password;
+   final String? mother;
+   final String? mobile;
+   final String? email;
+   final String? password;
 
   cardScreen({super.key,
     required this.username,
@@ -38,10 +38,15 @@ class cardScreen extends StatelessWidget {
                 title: Text(username!),
                 
               ),
-          ListTile(
-           leading: Icon(Icons.calendar_today),
-          title: Text(date!),
+             ListTile(
+             leading: Icon(Icons.calendar_today),
+             title: Text(date!),
           ),
+              ListTile(
+                leading: Icon(Icons.person_2),
+                title: Text(father!),
+
+              ),
             ],
 
           ),
