@@ -47,6 +47,14 @@ class cardScreen extends StatelessWidget {
                 title: Text(father!),
 
               ),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text(mother!),
+              ),
+              ListTile(
+                leading: Icon(Icons.phone),
+                title: Text(mobile!),
+              )
             ],
 
           ),
