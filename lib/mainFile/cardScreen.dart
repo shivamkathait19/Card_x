@@ -22,7 +22,7 @@ class cardScreen extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       body: SingleChildScrollView(
         child: Form(
@@ -34,16 +34,22 @@ class cardScreen extends StatelessWidget {
             children: [
               Padding(padding: EdgeInsets.all(10.0),),
               ListTile(
-        
                 leading: Icon(Icons.person),
                 title: Text(username!),
-              )
-            ],
+                
+              ),
+          ListTile(
+           leading: Icon(Icons.calendar_today),
+          title: Text(date!),
           ),
+            ],
+
           ),
         
         ),
       ),
+            ),
     );
+
   }
 }
