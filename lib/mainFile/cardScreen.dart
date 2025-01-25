@@ -9,7 +9,8 @@ class cardScreen extends StatelessWidget {
      final String? email;
      final String? password;
 
-  cardScreen({super.key,
+  cardScreen({
+    super.key,
      this.username,
      this.date,
      this.father,
@@ -40,28 +41,28 @@ class cardScreen extends StatelessWidget {
               ),
              ListTile(
              leading: Icon(Icons.calendar_today),
-             title: Text(date!),
+             title: Text(date ??''),
           ),
               ListTile(
                 leading: Icon(Icons.person_2),
-                title: Text(father!),
+                title: Text(father?? ''),
 
               ),
               ListTile(
                 leading: Icon(Icons.person),
-                title: Text(mother!),
+                title: Text(mother?? ''),
               ),
               ListTile(
                 leading: Icon(Icons.phone),
-                title: Text(mobile!),
+                title: Text(mobile?? ''),
               ),
               ListTile(
                 leading: Icon(Icons.email),
-                title: Text(email!),
+                title: Text(email??''),
               ),
               ListTile(
                 leading: Icon(Icons.password),
-                title: Text(password!),
+                title: Text(password?? ''),
               ),
             ],
 
