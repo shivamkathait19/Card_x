@@ -10,13 +10,13 @@ class cardScreen extends StatelessWidget {
     String? password;
 
   cardScreen({super.key,
-    required this.username,
-    required this.date,
-    required this.father,
-    required this.mother,
-    required this.mobile,
-    required this.email,
-    required this.password,
+     this.username,
+     this.date,
+     this.father,
+     this.mother,
+    this.mobile,
+     this.email,
+    this.password,
   }
 
       );
