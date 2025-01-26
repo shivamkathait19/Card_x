@@ -90,7 +90,7 @@ class _mainFormState extends State<mainForm> {
                      title:
 
                     TextField(
-                      controller: usernameController,
+                      controller: dateController,
                       decoration: InputDecoration(
                         labelText: "Date Of Birth",
                           labelStyle: TextStyle(
