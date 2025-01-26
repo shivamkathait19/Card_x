@@ -60,10 +60,6 @@ class cardScreen extends StatelessWidget {
                 leading: Icon(Icons.email),
                 title: Text(email??''),
               ),
-              ListTile(
-                leading: Icon(Icons.password),
-                title: Text(password?? ''),
-              ),
             ],
 
           ),
