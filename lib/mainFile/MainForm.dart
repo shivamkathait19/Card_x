@@ -202,27 +202,7 @@ class _mainFormState extends State<mainForm> {
                       height: 10,
                     ),
 
-               ListTile(
-                 leading: Icon(Icons.password,size: 23,),
-                 title:
 
-               TextField(
-                 onSubmitted: (input)=>password=input,
-                 keyboardType: TextInputType.visiblePassword,
-
-                 decoration: InputDecoration(
-                   labelText: "Password",
-                   labelStyle: TextStyle(
-                     fontStyle:FontStyle.italic,
-
-                   ),
-                   border: OutlineInputBorder(
-                     borderRadius: BorderRadius.circular(10.0)
-                   )
-
-                 ),
-               )
-               ),
                     SizedBox(
                       height: 10,
                     ),
