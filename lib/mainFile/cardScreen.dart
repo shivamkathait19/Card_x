@@ -10,7 +10,7 @@ class cardScreen extends StatelessWidget {
      final String? password;
 
   cardScreen({
-    super.key,
+    Key? key,
      this.username,
      this.date,
      this.father,
@@ -63,7 +63,7 @@ class cardScreen extends StatelessWidget {
             ],
 
           ),
-        
+
         ),
       ),
             ),
