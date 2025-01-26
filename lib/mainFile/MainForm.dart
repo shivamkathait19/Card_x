@@ -13,32 +13,35 @@ class mainForm extends StatefulWidget {
 
 
 class _mainFormState extends State<mainForm> {
-        var
-        username,
-      date,
-      father,
-      mother,
-      mobile,
-      email,
-      password;
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController fatherController = TextEditingController();
+  TextEditingController motherController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
+
   GlobalKey<FormState> _key = new GlobalKey();
 
+
+
   NextScreen(){
-    if(_key.currentState!=null){
+    if (_key.currentState != null && _key.currentState!.validate()) {
       _key.currentState!.save();
-
     }
-    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>cardScreen(
-      username: username,
-      date:date,
-      father:father,
-      mother: mother,
-      mobile: mobile,
-      email: email,
-      password: password,
 
-    ),
-    )
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => cardScreen(
+          username: usernameController.text,
+          date: dateController.text,
+          father: fatherController.text,
+          mother: motherController.text,
+          mobile: mobileController.text,
+          email: emailController.text,
+        ),
+      ),
     );
   }
 
@@ -59,18 +62,15 @@ class _mainFormState extends State<mainForm> {
                     SizedBox(
                       height: 50,
                     ),
-
-                         Text("Enter Your Details",style:
-
-                           TextStyle(fontSize: 17,fontStyle: FontStyle.italic)),
+                 Text("Enter Your Details",style:
+                         TextStyle(fontSize: 17,fontStyle: FontStyle.italic)),
                         SizedBox(
                           height: 10,
                         ),
                        ListTile(
                          leading: Icon(Icons.person),
                          title:TextField(
-
-                           onSubmitted: (input)=>username=input,
+                           controller: usernameController,
                            decoration: InputDecoration(
                              labelText: "Username",
                                labelStyle: TextStyle(
@@ -90,7 +90,7 @@ class _mainFormState extends State<mainForm> {
                      title:
 
                     TextField(
-                      onSubmitted: (input)=>date=input,
+                      controller: usernameController,
                       decoration: InputDecoration(
                         labelText: "Date Of Birth",
                           labelStyle: TextStyle(
