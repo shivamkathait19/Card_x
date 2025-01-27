@@ -159,7 +159,7 @@ class _mainFormState extends State<mainForm> {
 
 
                     TextField(
-                      onSubmitted: (input)=>mobile=input,
+                      controller: mobileController,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly
@@ -184,7 +184,7 @@ class _mainFormState extends State<mainForm> {
                        title:
 
                     TextField(
-                      onSubmitted: (input)=>email=input,
+                      controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: "Email address",
