@@ -19,6 +19,8 @@ class _mainFormState extends State<mainForm> {
   TextEditingController motherController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
 
 
   GlobalKey<FormState> _key = new GlobalKey();
@@ -40,6 +42,7 @@ class _mainFormState extends State<mainForm> {
           mother: motherController.text,
           mobile: mobileController.text,
           email: emailController.text,
+          password: passController.text,
         ),
       ),
     );
@@ -201,7 +204,19 @@ class _mainFormState extends State<mainForm> {
                     SizedBox(
                       height: 10,
                     ),
-
+                         ListTile(
+                           leading: Icon(Icons.password),
+                           title: TextField(
+                             controller: passController,
+                             keyboardType: TextInputType.visiblePassword,
+                             decoration: InputDecoration(
+                               labelText:"Password",
+                               labelStyle: TextStyle(
+                                 fontStyle: FontStyle.italic
+                               )
+                             ),
+                           ),
+                         ),
 
                     SizedBox(
                       height: 10,
