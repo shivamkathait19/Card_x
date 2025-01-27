@@ -109,7 +109,7 @@ class _mainFormState extends State<mainForm> {
                       leading: Icon(Icons.person_2),
                       title:
                       TextField(
-                        onSubmitted: (input)=>father=input,
+                        controller : fatherController,
                       keyboardType: TextInputType.name,
                       decoration:InputDecoration(
                         labelText: "Father Name",
@@ -133,7 +133,7 @@ class _mainFormState extends State<mainForm> {
                       title:
 
                     TextField(
-                      onSubmitted: (input)=>mother=input,
+                      controller: mobileController,
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         labelText: "Mother Name",
