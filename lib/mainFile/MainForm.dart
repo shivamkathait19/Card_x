@@ -212,12 +212,14 @@ class _mainFormState extends State<mainForm> {
                              decoration: InputDecoration(
                                labelText:"Password",
                                labelStyle: TextStyle(
-                                 fontStyle: FontStyle.italic
-                               )
+                                 fontStyle: FontStyle.italic,
+                               ),
+                               border: OutlineInputBorder(
+                                   borderRadius: BorderRadius.circular(10.0)
                              ),
                            ),
                          ),
-
+                         ),
                     SizedBox(
                       height: 10,
                     ),
