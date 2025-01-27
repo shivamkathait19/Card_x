@@ -82,8 +82,15 @@ class _mainFormState extends State<mainForm> {
                                border: OutlineInputBorder(
                                  borderRadius: BorderRadius.circular(10.0)),
                            ),
-                           ),
+                               validator: (value) {
+                             if (value == null || value.isEmpty) {
+                               return "username is required";
+                             }
+                             return null;
+                           },
+                         ),
                        ),
+
                           SizedBox(
                          height: 10,
                          ) ,
