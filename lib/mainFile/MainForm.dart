@@ -57,7 +57,7 @@ class _mainFormState extends State<mainForm> {
      gradient: LinearGradient(
      colors: [Colors.pink, Colors.blue, Colors.yellow], // Add your colors
      begin: Alignment.topLeft,
-     end: Alignment.bottomRight,
+     end: Alignment.bottomCenter,
      ),
      ),
          child: Padding(
@@ -227,11 +227,13 @@ class _mainFormState extends State<mainForm> {
                          ),
                          ),
                     SizedBox(
-                      height: 10,
+                      height: 50,
                     ),
-
-                    ButtonTheme(child: ElevatedButton(
-                        onPressed: NextScreen, child: Text("Submit")))
+                 Padding(
+                   padding:  EdgeInsets.only(top:90,left: 300),
+                   child: ButtonTheme(child: ElevatedButton(
+                       onPressed: NextScreen, child: Text("Submit"))),
+                 )
 
 
                ],
