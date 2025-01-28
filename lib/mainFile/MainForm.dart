@@ -17,7 +17,7 @@ class _mainFormState extends State<mainForm> {
   TextEditingController dateController = TextEditingController();
   TextEditingController fatherController = TextEditingController();
   TextEditingController motherController = TextEditingController();
-  TextEditingController mobileController = TextEditingController();
+  TextEditingController mobileController =TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
@@ -52,14 +52,20 @@ class _mainFormState extends State<mainForm> {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-         body:
-
-         Padding(
+         body:Container(
+     decoration: BoxDecoration(
+     gradient: LinearGradient(
+     colors: [Colors.pink, Colors.blue, Colors.yellow], // Add your colors
+     begin: Alignment.topLeft,
+     end: Alignment.bottomRight,
+     ),
+     ),
+         child: Padding(
          padding: EdgeInsets.all(20.0),
+           child: SingleChildScrollView(
 
-         child: SingleChildScrollView(
-
-          child: Form (key: _key,
+          child: Form
+            (key: _key,
              child: Column(
                children: [
                     SizedBox(
@@ -82,12 +88,7 @@ class _mainFormState extends State<mainForm> {
                                border: OutlineInputBorder(
                                  borderRadius: BorderRadius.circular(10.0)),
                            ),
-                               validator: (value) {
-                             if (value == null || value.isEmpty) {
-                               return "username is required";
-                             }
-                             return null;
-                           },
+
                          ),
                        ),
 
@@ -150,8 +151,7 @@ class _mainFormState extends State<mainForm> {
                         labelStyle: TextStyle(
                           fontStyle: FontStyle.italic
                         ),
-
-                        border: OutlineInputBorder(
+                          border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0)
                         )
                       ),
@@ -166,9 +166,7 @@ class _mainFormState extends State<mainForm> {
                  ListTile(
                    leading: Icon(Icons.phone),
                    title:
-
-
-                    TextField(
+                   TextField(
                       controller: mobileController,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
@@ -185,6 +183,7 @@ class _mainFormState extends State<mainForm> {
                       ),
                     ),
                  ),
+
                     SizedBox(
                       height: 10,
                     ),
@@ -241,7 +240,7 @@ class _mainFormState extends State<mainForm> {
          ),
 
        )
-
+         ),
        );
    }
 }
