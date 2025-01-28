@@ -76,6 +76,9 @@ class _mainFormState extends State<mainForm> {
                         SizedBox(
                           height: 10,
                         ),
+
+
+
                        ListTile(
                          leading: Icon(Icons.person),
                          title:TextField(
@@ -142,9 +145,8 @@ class _mainFormState extends State<mainForm> {
                     ListTile(
                       leading: Icon(Icons.person),
                       title:
-
-                    TextField(
-                      controller: mobileController,
+                      TextField(
+                      controller: motherController,
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
                         labelText: "Mother Name",
