@@ -51,7 +51,7 @@ class _mainFormState extends State<mainForm> {
 
    @override
    Widget build(BuildContext context) {
-     return Scaffold(
+     return Scaffold( backgroundColor: Colors.pink, drawerScrimColor: Colors.blue,
          body:Container(
      decoration: BoxDecoration(
      gradient: LinearGradient(
@@ -76,12 +76,9 @@ class _mainFormState extends State<mainForm> {
                         SizedBox(
                           height: 10,
                         ),
-
-
-
-                       ListTile(
+                   ListTile(
                          leading: Icon(Icons.person),
-                         title:TextField(
+                         title:TextFormField(
                            controller: usernameController,
                            decoration: InputDecoration(
                              labelText: "Username",
@@ -91,6 +88,12 @@ class _mainFormState extends State<mainForm> {
                                border: OutlineInputBorder(
                                  borderRadius: BorderRadius.circular(10.0)),
                            ),
+                           validator: (value) {
+                             if (value == null || value.isEmpty) {
+                               return "Username is required";
+                             }
+                             return null;
+                           },
 
                          ),
                        ),
@@ -103,16 +106,24 @@ class _mainFormState extends State<mainForm> {
                      leading: Icon(Icons.calendar_today),
                      title:
 
-                    TextField(
+                    TextFormField(
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: "Date Of Birth",
                           labelStyle: TextStyle(
                               fontStyle: FontStyle.italic
                           ) ,
-
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0))),
+                              borderRadius: BorderRadius.circular(10.0)
+                          )
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return " Date Of Birth is required";
+                        }
+                        return null;
+                      },
+
                     ),
                    ),
                     SizedBox(
@@ -122,7 +133,7 @@ class _mainFormState extends State<mainForm> {
                     ListTile(
                       leading: Icon(Icons.person_2),
                       title:
-                      TextField(
+                      TextFormField(
                         controller : fatherController,
                       keyboardType: TextInputType.name,
                       decoration:InputDecoration(
@@ -136,6 +147,12 @@ class _mainFormState extends State<mainForm> {
                         )
 
                       ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return " Father name is required";
+                          }
+                          return null;
+                        },
                     ),
                     ),
                     SizedBox(
@@ -144,7 +161,7 @@ class _mainFormState extends State<mainForm> {
                     ListTile(
                       leading: Icon(Icons.person),
                       title:
-                      TextField(
+                      TextFormField(
                       controller: motherController,
                       keyboardType: TextInputType.name,
                       decoration: InputDecoration(
@@ -156,6 +173,12 @@ class _mainFormState extends State<mainForm> {
                           borderRadius: BorderRadius.circular(10.0)
                         )
                       ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return " Mother name  is required";
+                          }
+                          return null;
+                        },
                     ),
                     ),
 
@@ -167,7 +190,7 @@ class _mainFormState extends State<mainForm> {
                  ListTile(
                    leading: Icon(Icons.phone),
                    title:
-                   TextField(
+                   TextFormField(
                       controller: mobileController,
                       keyboardType: TextInputType.number,
                       inputFormatters: [
@@ -182,6 +205,12 @@ class _mainFormState extends State<mainForm> {
                           borderRadius: BorderRadius.circular(10.0)
                         )
                       ),
+                     validator: (value) {
+                       if (value == null || value.isEmpty) {
+                         return " Mobile name  is required";
+                       }
+                       return null;
+                     },
                     ),
                  ),
 
@@ -193,7 +222,7 @@ class _mainFormState extends State<mainForm> {
                        leading: Icon(Icons.email),
                        title:
 
-                    TextField(
+                    TextFormField(
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -206,6 +235,12 @@ class _mainFormState extends State<mainForm> {
 
                         )
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return " email is required";
+                        }
+                        return null;
+                      },
                     ),
                      ),
                     SizedBox(
@@ -213,7 +248,7 @@ class _mainFormState extends State<mainForm> {
                     ),
                          ListTile(
                            leading: Icon(Icons.password),
-                           title: TextField(
+                           title: TextFormField(
                              controller: passController,
                              keyboardType: TextInputType.visiblePassword,
                              decoration: InputDecoration(
@@ -225,6 +260,16 @@ class _mainFormState extends State<mainForm> {
                                    borderRadius: BorderRadius.circular(10.0)
                              ),
                            ),
+                             validator: (value) {
+                               if (value == null || value.isEmpty) {
+                                 return " Password is required";
+                               }
+                               if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+                                 return "Invalid email format";
+                               }
+
+                               return null;
+                             },
                          ),
                          ),
                     SizedBox(
