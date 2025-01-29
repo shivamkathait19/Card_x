@@ -51,7 +51,8 @@ class _mainFormState extends State<mainForm> {
 
    @override
    Widget build(BuildContext context) {
-     return Scaffold( backgroundColor: Colors.pink, drawerScrimColor: Colors.blue,
+     return Scaffold(
+
          body:Container(
      decoration: BoxDecoration(
      gradient: LinearGradient(
@@ -290,7 +291,7 @@ class _mainFormState extends State<mainForm> {
 
        )
          ),
-
+     )
        );
    }
 }
