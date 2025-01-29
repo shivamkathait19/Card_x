@@ -52,8 +52,7 @@ class _mainFormState extends State<mainForm> {
    @override
    Widget build(BuildContext context) {
      return Scaffold(
-
-         body:Container(
+          body:Container(
      decoration: BoxDecoration(
      gradient: LinearGradient(
      colors: [Colors.pink, Colors.blue, Colors.yellow], // Add your colors
@@ -87,9 +86,12 @@ class _mainFormState extends State<mainForm> {
                                  fontStyle: FontStyle.italic,
                                ),
                                border: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(10.0)),
+                                 borderRadius: BorderRadius.circular(10.0),borderSide:BorderSide(
+
+                               )
+                               ),
                            ),
-                           validator: (value) {
+                               validator: (value) {
                              if (value == null || value.isEmpty) {
                                return "Username is required";
                              }
@@ -291,7 +293,6 @@ class _mainFormState extends State<mainForm> {
 
        )
          ),
-     )
-       );
+     );
    }
 }
