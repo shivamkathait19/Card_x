@@ -52,7 +52,8 @@ class cardScreen extends StatelessWidget {
 
                 ListTile(
                   leading: Icon(Icons.person),
-                  title: Text(username?? ''),
+                  title: Text(username?? '',),
+
 
                 ),
                ListTile(
