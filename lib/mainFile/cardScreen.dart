@@ -25,18 +25,17 @@ class cardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-
-      body: Padding(
+        body: Padding(
         padding: EdgeInsets.only(top: 100),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.blue, // Container color
-            borderRadius: BorderRadius.circular(16),
+            color: Colors.cyan, // Container color
+            borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.blue.withOpacity(0.6), // Glow color
-                spreadRadius: 8, // How far the glow extends
-                blurRadius: 20,  // How blurred the glow is
+                color: Colors.black87.withOpacity(0.8), // Glow color
+                spreadRadius:5, // How far the glow extends
+                blurRadius:5,  // How blurred the glow is
                 offset: Offset(0, 0), // Position of the glow
               ),
             ],
