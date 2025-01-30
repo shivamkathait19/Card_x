@@ -19,8 +19,7 @@ class cardScreen extends StatelessWidget {
      this.email,
      this.password,
   }
-
-      );
+  );
 
   @override
   Widget build(BuildContext context){
@@ -50,16 +49,41 @@ class cardScreen extends StatelessWidget {
                   children: [
                 Padding(padding: EdgeInsets.all(10.0),),
 
-                ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text(username?? '',),
-
-
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.cyan, // Container color
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black87.withOpacity(0.8), // Glow color
+                        spreadRadius:5, // How far the glow extends
+                        blurRadius:5,  // How blurred the glow is
+                        offset: Offset(0, 0), // Position of the glow
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    leading: Icon(Icons.person),
+                    title: Text(username?? '',),
+                  ),
                 ),
-               ListTile(
-               leading: Icon(Icons.calendar_today),
-               title: Text(date ??''),
-            ),
+               Container(decoration: BoxDecoration(
+                 color: Colors.cyan, // Container color
+                 borderRadius: BorderRadius.circular(20),
+                 boxShadow: [
+                   BoxShadow(
+                     color: Colors.black87.withOpacity(0.8), // Glow color
+                     spreadRadius:5, // How far the glow extends
+                     blurRadius:5,  // How blurred the glow is
+                     offset: Offset(0, 0), // Position of the glow
+                   ),
+                 ],
+               ),
+                 child: ListTile(
+                 leading: Icon(Icons.calendar_today),
+                 title: Text(date ??''),
+                             ),
+               ),
                 ListTile(
                   leading: Icon(Icons.person_2),
                   title: Text(father?? ''),
