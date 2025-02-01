@@ -99,6 +99,9 @@ class cardScreen extends StatelessWidget {
 
                   ),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(decoration: BoxDecoration(
                   color: Colors.cyan, // Container color
                   borderRadius: BorderRadius.circular(20),
@@ -116,6 +119,9 @@ class cardScreen extends StatelessWidget {
                     title: Text(mother?? ''),
                   ),
                 ),
+                    SizedBox(
+                      height: 10,
+                    ),
                 Container(decoration: BoxDecoration(
                   color: Colors.cyan, // Container color
                   borderRadius: BorderRadius.circular(20),
@@ -133,6 +139,9 @@ class cardScreen extends StatelessWidget {
                     title: Text(mobile??''),
                   ),
                 ),
+                    SizedBox(
+                      height: 10,
+                    ),
                 Container(decoration: BoxDecoration(
                   color: Colors.cyan, // Container color
                   borderRadius: BorderRadius.circular(20),
