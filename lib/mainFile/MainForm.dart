@@ -76,30 +76,37 @@ class _mainFormState extends State<mainForm> {
                         SizedBox(
                           height: 10,
                         ),
-                   ListTile(
-                         leading: Icon(Icons.person),
-                         title:TextFormField(
-                           controller: usernameController,
-                           decoration: InputDecoration(
-                             labelText: "Username",
-                               labelStyle: TextStyle(
-                                 fontStyle: FontStyle.italic,
-                               ),
-                               border: OutlineInputBorder(
-                                 borderRadius: BorderRadius.circular(10.0),borderSide:BorderSide(
+                   Container(
+                     decoration: BoxDecoration(
+                       border: Border.all(
+                         color: Colors.black54
+                       )
+                     ),
+                     child: ListTile(
+                           leading: Icon(Icons.person),
+                           title:TextFormField(
+                             controller: usernameController,
+                             decoration: InputDecoration(
+                               labelText: "Username",
+                                 labelStyle: TextStyle(
+                                   fontStyle: FontStyle.italic,
+                                 ),
+                                 border: OutlineInputBorder(
+                                   borderRadius: BorderRadius.circular(10.0),borderSide:BorderSide(
 
-                               )
-                               ),
+                                 )
+                                 ),
+                             ),
+                                 validator: (value) {
+                               if (value == null || value.isEmpty) {
+                                 return "Username is required";
+                               }
+                               return null;
+                             },
+
                            ),
-                               validator: (value) {
-                             if (value == null || value.isEmpty) {
-                               return "Username is required";
-                             }
-                             return null;
-                           },
-
                          ),
-                       ),
+                   ),
 
                           SizedBox(
                          height: 10,
