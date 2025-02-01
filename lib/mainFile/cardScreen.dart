@@ -37,10 +37,11 @@ class cardScreen extends StatelessWidget {
               ),
               child: Column(
                   children: [
-                Padding(padding: EdgeInsets.all(10.0),),
-
+                SizedBox(
+                  height: 20,
+                ),
                     Container(
-                  decoration: BoxDecoration(
+                      decoration: BoxDecoration(
                     color: Colors.cyan, // Container color
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
@@ -159,6 +160,9 @@ class cardScreen extends StatelessWidget {
                     title: Text(email??''),
                   ),
                 ),
+                    SizedBox(
+                      height: 10,
+                    ),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.cyan, // Container color
