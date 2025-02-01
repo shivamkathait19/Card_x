@@ -27,18 +27,8 @@ class cardScreen extends StatelessWidget {
         body: Padding(
         padding: EdgeInsets.only(top: 100),
         child: Container(
-          decoration: BoxDecoration(
-            color: Colors.cyan, // Container color
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black87.withOpacity(0.8), // Glow color
-                spreadRadius:5, // How far the glow extends
-                blurRadius:5,  // How blurred the glow is
-                offset: Offset(0, 0), // Position of the glow
-              ),
-            ],
-          ),
+          height: 500,
+          color: Colors.black54,
            child:SingleChildScrollView(
           child: Form(
             child: Card(
@@ -48,6 +38,7 @@ class cardScreen extends StatelessWidget {
               child: Column(
                   children: [
                 Padding(padding: EdgeInsets.all(10.0),),
+
                     Container(
                   decoration: BoxDecoration(
                     color: Colors.cyan, // Container color
@@ -66,6 +57,9 @@ class cardScreen extends StatelessWidget {
                     title: Text(username?? '',),
                   ),
                 ),
+                    SizedBox(
+                      height: 10,
+                    ),
                Container(decoration: BoxDecoration(
                  color: Colors.cyan, // Container color
                  borderRadius: BorderRadius.circular(20),
@@ -78,11 +72,15 @@ class cardScreen extends StatelessWidget {
                    ),
                  ],
                ),
+
                  child: ListTile(
                  leading: Icon(Icons.calendar_today),
                  title: Text(date ??''),
                              ),
                ),
+                    SizedBox(
+                      height: 10,
+                    ),
                 Container(decoration: BoxDecoration(
                   color: Colors.cyan, // Container color
                   borderRadius: BorderRadius.circular(20),
