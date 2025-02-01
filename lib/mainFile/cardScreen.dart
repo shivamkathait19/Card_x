@@ -104,7 +104,10 @@ class cardScreen extends StatelessWidget {
                       height: 10,
                     ),
                 Container(decoration: BoxDecoration(
-                  color: Colors.black54, // Container color
+                  border: Border.all(
+                    color: Colors.black54,
+                  ),
+                   // Container color
                   borderRadius: BorderRadius.circular(20),
 
                 ),
@@ -117,16 +120,11 @@ class cardScreen extends StatelessWidget {
                       height: 10,
                     ),
                 Container(decoration: BoxDecoration(
-                  color: Colors.cyan, // Container color
+                  border: Border.all(
+                    color: Colors.black54,
+                  ),// Container color
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black87.withOpacity(0.8), // Glow color
-                      spreadRadius:5, // How far the glow extends
-                      blurRadius:5,  // How blurred the glow is
-                      offset: Offset(0, 0), // Position of the glow
-                    ),
-                  ],
+
                 ),
                   child: ListTile(
                     leading: Icon(Icons.email),
