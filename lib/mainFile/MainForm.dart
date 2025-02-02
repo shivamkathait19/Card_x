@@ -76,8 +76,7 @@ class _mainFormState extends State<mainForm> {
                           SizedBox(
                             height: 10,
                           ),
-
-                        ListTile(
+                       ListTile(
                              leading: Icon(Icons.person),
                              title:TextFormField(
                                controller: usernameController,
@@ -277,9 +276,16 @@ class _mainFormState extends State<mainForm> {
                         height: 50,
                       ),
                    Padding(
-                     padding:  EdgeInsets.only(top:90,left: 300),
-                     child: ButtonTheme(child: ElevatedButton(
-                         onPressed: NextScreen, child: Text("Submit"))),
+                     padding:  EdgeInsets.only(top:70,left: 200),
+                     child:
+                     ButtonTheme(child:
+                     ElevatedButton(
+                         onPressed: NextScreen, child: Text("Submit",style: TextStyle(
+                       fontStyle: FontStyle.italic
+                     ),
+                     )
+                     )
+                     ),
                    )
 
 
