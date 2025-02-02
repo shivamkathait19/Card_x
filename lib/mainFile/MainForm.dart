@@ -59,7 +59,7 @@ class _mainFormState extends State<mainForm> {
              child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.pink, Colors.blue, Colors.yellow], // Add your colors
+                colors: [ Colors.yellow,Colors.lightGreenAccent,Colors.tealAccent,Colors.cyanAccent], // Add your colors
                 begin: Alignment.topLeft,
                 end: Alignment.bottomCenter,
               ),
