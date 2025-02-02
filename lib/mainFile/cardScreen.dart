@@ -24,143 +24,143 @@ class cardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: Colors.white12,
         body: Padding(
-        padding: EdgeInsets.only(top: 100),
-        child: Container(
-          height: 500,
-          color: Colors.black54,
-           child:SingleChildScrollView(
-          child: Form(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
+        padding: EdgeInsets.only(top: 200),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 500,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.yellow], // Add your colors
+                begin: Alignment.topLeft,
+                end: Alignment.bottomCenter,
               ),
-              child: Column(
-                  children: [
-                SizedBox(
-                  height: 20,
-                ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black54
-                        ),
-                        borderRadius: BorderRadius.circular(20),
+            ),
+             child:SingleChildScrollView(
+               child: Column(
+                    children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black54
+                          ),
+                          borderRadius: BorderRadius.circular(20),
 
-                  ),
-                  child: ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text(username?? '',),
-                  ),
-                ),
-                    SizedBox(
-                      height: 10,
                     ),
-               Container(decoration: BoxDecoration(
-                 border: Border.all(
-                 color: Colors.black54,
-                 ),// Container color
-                 borderRadius: BorderRadius.circular(20),
-
-               ),
-
-                 child: ListTile(
-                 leading: Icon(Icons.calendar_today),
-                 title: Text(date ??''),
-                             ),
-               ),
-                    SizedBox(
-                      height: 10,
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text(username?? '',),
                     ),
-                Container(decoration: BoxDecoration(
-                  border: Border.all(
-                  color: Colors.black54,
-                ),// Container color
-                  borderRadius: BorderRadius.circular(20),
-                ),
-
-                  child: ListTile(
-                    leading: Icon(Icons.person_2),
-                    title: Text(father?? ''),
-
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(decoration: BoxDecoration(
-                  border: Border.all(
-                  color: Colors.black54,
-                  ),// Container color
+                      SizedBox(
+                        height: 10,
+                      ),
+                 Container(decoration: BoxDecoration(
+                   border: Border.all(
+                   color: Colors.black54,
+                   ),// Container color
                    borderRadius: BorderRadius.circular(20),
 
-                ),
-                  child: ListTile(
-                    leading: Icon(Icons.person),
-                    title: Text(mother?? ''),
-                  ),
-                ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                Container(decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black54,
-                  ),
-                   // Container color
-                  borderRadius: BorderRadius.circular(20),
+                 ),
 
-                ),
-                  child: ListTile(
-                    leading: Icon(Icons.phone),
-                    title: Text(mobile??''),
-                  ),
-                ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                Container(decoration: BoxDecoration(
-                  border: Border.all(
+                   child: ListTile(
+                   leading: Icon(Icons.calendar_today),
+                   title: Text(date ??''),
+                               ),
+                 ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(
                     color: Colors.black54,
                   ),// Container color
-                  borderRadius: BorderRadius.circular(20),
-
-                ),
-                  child: ListTile(
-                    leading: Icon(Icons.email),
-                    title: Text(email??''),
-                  ),
-                ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.cyan, // Container color
                     borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black87.withOpacity(0.8), // Glow color
-                        spreadRadius:5, // How far the glow extends
-                        blurRadius:5,  // How blurred the glow is
-                        offset: Offset(0, 0), // Position of the glow
+                  ),
+
+                    child: ListTile(
+                      leading: Icon(Icons.person_2),
+                      title: Text(father?? ''),
+
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(
+                    color: Colors.black54,
+                    ),// Container color
+                     borderRadius: BorderRadius.circular(20),
+
+                  ),
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text(mother?? ''),
+                    ),
+                  ),
+                      SizedBox(
+                        height: 10,
                       ),
-                    ],
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black54,
+                    ),
+                     // Container color
+                    borderRadius: BorderRadius.circular(20),
+
                   ),
-                  child: ListTile(
-                    leading: Icon(Icons.password),
-                    title: Text(password??''),
+                    child: ListTile(
+                      leading: Icon(Icons.phone),
+                      title: Text(mobile??''),
+                    ),
                   ),
-                ),
-              ]
+                      SizedBox(
+                        height: 10,
+                      ),
+                  Container(decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black54,
+                    ),// Container color
+                    borderRadius: BorderRadius.circular(20),
+
+                  ),
+                    child: ListTile(
+                      leading: Icon(Icons.email),
+                      title: Text(email??''),
+                    ),
+                  ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black54,
+                      ), // Container color
+                      borderRadius: BorderRadius.circular(20),
+
+                    ),
+                    child: ListTile(
+                      leading: Icon(Icons.password),
+                      title: Text(password??''),
+                    ),
+                  ),
+                ]
+
+              ),
 
             ),
-
           ),
         ),
         ),
-        ),
-      )
+
+
     );
   }
 }
