@@ -76,13 +76,8 @@ class _mainFormState extends State<mainForm> {
                         SizedBox(
                           height: 10,
                         ),
-                   Container(
-                     decoration: BoxDecoration(
-                       border: Border.all(
-                         color: Colors.black54
-                       )
-                     ),
-                     child: ListTile(
+
+                      ListTile(
                            leading: Icon(Icons.person),
                            title:TextFormField(
                              controller: usernameController,
@@ -106,17 +101,13 @@ class _mainFormState extends State<mainForm> {
 
                            ),
                          ),
-                   ),
-
-                          SizedBox(
+                 SizedBox(
                          height: 10,
                          ) ,
-
-                   ListTile(
+                 ListTile(
                      leading: Icon(Icons.calendar_today),
                      title:
-
-                    TextFormField(
+                     TextFormField(
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: "Date Of Birth",
