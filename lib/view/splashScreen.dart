@@ -19,7 +19,14 @@ class splashScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding:  EdgeInsets.only(left: 10),
-                  child: Image.network("https://www.usatoday.com/gcdn/authoring/authoring-images/2024/08/28/USAT/74988734007-debitcredit.jpg?crop=699,393,x0,y0&width=660&height=371&format=pjpg&auto=webp",width: 350, height: 300,),
+                  child: Container(
+                    height: 200,
+                   decoration: BoxDecoration(
+                     border: Border.all(
+                       color: Colors.black54
+                     )
+                   )
+                   ,child: Image.network("https://www.usatoday.com/gcdn/authoring/authoring-images/2024/08/28/USAT/74988734007-debitcredit.jpg?crop=699,393,x0,y0&width=660&height=371&format=pjpg&auto=webp",width: 350, height: 300,)),
                 ),
               ],
             ),
@@ -35,18 +42,26 @@ class splashScreen extends StatelessWidget {
 
             ),),
             SizedBox(
-              height: 35,
+              height: 100,
             ),
-            Padding(
-              padding:  EdgeInsets.only(left:110,bottom: 50),
-              child: Container(
-                child: Row(
-                  children: [
-                    Image.network("https://bsmedia.business-standard.com/_media/bs/img/article/2024-03/12/full/1710223554-0545.jpg", width: 330, height: 250,),
-                  ],
-                ),
-              ),
-            ),
+
+               Padding(
+                 padding: EdgeInsets.only(left: 90),
+                 child: Container(
+                  height: 200,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.black
+                    )
+                  ),
+                  child: Row(
+                    children: [Image.network("https://bsmedia.business-standard.com/_media/bs/img/article/2024-03/12/full/1710223554-0545.jpg", width: 330, height: 250,),
+                    ],
+                  ),
+                               ),
+               ),
+
 SizedBox(
   height: 50,
 ),
