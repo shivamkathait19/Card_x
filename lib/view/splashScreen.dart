@@ -37,6 +37,9 @@ class splashScreen extends StatelessWidget {
                 ),
               ],
             ),
+            SizedBox(
+              height: 100,
+            ),
             Text("MAKE YOUR CARD ",style: TextStyle(fontSize: 19,          // Font size
               // fontWeight: FontWeight.bold,  // Font weight
               fontStyle: FontStyle.italic,  // Italic style
@@ -63,7 +66,7 @@ class splashScreen extends StatelessWidget {
                     )
                   ),
                   child: Row(
-                    children: [Image.network("https://bsmedia.business-standard.com/_media/bs/img/article/2024-03/12/full/1710223554-0545.jpg", width: 330, height: 250,),
+                    children: [Image.network("https://bsmedia.business-standard.com/_media/bs/img/article/2023-03/26/full/1679835161-6589.jpg?im=FeatureCrop,size=(826,465)", width: 347, height: 265,),
                     ],
                   ),
                                ),
