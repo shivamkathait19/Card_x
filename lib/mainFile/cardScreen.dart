@@ -24,34 +24,40 @@ class cardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.white12,
+      backgroundColor: Colors.grey,
         body: Padding(
         padding: EdgeInsets.only(top: 200),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
+          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
           child: Container(
             height: 430,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.blue, Colors.yellow], // Add your colors
-                begin: Alignment.topLeft,
-                end: Alignment.bottomCenter,
-              ),
-            ),             child:SingleChildScrollView(
+              color: Colors.grey,// Container color
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black54.withOpacity(0.8), // Glow color
+                  spreadRadius:5, // How far the glow extends
+                  blurRadius:5,  // How blurred the glow is
+                  offset: Offset(0, 0), // Position of the glow
+                ),
+              ],
+            ),
+
+            child:SingleChildScrollView(
                child: Column(
                     children: [
                   SizedBox(
                     height: 20,
                   ),
                       Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
+                         decoration: BoxDecoration(
+                        border: Border.all(
                             color: Colors.black54
                           ),
-                          borderRadius: BorderRadius.circular(20),
-
-                    ),
-                    child: ListTile(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: ListTile(
                       leading: Icon(Icons.person),
                       title: Text(username?? '',),
                     ),
@@ -59,7 +65,8 @@ class cardScreen extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                 Container(decoration: BoxDecoration(
+                 Container(
+                   decoration: BoxDecoration(
                    border: Border.all(
                    color: Colors.black54,
                    ),// Container color
