@@ -66,7 +66,7 @@ class _mainFormState extends State<mainForm> {
          child: Padding(
            padding: EdgeInsets.all(30.0),
              child: SingleChildScrollView(
-              
+
               child: Form
 
                 (key: _key,
@@ -151,6 +151,7 @@ class _mainFormState extends State<mainForm> {
                             )
 
                           ),
+
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return " Father name is required";

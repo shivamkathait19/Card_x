@@ -43,11 +43,11 @@ class cardScreen extends StatelessWidget {
                 ),
               ],
             ),
-
             child:SingleChildScrollView(
                child: Column(
+
                     children: [
-                  SizedBox(
+                      SizedBox(
                     height: 20,
                   ),
                       Container(
