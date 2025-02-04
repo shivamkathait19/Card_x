@@ -7,7 +7,7 @@ class cardScreen extends StatelessWidget {
      final String? mother;
      final String? mobile;
      final String? email;
-     final String? password;
+     
 
   cardScreen({
     Key? key,
@@ -17,7 +17,7 @@ class cardScreen extends StatelessWidget {
      this.mother,
      this.mobile,
      this.email,
-     this.password,
+
   }
   );
 
@@ -28,17 +28,16 @@ class cardScreen extends StatelessWidget {
         body: Padding(
         padding: EdgeInsets.only(top: 200),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
           child: Container(
-            height: 500,
+            height: 430,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.blue, Colors.yellow], // Add your colors
                 begin: Alignment.topLeft,
                 end: Alignment.bottomCenter,
               ),
-            ),
-             child:SingleChildScrollView(
+            ),             child:SingleChildScrollView(
                child: Column(
                     children: [
                   SizedBox(
@@ -138,19 +137,7 @@ class cardScreen extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black54,
-                      ), // Container color
-                      borderRadius: BorderRadius.circular(20),
 
-                    ),
-                    child: ListTile(
-                      leading: Icon(Icons.password),
-                      title: Text(password??''),
-                    ),
-                  ),
                 ]
 
               ),
