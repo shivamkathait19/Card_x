@@ -41,7 +41,6 @@ class _mainFormState extends State<mainForm> {
           mother: motherController.text,
           mobile: mobileController.text,
           email: emailController.text,
-          password: passController.text,
         ),
       ),
     );
@@ -67,13 +66,7 @@ class _mainFormState extends State<mainForm> {
          child: Padding(
            padding: EdgeInsets.all(30.0),
              child: SingleChildScrollView(
-              /*decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [ Colors.yellow,Colors.lightGreenAccent,Colors.tealAccent,Colors.cyanAccent], // Add your colors
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomCenter,
-                ),
-              ),*/
+              
               child: Form
 
                 (key: _key,
