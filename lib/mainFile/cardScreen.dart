@@ -7,7 +7,7 @@ class cardScreen extends StatelessWidget {
      final String? mother;
      final String? mobile;
      final String? email;
-     
+
 
   cardScreen({
     Key? key,
