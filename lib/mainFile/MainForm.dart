@@ -66,10 +66,8 @@ class _mainFormState extends State<mainForm> {
          child: Padding(
            padding: EdgeInsets.all(30.0),
              child: SingleChildScrollView(
-
-              child: Form
-
-                (key: _key,
+               child: Form
+                 (key: _key,
                  child: Column(
                    children: [
                         SizedBox(
@@ -283,9 +281,13 @@ class _mainFormState extends State<mainForm> {
                      Padding(
                        padding:  EdgeInsets.only(top:70,left: 200),
                        child:
-                       ButtonTheme(child:
+                       ButtonTheme(
+                           child:
                        ElevatedButton(
-                           onPressed: NextScreen, child: Text("Submit",style: TextStyle(
+                           onPressed: NextScreen, child: Text("Submit")
+                           style:ElevatedButton.styleFrom(
+                         primary: Colors.blue, // Initial color of the button
+                       ),(
                          fontStyle: FontStyle.italic
                        ),
                        )
