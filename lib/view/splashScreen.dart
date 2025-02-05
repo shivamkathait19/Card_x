@@ -39,21 +39,19 @@ class splashScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 100,
+              height: 80,
             ),
             Text("MAKE YOUR CARD ",style: TextStyle(fontSize: 19,          // Font size
-              // fontWeight: FontWeight.bold,  // Font weight
+              fontWeight: FontWeight.w800,  // Font weight
               fontStyle: FontStyle.italic,  // Italic style
-              color: Colors.black,    // Text color
-              letterSpacing: 3.0,    // Space between letters
-              wordSpacing: 5.0,
-              decoration: TextDecoration.underline,
+              color: Colors.grey,    // Text color
+              // decoration: TextDecoration.underline,
               decorationColor: Colors.black38,
-              decorationStyle: TextDecorationStyle.double,
+
 
             ),),
             SizedBox(
-              height: 100,
+              height: 80,
             ),
 
                Padding(
@@ -70,12 +68,9 @@ class splashScreen extends StatelessWidget {
                     children: [Image.network("https://bsmedia.business-standard.com/_media/bs/img/article/2023-03/26/full/1679835161-6589.jpg?im=FeatureCrop,size=(826,465)", width: 347, height: 265,),
                     ],
                   ),
-                               ),
+                 ),
                ),
 
-SizedBox(
-  height: 50,
-),
             Spacer(),
             Text("App Create by",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 12,wordSpacing: 5.0,decoration: TextDecoration.underline,decorationStyle: TextDecorationStyle.solid,),),
             Text("Shubham",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 10,wordSpacing: 5.0,decoration: TextDecoration.underline,decorationStyle: TextDecorationStyle.solid,)),
