@@ -284,10 +284,7 @@ class _mainFormState extends State<mainForm> {
                        ButtonTheme(
                            child:
                        ElevatedButton(
-                           onPressed: NextScreen, child: Text("Submit")
-                           style:ElevatedButton.styleFrom(
-                         primary: Colors.blue, // Initial color of the button
-                       ),(
+                           onPressed: NextScreen, child: Text("Submit",style: TextStyle(
                          fontStyle: FontStyle.italic
                        ),
                        )
