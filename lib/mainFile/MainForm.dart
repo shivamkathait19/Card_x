@@ -46,12 +46,7 @@ class _mainFormState extends State<mainForm> {
     );
   }
 
-  void _goToBlankPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => BlankPage()),
-    );
-  }
+ 
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -307,25 +302,7 @@ class _mainFormState extends State<mainForm> {
 
            ),
        ),
-       floatingActionButton: FloatingActionButton(
-         onPressed: _goToBlankPage, // Navigate to the blank page when clicked
-         child: Icon(Icons.add), // Icon for the button
-         backgroundColor: Colors.blue, // Color of the button
-       ),
+
      );
    }
-}
-class BlankPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Blank Page")),
-      body: Center(
-        child: Text(
-          'This is a blank page.',
-          style: TextStyle(fontSize: 24, color: Colors.black),
-        ),
-      ),
-    );
-  }
 }
