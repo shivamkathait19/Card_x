@@ -45,8 +45,7 @@ class cardScreen extends StatelessWidget {
             ),
             child:SingleChildScrollView(
                child: Column(
-
-                    children: [
+                   children: [
                       SizedBox(
                     height: 20,
                   ),
@@ -55,7 +54,7 @@ class cardScreen extends StatelessWidget {
                         border: Border.all(
                             color: Colors.black54
                           ),
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         child: ListTile(
                       leading: Icon(Icons.person),

@@ -22,7 +22,7 @@ class _mainFormState extends State<mainForm> {
   TextEditingController passController = TextEditingController();
 
 
-  
+  GlobalKey<FormState> _key = new GlobalKey();
 
 
 
@@ -188,6 +188,8 @@ class _mainFormState extends State<mainForm> {
                         SizedBox(
                           height: 10,
                         ),
+
+
                      ListTile(
                        leading: Icon(Icons.phone),
                        title:
