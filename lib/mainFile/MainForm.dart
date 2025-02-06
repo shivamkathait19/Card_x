@@ -270,7 +270,6 @@ class _mainFormState extends State<mainForm> {
                                    if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
                                      return "Invalid email format";
                                    }
-
                                    return null;
                                  },
                              ),
