@@ -24,8 +24,9 @@ class cardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.grey,
-        body: Padding(
+
+      body:
+        Padding(
         padding: EdgeInsets.only(top: 200),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 10.0),
