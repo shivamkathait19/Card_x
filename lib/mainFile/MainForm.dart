@@ -46,7 +46,7 @@ class _mainFormState extends State<mainForm> {
     );
   }
 
- 
+
    @override
    Widget build(BuildContext context) {
      return Scaffold(
@@ -280,16 +280,27 @@ class _mainFormState extends State<mainForm> {
                      Padding(
                        padding:  EdgeInsets.only(top:70,left: 200),
                        child:
-                       ButtonTheme(
-                           child:
-                       ElevatedButton(
-                           onPressed: NextScreen, child: Text("Submit",style: TextStyle(
-                         fontStyle: FontStyle.italic
-                       ),
+
+
+                       Padding(
+                         padding:  EdgeInsets.only(left: 100),
+                         child: ElevatedButton(
+                           onPressed: NextScreen,
+                           child: Text(
+                             "Submit",
+                             style: TextStyle(
+                               fontStyle: FontStyle.italic,
+                               color: Colors.white, // Change the text color
+                             ),
+                           ),
+                           style: ElevatedButton.styleFrom(
+                             foregroundColor: Colors.white, backgroundColor: Colors.blueGrey, // Set color for text/icon
+                             padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0 ,),// Optional: padding
+                           ),
+                         ),
                        )
-                       )
                        ),
-                     )
+
 
 
                    ],
