@@ -100,7 +100,6 @@ class _splashScreenState extends State<splashScreen> {
                   ),
                  ),
                ),
-
             Spacer(),
             Text("App Create by",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 12,wordSpacing: 5.0,decoration: TextDecoration.underline,decorationStyle: TextDecorationStyle.solid,),),
             Text("Shubham",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 10,wordSpacing: 5.0,decoration: TextDecoration.underline,decorationStyle: TextDecorationStyle.solid,)),
@@ -108,8 +107,6 @@ class _splashScreenState extends State<splashScreen> {
             height: 20,
           )
           ],
-
-
         ),
       ),
 
