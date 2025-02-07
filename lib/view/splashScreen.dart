@@ -7,8 +7,29 @@ class splashScreen extends StatefulWidget {
 }
 
 class _splashScreenState extends State<splashScreen> {
+  final List<Color> _backgroundColors = [
+    Colors.blue,
+    Colors.green,
+    Colors.purple,
+    Colors.orange,
+    Colors.yellow,
+  ];
+  @override
+  void initState() {
+    super.initState();
+    // Set a timer to change the background color every 2 seconds
+    Future.delayed(Duration(seconds: 2), _changeBackgroundColor);
+  }
 
-  
+  // Function to change the background color
+  void _changeBackgroundColor() {
+    setState(() {
+      _colorIndex = (_colorIndex + 1) % _backgroundColors.length;
+    });
+    Future.delayed(Duration(seconds: 2), _changeBackgroundColor); // Repeat the process
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
