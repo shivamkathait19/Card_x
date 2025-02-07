@@ -5,6 +5,7 @@ class splashScreen extends StatefulWidget {
   @override
   State<splashScreen> createState() => _splashScreenState();
 }
+int _colorIndex = 0;
 
 class _splashScreenState extends State<splashScreen> {
   final List<Color> _backgroundColors = [
@@ -33,11 +34,15 @@ class _splashScreenState extends State<splashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _backgroundColors[_colorIndex],
       body:
       Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue, Colors.yellow], // Add your colors
+            colors: [
+              _backgroundColors[_colorIndex], // Start color
+              _backgroundColors[(_colorIndex + 1) % _backgroundColors.length], // End color
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomCenter,
           ),
@@ -110,4 +115,4 @@ class _splashScreenState extends State<splashScreen> {
 
     );
   }
-}*/
+}
