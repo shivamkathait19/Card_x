@@ -280,8 +280,6 @@ class _mainFormState extends State<mainForm> {
                      Padding(
                        padding:  EdgeInsets.only(top:70,left: 200),
                        child:
-
-
                        Padding(
                          padding:  EdgeInsets.only(left: 100),
                          child: ElevatedButton(

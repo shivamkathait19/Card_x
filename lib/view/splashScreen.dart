@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-class splashScreen extends StatelessWidget {
+class splashScreen extends StatefulWidget {
   const splashScreen({super.key});
 
   @override
+  State<splashScreen> createState() => _splashScreenState();
+}
+
+class _splashScreenState extends State<splashScreen> {
+
+  
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      backgroundColor: Colors.white70,
-
       body:
       Container(
         decoration: BoxDecoration(
@@ -85,4 +89,4 @@ class splashScreen extends StatelessWidget {
 
     );
   }
-}
+}*/
