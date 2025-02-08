@@ -22,7 +22,7 @@ class _splashScreenState extends State<splashScreen> {
     Future.delayed(Duration(seconds:1), _changeBackgroundColor);
   }
 
-  // Function to change the background color
+
   void _changeBackgroundColor() {
     setState(() {
       _colorIndex = (_colorIndex + 1) % _backgroundColors.length;
@@ -61,7 +61,6 @@ class _splashScreenState extends State<splashScreen> {
                     decoration: BoxDecoration(
                        border: Border.all(
                          color: Colors.black54,
-
                     )
                     ),
                    child: Image.network("https://www.usatoday.com/gcdn/authoring/authoring-images/2024/08/28/USAT/74988734007-debitcredit.jpg?crop=699,393,x0,y0&width=660&height=371&format=pjpg&auto=webp",width: 350, height: 300,)),
@@ -77,8 +76,6 @@ class _splashScreenState extends State<splashScreen> {
               color: Colors.grey,    // Text color
               // decoration: TextDecoration.underline,
               decorationColor: Colors.black38,
-
-
             ),),
             SizedBox(
               height: 80,
