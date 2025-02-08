@@ -216,8 +216,7 @@ class _mainFormState extends State<mainForm> {
                          },
                         ),
                      ),
-
-                        SizedBox(
+                     SizedBox(
                           height: 10,
                         ),
 
@@ -298,9 +297,6 @@ class _mainFormState extends State<mainForm> {
                          ),
                        )
                        ),
-
-
-
                    ],
                      ),
 
