@@ -17,7 +17,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool showingsplash = true;
   LoadHome(){
-   Future.delayed(Duration(seconds: 4),(){
+   Future.delayed(Duration(seconds: 7),(){
      setState(() {
        showingsplash= false;
      });
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: splashScreen(),
+      home:  showingsplash ? splashScreen() :mainForm(),
     );
   }
 }
