@@ -9,15 +9,14 @@ class cardScreen extends StatelessWidget {
      final String? email;
 
 
-  cardScreen({
-    Key? key,
+     cardScreen({
+       Key? key,
      this.username,
      this.date,
      this.father,
      this.mother,
      this.mobile,
      this.email,
-
   }
   );
 
@@ -144,11 +143,8 @@ class cardScreen extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-
-                ]
-
-              ),
-
+                   ]
+               ),
             ),
           ),
         ),
