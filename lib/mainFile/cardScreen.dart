@@ -29,8 +29,7 @@ class _cardScreenState extends State<cardScreen> {
   final List<Color> _backgroundColors = [
     Colors.blue,
     Colors.green,
-    Colors.purple,
-    Colors.orange,
+    Colors.grey,
     Colors.yellow,
   ];
   @override
