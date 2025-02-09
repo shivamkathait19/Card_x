@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-class cardScreen extends StatelessWidget {
+class cardScreen extends StatefulWidget {
 
      final String? username;
      final String? date;
@@ -21,9 +21,13 @@ class cardScreen extends StatelessWidget {
   );
 
   @override
+  State<cardScreen> createState() => _cardScreenState();
+}
+
+class _cardScreenState extends State<cardScreen> {
+  @override
   Widget build(BuildContext context){
     return Scaffold(
-
       body:
         Padding(
         padding: EdgeInsets.only(top: 200),
@@ -58,7 +62,7 @@ class cardScreen extends StatelessWidget {
                         ),
                         child: ListTile(
                       leading: Icon(Icons.person),
-                      title: Text(username?? '',),
+                      title: Text(widget.username?? '',),
                     ),
                   ),
                       SizedBox(
@@ -75,7 +79,7 @@ class cardScreen extends StatelessWidget {
 
                    child: ListTile(
                    leading: Icon(Icons.calendar_today),
-                   title: Text(date ??''),
+                   title: Text(widget.date ??''),
                                ),
                  ),
                       SizedBox(
@@ -90,7 +94,7 @@ class cardScreen extends StatelessWidget {
 
                     child: ListTile(
                       leading: Icon(Icons.person_2),
-                      title: Text(father?? ''),
+                      title: Text(widget.father?? ''),
 
                     ),
                   ),
@@ -106,7 +110,7 @@ class cardScreen extends StatelessWidget {
                   ),
                     child: ListTile(
                       leading: Icon(Icons.person),
-                      title: Text(mother?? ''),
+                      title: Text(widget.mother?? ''),
                     ),
                   ),
                       SizedBox(
@@ -122,7 +126,7 @@ class cardScreen extends StatelessWidget {
                   ),
                     child: ListTile(
                       leading: Icon(Icons.phone),
-                      title: Text(mobile??''),
+                      title: Text(widget.mobile??''),
                     ),
                   ),
                       SizedBox(
@@ -137,7 +141,7 @@ class cardScreen extends StatelessWidget {
                   ),
                     child: ListTile(
                       leading: Icon(Icons.email),
-                      title: Text(email??''),
+                      title: Text(widget.email??''),
                     ),
                   ),
                       SizedBox(
