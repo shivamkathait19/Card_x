@@ -25,9 +25,17 @@ class cardScreen extends StatefulWidget {
 }
 
 class _cardScreenState extends State<cardScreen> {
+  final List<Color> _backgroundColors = [
+    Colors.blue,
+    Colors.green,
+    Colors.purple,
+    Colors.orange,
+    Colors.yellow,
+  ];
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      backgroundColor: _backgroundColors[_colorIndex],
       body:
         Padding(
         padding: EdgeInsets.only(top: 200),
@@ -36,7 +44,14 @@ class _cardScreenState extends State<cardScreen> {
           child: Container(
             height: 430,
             decoration: BoxDecoration(
-              color: Colors.grey,// Container color
+              gradient: LinearGradient(
+                colors: [
+                  _backgroundColors[_colorIndex], // Start color
+                  _backgroundColors[(_colorIndex + 1) % _backgroundColors.length], // End color
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomCenter,
+              ),
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
