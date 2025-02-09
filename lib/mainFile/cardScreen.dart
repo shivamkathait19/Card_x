@@ -49,7 +49,6 @@ class _cardScreenState extends State<cardScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: _backgroundColors[_colorIndex],
       body:
         Padding(
         padding: EdgeInsets.only(top: 200),
