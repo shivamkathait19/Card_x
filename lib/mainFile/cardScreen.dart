@@ -23,19 +23,8 @@ class cardScreen extends StatefulWidget {
 
 
 class _cardScreenState extends State<cardScreen> {
+
   
-  @override
-  void initState() {
-    super.initState();
-    // Set a timer to change the background color every 2 seconds
-    Future.delayed(Duration(seconds:1), _changeBackgroundColor);
-  }
-  void _changeBackgroundColor() {
-    setState(() {
-      _colorIndex = (_colorIndex + 1) % _backgroundColors.length;
-    });
-    Future.delayed(Duration(seconds: 1), _changeBackgroundColor); // Repeat the process
-  }
   @override
   Widget build(BuildContext context){
     return Scaffold(
