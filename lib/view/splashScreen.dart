@@ -11,7 +11,7 @@ class _splashScreenState extends State<splashScreen> {
   final List<Color> _backgroundColors = [
     Colors.blue,
     Colors.green,
-    Colors.purple,
+
     Colors.orange,
     Colors.yellow,
   ];
@@ -21,8 +21,6 @@ class _splashScreenState extends State<splashScreen> {
     // Set a timer to change the background color every 2 seconds
     Future.delayed(Duration(seconds:1), _changeBackgroundColor);
   }
-
-
   void _changeBackgroundColor() {
     setState(() {
       _colorIndex = (_colorIndex + 1) % _backgroundColors.length;
