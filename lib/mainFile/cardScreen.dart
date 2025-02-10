@@ -24,7 +24,6 @@ class cardScreen extends StatefulWidget {
 
 class _cardScreenState extends State<cardScreen> {
 
-  
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -36,14 +35,8 @@ class _cardScreenState extends State<cardScreen> {
           child: Container(
             height: 430,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  _backgroundColors[_colorIndex], // Start color
-                  _backgroundColors[(_colorIndex + 1) % _backgroundColors.length], // End color
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomCenter,
-              ),
+              
+
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
