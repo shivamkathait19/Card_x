@@ -7,8 +7,6 @@ class cardScreen extends StatefulWidget {
      final String? mother;
      final String? mobile;
      final String? email;
-
-
      cardScreen({
        Key? key,
      this.username,
@@ -19,8 +17,7 @@ class cardScreen extends StatefulWidget {
      this.email,
   }
   );
-
-  @override
+     @override
   State<cardScreen> createState() => _cardScreenState();
 }
 int _colorIndex = 0;
@@ -44,7 +41,6 @@ class _cardScreenState extends State<cardScreen> {
     });
     Future.delayed(Duration(seconds: 1), _changeBackgroundColor); // Repeat the process
   }
-
   @override
   Widget build(BuildContext context){
     return Scaffold(

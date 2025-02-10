@@ -10,8 +10,6 @@ class mainForm extends StatefulWidget {
   State<mainForm> createState() => _mainFormState();
 }
 
-
-
 class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -21,16 +19,12 @@ class _mainFormState extends State<mainForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
 
-
   GlobalKey<FormState> _key = new GlobalKey();
-
-
 
   NextScreen(){
     if (_key.currentState != null && _key.currentState!.validate()) {
       _key.currentState!.save();
     }
-
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -62,7 +56,6 @@ class _mainFormState extends State<mainForm> {
              ),
            ],
          ),
-
          child: Padding(
            padding: EdgeInsets.all(30.0),
              child: SingleChildScrollView(
