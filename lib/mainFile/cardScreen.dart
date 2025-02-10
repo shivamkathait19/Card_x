@@ -20,15 +20,10 @@ class cardScreen extends StatefulWidget {
      @override
   State<cardScreen> createState() => _cardScreenState();
 }
-int _colorIndex = 0;
+
 
 class _cardScreenState extends State<cardScreen> {
-  final List<Color> _backgroundColors = [
-    Colors.blue,
-    Colors.green,
-    Colors.grey,
-    Colors.yellow,
-  ];
+  
   @override
   void initState() {
     super.initState();
