@@ -35,8 +35,7 @@ class _cardScreenState extends State<cardScreen> {
           child: Container(
             height: 430,
             decoration: BoxDecoration(
-              
-
+              color: Colors.black54,
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
