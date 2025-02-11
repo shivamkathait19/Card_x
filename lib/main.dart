@@ -54,8 +54,9 @@ class _MyAppState extends State<MyApp> {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+
       ),
-      home:  /*showingsplash ? splashScreen() :*/ (),
+      home:  /*showingsplash ? splashScreen() :*/
     );
   }
 }
