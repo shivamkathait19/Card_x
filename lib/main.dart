@@ -1,7 +1,6 @@
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
-import 'package:card_x/view/TopFile.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -54,9 +53,8 @@ class _MyAppState extends State<MyApp> {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-
       ),
-      home:  /*showingsplash ? splashScreen() :*/
+      home:  /*showingsplash ? splashScreen() :*/ (),
     );
   }
 }
