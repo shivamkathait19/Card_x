@@ -277,14 +277,14 @@ class _mainFormState extends State<mainForm> {
                          child: ElevatedButton(
                            onPressed: NextScreen,
                            child: Text(
-                             "Submit",
+                             "Log in ",
                              style: TextStyle(
                                fontStyle: FontStyle.italic,
                                color: Colors.white, // Change the text color
                              ),
                            ),
                            style: ElevatedButton.styleFrom(
-                             foregroundColor: Colors.white, backgroundColor: Colors.blueGrey, // Set color for text/icon
+                             foregroundColor: Colors.white, backgroundColor: Colors.blue, // Set color for text/icon
                              padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0 ,),// Optional: padding
                            ),
                          ),
@@ -296,11 +296,8 @@ class _mainFormState extends State<mainForm> {
                  ),
 
            ),
-
-
-           ),
+         ),
        ),
-
      );
    }
 }
