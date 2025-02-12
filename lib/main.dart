@@ -1,6 +1,6 @@
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
-import 'package:card_x/view/First.dart';
+import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -55,7 +55,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  /*showingsplash ? splashScreen() :*/ firstScreen(),
+      home:  /*showingsplash ? splashScreen() :*/ LoginScreen(),
     );
   }
 }
