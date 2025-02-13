@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 class LoginScreen extends StatefulWidget {
-     LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -9,8 +10,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passControler = TextEditingController();
 
   String? _email;
+  String? _pass;
+
   void _login() {
     if (_formKey.currentState!.validate()) {
       // Process login
@@ -22,38 +26,80 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: SafeArea(
-           child:Column(
-               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 170, bottom: 10),
-                  child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR90LRqys3ItqiLIzthGpWk-mK_RaKXLHQJddJzObzeFXAhfEFDh1NvshrFGSyLYSNM-o&usqp=CAU",
-                    height: 120,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-              Form(
-                key: _formKey,
-                (child: Column (
-                children:[
-                  TextFormField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      hintText: 'Enter your email',
-                      prefixIcon: Icon(Icons.email),
-                      border: OutlineInputBorder(),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Image.network(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDVkVllngyTXkUOquySPzD1zArMpBLGC4dMycEAhIGjg7zCDp7HLkLYBAuqHD8EdC05Oo&usqp=CAU",
+                height: 120,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            // Form widget with correct syntax
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  // Email TextFormField
+                  Padding(
+                    padding:  EdgeInsets.all(30.0),
+                    child: TextFormField(
+                      controller: _emailController,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        hintText: 'Enter your email',
+                        prefixIcon: Icon(Icons.email),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        // Add any additional validation logic here if needed
+                        return null;
+                      },
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding:  EdgeInsets.all(30.0),
+                    child: TextFormField(
+                      controller: _passControler,
+                      decoration: InputDecoration(
+                        labelText: 'Pass',
+                        hintText: 'Enter your Password',
+                        prefixIcon: Icon(Icons.password),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0)
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        // Add any additional validation logic here if needed
+                        return null;
+                      },
+                    ),
+                  ),
+
+                  // Login Button
+                  ElevatedButton(
+                    onPressed: _login,
+                    child: Text('LOGIN'),
+                  ),
                 ],
-              )
-                ),
-              ],
-           ),
-       ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
