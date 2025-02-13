@@ -15,17 +15,17 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _email;
   String? _pass;
 
-  void _login() {
+  /*void _login() {
     if (_formKey.currentState!.validate()) {
       // Process login
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
       // You can add your logic to handle successful login or navigate to another screen
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( backgroundColor: Colors.black12,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   // Email TextFormField
                   Padding(
-                    padding:  EdgeInsets.all(30.0),
+                    padding:  EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Padding(
-                    padding:  EdgeInsets.all(30.0),
+                    padding: EdgeInsets.all(10.0),
                     child: TextFormField(
                       controller: _passControler,
                       decoration: InputDecoration(
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   // Login Button
                   ElevatedButton(
-                    onPressed: _login,
+                    onPressed: (){},
                     child: Text('LOGIN'),
                   ),
                 ],
