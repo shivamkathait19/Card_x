@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 */
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.black12,
+    return Scaffold(
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       controller: _passControler,
                       decoration: InputDecoration(
-                        labelText: 'Pass',
+                        labelText: 'Password',
                         hintText: 'Enter your Password',
                         prefixIcon: Icon(Icons.password),
                         border: OutlineInputBorder(
