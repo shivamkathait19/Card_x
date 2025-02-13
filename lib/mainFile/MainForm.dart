@@ -81,9 +81,7 @@ class _mainFormState extends State<mainForm> {
                                        fontStyle: FontStyle.italic,
                                      ),
                                      border: OutlineInputBorder(
-                                       borderRadius: BorderRadius.circular(10.0),borderSide:BorderSide(
-
-                                     )
+                                       borderRadius: BorderRadius.circular(10.0)
                                      ),
                                  ),
                                      validator: (value) {
