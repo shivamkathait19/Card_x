@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.only(left: 20,right:20),
                     child: TextFormField(
                       controller: _passControler,
                       decoration: InputDecoration(
@@ -100,7 +100,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-
                 ],
               ),
             ),
