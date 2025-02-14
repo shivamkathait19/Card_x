@@ -90,9 +90,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   // Login Button
-                  ElevatedButton(
-                    onPressed: (){},
-                    child: Text('LOGIN'),
+      ElevatedButton(
+            onPressed: _login,
+           child: Text('Sign In'),
+           style: ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
                   ),
                 ],
               ),
