@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   // Email TextFormField
                   Padding(
-                    padding:  EdgeInsets.all(10.0),
+                    padding:  EdgeInsets.only(left: 20,right: 20),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
