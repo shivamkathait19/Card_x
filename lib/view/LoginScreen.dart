@@ -108,8 +108,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                   ),
-                  child : TextButton(onPressed: onPressed,
-                      child: child)
+                   TextButton(onPressed: (){},
+                      child: Text('Forgot Password',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                   )
+
                 ],
               ),
             ),
