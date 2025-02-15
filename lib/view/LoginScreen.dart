@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   // Email TextFormField
                   Padding(
-                    padding:  EdgeInsets.only(left: 20,right: 20),
+                    padding:  EdgeInsets.only(left: 30,right:30),
                     child: TextFormField(
                       controller: _emailController,
                       decoration: InputDecoration(
@@ -67,8 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   ),
+                   SizedBox(
+                     height: 5,
+                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 20,right:20),
+                    padding: EdgeInsets.only(left: 30,right:30),
                     child: TextFormField(
                       controller: _passControler,
                       decoration: InputDecoration(
@@ -90,16 +93,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
 
                   // Login Button
-      ElevatedButton(
-        onPressed: _login,
-        child: Text('Sign In'),
-        style: ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, 50),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-      ),
+                  Padding(
+                    padding:  EdgeInsets.only(left: 150,right: 150),
+                    child: ElevatedButton(
+                                     onPressed: _login,
+                                   child: Text('Sign In'),
+                                  style: ElevatedButton.styleFrom(
+                                  /*minimumSize: Size(double.infinity, 50),*/
+                                  shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                              ),
+                            ),
+                          ),
+                  ),
                 ],
               ),
             ),
