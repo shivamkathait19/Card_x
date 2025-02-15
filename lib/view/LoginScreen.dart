@@ -15,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _email;
   String? _pass;
 
+  
+
   void _login() {
     if (_formKey.currentState!.validate()) {
       // Process login
@@ -30,8 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            child : SingleChildScrollView(
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(10.0),
               child: Image.network(
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDVkVllngyTXkUOquySPzD1zArMpBLGC4dMycEAhIGjg7zCDp7HLkLYBAuqHD8EdC05Oo&usqp=CAU",
                 height: 120,
@@ -67,9 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   ),
-                   SizedBox(
-                     height: 5,
-                   ),
+SizedBox(height: 10,),
                   Padding(
                     padding: EdgeInsets.only(left: 30,right:30),
                     child: TextFormField(
@@ -112,10 +113,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text('Forgot Password',
                         style: TextStyle(color: Colors.blue),
                       ),
-                   )
+                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                 SizedBox(height: 200,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Don\'t have an account? '),
+                      TextButton(
+                        onPressed: () {
+                          // Navigate to the Register screen
+                        },
+                        child: Text('Sign Up'),
+                      ),
+                    ],
+                  ),
 
                 ],
               ),
+            ),
             ),
           ],
         ),
