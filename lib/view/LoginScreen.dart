@@ -91,14 +91,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                     ),
                   ),
-
+ SizedBox(
+   height: 10,
+ ),
                   // Login Button
                   Padding(
                     padding:  EdgeInsets.only(left: 150,right: 150),
                     child: ElevatedButton(
                                      onPressed: _login,
                                    child: Text('Sign In'),
-                                  style: ElevatedButton.styleFrom(
+                                  style:  ElevatedButton.styleFrom(
                                   /*minimumSize: Size(double.infinity, 50),*/
                                   shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
