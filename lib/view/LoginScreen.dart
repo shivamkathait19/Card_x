@@ -98,8 +98,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding:  EdgeInsets.only(left: 150,right: 150),
                     child: ElevatedButton(
-                                     onPressed: _login,
-                                   child: Text('Sign In'),
+                      onPressed: _login,
+                                   child: Text('login'),
                                   style:  ElevatedButton.styleFrom(
                                   /*minimumSize: Size(double.infinity, 50),*/
                                   shape: RoundedRectangleBorder(
@@ -108,6 +108,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                   ),
+                  child : TextButton(onPressed: onPressed,
+                      child: child)
                 ],
               ),
             ),
