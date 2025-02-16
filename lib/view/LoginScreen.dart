@@ -17,13 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
- /* void _login() {
-    if (_formKey.currentState!.validate()) {
-      // Process login
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
-      // You can add your logic to handle successful login or navigate to another screen
-    }
-  }*/
+ 
 
   @override
   Widget build(BuildContext context) {
