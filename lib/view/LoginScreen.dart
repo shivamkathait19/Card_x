@@ -15,8 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _email;
   String? _pass;
 
-
-
   void _login() {
     if (_formKey.currentState!.validate()) {
       // Process login
@@ -25,8 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
+      @override
+       Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
