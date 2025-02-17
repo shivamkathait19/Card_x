@@ -1,4 +1,5 @@
 import 'package:card_x/mainFile/MainForm.dart';
+import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,11 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _pass;
 
   NextScreen() {
-    if (_formKey.currentState!.validate()) {
-      // Process login
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
-      // You can add your logic to handle successful login or navigate to another screen
-    }
+    if (_formKey.currentState!.validate()) {}
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -31,7 +28,21 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+  Nextpage() {
+    if (_formKey.currentState!.validate()) {
+      // Process login
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
+      // You can add your logic to handle successful login or navigate to another screen
+    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => cardScreen(
 
+        ),
+      ),
+    );
+  }
       @override
        Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding:  EdgeInsets.only(left: 150,right: 150),
                       child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: Nextpage,
                                      child: Text('login'),
                                     style:  ElevatedButton.styleFrom(
                                     /*minimumSize: Size(double.infinity, 50),*/
@@ -134,8 +145,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         TextButton(
                           onPressed: NextScreen,
                             // Navigate to the Register screen
-
                           child: Text('Sign Up'),
+                        ),
+                        SizedBox(
+                          height: 50,
                         ),
                       ],
                     ),
