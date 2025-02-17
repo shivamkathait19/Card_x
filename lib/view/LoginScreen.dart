@@ -1,3 +1,4 @@
+import 'package:card_x/mainFile/MainForm.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,6 +22,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
       // You can add your logic to handle successful login or navigate to another screen
     }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => mainForm(
+
+        ),
+      ),
+    );
   }
 
       @override
@@ -130,7 +139,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-
                   ],
                 ),
               ),
