@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _email;
   String? _pass;
 
-  void _login() {
+  NextScreen() {
     if (_formKey.currentState!.validate()) {
       // Process login
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
@@ -132,9 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text('Don\'t have an account? '),
                         TextButton(
-                          onPressed: () {
+                          onPressed: NextScreen,
                             // Navigate to the Register screen
-                          },
+
                           child: Text('Sign Up'),
                         ),
                       ],
