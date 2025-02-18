@@ -80,11 +80,9 @@ class _mainFormState extends State<mainForm> {
                                      labelStyle: TextStyle(
                                        fontStyle: FontStyle.italic,
                                      ),
-                                     border: OutlineInputBorder(
-                                       borderRadius: BorderRadius.circular(10.0)
-                                     ),
+
                                  ),
-                                     validator: (value) {
+                                   validator: (value) {
                                    if (value == null || value.isEmpty) {
                                      return "Username is required";
                                    }
