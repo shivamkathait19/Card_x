@@ -155,7 +155,7 @@ class _mainFormState extends State<mainForm> {
                             labelStyle: TextStyle(
                               fontStyle: FontStyle.italic
                             ),
-                             
+
                           ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -185,9 +185,7 @@ class _mainFormState extends State<mainForm> {
                              labelStyle: TextStyle(
                                   fontStyle: FontStyle.italic
                               ) ,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0)
-                            )
+
                           ),
                          validator: (value) {
                            if (value == null || value.isEmpty) {
@@ -213,10 +211,7 @@ class _mainFormState extends State<mainForm> {
                             labelStyle: TextStyle(
                               fontStyle: FontStyle.italic
                             ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0)
 
-                            )
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -239,9 +234,7 @@ class _mainFormState extends State<mainForm> {
                                    labelStyle: TextStyle(
                                      fontStyle: FontStyle.italic,
                                    ),
-                                   border: OutlineInputBorder(
-                                       borderRadius: BorderRadius.circular(10.0)
-                                 ),
+                                   
                                ),
                                  validator: (value) {
                                    if (value == null || value.isEmpty) {
