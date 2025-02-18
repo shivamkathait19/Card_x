@@ -29,16 +29,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
   Nextpage() {
-    if (_formKey.currentState!.validate()) {
-      // Process login
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logging in...')));
-      // You can add your logic to handle successful login or navigate to another screen
-    }
+    if (_formKey.currentState!.validate()) {}
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => cardScreen(
-
         ),
       ),
     );
