@@ -18,9 +18,7 @@ class _mainFormState extends State<mainForm> {
   TextEditingController mobileController =TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
-
   GlobalKey<FormState> _key = new GlobalKey();
-
   NextScreen(){
     if (_key.currentState != null && _key.currentState!.validate()) {
       _key.currentState!.save();

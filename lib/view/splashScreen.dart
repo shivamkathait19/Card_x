@@ -102,7 +102,6 @@ class _splashScreenState extends State<splashScreen> {
           ],
         ),
       ),
-
     );
   }
 }
