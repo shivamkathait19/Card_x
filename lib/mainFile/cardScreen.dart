@@ -21,9 +21,7 @@ class cardScreen extends StatefulWidget {
   State<cardScreen> createState() => _cardScreenState();
 }
 
-
 class _cardScreenState extends State<cardScreen> {
-
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -136,7 +134,6 @@ class _cardScreenState extends State<cardScreen> {
                       color: Colors.black54,
                     ),// Container color
                     borderRadius: BorderRadius.circular(20),
-
                   ),
                     child: ListTile(
                       leading: Icon(Icons.email),
@@ -152,8 +149,6 @@ class _cardScreenState extends State<cardScreen> {
           ),
         ),
         ),
-
-
     );
   }
 }
