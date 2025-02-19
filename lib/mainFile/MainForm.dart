@@ -234,7 +234,7 @@ class _mainFormState extends State<mainForm> {
                                    labelStyle: TextStyle(
                                      fontStyle: FontStyle.italic,
                                    ),
-                                   
+
                                ),
                                  validator: (value) {
                                    if (value == null || value.isEmpty) {
@@ -248,10 +248,10 @@ class _mainFormState extends State<mainForm> {
                              ),
                              ),
                         SizedBox(
-                          height: 50,
+                          height: 30,
                         ),
                      Padding(
-                       padding:  EdgeInsets.only(top:70,left: 200),
+                       padding:  EdgeInsets.only(top:50,left: 200,),
                        child:
                        Padding(
                          padding:  EdgeInsets.only(left: 100),
