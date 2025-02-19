@@ -27,8 +27,6 @@ class _splashScreenState extends State<splashScreen> {
     });
     Future.delayed(Duration(seconds: 1), _changeBackgroundColor); // Repeat the process
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
