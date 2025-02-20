@@ -7,6 +7,8 @@ class cardScreen extends StatefulWidget {
      final String? mother;
      final String? mobile;
      final String? email;
+
+
      cardScreen({
        Key? key,
      this.username,
@@ -33,7 +35,7 @@ class _cardScreenState extends State<cardScreen> {
           child: Container(
             height: 430,
             decoration: BoxDecoration(
-              color: Colors.black54,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(

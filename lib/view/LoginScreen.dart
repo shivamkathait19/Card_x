@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your Pass';
                           }
                           // Add any additional validation logic here if needed
                           return null;
@@ -117,7 +117,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: Nextpage,
                                      child: Text('login'),
                                     style:  ElevatedButton.styleFrom(
-                                    /*minimumSize: Size(double.infinity, 50),*/
                                     shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                 ),
