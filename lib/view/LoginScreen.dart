@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passControler = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
 
   String? _email;
   String? _pass;
@@ -41,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
       @override
        Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       body: Padding(
         padding:  EdgeInsets.only(top: 200),
         child: SafeArea(
@@ -68,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding:  EdgeInsets.only(left: 30,right:30),
                       child: TextFormField(
                         controller: _emailController,
+
                         decoration: InputDecoration(
                           labelText: 'Email',
                           hintText: 'Enter your email',
@@ -89,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: EdgeInsets.only(left: 30,right:30),
                       child: TextFormField(
-                        controller: _passControler,
+                        controller: _passController,
+                        obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Password',
                           hintText: 'Enter your Password',
