@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
           image: DecorationImage(
             image: NetworkImage(
               // Replace with your image URL or use Image.asset() if it's a local image
-              "https://wallpaper.dog/large/10798447.jpg", // You can put the URL of your amazing background image here
+              "https://static.vecteezy.com/system/resources/thumbnails/001/427/158/small/abstract-classic-blue-background-free-vector.jpg", // You can put the URL of your amazing background image here
             ),
             fit: BoxFit.cover, // Makes sure the image covers the entire screen
           ),
