@@ -38,10 +38,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-      @override
+
+  @override
        Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
       body: Padding(
         padding:  EdgeInsets.only(top: 200),
         child: SafeArea(
