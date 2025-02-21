@@ -79,7 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding:  EdgeInsets.only(left: 30,right:30),
                         child: TextFormField(
                           controller: _emailController,
-
                           decoration: InputDecoration(
                             labelText: 'Email',
                             hintText: 'Enter your email',
@@ -120,9 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                         ),
                       ),
-                      SizedBox(
-                    height: 10,
-                           ),
+
+                      Padding(
+                        padding: EdgeInsets.only(left: 220),
+                        child: TextButton(onPressed: (){},
+                          child: Text('Forgot Password',
+                            style: TextStyle(color: Colors.blue,fontSize: 13),
+                          ),
+                        ),
+                      ),
                       // Login Button
                       Padding(
                         padding:  EdgeInsets.only(left: 150,right: 150),
@@ -136,11 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                       ),
-                       TextButton(onPressed: (){},
-                          child: Text('Forgot Password',
-                            style: TextStyle(color: Colors.blue),
-                          ),
-                       ),
+
                       SizedBox(
                         height: 10,
                       ),
