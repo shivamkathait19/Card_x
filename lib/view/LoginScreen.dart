@@ -134,14 +134,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       Padding(
                         padding:  EdgeInsets.only(left: 150,right: 150),
                         child: ElevatedButton(
-                          onPressed: Nextpage,
-                                       child: Text('login'),
-                                      style:  ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                              ),
+                          onPressed: () {
+                            // Only navigate if form is valid
+                            if (_formKey.currentState!.validate()) {
+                              Nextpage();
+                            }
+                          },
+                          child: Text('Login'),
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
                       ),
 
                       SizedBox(
