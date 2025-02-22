@@ -81,9 +81,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: _emailController,
                           decoration: InputDecoration(
                             labelText: 'Email',
-                            labelStyle: TextStyle(color: Colors.white),
+                            labelStyle: TextStyle(color: Colors.grey),
                             hintText: 'Enter your email',
-                            prefixIcon: Icon(Icons.email),
+                            prefixIcon: Icon(Icons.email,color: Colors.grey,) ,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
@@ -105,9 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Password',
-                            labelStyle: TextStyle(color: Colors.white),
+                            labelStyle: TextStyle(color: Colors.grey),
                             hintText: 'Enter your Password',
-                            prefixIcon: Icon(Icons.password),
+                            prefixIcon: Icon(Icons.password,color: Colors.grey,),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20.0)
                             ),
