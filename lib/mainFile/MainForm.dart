@@ -58,8 +58,7 @@ class _mainFormState extends State<mainForm> {
          ),
          child: Padding(
            padding: EdgeInsets.all(30.0),
-             child: SingleChildScrollView(
-               child: Form
+           child: Form
                  (key: _key,
                  child: Column(
                    children: [
@@ -119,31 +118,6 @@ class _mainFormState extends State<mainForm> {
                           height: 10,
                         ),
 
-                        
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.person),
-                          title:
-                          TextFormField(
-                          controller: motherController,
-                          keyboardType: TextInputType.name,
-                          decoration: InputDecoration(
-                            labelText: "Mother Name",
-                            labelStyle: TextStyle(
-                              fontStyle: FontStyle.italic
-                            ),
-
-                          ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return " Mother name  is required";
-                              }
-                              return null;
-                            },
-                        ),
-                        ),
 
                         SizedBox(
                           height: 10,
@@ -219,8 +193,8 @@ class _mainFormState extends State<mainForm> {
                                    if (value == null || value.isEmpty) {
                                      return " Password is required";
                                    }
-                                   if (!RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
-                                     return "Invalid email format";
+                                   if (value.length < 6) {
+                                     return "Password must be at least 6 characters";
                                    }
                                    return null;
                                  },
@@ -237,7 +211,7 @@ class _mainFormState extends State<mainForm> {
                          child: ElevatedButton(
                            onPressed: NextScreen,
                            child: Text(
-                             "Log in ",
+                             "Done",
                              style: TextStyle(
                                fontStyle: FontStyle.italic,
                                color: Colors.white, // Change the text color
@@ -257,8 +231,8 @@ class _mainFormState extends State<mainForm> {
 
            ),
          ),
-       ),
-     );
+       );
+
    }
 }
 
