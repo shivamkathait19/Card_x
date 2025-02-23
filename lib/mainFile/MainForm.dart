@@ -45,17 +45,7 @@ class _mainFormState extends State<mainForm> {
    Widget build(BuildContext context) {
      return Scaffold(
        backgroundColor: Colors.black,
-       body:  Container(
-         decoration: BoxDecoration(
-           boxShadow: [
-             BoxShadow(
-               color: Colors.white60.withOpacity(0.8), // Glow color
-               spreadRadius:5, // How far the glow extends
-               blurRadius:50,  // How blurred the glow is
-               offset: Offset(20, 0), // Position of the glow
-             ),
-           ],
-         ),
+       body: Container(
          child: Padding(
            padding: EdgeInsets.all(30.0),
            child: Form
@@ -66,9 +56,9 @@ class _mainFormState extends State<mainForm> {
                           height: 50,
                         ),
                      Text("Enter Your Details",style:
-                             TextStyle(fontSize: 17,fontStyle: FontStyle.italic)),
+                             TextStyle(fontSize: 17,fontStyle: FontStyle.italic,color: Colors.grey)),
                             SizedBox(
-                              height: 100,
+                              height: 200,
                             ),
                          ListTile(
                                leading: Icon(Icons.person),
@@ -196,12 +186,7 @@ class _mainFormState extends State<mainForm> {
                        Padding(
                          padding:  EdgeInsets.only(left: 100),
                          child: ElevatedButton(
-                           onPressed: (){
-                         // Only navigate if form is valid
-                         if (_formKey.currentState!.validate()) {
-                           NextScreen();
-                         }
-                                  },
+                           onPressed: (NextScreen),
                            child: Text(
                              "Done",
                              style: TextStyle(
