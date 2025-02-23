@@ -119,28 +119,7 @@ class _mainFormState extends State<mainForm> {
                           height: 10,
                         ),
 
-                        ListTile(
-                          leading: Icon(Icons.person_2),
-                          title:
-                          TextFormField(
-                            controller : fatherController,
-                          keyboardType: TextInputType.name,
-                          decoration:InputDecoration(
-                            labelText: "Father Name",
-
-                              labelStyle: TextStyle(
-                                fontStyle: FontStyle.italic
-                              ) ,
-                          ),
-
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return " Father name is required";
-                              }
-                              return null;
-                            },
-                        ),
-                        ),
+                        
                         SizedBox(
                           height: 10,
                         ),
@@ -256,11 +235,7 @@ class _mainFormState extends State<mainForm> {
                        Padding(
                          padding:  EdgeInsets.only(left: 100),
                          child: ElevatedButton(
-                           onPressed: (){
-                           if(_formKey.currentState!.validate()) {
-                         NextScreen();
-                         }
-                         },
+                           onPressed: NextScreen,
                            child: Text(
                              "Log in ",
                              style: TextStyle(
