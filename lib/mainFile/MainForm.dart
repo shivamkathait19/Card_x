@@ -68,7 +68,7 @@ class _mainFormState extends State<mainForm> {
                      Text("Enter Your Details",style:
                              TextStyle(fontSize: 17,fontStyle: FontStyle.italic)),
                             SizedBox(
-                              height: 10,
+                              height: 100,
                             ),
                          ListTile(
                                leading: Icon(Icons.person),
@@ -90,9 +90,7 @@ class _mainFormState extends State<mainForm> {
 
                                ),
                              ),
-                     SizedBox(
-                             height: 10,
-                             ) ,
+
                      ListTile(
                          leading: Icon(Icons.calendar_today),
                          title:
@@ -114,14 +112,7 @@ class _mainFormState extends State<mainForm> {
 
                         ),
                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
 
-
-                        SizedBox(
-                          height: 10,
-                        ),
 
 
                      ListTile(
@@ -148,9 +139,7 @@ class _mainFormState extends State<mainForm> {
                          },
                         ),
                      ),
-                     SizedBox(
-                          height: 10,
-                        ),
+
 
                          ListTile(
                            leading: Icon(Icons.email),
@@ -174,10 +163,8 @@ class _mainFormState extends State<mainForm> {
                           },
                         ),
                          ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                             ListTile(
+
+                         ListTile(
                                leading: Icon(Icons.password),
                                title: TextFormField(
                                  controller: passController,
@@ -209,7 +196,12 @@ class _mainFormState extends State<mainForm> {
                        Padding(
                          padding:  EdgeInsets.only(left: 100),
                          child: ElevatedButton(
-                           onPressed: NextScreen,
+                           onPressed: (){
+                         // Only navigate if form is valid
+                         if (_formKey.currentState!.validate()) {
+                           NextScreen();
+                         }
+                                  },
                            child: Text(
                              "Done",
                              style: TextStyle(
