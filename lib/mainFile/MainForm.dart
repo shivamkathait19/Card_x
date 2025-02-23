@@ -256,7 +256,11 @@ class _mainFormState extends State<mainForm> {
                        Padding(
                          padding:  EdgeInsets.only(left: 100),
                          child: ElevatedButton(
-                           onPressed: NextScreen,
+                           onPressed: (){
+                           if(_formKey.currentState!.validate()) {
+                         NextScreen();
+                         }
+                         },
                            child: Text(
                              "Log in ",
                              style: TextStyle(
