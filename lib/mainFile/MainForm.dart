@@ -46,20 +46,21 @@ class _mainFormState extends State<mainForm> {
      return Scaffold(
        backgroundColor: Colors.black,
        body: Container(
+         child :SingleChildScrollView(
          child: Padding(
            padding: EdgeInsets.all(30.0),
            child: Form
                  (key: _key,
                  child: Column(
                    children: [
+                     SizedBox(
+                       height: 50,
+                     ),
+                     
                         SizedBox(
-                          height: 50,
+                          height: 170,
                         ),
-                     Text("Enter Your Details",style:
-                             TextStyle(fontSize: 17,fontStyle: FontStyle.italic,color: Colors.grey)),
-                            SizedBox(
-                              height: 200,
-                            ),
+
                          ListTile(
                                leading: Icon(Icons.person),
                                title:TextFormField(
@@ -208,6 +209,7 @@ class _mainFormState extends State<mainForm> {
 
            ),
          ),
+       ),
        );
 
    }
