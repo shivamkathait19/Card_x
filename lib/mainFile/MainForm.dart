@@ -54,11 +54,7 @@ class _mainFormState extends State<mainForm> {
                  child: Column(
                    children: [
                      SizedBox(
-                       height: 50,
-                     ),
-                     
-                        SizedBox(
-                          height: 170,
+                          height: 150,
                         ),
 
                          ListTile(
@@ -132,11 +128,10 @@ class _mainFormState extends State<mainForm> {
                      ),
 
 
-                         ListTile(
+                     ListTile(
                            leading: Icon(Icons.email),
                            title:
-
-                        TextFormField(
+                           TextFormField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -196,7 +191,7 @@ class _mainFormState extends State<mainForm> {
                              ),
                            ),
                            style: ElevatedButton.styleFrom(
-                             foregroundColor: Colors.white, backgroundColor: Colors.blue, // Set color for text/icon
+                             foregroundColor: Colors.white, backgroundColor: Colors.black12, // Set color for text/icon
                              padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0 ,),// Optional: padding
                            ),
                          ),
