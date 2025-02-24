@@ -62,7 +62,7 @@ class LoginScreen extends StatefulWidget {
                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Image.network(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDVkVllngyTXkUOquySPzD1zArMpBLGC4dMycEAhIGjg7zCDp7HLkLYBAuqHD8EdC05Oo&usqp=CAU",
+                    "https://img.freepik.com/premium-photo/abstract-background-design-images-wallpaper-ai-generated_643360-239763.jpg",
                     height: 120,
                   ),
                 ),
@@ -84,9 +84,7 @@ class LoginScreen extends StatefulWidget {
                             labelStyle: TextStyle(color: Colors.grey),
                             hintText: 'Enter your email',
                             prefixIcon: Icon(Icons.email,color: Colors.grey,) ,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
+
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -108,9 +106,7 @@ class LoginScreen extends StatefulWidget {
                             labelStyle: TextStyle(color: Colors.grey),
                             hintText: 'Enter your Password',
                             prefixIcon: Icon(Icons.password,color: Colors.grey,),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20.0)
-                            ),
+
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
