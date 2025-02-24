@@ -45,10 +45,7 @@ class LoginScreen extends StatefulWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(
-              // Replace with your image URL or use Image.asset() if it's a local image
-              "https://static.vecteezy.com/system/resources/thumbnails/001/427/158/small/abstract-classic-blue-background-free-vector.jpg", // You can put the URL of your amazing background image here
-            ),
+            image: AssetImage("WhatsApp Image 2025-02-24 at 11.56.02 PM.jpeg"),
             fit: BoxFit.cover, // Makes sure the image covers the entire screen
           ),
         ),

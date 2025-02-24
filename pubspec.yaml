@@ -60,11 +60,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  //# To add assets to your application, add an assets section, like this:
-
-
-   assets:
-     -Image/IMG-20250120-WA0101.jpg
+  # To add assets to your application, add an assets section, like this:
+  assets:
+      - "WhatsApp Image 2025-02-24 at 11.56.02 PM.jpeg"
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
