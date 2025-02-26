@@ -59,10 +59,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
   assets:
-       - "Image 2025-02-24 at 11.56.02 PM.jpeg"
+    - images/IMG-20241217-WA0037.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

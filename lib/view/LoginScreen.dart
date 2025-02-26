@@ -45,7 +45,7 @@ class LoginScreen extends StatefulWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("WhatsApp Image 2025-02-24 at 11.56.02 PM.jpeg"),
+            image: AssetImage('IMG-20241217-WA0037.jpg'),
             fit: BoxFit.cover, // Makes sure the image covers the entire screen
           ),
         ),
