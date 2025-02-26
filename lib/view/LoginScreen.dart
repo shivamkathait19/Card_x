@@ -44,10 +44,10 @@ class LoginScreen extends StatefulWidget {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          image: DecorationImage(
+         /* image: DecorationImage(
             image: AssetImage('IMG-20241217-WA0037.jpg'),
             fit: BoxFit.cover, // Makes sure the image covers the entire screen
-          ),
+          ),*/
         ),
         child: Padding(
           padding:  EdgeInsets.only(top: 200),
@@ -79,7 +79,7 @@ class LoginScreen extends StatefulWidget {
                           decoration: InputDecoration(
                             labelText: 'Email',
                             labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'Enter your email',
+                           // hintText: 'Enter your email',
                             prefixIcon: Icon(Icons.email,color: Colors.grey,) ,
 
                           ),
@@ -101,7 +101,7 @@ class LoginScreen extends StatefulWidget {
                           decoration: InputDecoration(
                             labelText: 'Password',
                             labelStyle: TextStyle(color: Colors.grey),
-                            hintText: 'Enter your Password',
+                            //hintText: 'Enter your Password',
                             prefixIcon: Icon(Icons.password,color: Colors.grey,),
 
                           ),
