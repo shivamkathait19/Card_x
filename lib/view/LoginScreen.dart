@@ -79,7 +79,6 @@ class LoginScreen extends StatefulWidget {
                           decoration: InputDecoration(
                             labelText: 'Email',
                             labelStyle: TextStyle(color: Colors.grey),
-                           // hintText: 'Enter your email',
                             prefixIcon: Icon(Icons.email,color: Colors.grey,) ,
 
                           ),
@@ -101,7 +100,6 @@ class LoginScreen extends StatefulWidget {
                           decoration: InputDecoration(
                             labelText: 'Password',
                             labelStyle: TextStyle(color: Colors.grey),
-                            //hintText: 'Enter your Password',
                             prefixIcon: Icon(Icons.password,color: Colors.grey,),
 
                           ),
