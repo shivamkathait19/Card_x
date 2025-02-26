@@ -41,7 +41,7 @@ class LoginScreen extends StatefulWidget {
 
   @override
        Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( backgroundColor: Colors.black12,
       body: Container(
         decoration: BoxDecoration(
          /* image: DecorationImage(
