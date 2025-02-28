@@ -1,6 +1,9 @@
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'authServer.dart';
+
 
 
 class LoginScreen extends StatefulWidget {
@@ -11,12 +14,14 @@ class LoginScreen extends StatefulWidget {
 }
 
    class _LoginScreenState extends State<LoginScreen> {
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
-
   String? _email;
   String? _pass;
+
+  final AuthService authService = AuthService();
 
   NextScreen() {
     if (_formKey.currentState!.validate()) {}
@@ -60,7 +65,7 @@ class LoginScreen extends StatefulWidget {
                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Image.network(
-                    "https://img.freepik.com/premium-photo/abstract-background-design-images-wallpaper-ai-generated_643360-239763.jpg",
+                    "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png",
                     height: 120,
                   ),
                 ),
@@ -159,6 +164,17 @@ class LoginScreen extends StatefulWidget {
                           SizedBox(
                             height: 50,
                           ),
+                   ElevatedButton(
+              onPressed: () async {
+                User? user = await authService.signInWithGoogle();
+                if (user != null) {
+                  print("Signed in: ${user.displayName}");
+                }
+              },
+              child: Text("Sign in with Google"),
+            ),
+
+
                         ],
                       ),
                     ],
