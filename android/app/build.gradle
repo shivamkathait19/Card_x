@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.card_x"
-    compileSdk = flutter.compileSdkVersion_3_3
+    compileSdk = flutter.compileSdkVersion 33
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
