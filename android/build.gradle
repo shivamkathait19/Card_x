@@ -1,3 +1,5 @@
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
 allprojects {
     repositories {
         google()
