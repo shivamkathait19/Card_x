@@ -28,9 +28,15 @@ rootProject.buildDir = "../build"
 
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-    project.evaluationDependsOn(":app")
+
+    // Apply evaluation dependency only when necessary
+    if (project.name != "app") {
+        project.evaluationDependsOn(":app")
+    }
 }
+
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
+
