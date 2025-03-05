@@ -1,4 +1,4 @@
-/*allprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
@@ -11,47 +11,6 @@ subprojects {
 }
 subprojects {
     project.evaluationDependsOn(":app")
-}
-
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
-}
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
-        classpath 'com.google.gms:google-services:4.3.10' // Ensure this line exists
-    }
-*/
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.2'
-        classpath 'com.google.gms:google-services:4.3.10'// Ensure this line exists
-        implementation project(":some-module")
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.buildDir = "../build"
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-
-subprojects {
-    subproject ->
-        if (subproject.name in ["module1", "module2"]) {
-            subproject.evaluationDependsOn(":app")
-        }
-   // project.evaluationDependsOn(":app")
 }
 
 tasks.register("clean", Delete) {
