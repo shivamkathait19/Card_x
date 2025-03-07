@@ -8,15 +8,19 @@ plugins {
 
 android {
     namespace = "com.example.card_x"
-    compileSdkVersion 34
+    compileSdkVersion 33
+
     ndkVersion = '29.0.13113456'
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+       // jvmTarget = JavaVersion.VERSION_1_8.toString()
+       // jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     defaultConfig {
@@ -25,7 +29,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdkVersion 21 // ✅ Fixed
-        targetSdkVersion 33 // ✅ Fixed
+        targetSdkVersion 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         multiDexEnabled true
@@ -36,11 +40,11 @@ android {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig signingConfigs.debug
 
         }
     }
-}
+
 
 
 flutter {
@@ -50,5 +54,45 @@ flutter {
 
 
 dependencies {
-    Implementation .com Google.Firebase.Firebase_'22.0.1'
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
 }
+/*plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'dev.flutter.flutter-gradle-plugin'
+    id 'com.google.gms.google-services' // Keep only inside `plugins {}`
+}
+
+android {
+    namespace "com.example.card_x"
+    compileSdkVersion 34  // ✅ Use latest version
+
+    defaultConfig {
+        applicationId "com.example.card_x"
+        minSdkVersion 21   // ✅ Make sure it's 21 or higher
+        targetSdkVersion 33 // ✅ Match compileSdkVersion
+        versionCode flutter.versionCode
+        versionName flutter.versionName
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {  // ✅ Move inside android {}
+        jvmTarget = "1.8"
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source "../.."
+}
+*/
