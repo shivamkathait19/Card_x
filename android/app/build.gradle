@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.example.card_x"
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion = '29.0.13113456'
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -24,7 +24,7 @@ android {
         applicationId = "com.example.card_x"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion  // ✅ Fixed
+        minSdkVersion 21 // ✅ Fixed
         targetSdkVersion 33 // ✅ Fixed
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -46,6 +46,9 @@ android {
 flutter {
     source = "../.."
 }
-apply plugin: 'com.google.gms.google-services'
 
 
+
+dependencies {
+    Implementation .com Google.Firebase.Firebase_'22.0.1'
+}

@@ -25,7 +25,7 @@ class AuthService {
       final UserCredential userCredential = await _auth.signInWithCredential(credential);
       return userCredential.user;
     } catch (e) {
-      print("Error: $e");
+      print('Error: $e');
       return null;
     }
   }
