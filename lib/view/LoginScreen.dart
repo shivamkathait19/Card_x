@@ -20,19 +20,20 @@ class LoginScreen extends StatefulWidget {
   final TextEditingController _passController = TextEditingController();
   String? _email;
   String? _pass;
- bool isLoading = false;
-// bool isLoading = false;
+ bool isLoadinglogin = false;
+ bool isLoadingsingup = false;
+
 
 //  final AuthService authService = AuthService();
 
   NextScreen() {
     if (_formKey.currentState!.validate()) {}
     setState(() {
-      isLoading = true;
+      isLoadingsingup = true;
     });
-    Future.delayed(Duration(seconds: 2),() {
+    Future.delayed(Duration(seconds: 5),() {
     setState(() {
-      isLoading = false;
+      isLoadingsingup= false;
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -44,11 +45,11 @@ class LoginScreen extends StatefulWidget {
     Nextpage() {
     if (_formKey.currentState!.validate()) {}
     setState(() {
-      isLoading = true;
+      isLoadinglogin = true;
     });
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 5), () {
       setState(() {
-        isLoading = false; // Hide loading indicator
+        isLoadinglogin = false; // Hide loading indicator
       });
       Navigator.push(
         context,
@@ -60,7 +61,7 @@ class LoginScreen extends StatefulWidget {
 
   @override
        Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.black12,
+    return Scaffold(backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(
           /* image: DecorationImage(
@@ -69,7 +70,7 @@ class LoginScreen extends StatefulWidget {
           ),*/
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: 200),
+          padding: EdgeInsets.only(top: 150),
           child: SafeArea(
             child: SingleChildScrollView(
               child: Column(
@@ -146,7 +147,8 @@ class LoginScreen extends StatefulWidget {
                         // Login Button
                         Padding(
                           padding: EdgeInsets.only(left: 150, right: 150),
-                          child: ElevatedButton(
+                            child: isLoadinglogin ?
+                            CircularProgressIndicator() : ElevatedButton(
                             onPressed: () {
                               // Only navigate if form is valid
                               if (_formKey.currentState!.validate()) {
@@ -174,8 +176,9 @@ class LoginScreen extends StatefulWidget {
                             Text('Don\'t have an account? ', style: TextStyle(
                                 color: Colors.grey
                             ),),
-                            TextButton(
-                              onPressed: NextScreen,
+                             isLoadingsingup ? CircularProgressIndicator()
+                                : TextButton(
+                               onPressed: NextScreen,
                               // Navigate to the Register screen
                               child: Text('Sign Up'),
                             ),

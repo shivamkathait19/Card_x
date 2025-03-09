@@ -48,13 +48,13 @@ class _mainFormState extends State<mainForm> {
        body: Container(
          child :SingleChildScrollView(
          child: Padding(
-           padding: EdgeInsets.all(30.0),
+           padding: EdgeInsets.all(20.0),
            child: Form
                  (key: _key,
                  child: Column(
                    children: [
                      SizedBox(
-                          height: 150,
+                          height: 200,
                         ),
 
                          ListTile(
