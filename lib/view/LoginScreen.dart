@@ -1,8 +1,8 @@
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-//import 'authServer.dart';
+
 
 
 
@@ -185,15 +185,7 @@ class LoginScreen extends StatefulWidget {
                             SizedBox(
                               height: 50,
                             ),
-                            /*  ElevatedButton(
-              onPressed: () async {
-                User? user = await authService.signInWithGoogle();
-                if (user != null) {
-                  print("Signed in: ${user.displayName}");
-                }
-              },
-              child: Text("Sign in with Google"),
-            ),*/
+
 
 
                           ],
