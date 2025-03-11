@@ -24,7 +24,7 @@ plugins {
 //include ':some-module'
 
 include ":app"
-if (file('../flutter_module/.android/include_flutter.groovy').exists()) {
+/*if (file('../flutter_module/.android/include_flutter.groovy').exists()) {
     apply from: '../flutter_module/.android/include_flutter.groovy'
-}
+}*/
 //include ':app', ':some-module'
