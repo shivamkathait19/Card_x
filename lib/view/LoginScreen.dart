@@ -64,10 +64,7 @@ class LoginScreen extends StatefulWidget {
     return Scaffold(backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(
-          /* image: DecorationImage(
-            image: AssetImage('IMG-20241217-WA0037.jpg'),
-            fit: BoxFit.cover, // Makes sure the image covers the entire screen
-          ),*/
+          
         ),
         child: Padding(
           padding: EdgeInsets.only(top: 150),
