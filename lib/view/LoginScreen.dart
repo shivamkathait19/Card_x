@@ -57,14 +57,11 @@ class LoginScreen extends StatefulWidget {
       );
     });
   }
-
-
   @override
        Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.white,
       body: Container(
         decoration: BoxDecoration(
-          
         ),
         child: Padding(
           padding: EdgeInsets.only(top: 150),
