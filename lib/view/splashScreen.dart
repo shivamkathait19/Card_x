@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key});
 
+
   @override
   State<splashScreen> createState() => _splashScreenState();
 }
