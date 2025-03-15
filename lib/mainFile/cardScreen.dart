@@ -73,9 +73,7 @@ class _cardScreenState extends State<cardScreen> {
                    color: Colors.black54,
                    ),// Container color
                    borderRadius: BorderRadius.circular(20),
-
-                 ),
-
+                   ),
                    child: ListTile(
                    leading: Icon(Icons.calendar_today),
                    title: Text(widget.date ??''),
