@@ -3,9 +3,6 @@ import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-
-
-
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
