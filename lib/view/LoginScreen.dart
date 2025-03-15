@@ -19,9 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _pass;
  bool isLoadinglogin = false;
  bool isLoadingsingup = false;
-
-
-//  final AuthService authService = AuthService();
+ 
 
   NextScreen() {
     if (_formKey.currentState!.validate()) {}
