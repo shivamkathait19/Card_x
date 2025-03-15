@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _pass;
  bool isLoadinglogin = false;
  bool isLoadingsingup = false;
- 
+
 
   NextScreen() {
     if (_formKey.currentState!.validate()) {}
@@ -151,8 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-
-                          ),
+                            ),
                         ),
 
                         SizedBox(
