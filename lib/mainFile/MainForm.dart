@@ -10,6 +10,9 @@ class mainForm extends StatefulWidget {
   State<mainForm> createState() => _mainFormState();
 }
 
+
+
+
 class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -19,6 +22,8 @@ class _mainFormState extends State<mainForm> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   GlobalKey<FormState> _key = new GlobalKey();
+
+
 
 
   NextScreen(){
@@ -39,11 +44,11 @@ class _mainFormState extends State<mainForm> {
       ),
     );
   }
-  @override
-   Widget build(BuildContext context) {
-     return Scaffold(
-       backgroundColor: Colors.black,
-       body: Container(
+     @override
+          Widget build(BuildContext context) {
+          return Scaffold(
+           backgroundColor: Colors.black,
+          body: Container(
          child :SingleChildScrollView(
          child: Padding(
            padding: EdgeInsets.all(20.0),
@@ -94,10 +99,8 @@ class _mainFormState extends State<mainForm> {
                             }
                             return null;
                           },
-
-                        ),
+                         ),
                        ),
-
                      ListTile(
                        leading: Icon(Icons.phone),
                        title:
