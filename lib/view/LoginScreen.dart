@@ -112,7 +112,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               labelStyle: TextStyle(color: Colors.grey),
                               prefixIcon: Icon(
                                 Icons.password, color: Colors.grey,),
-
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
