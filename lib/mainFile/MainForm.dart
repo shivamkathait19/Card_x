@@ -59,8 +59,7 @@ class _mainFormState extends State<mainForm> {
                      SizedBox(
                           height: 200,
                         ),
-
-                         ListTile(
+                     ListTile(
                                leading: Icon(Icons.person),
                                title:TextFormField(
                                  controller: usernameController,
@@ -115,7 +114,6 @@ class _mainFormState extends State<mainForm> {
                              labelStyle: TextStyle(
                                   fontStyle: FontStyle.italic
                               ) ,
-
                           ),
                          validator: (value) {
                            if (value == null || value.isEmpty) {
