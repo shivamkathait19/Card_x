@@ -17,7 +17,8 @@ class cardScreen extends StatefulWidget {
      this.mother,
      this.mobile,
      this.email,
-  }
+
+     }
   );
      @override
   State<cardScreen> createState() => _cardScreenState();
