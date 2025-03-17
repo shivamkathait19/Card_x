@@ -10,11 +10,10 @@ int _colorIndex = 0;
 
 class _splashScreenState extends State<splashScreen> {
   final List<Color> _backgroundColors = [
-    Colors.blue,
-    Colors.green,
-
-    Colors.orange,
-    Colors.yellow,
+    Colors.grey,
+   // Colors.green,
+    // Colors.orange,
+    Colors.black12
   ];
   @override
   void initState() {
@@ -52,7 +51,7 @@ class _splashScreenState extends State<splashScreen> {
             Row(
               children: [
                 Padding(
-                  padding:  EdgeInsets.only(left: 10),
+                  padding:  EdgeInsets.only(left: 10,top: 20),
                   child: Container(
                     height: 200,
                     decoration: BoxDecoration(
@@ -67,13 +66,7 @@ class _splashScreenState extends State<splashScreen> {
             SizedBox(
               height: 80,
             ),
-            Text("MAKE YOUR CARD ",style: TextStyle(fontSize: 19,          // Font size
-              fontWeight: FontWeight.w800,  // Font weight
-              fontStyle: FontStyle.italic,  // Italic style
-              color: Colors.grey,    // Text color
-              // decoration: TextDecoration.underline,
-              decorationColor: Colors.black38,
-            ),),
+
             SizedBox(
               height: 80,
             ),

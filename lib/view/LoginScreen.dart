@@ -117,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your Password';
                               }
-                              
+
                               // Add any additional validation logic here if needed
                               return null;
                             },
