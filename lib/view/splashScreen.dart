@@ -15,6 +15,8 @@ class _splashScreenState extends State<splashScreen> {
     // Colors.orange,
     Colors.black12
   ];
+
+
   @override
   void initState() {
     super.initState();
