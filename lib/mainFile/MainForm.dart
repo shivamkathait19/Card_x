@@ -26,7 +26,7 @@ class _mainFormState extends State<mainForm> {
 
 
 
-  NextScreen(){
+    NextScreen(){
     if (_key.currentState != null && _key.currentState!.validate()) {
       _key.currentState!.save();
     }
@@ -196,14 +196,11 @@ class _mainFormState extends State<mainForm> {
                        ),
                    ],
                      ),
-
-                 ),
-
            ),
+         ),
          ),
        ),
        );
-
-   }
+  }
 }
 
