@@ -71,7 +71,7 @@ class _splashScreenState extends State<splashScreen> {
 
             SizedBox(
               height: 80,
-            ),
+             ),
 
                Padding(
                  padding: EdgeInsets.only(left: 90),
