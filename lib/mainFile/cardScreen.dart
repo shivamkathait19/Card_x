@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 class cardScreen extends StatefulWidget {
 
-     final String? username;
+
+  final String? username;
      final String? date;
      final  String? father;
      final String? mother;
@@ -10,6 +11,8 @@ class cardScreen extends StatefulWidget {
 
 
      cardScreen({
+
+
        Key? key,
      this.username,
      this.date,
