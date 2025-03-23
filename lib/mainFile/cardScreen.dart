@@ -11,8 +11,6 @@ class cardScreen extends StatefulWidget {
 
 
      cardScreen({
-
-
        Key? key,
      this.username,
      this.date,
