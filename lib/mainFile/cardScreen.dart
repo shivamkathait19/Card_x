@@ -10,14 +10,14 @@ class cardScreen extends StatefulWidget {
      final String? email;
 
 
-     cardScreen({
-       Key? key,
-     this.username,
-     this.date,
-     this.father,
-     this.mother,
-     this.mobile,
-     this.email,
+      cardScreen({
+         Key? key,
+        this.username,
+        this.date,
+       this.father,
+       this.mother,
+       this.mobile,
+       this.email,
 
      }
   );
