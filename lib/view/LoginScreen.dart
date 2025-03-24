@@ -175,6 +175,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
+          try {
+    await Firebase.initializeApp();
+    print("Firebase connected successfully!");
+    } catch (e) {
+    print("Firebase connection failed: $e");
+    }
+  }
                       ],
                     ),
                   ),
