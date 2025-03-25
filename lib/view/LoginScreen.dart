@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text('Sign Up'),
                             ),
                             SizedBox(
-                              height: 50,
+                              height: 40,
                             ),
                           ],
                         ),
