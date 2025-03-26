@@ -123,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           ),
                         ),
-
                         Padding(
                           padding: EdgeInsets.only(left: 220),
                           child: TextButton(onPressed: () {},
@@ -134,6 +133,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         // Login Button
+
+
                         Padding(
                           padding: EdgeInsets.only(left: 150, right: 150),
                             child: isLoadinglogin ?
