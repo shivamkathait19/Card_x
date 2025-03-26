@@ -18,14 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _email;
   String? _pass;
  bool isLoadinglogin = false;
-
-
  bool isLoadingsingup = false;
 
 
-
-
-  NextScreen() {
+ NextScreen() {
     if (_formKey.currentState!.validate()) {}
     setState(() {
       isLoadingsingup = true;
