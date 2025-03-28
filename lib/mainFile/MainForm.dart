@@ -185,16 +185,15 @@ class mainForm extends StatefulWidget {
                            onPressed: (NextScreen),
                            child:
                              isloadingdone ? CircularProgressIndicator():
-                           Text(
-                             "Done",
-                             style: TextStyle(
-                               fontStyle: FontStyle.italic,
-                               color: Colors.white, // Change the text color
-                             ),
-                           ),
-                           style: ElevatedButton.styleFrom(
+                                 Padding(
+                                   padding: EdgeInsets.only(right:100),
+                                   child: Icon(Icons.next_plan,
+                                    size: 50,),
+                                 ),
+
+                             style: ElevatedButton.styleFrom(
                              foregroundColor: Colors.white, backgroundColor: Colors.black12, // Set color for text/icon
-                             padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0 ,),// Optional: padding
+                             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0 ,),// Optional: padding
                            ),
                          ),
                        )
