@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passController = TextEditingController();
   String? _email;
   String? _pass;
+
  bool isLoadinglogin = false;
  bool isLoadingsingup = false;
 
@@ -52,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     });
   }
+
   @override
        Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.black12,
@@ -114,7 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your Password';
                               }
-
                               // Add any additional validation logic here if needed
                               return null;
                             },
@@ -130,8 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         // Login Button
-
-
                         Padding(
                           padding: EdgeInsets.only(left: 150, right: 150),
                             child: isLoadinglogin ?
@@ -142,8 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Nextpage();
                               }
                             },
-
-                            child: Text('Login'),
+                              child: Text('Login'),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),

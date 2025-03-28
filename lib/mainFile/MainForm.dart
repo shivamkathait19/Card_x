@@ -11,9 +11,7 @@ class mainForm extends StatefulWidget {
 }
 
 
-
-
-class _mainFormState extends State<mainForm> {
+    class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController fatherController = TextEditingController();
@@ -31,15 +29,13 @@ class _mainFormState extends State<mainForm> {
     }
     setState(() {
       isloadingdone = true;
-
     });
-    Future.delayed(Duration(seconds: 5),() {
+    Future.delayed(Duration(seconds:7),() {
       setState(() {
         isloadingdone= false;
         Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => cardScreen())
+            MaterialPageRoute(builder: (BuildContext context) => cardScreen())
         );
       });
     });
@@ -60,7 +56,7 @@ class _mainFormState extends State<mainForm> {
      @override
           Widget build(BuildContext context) {
           return Scaffold(
-           backgroundColor: Colors.black,
+           backgroundColor: Colors.white,
           body: Container(
          child :SingleChildScrollView(
          child: Padding(
@@ -193,6 +189,7 @@ class _mainFormState extends State<mainForm> {
                            child: ElevatedButton(
                            onPressed: (NextScreen),
                            child:
+                             isloadingdone ? CircularProgressIndicator():
                            Text(
                              "Done",
                              style: TextStyle(
