@@ -60,19 +60,18 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Container(
         decoration: BoxDecoration(
         ),
-        child: Padding(
-          padding: EdgeInsets.only(top: 150),
           child: SafeArea(
+
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(10.0),
+                    padding: EdgeInsets.only(top: 150),
                     child:Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6rKwDbEN_M9FCcve-ozbDkUUn6VkEZ7xfVw&s',height: 100,),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 100,
                   ),
                   // Form widget with correct syntax
                   Form(
@@ -179,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-      ),
+      //),
     );
   }
 }
