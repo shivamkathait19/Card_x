@@ -23,13 +23,26 @@ class _mainFormState extends State<mainForm> {
   TextEditingController passController = TextEditingController();
   GlobalKey<FormState> _key = new GlobalKey();
 
+  bool isloadingdone = false;
 
-
-
-    NextScreen(){
+  NextScreen(){
     if (_key.currentState != null && _key.currentState!.validate()) {
       _key.currentState!.save();
     }
+    setState(() {
+      isloadingdone = true;
+
+    });
+    Future.delayed(Duration(seconds: 5),() {
+      setState(() {
+        isloadingdone= false;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => cardScreen())
+        );
+      });
+    });
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -173,13 +186,14 @@ class _mainFormState extends State<mainForm> {
                           height: 30,
                         ),
                      Padding(
-                       padding:  EdgeInsets.only(top:50,left: 200,),
-                       child:
-                       Padding(
+                         padding:  EdgeInsets.only(top:50,left: 200,),
+                         child:
+                         Padding(
                          padding:  EdgeInsets.only(left: 100),
-                         child: ElevatedButton(
+                           child: ElevatedButton(
                            onPressed: (NextScreen),
-                           child: Text(
+                           child:
+                           Text(
                              "Done",
                              style: TextStyle(
                                fontStyle: FontStyle.italic,
