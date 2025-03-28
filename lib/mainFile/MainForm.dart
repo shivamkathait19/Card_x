@@ -11,7 +11,7 @@ class mainForm extends StatefulWidget {
 }
 
 
-    class _mainFormState extends State<mainForm> {
+ class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController fatherController = TextEditingController();
@@ -77,7 +77,6 @@ class mainForm extends StatefulWidget {
                                      labelStyle: TextStyle(
                                        fontStyle: FontStyle.italic,
                                      ),
-
                                  ),
                                    validator: (value) {
                                    if (value == null || value.isEmpty) {
@@ -85,7 +84,6 @@ class mainForm extends StatefulWidget {
                                    }
                                    return null;
                                  },
-
                                ),
                              ),
 
@@ -99,7 +97,6 @@ class mainForm extends StatefulWidget {
                               labelStyle: TextStyle(
                                   fontStyle: FontStyle.italic
                               ) ,
-
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -135,7 +132,6 @@ class mainForm extends StatefulWidget {
                         ListTile(
                            leading: Icon(Icons.email),
                            title:
-
                            TextFormField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
@@ -144,7 +140,6 @@ class mainForm extends StatefulWidget {
                             labelStyle: TextStyle(
                               fontStyle: FontStyle.italic
                             ),
-
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -155,7 +150,7 @@ class mainForm extends StatefulWidget {
                         ),
                          ),
 
-                           ListTile(
+                     ListTile(
                                leading: Icon(Icons.password),
                                title: TextFormField(
                                  controller: passController,
