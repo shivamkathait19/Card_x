@@ -9,8 +9,7 @@ class mainForm extends StatefulWidget {
   State<mainForm> createState() => _mainFormState();
 }
 
-
- class _mainFormState extends State<mainForm> {
+class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController fatherController = TextEditingController();
