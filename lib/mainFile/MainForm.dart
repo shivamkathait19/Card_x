@@ -2,7 +2,6 @@ import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 class mainForm extends StatefulWidget {
     mainForm({super.key});
 
