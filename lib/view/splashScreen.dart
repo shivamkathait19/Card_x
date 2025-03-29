@@ -30,6 +30,13 @@ class _splashScreenState extends State<splashScreen> {
     });
     Future.delayed(Duration(seconds: 1), _changeBackgroundColor); // Repeat the process
   }*/
+  void _goToBlankPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BlankPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,3 +109,26 @@ class _splashScreenState extends State<splashScreen> {
     );
   }
 }
+  floatingActionButton: FloatingActionButton(
+  onPressed: _goToBlankPage, // Navigate to the blank page when clicked
+  child: Icon(Icons.person_2), // Icon for the button
+ backgroundColor: Colors.blue, // Color of the button
+ ),
+ );
+ }
+ }
+
+class BlankPage extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text("Blank Page")),
+body: Center(
+child: Text(
+'This is a blank page.',
+style: TextStyle(fontSize: 24, color: Colors.black),
+),
+),
+);
+}
+}*/
