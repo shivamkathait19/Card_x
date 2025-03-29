@@ -56,7 +56,7 @@ class mainForm extends StatefulWidget {
      @override
           Widget build(BuildContext context) {
           return Scaffold(
-           backgroundColor: Colors.white,
+           backgroundColor: Colors.black12,
           body: Container(
          child :SingleChildScrollView(
          child: Padding(
@@ -185,15 +185,11 @@ class mainForm extends StatefulWidget {
                            onPressed: (NextScreen),
                            child:
                              isloadingdone ? CircularProgressIndicator():
-                                 Padding(
-                                   padding: EdgeInsets.only(right:100),
-                                   child: Icon(Icons.next_plan,
+                                Icon(Icons.navigate_next,
                                     size: 50,),
-                                 ),
-
-                             style: ElevatedButton.styleFrom(
-                             foregroundColor: Colors.white, backgroundColor: Colors.black12, // Set color for text/icon
-                             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0 ,),// Optional: padding
+                               style: ElevatedButton.styleFrom(
+                             foregroundColor: Colors.white, backgroundColor: Colors.black45, // Set color for text/icon
+                             padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 5.0 ,),// Optional: padding
                            ),
                          ),
                        )
