@@ -24,8 +24,20 @@ class _SplashScreenState extends State<SplashScreen> {
       Container(
         child: Column(
           children:[
-           SizedBox(
-              height: 120,
+          Padding(
+            padding:  EdgeInsets.only(left: 30,top: 40),
+            child: Align(
+            alignment: Alignment.topLeft,
+            child: FloatingActionButton(
+            onPressed: _goToBlankPage,
+            child: Icon(Icons.person),
+           // backgroundColor: Colors.blue,
+                    ),
+                    ),
+          ),
+
+        SizedBox(
+              height: 100,
             ),
             Row(
               children: [
@@ -76,11 +88,7 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
 
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed:_goToBlankPage, // Navigate to the blank page when clicked
-          child: Icon(Icons.person_2), // Icon for the button
-      backgroundColor: Colors.blue, // Color of the button
-    ),
+
     );
   }
 }
