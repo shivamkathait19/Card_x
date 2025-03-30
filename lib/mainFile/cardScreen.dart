@@ -48,7 +48,7 @@ class _CardScreenState extends State<cardScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: _goToBlankPage,
         child: Icon(Icons.person),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.grey,
       ),
     );
   }
