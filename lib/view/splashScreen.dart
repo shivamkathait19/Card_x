@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 class splashScreen extends StatefulWidget {
   const splashScreen({super.key});
-
 
   @override
   State<splashScreen> createState() => _splashScreenState();
@@ -11,48 +9,20 @@ class splashScreen extends StatefulWidget {
 int _colorIndex = 0;
 
 class _splashScreenState extends State<splashScreen> {
-  /*final List<Color> _backgroundColors = [
-    Colors.grey,
-   // Colors.green,
-    // Colors.orange,
-    Colors.black12
-  ];
 
-  @override
-  void initState() {
-    super.initState();
-    // Set a timer to change the background color every 2 seconds
-    Future.delayed(Duration(seconds:1), _changeBackgroundColor);
-  }
-  void _changeBackgroundColor() {
-    setState(() {
-      _colorIndex = (_colorIndex + 1) % _backgroundColors.length;
-    });
-    Future.delayed(Duration(seconds: 1), _changeBackgroundColor); // Repeat the process
-  }*/
   void _goToBlankPage() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => BlankPage()),
+      MaterialPageRoute(builder:(context) => BlankPage()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, /*_backgroundColors[_colorIndex],*/
+      backgroundColor: Colors.white,
       body:
       Container(
-       /* decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              _backgroundColors[_colorIndex], // Start color
-              _backgroundColors[(_colorIndex + 1) % _backgroundColors.length], // End color
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomCenter,
-          ),
-        ),*/
         child: Column(
           children:[
            SizedBox(
@@ -109,14 +79,15 @@ class _splashScreenState extends State<splashScreen> {
     );
   }
 }
-  floatingActionButton: FloatingActionButton(
-  onPressed: _goToBlankPage, // Navigate to the blank page when clicked
-  child: Icon(Icons.person_2), // Icon for the button
- backgroundColor: Colors.blue, // Color of the button
- ),
- );
- }
- }
+
+floatingActionButton: FloatingActionButton(
+onPressed: _goToBlankPage, // Navigate to the blank page when clicked
+child: Icon(Icons.person_2), // Icon for the button
+backgroundColor: Colors.blue, // Color of the button
+),
+);
+}
+}
 
 class BlankPage extends StatelessWidget {
 @override
@@ -131,4 +102,4 @@ style: TextStyle(fontSize: 24, color: Colors.black),
 ),
 );
 }
-}*/
+}
