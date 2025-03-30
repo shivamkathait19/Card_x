@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class splashScreen extends StatefulWidget {
-  const splashScreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<splashScreen> createState() => _splashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
-int _colorIndex = 0;
 
-class _splashScreenState extends State<splashScreen> {
 
+class _SplashScreenState extends State<SplashScreen> {
   void _goToBlankPage() {
     Navigator.push(
       context,
@@ -75,19 +74,18 @@ class _splashScreenState extends State<splashScreen> {
           )
           ],
         ),
+
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed:_goToBlankPage, // Navigate to the blank page when clicked
+          child: Icon(Icons.person_2), // Icon for the button
+      backgroundColor: Colors.blue, // Color of the button
+    ),
     );
   }
 }
 
-floatingActionButton: FloatingActionButton(
-onPressed: _goToBlankPage, // Navigate to the blank page when clicked
-child: Icon(Icons.person_2), // Icon for the button
-backgroundColor: Colors.blue, // Color of the button
-),
-);
-}
-}
+
 
 class BlankPage extends StatelessWidget {
 @override
