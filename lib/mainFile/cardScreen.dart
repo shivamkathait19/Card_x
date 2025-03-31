@@ -45,14 +45,19 @@ class _CardScreenState extends State<cardScreen> {
       body: Center(
         child: Text("Card Screen"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _goToBlankPage,
-        child: Icon(Icons.person),
-        backgroundColor: Colors.grey,
-      ),
+        floatingActionButton: Padding(
+          padding:  EdgeInsets.only(top: 20,right: 10),
+          child: FloatingActionButton(
+          onPressed: _goToBlankPage,
+          child: Icon(Icons.person),
+          backgroundColor: Colors.grey,
+                ),
+        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
     );
   }
 }
+
 class BlankPage extends StatelessWidget {
   final String? username;
   final String? date;
@@ -80,7 +85,6 @@ class BlankPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         children: [
           ListTile(
-
             leading: Icon(Icons.person),
             title: Text(username ?? 'No Name'),
             titleTextStyle: TextStyle(
