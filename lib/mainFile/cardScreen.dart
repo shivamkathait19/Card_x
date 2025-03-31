@@ -50,6 +50,7 @@ class _CardScreenState extends State<cardScreen> {
           child: FloatingActionButton(
           onPressed: _goToBlankPage,
           child: Icon(Icons.person),
+
           backgroundColor: Colors.grey,
                 ),
         ),
@@ -82,7 +83,7 @@ class BlankPage extends StatelessWidget {
       appBar: AppBar(title: Text(" PROFILE ")),
       body:
       ListView(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.only(top: 20),
         children: [
           ListTile(
             leading: Icon(Icons.person),
@@ -93,6 +94,7 @@ class BlankPage extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.calendar_today),
+            
             title: Text(date ?? 'No Date'),
             titleTextStyle: TextStyle(
                 fontStyle: FontStyle.italic
