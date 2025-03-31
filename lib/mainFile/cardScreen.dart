@@ -52,6 +52,7 @@ class _CardScreenState extends State<cardScreen> {
           onPressed: _goToBlankPage,
           child: Icon(Icons.person),splashColor: Colors.black12,
             backgroundColor: Colors.grey,
+            opacity: 0,5
                 ),
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
