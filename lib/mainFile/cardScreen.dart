@@ -47,9 +47,10 @@ class _CardScreenState extends State<cardScreen> {
       ),
         floatingActionButton: Padding(
           padding:  EdgeInsets.only(top: 20,right: 10),
-          child: FloatingActionButton(
+          child:
+          FloatingActionButton(
           onPressed: _goToBlankPage,
-          child: Icon(Icons.person),
+          child: Icon(Icons.person),splashColor: Colors.black12,
             backgroundColor: Colors.grey,
                 ),
         ),
@@ -78,7 +79,7 @@ class BlankPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.grey,
+    return Scaffold( backgroundColor: Colors.white,
       appBar: AppBar(title: Text(" PROFILE ")),
       body:
       ListView(
