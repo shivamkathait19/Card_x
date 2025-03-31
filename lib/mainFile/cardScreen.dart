@@ -50,8 +50,7 @@ class _CardScreenState extends State<cardScreen> {
           child: FloatingActionButton(
           onPressed: _goToBlankPage,
           child: Icon(Icons.person),
-
-          backgroundColor: Colors.grey,
+            backgroundColor: Colors.grey,
                 ),
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -94,7 +93,7 @@ class BlankPage extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.calendar_today),
-            
+
             title: Text(date ?? 'No Date'),
             titleTextStyle: TextStyle(
                 fontStyle: FontStyle.italic
