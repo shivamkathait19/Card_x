@@ -35,8 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             ),
           ),
-
-        SizedBox(
+            SizedBox(
               height: 100,
             ),
             Row(
@@ -57,7 +56,6 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 80,
             ),
-            
             Padding(
                  padding: EdgeInsets.only(left: 90),
                  child: Container(
