@@ -67,7 +67,7 @@ class BlankPage extends StatelessWidget {
   final String? mobile;
   final String? email;
 
-  const BlankPage({
+   BlankPage({
     Key? key,
     this.username,
     this.date,
