@@ -32,8 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
             onPressed: _goToBlankPage,
             child: Icon(Icons.person),
            // backgroundColor: Colors.blue,
-                    ),
-                    ),
+            ),
+            ),
           ),
 
         SizedBox(
