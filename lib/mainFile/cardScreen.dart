@@ -42,7 +42,7 @@ class _CardScreenState extends State<cardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.grey,
+    return Scaffold( backgroundColor: Colors.black12,
       body: Center(
         child: Text("Card Screen"),
       ),
