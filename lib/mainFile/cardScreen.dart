@@ -60,6 +60,9 @@ class _CardScreenState extends State<cardScreen> {
   }
 }
 
+
+
+
 class BlankPage extends StatelessWidget {
   final String? username;
   final String? date;
