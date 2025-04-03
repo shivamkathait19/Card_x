@@ -85,27 +85,24 @@ class BlankPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold( backgroundColor: Colors.white,
       appBar: AppBar(title: Text(" PROFILE ")),
-      body:
-      ListView(
-        padding: EdgeInsets.only(top: 20),
-        children: [
-          Container(
-            child: ListTile(
-              leading: Icon(Icons.person),
-              title: Text(username ?? 'No Name'),
-              titleTextStyle: TextStyle(
-                fontStyle: FontStyle.italic
+      body: ListView(
+         children: [
+       ListTile(
+                leading: Icon(Icons.person),
+                title: Text(username ?? 'No Name'),
+                titleTextStyle: TextStyle(
+                  fontStyle: FontStyle.italic
+                ),
               ),
-            ),
-    ),
-          ListTile(
-            leading: Icon(Icons.calendar_today),
 
+       ListTile(
+            leading: Icon(Icons.calendar_today),
             title: Text(date ?? 'No Date'),
             titleTextStyle: TextStyle(
                 fontStyle: FontStyle.italic
             ),
           ),
+
           ListTile(
             leading: Icon(Icons.person_2),
             title: Text(father ?? 'No Father Name'),
@@ -134,7 +131,7 @@ class BlankPage extends StatelessWidget {
                 fontStyle: FontStyle.italic
             ),
           ),
-        ],
+       ],
       ),
     );
   }
