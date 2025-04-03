@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 
 class cardScreen extends StatefulWidget {
@@ -46,16 +47,22 @@ class _CardScreenState extends State<cardScreen> {
       body: Center(
         child: Text("Card Screen"),
       ),
-        floatingActionButton: Padding(
-          padding:  EdgeInsets.only(top: 20,right: 10,),
-          child:
-          FloatingActionButton(
-          onPressed: _goToBlankPage,
-          child: Icon(Icons.person,size: 20,),splashColor: Colors.black12,
-            backgroundColor: Colors.grey,
-                ),
+        floatingActionButton:SpeedDial(
+            animatedIcon: AnimatedIcons.arrow_menu,
+            backgroundColor: Colors.blue,
+            overlayColor: Colors.black54,
+            overlayOpacity: 0.5,
+            children: [
+        SpeedDialChild(
+          child: ElevatedButton.icon(onPressed: _goToBlankPage,
+            icon: Icon(Icons.person_2),
+             label:Text("PROFILE"),style: ElevatedButton.styleFrom(
+          fixedSize: Size(20, 20) ,
+        ), )
         ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+
+    ]
+    ),
     );
   }
 }
@@ -84,7 +91,7 @@ class BlankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold( backgroundColor: Colors.white,
-      appBar: AppBar(title: Text(" PROFILE ")),
+      appBar: /*AppBar(title: Text(" PROFILE ")),*/
       body: ListView(
          children: [
        ListTile(
