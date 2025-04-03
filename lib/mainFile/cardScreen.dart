@@ -42,16 +42,16 @@ class _CardScreenState extends State<cardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.black12,
+    return Scaffold( backgroundColor: Colors.white,
       body: Center(
         child: Text("Card Screen"),
       ),
         floatingActionButton: Padding(
-          padding:  EdgeInsets.only(top: 20,right: 10),
+          padding:  EdgeInsets.only(top: 20,right: 10,),
           child:
           FloatingActionButton(
           onPressed: _goToBlankPage,
-          child: Icon(Icons.person),splashColor: Colors.black12,
+          child: Icon(Icons.person,size: 20,),splashColor: Colors.black12,
             backgroundColor: Colors.grey,
                 ),
         ),
