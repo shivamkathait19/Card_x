@@ -89,13 +89,15 @@ class BlankPage extends StatelessWidget {
       ListView(
         padding: EdgeInsets.only(top: 20),
         children: [
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text(username ?? 'No Name'),
-            titleTextStyle: TextStyle(
-              fontStyle: FontStyle.italic
+          Container(
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text(username ?? 'No Name'),
+              titleTextStyle: TextStyle(
+                fontStyle: FontStyle.italic
+              ),
             ),
-          ),
+    ),
           ListTile(
             leading: Icon(Icons.calendar_today),
 
