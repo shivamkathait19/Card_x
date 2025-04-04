@@ -91,7 +91,7 @@ class BlankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold( backgroundColor: Colors.white,
-      appBar: /*AppBar(title: Text(" PROFILE ")),*/
+      //appBar: AppBar(title: Text(" PROFILE ")),
       body: ListView(
          children: [
        ListTile(
