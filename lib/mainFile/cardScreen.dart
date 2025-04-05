@@ -47,22 +47,24 @@ class _CardScreenState extends State<cardScreen> {
       body: Center(
         child: Text("Card Screen"),
       ),
-        floatingActionButton:SpeedDial(
-            animatedIcon: AnimatedIcons.menu_arrow,
-            backgroundColor: Colors.blue,
-            overlayColor: Colors.black54,
-            overlayOpacity: 0.5,
-            children: [
-        SpeedDialChild(
-          child: ElevatedButton.icon(onPressed: _goToBlankPage,
-            icon: Icon(Icons.person_2),
-             label:Text("PROFILE"),style: ElevatedButton.styleFrom(
-          fixedSize: Size(20, 20) ,
-        ), )
-        ),
+        floatingActionButton:Center(
+          child: SpeedDial(
+              animatedIcon: AnimatedIcons.menu_arrow,
+              backgroundColor: Colors.blue,
+              overlayColor: Colors.black54,
+              overlayOpacity: 0.5,
+              children: [
+          SpeedDialChild(
+            child: ElevatedButton.icon(onPressed: _goToBlankPage,
+              icon: Icon(Icons.person_2),
+               label:Text("PROFILE"),style: ElevatedButton.styleFrom(
+            //fixedSize: Size(20, 20) ,
+          ), )
+          ),
 
-    ]
-    ),
+              ]
+              ),
+        ),
     );
   }
 }
