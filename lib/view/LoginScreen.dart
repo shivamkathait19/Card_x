@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child:Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6rKwDbEN_M9FCcve-ozbDkUUn6VkEZ7xfVw&s',height: 100,),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 10,
                   ),
                   // Form widget with correct syntax
                   Form(
@@ -81,14 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         // Email TextFormField
                         Padding(
-                          padding: EdgeInsets.only(left: 30, right: 30),
+                          padding: EdgeInsets.only(left: 50, right: 50),
                           child: TextFormField(
                             controller: _emailController,
                             decoration: InputDecoration(
                               labelText: 'Email',
                               labelStyle: TextStyle(color: Colors.grey),
                               prefixIcon: Icon(
-                                Icons.email, color: Colors.grey,),
+                                Icons.email, color: Colors.grey, size: 20,),
 
                             ),
                             validator: (value) {
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 10,),
                         Padding(
-                          padding: EdgeInsets.only(left: 30, right: 30),
+                          padding: EdgeInsets.only(left: 50, right: 50),
                           child: TextFormField(
                             controller: _passController,
                             obscureText: true,
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: EdgeInsets.only(left: 220),
                           child: TextButton(onPressed: () {},
-                            child: Text('Forgot Password',
+                            child: Text('Forget Password',
                               style: TextStyle(
                                   color: Colors.blue, fontSize: 13),
                             ),
@@ -141,8 +141,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Nextpage();
                               }
                             },
-                              child: Text('Login'),
-                            style: ElevatedButton.styleFrom(
+                              child: Text('Login',style: TextStyle(fontStyle: FontStyle.italic),) ,
+                            style: ElevatedButton.styleFrom( backgroundColor: Colors.lightBlue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
@@ -150,10 +150,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                         ),
 
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SizedBox(height: 200,),
+                       /* SizedBox(
+                          height: 300,
+                        ),*/
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -171,8 +171,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
+
                       ],
-                    ),
+                        ),
+
                   ),
                 ],
               ),
