@@ -44,7 +44,58 @@ class _CardScreenState extends State<cardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold( backgroundColor: Colors.white,
-      body: Center(
+      body:ListView(
+        children: [
+          Center(
+            child: ListTile(
+              leading: Icon(Icons.person),
+              title: Text(  'No Name'),
+              titleTextStyle: TextStyle(
+                  fontStyle: FontStyle.italic
+              ),
+            ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.calendar_today),
+            title: Text( 'No Date'),
+            titleTextStyle: TextStyle(
+                fontStyle: FontStyle.italic
+            ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.person_2),
+            title: Text( 'No Father Name'),
+            titleTextStyle: TextStyle(
+                fontStyle: FontStyle.italic
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text( 'No Mother Name'),
+            titleTextStyle: TextStyle(
+                fontStyle: FontStyle.italic
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.phone),
+            title: Text( 'No Mobile'),
+            titleTextStyle: TextStyle(
+                fontStyle: FontStyle.italic
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.email),
+            title: Text( 'No Email'),
+            titleTextStyle: TextStyle(
+                fontStyle: FontStyle.italic
+            ),
+          ),
+        ],
+      ),
+      /*Center(
+
         child: Text("Card Screen"),
       ),
         floatingActionButton:Center(
@@ -58,13 +109,14 @@ class _CardScreenState extends State<cardScreen> {
             child: ElevatedButton.icon(onPressed: _goToBlankPage,
               icon: Icon(Icons.person_2),
                label:Text("PROFILE"),style: ElevatedButton.styleFrom(
-            //fixedSize: Size(20, 20) ,
-          ), )
+
+          ),
           ),
 
               ]
               ),
-        ),
+        ),*/
+
     );
   }
 }
