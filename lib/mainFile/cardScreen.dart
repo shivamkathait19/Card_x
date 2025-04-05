@@ -48,7 +48,7 @@ class _CardScreenState extends State<cardScreen> {
         child: Text("Card Screen"),
       ),
         floatingActionButton:SpeedDial(
-            animatedIcon: AnimatedIcons.arrow_menu,
+            animatedIcon: AnimatedIcons.menu_arrow,
             backgroundColor: Colors.blue,
             overlayColor: Colors.black54,
             overlayOpacity: 0.5,
