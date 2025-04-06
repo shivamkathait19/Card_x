@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: 150),
-                    child:Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6rKwDbEN_M9FCcve-ozbDkUUn6VkEZ7xfVw&s',height: 100,),
+                    child:Image.asset('asset/avatar-png.jpg',height: 100,),
                   ),
                   SizedBox(
                     height: 10,
