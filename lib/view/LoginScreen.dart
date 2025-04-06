@@ -67,12 +67,21 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 150),
-                    child:Image.asset('asset/avatar-png.jpg',height: 100,),
+                  Container(
+                    height: 200,
+                    width: 100,
+                    padding: EdgeInsets.only(top:300),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    image: DecorationImage(
+                      image: AssetImage('asset/avatar-png.jpg',),
+                     // fit: BoxFit.fitHeight,
+                    ),
+                    //shape: BoxShape.circle,
+                  ),
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 80,
                   ),
                   // Form widget with correct syntax
                   Form(
