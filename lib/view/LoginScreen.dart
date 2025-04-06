@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 Nextpage();
                               }
                             },
-                              child: Text('Login',style: TextStyle(fontStyle: FontStyle.italic),) ,
+                              child: Text('Login',style: TextStyle(fontStyle: FontStyle.italic,color: Colors.black),) ,
                             style: ElevatedButton.styleFrom( backgroundColor: Colors.lightBlue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
