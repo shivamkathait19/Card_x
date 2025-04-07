@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 80,
                   ),
-                  
+
                   Form(
                     key: _formKey,
                     child: Column(
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: isLoadinglogin ?
                             CircularProgressIndicator() : ElevatedButton(
                             onPressed: () {
-                              // Only navigate if form is valid
+
                               if (_formKey.currentState!.validate()) {
                                 Nextpage();
                               }
@@ -172,7 +172,6 @@ class _LoginScreenState extends State<LoginScreen> {
                              isLoadingsingup ? CircularProgressIndicator()
                                 : TextButton(
                                onPressed: NextScreen,
-                              // Navigate to the Register screen
                               child: Text('Sign Up'),
                             ),
                             SizedBox(
