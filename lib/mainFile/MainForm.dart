@@ -188,14 +188,15 @@ class _mainFormState extends State<mainForm> {
                                style: ElevatedButton.styleFrom(
                              foregroundColor: Colors.white, backgroundColor: Colors.black45, // Set color for text/icon
                              padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 5.0 ,),// Optional: padding
-                           ),
+
+                               ),
                          ),
                        )
                        ),
                    ],
                      ),
-           ),
-         ),
+                 ),
+              ),
          ),
        ),
        );
