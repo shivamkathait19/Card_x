@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
        Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.black12,
+    return Scaffold(backgroundColor: Colors.white70,
       body: Container(
         decoration: BoxDecoration(
         ),
@@ -69,19 +69,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     height: 200,
                     width: 100,
-                    padding: EdgeInsets.only(top:300),
+                    padding: EdgeInsets.only(top:800),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(40),
-                      image: DecorationImage(
+                    //borderRadius: BorderRadius.all(
+                    //),
+                    image: DecorationImage(
                       image: AssetImage('asset/avatar-png.jpg',),
                      // fit: BoxFit.fitHeight,
                     ),
                     //shape: BoxShape.circle,
-                  ),
                   ),
                   ),
                   SizedBox(
