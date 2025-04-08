@@ -1,6 +1,6 @@
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
  bool isLoadingsingup = false;
 
 
- NextScreen() {
+  NextScreen() {
     if (_formKey.currentState!.validate()) {}
     setState(() {
       isLoadingsingup = true;
@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     });
   }
-    Nextpage() {
+    Nextpage(){
     if (_formKey.currentState!.validate()) {}
     setState(() {
       isLoadinglogin = true;
@@ -62,7 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
         decoration: BoxDecoration(
         ),
           child: SafeArea(
-
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -72,12 +71,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 100,
                     padding: EdgeInsets.only(top:300),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    image: DecorationImage(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(40),
+                      image: DecorationImage(
                       image: AssetImage('asset/avatar-png.jpg',),
                      // fit: BoxFit.fitHeight,
                     ),
                     //shape: BoxShape.circle,
+                  ),
                   ),
                   ),
                   SizedBox(
