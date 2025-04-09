@@ -72,7 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 50,
                       width: 60,
                       child: Image.asset(
-                        'asset/avatar-png.jpg',
+                        //'asset/avatar-png.jpg',
+                        'asset/kisspng-social-media-influencer-marketing-5b1319e606dca1.6047454915279784700281.jpg',
                         fit: BoxFit.cover,
                       ),
                     ),
