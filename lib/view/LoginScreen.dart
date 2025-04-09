@@ -66,20 +66,35 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  ClipOval(
+                    child: Container(
+                      color: Colors.black,
+                      height: 50,
+                      width: 60,
+                      child: Image.asset(
+                        'asset/avatar-png.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+
+                  /*Container(
                     height: 200,
                     width: 100,
-                    padding: EdgeInsets.only(top:800),
                   decoration: BoxDecoration(
-                    //borderRadius: BorderRadius.all(
-                    //),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(40),
+                    ),
                     image: DecorationImage(
                       image: AssetImage('asset/avatar-png.jpg',),
                      // fit: BoxFit.fitHeight,
                     ),
                     //shape: BoxShape.circle,
                   ),
-                  ),
+                  ),*/
                   SizedBox(
                     height: 80,
                   ),
