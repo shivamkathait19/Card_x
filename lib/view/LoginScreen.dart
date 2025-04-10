@@ -69,33 +69,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   ClipOval(
                     child: Container(
                       color: Colors.black,
-                      height: 50,
-                      width: 60,
-                      child: Image.asset(
-                        //'asset/avatar-png.jpg',
-                        'asset/kisspng-social-media-influencer-marketing-5b1319e606dca1.6047454915279784700281.jpg',
-                        fit: BoxFit.cover,
+                      height: 100,
+                      width: 100,
+                      child: Padding(
+                        padding: const EdgeInsets.all(0.0),
+                        child: Image.asset(
+                          'asset/avatar-png.jpg',
+                        ),
                       ),
                     ),
                   ),
 
-                  /*Container(
-                    height: 200,
-                    width: 100,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(40),
-                    ),
-                    image: DecorationImage(
-                      image: AssetImage('asset/avatar-png.jpg',),
-                     // fit: BoxFit.fitHeight,
-                    ),
-                    //shape: BoxShape.circle,
-                  ),
-                  ),*/
                   SizedBox(
                     height: 80,
                   ),
