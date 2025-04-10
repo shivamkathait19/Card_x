@@ -91,3 +91,6 @@ flutter:
   # see https://flutter.dev/to/font-from-package
   assets:
      - asset/avatar-png.jpg
+
+assets :
+  -asset/solated-on-black.jpg

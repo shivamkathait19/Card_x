@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
        Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white70,
+    return Scaffold(backgroundColor: Colors.black,
       body: Container(
         decoration: BoxDecoration(
         ),
@@ -66,19 +66,20 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipOval(
-                    child: Container(
-                      color: Colors.black,
-                      height: 100,
-                      width: 100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: Image.asset(
-                          'asset/avatar-png.jpg',
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20
+                    ),
+                    child: Image.asset(
+                          //'asset/avatar-png.jpg',
+                      'asset/solated-on-black.jpg',
+                         height: 100,
+                         width: 100,
+                      fit:  BoxFit.cover,
                         ),
                       ),
-                    ),
-                  ),
 
                   SizedBox(
                     height: 80,
