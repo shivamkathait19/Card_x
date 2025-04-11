@@ -75,8 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Image.asset(
                           //'asset/avatar-png.jpg',
                       'asset/solated-on-black.jpg',
-                         height: 100,
-                         width: 100,
+                         height: 150,
+                         width: 150,
                       fit:  BoxFit.cover,
                         ),
                       ),
@@ -96,10 +96,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             controller: _emailController,
                             decoration: InputDecoration(
                               labelText: 'Email',
-                              labelStyle: TextStyle(color: Colors.grey),
+                              labelStyle: TextStyle(color: Colors.white70),
                               prefixIcon: Icon(
-                                Icons.email, color: Colors.grey, size: 20,),
-
+                                Icons.email, color: Colors.white70, size: 20,),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -118,9 +117,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             obscureText: true,
                             decoration: InputDecoration(
                               labelText: 'Password',
-                              labelStyle: TextStyle(color: Colors.grey),
+                              labelStyle: TextStyle(color: Colors.white70),
                               prefixIcon: Icon(
-                                Icons.password, color: Colors.grey,),
+                                Icons.password, color: Colors.white70,),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -163,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                        /* SizedBox(
                           height: 300,
                         ),*/
-
+Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

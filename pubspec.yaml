@@ -89,8 +89,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-  assets:
-     - asset/avatar-png.jpg
 
-assets :
-  -asset/solated-on-black.jpg
+  assets :
+    - asset/solated-on-black.jpg
+    - asset/avatar-png.jpg
