@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
 
                   SizedBox(
-                    height: 80,
+                    height: 150,
                   ),
 
                   Form(
@@ -145,7 +145,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: isLoadinglogin ?
                             CircularProgressIndicator() : ElevatedButton(
                             onPressed: () {
-
                               if (_formKey.currentState!.validate()) {
                                 Nextpage();
                               }
@@ -158,11 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             ),
                         ),
-
-                       /* SizedBox(
-                          height: 300,
-                        ),*/
-Spacer(),
+                        SizedBox(
+                          height: 270,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -174,9 +171,7 @@ Spacer(),
                                onPressed: NextScreen,
                               child: Text('Sign Up'),
                             ),
-                            SizedBox(
-                              height: 40,
-                            ),
+
                           ],
                         ),
 
