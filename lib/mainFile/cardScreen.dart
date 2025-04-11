@@ -28,7 +28,14 @@ class _cardScreenState extends State<cardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-
+        child: Padding(
+          padding:  EdgeInsets.only(bottom:200),
+          child: Image.asset('asset/solated-on-black.jpg',
+            height: 200,
+            width: 150,
+          ),
+        ),
+   Te
       ),
     );
   }

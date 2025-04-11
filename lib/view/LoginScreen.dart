@@ -80,11 +80,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       fit:  BoxFit.cover,
                         ),
                       ),
-
                   SizedBox(
                     height: 150,
                   ),
-
                   Form(
                     key: _formKey,
                     child: Column(
