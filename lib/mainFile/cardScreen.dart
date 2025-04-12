@@ -15,7 +15,8 @@ class cardScreen extends StatefulWidget {
     this.mother,
     this.mobile,
     this.email,
-  }) : super(key: key);
+  }
+  );
 
 
   @override
@@ -39,12 +40,14 @@ class _cardScreenState extends State<cardScreen> {
           ),
         ),
 
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text( username  '',),
-            ),
 
-        ],
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text( widget.username ?? 'username',),
+              ),
+
+
+          ],
         ),
       ),
     );
