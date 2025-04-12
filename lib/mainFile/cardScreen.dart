@@ -40,11 +40,24 @@ class _cardScreenState extends State<cardScreen> {
           ),
         ),
 
-          ListTile(
+ListTile(
+  leading: Icon(Icons.person),
+  title: Container(
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.black,),
+
+    ),
+      child:Text(widget.username ?? "username"),
+  ),
+)
+
+          /*ListTile(
                 leading: Icon(Icons.person),
-                title: Text( widget.username ?? 'username',),
-            titleTextStyle: ,
-              ),
+                title:
+
+                Text( widget.username ?? 'username',),
+
+              ),*/
 
           ],
         ),
