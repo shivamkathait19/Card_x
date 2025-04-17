@@ -117,7 +117,7 @@ ListTile(
               ),
             ),
             ListTile(
-              leading: Icon(Icons.e),
+              leading: Icon(Icons.email),
               title: Container(
                 decoration: BoxDecoration(
                     border: Border(bottom:
@@ -127,7 +127,7 @@ ListTile(
                     )
                     )
                 ),
-                child: Text(widget.mother ?? "enter a monther name "),
+                child: Text(widget.mother ?? "enter a email name "),
               ),
             ),
 
