@@ -40,94 +40,112 @@ class _cardScreenState extends State<cardScreen> {
           ),
         ),
 
-ListTile(
-  leading: Icon(Icons.person,),
-  title: Container(
-    decoration: BoxDecoration(
-      border: Border(
-        bottom: BorderSide(
-          color: Colors.black,
-          width: 2.0,
+Padding(
+  padding: const EdgeInsets.all(50.0),
+  child: ListTile(
+    leading: Icon(Icons.person,),
+    title: Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.black,
+            width: 2.0,
+        ),
       ),
+      ),
+        child:Text(widget.username ?? "username"
+        ,),
     ),
-    ),
-      child:Text(widget.username ?? "username"
-      ,),
   ),
 ),
 
- ListTile(
-   leading: Icon(Icons.date_range ,),
-   title: Container(
-     decoration: BoxDecoration(
-       border: Border( bottom:
-       BorderSide(
-         color: Colors.black,
-         width: 2.0,
+ Padding(
+   padding: const EdgeInsets.all(50.0),
+   child: ListTile(
+     leading: Icon(Icons.date_range ,),
+     title: Container(
+       decoration: BoxDecoration(
+         border: Border( bottom:
+         BorderSide(
+           color: Colors.black,
+           width: 2.0,
 
+         ),
+         )
        ),
-       )
+       child: Text(widget.date ??'date'),
      ),
-     child: Text(widget.date ??'date'),
    ),
  ),
-            ListTile(
-              leading: Icon(Icons.person_2),
-              title:Container(
-                decoration: BoxDecoration(
-                  border: Border( bottom:
-                    BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: ListTile(
+                leading: Icon(Icons.person_2),
+                title:Container(
+                  decoration: BoxDecoration(
+                    border: Border( bottom:
+                      BorderSide(
+                        color: Colors.black,
+                        width: 2.0,
+                      ),
+
                     ),
-                    
+
+
                   ),
-                  
-                      
+                  child: Text(widget.father ??' father name'),
                 ),
-                child: Text(widget.father ??' father name'),
               ),
             ),
-             ListTile(
-               leading: Icon(Icons.person_2),
+             Padding(
+               padding: const EdgeInsets.all(50.0),
+               child: ListTile(
+                 leading: Icon(Icons.person_2),
+                  title: Container(
+                    decoration: BoxDecoration(
+                      border: Border(bottom:
+                       BorderSide(
+                          color: Colors.black,
+                         width: 2.0,
+                       )
+                      )
+                    ),
+                    child: Text(widget.mother ?? "enter a monther name "),
+                  ),
+               ),
+             ),
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: ListTile(
+                leading: Icon(Icons.numbers),
                 title: Container(
                   decoration: BoxDecoration(
-                    border: Border(bottom: 
-                     BorderSide(
+                      border: Border(bottom:
+                      BorderSide(
                         color: Colors.black,
-                       width: 2.0,
-                     )
-                    )
+                        width: 2.0,
+                      )
+                      )
                   ),
-                  child: Text(widget.mother ?? "enter a monther name "),
+                  child: Text(widget.mother ?? "enter a mobile name "),
                 ),
-             ),
-            ListTile(
-              leading: Icon(Icons.numbers),
-              title: Container(
-                decoration: BoxDecoration(
-                    border: Border(bottom:
-                    BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    )
-                    )
-                ),
-                child: Text(widget.mother ?? "enter a mobile name "),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.email),
-              title: Container(
-                decoration: BoxDecoration(
-                    border: Border(bottom:
-                    BorderSide(
-                      color: Colors.black,
-                      width: 2.0,
-                    )
-                    )
+            Padding(
+              padding: const EdgeInsets.all(50.0),
+              child: ListTile(
+                leading: Icon(Icons.email),
+                title: Container(
+                  decoration: BoxDecoration(
+                      border: Border(bottom:
+                      BorderSide(
+                        color: Colors.black,
+                        width: 2.0,
+                      )
+                      )
+                  ),
+                  child: Text(widget.mother ?? "enter a email name "),
                 ),
-                child: Text(widget.mother ?? "enter a email name "),
               ),
             ),
 
