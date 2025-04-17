@@ -57,7 +57,7 @@ ListTile(
 ),
 
  ListTile(
-   leading: Icon(Icons.date_range ,,),
+   leading: Icon(Icons.date_range ,),
    title: Container(
      decoration: BoxDecoration(
        border: Border( bottom:
@@ -70,7 +70,25 @@ ListTile(
      ),
      child: Text(widget.date ??'date'),
    ),
- )
+ ),
+            ListTile(
+              leading: Icon(Icons.person_2),
+              title:Container(
+                decoration: BoxDecoration(
+                  border: Border( bottom:
+                    BorderSide(
+                      color: Colors.black,
+                      width: 2.0,
+                    ),
+                    
+                  ),
+                  
+                      
+                ),
+                child: Text(widget.father ??' father name'),
+              ),
+            ),
+            
 
 
           
