@@ -41,7 +41,7 @@ class _cardScreenState extends State<cardScreen> {
         ),
 
 ListTile(
-  leading: Icon(Icons.person,size: 50,),
+  leading: Icon(Icons.person,),
   title: Container(
     decoration: BoxDecoration(
       border: Border(
@@ -54,9 +54,22 @@ ListTile(
       child:Text(widget.username ?? "username"
       ,),
   ),
-)
+),
+
  ListTile(
-   leading: Icon(Icons.),
+   leading: Icon(Icons.date_range ,,),
+   title: Container(
+     decoration: BoxDecoration(
+       border: Border( bottom:
+       BorderSide(
+         color: Colors.black,
+         width: 2.0,
+
+       ),
+       )
+     ),
+     child: Text(widget.date ??'date'),
+   ),
  )
 
 
