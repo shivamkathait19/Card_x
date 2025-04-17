@@ -101,7 +101,35 @@ ListTile(
                   ),
                   child: Text(widget.mother ?? "enter a monther name "),
                 ),
-             )
+             ),
+            ListTile(
+              leading: Icon(Icons.numbers),
+              title: Container(
+                decoration: BoxDecoration(
+                    border: Border(bottom:
+                    BorderSide(
+                      color: Colors.black,
+                      width: 2.0,
+                    )
+                    )
+                ),
+                child: Text(widget.mother ?? "enter a mobile name "),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.e),
+              title: Container(
+                decoration: BoxDecoration(
+                    border: Border(bottom:
+                    BorderSide(
+                      color: Colors.black,
+                      width: 2.0,
+                    )
+                    )
+                ),
+                child: Text(widget.mother ?? "enter a monther name "),
+              ),
+            ),
 
 
           
