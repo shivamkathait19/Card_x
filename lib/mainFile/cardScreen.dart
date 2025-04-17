@@ -88,7 +88,20 @@ ListTile(
                 child: Text(widget.father ??' father name'),
               ),
             ),
-            
+             ListTile(
+               leading: Icon(Icons.person_2),
+                title: Container(
+                  decoration: BoxDecoration(
+                    border: Border(bottom: 
+                     BorderSide(
+                        color: Colors.black,
+                       width: 2.0,
+                     )
+                    )
+                  ),
+                  child: Text(widget.mother ?? "enter a monther name "),
+                ),
+             )
 
 
           
