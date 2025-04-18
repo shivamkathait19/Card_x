@@ -27,7 +27,7 @@ class _cardScreenState extends State<cardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.black,
       body: Center(
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +41,7 @@ class _cardScreenState extends State<cardScreen> {
         ),
 
 Padding(
-  padding: const EdgeInsets.all(50.0),
+  padding: EdgeInsets.only(left: 30,right: 30),
   child: ListTile(
     leading: Icon(Icons.person,),
     title: Container(
@@ -53,14 +53,11 @@ Padding(
         ),
       ),
       ),
-        child:Text(widget.username ?? "username"
-        ,),
-    ),
-  ),
+        child:Text(widget.username ?? "username",
 ),
 
  Padding(
-   padding: const EdgeInsets.all(50.0),
+   padding: EdgeInsets.only(left: 30,right: 30),
    child: ListTile(
      leading: Icon(Icons.date_range ,),
      title: Container(
@@ -78,7 +75,7 @@ Padding(
    ),
  ),
             Padding(
-              padding: const EdgeInsets.all(50.0),
+              padding: EdgeInsets.only(left: 30,right: 30),
               child: ListTile(
                 leading: Icon(Icons.person_2),
                 title:Container(
@@ -98,7 +95,7 @@ Padding(
               ),
             ),
              Padding(
-               padding: const EdgeInsets.all(50.0),
+               padding: EdgeInsets.only(left: 30,right: 30),
                child: ListTile(
                  leading: Icon(Icons.person_2),
                   title: Container(
@@ -115,7 +112,7 @@ Padding(
                ),
              ),
             Padding(
-              padding: const EdgeInsets.all(50.0),
+              padding: const EdgeInsets.only(left: 30,right: 30),
               child: ListTile(
                 leading: Icon(Icons.numbers),
                 title: Container(
@@ -132,7 +129,7 @@ Padding(
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(50.0),
+              padding: const EdgeInsets.only(left: 30,right: 30),
               child: ListTile(
                 leading: Icon(Icons.email),
                 title: Container(
