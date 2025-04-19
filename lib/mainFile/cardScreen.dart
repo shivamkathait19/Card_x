@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+
 class cardScreen extends StatefulWidget {
   final String? username;
   final String? date;
@@ -7,7 +9,7 @@ class cardScreen extends StatefulWidget {
   final String? mobile;
   final String? email;
 
-  cardScreen({
+     cardScreen({
     Key? key,
     this.username,
     this.date,
