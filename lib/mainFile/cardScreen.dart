@@ -56,7 +56,7 @@ Padding(
         child:Text(widget.username ?? "username",
 ),
 
- Padding(
+      Padding(
    padding: EdgeInsets.only(left: 30,right: 30),
    child: ListTile(
      leading: Icon(Icons.date_range ,),
