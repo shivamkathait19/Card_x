@@ -66,8 +66,7 @@ Padding(
          BorderSide(
            color: Colors.black,
            width: 2.0,
-
-         ),
+       ),
          )
        ),
        child: Text(widget.date ??'date'),
