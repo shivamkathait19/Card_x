@@ -128,7 +128,7 @@ Padding(
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 30,right: 30),
+              padding: EdgeInsets.only(left: 30,right: 30),
               child: ListTile(
                 leading: Icon(Icons.email),
                 title: Container(
@@ -144,11 +144,7 @@ Padding(
                 ),
               ),
             ),
-
-
-          
-
-          ],
+                ],
         ),
       ),
     );
