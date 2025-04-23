@@ -22,8 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body:
-
-         Container(
+      Container(
         child: Column(
           children:[
           Padding(
