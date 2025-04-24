@@ -57,10 +57,24 @@ Padding(
       ),
         child:Text(widget.username ?? "username",
 ),
-
-    ),
-  )
-),
+    ))),
+      Padding(
+   padding: EdgeInsets.only(left: 30,right: 30),
+   child: ListTile(
+     leading: Icon(Icons.date_range ,),
+     title: Container(
+       decoration: BoxDecoration(
+         border: Border( bottom:
+         BorderSide(
+           color: Colors.black,
+           width: 2.0,
+       ),
+         )
+       ),
+       child: Text(widget.date ??'date'),
+     ),
+   ),
+ ),
             Padding(
               padding: EdgeInsets.only(left: 30,right: 30),
               child: ListTile(
