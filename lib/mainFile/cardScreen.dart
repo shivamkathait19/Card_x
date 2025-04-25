@@ -29,7 +29,7 @@ class _cardScreenState extends State<cardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.black,
+    return Scaffold(backgroundColor: Colors.white,
       body: Center(
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +55,9 @@ Padding(
         ),
       ),
       ),
-        child:Text(widget.username ?? "username",
+        child:Text(widget.username ?? "username", style: TextStyle(
+          fontStyle: FontStyle.italic
+        ),
 ),
     ))),
       Padding(
@@ -71,7 +73,9 @@ Padding(
        ),
          )
        ),
-       child: Text(widget.date ??'date'),
+       child: Text(widget.date ??'date',style: TextStyle(
+           fontStyle: FontStyle.italic
+       ),),
      ),
    ),
  ),
@@ -91,7 +95,9 @@ Padding(
 
 
                   ),
-                  child: Text(widget.father ??' father name'),
+                  child: Text(widget.father ??' father name',style: TextStyle(
+                      fontStyle: FontStyle.italic
+                  ),),
                 ),
               ),
             ),
@@ -108,7 +114,9 @@ Padding(
                        )
                       )
                     ),
-                    child: Text(widget.mother ?? "enter a monther name "),
+                    child: Text(widget.mother ?? "enter a monther name ",style: TextStyle(
+                        fontStyle: FontStyle.italic
+                    ),),
                   ),
                ),
              ),
@@ -125,7 +133,9 @@ Padding(
                       )
                       )
                   ),
-                  child: Text(widget.mother ?? "enter a mobile name "),
+                  child: Text(widget.mother ?? "enter a mobile name ",style: TextStyle(
+                      fontStyle: FontStyle.italic
+                  ),),
                 ),
               ),
             ),
