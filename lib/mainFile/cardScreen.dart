@@ -42,23 +42,24 @@ class _cardScreenState extends State<cardScreen> {
           ),
         ),
   Container(
-   Padding(
-  padding: EdgeInsets.only(left: 30,right: 30),
   child: ListTile(
     leading: Icon(Icons.person,),
-    title: Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Colors.black,
-            width: 2.0,
+    title: Padding(
+      padding: const EdgeInsets.only(left: 30,right: 30),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              color: Colors.black,
+              width: 2.0,
+          ),
         ),
+        ),
+          child:Text(widget.username ?? "Username", style: TextStyle(
+            fontStyle: FontStyle.italic
+          ),
       ),
       ),
-        child:Text(widget.username ?? "Username", style: TextStyle(
-          fontStyle: FontStyle.italic
-        ),
-),
     ))),
       Padding(
    padding: EdgeInsets.only(left: 30,right: 30),
@@ -158,7 +159,7 @@ class _cardScreenState extends State<cardScreen> {
                 ),
               ),
             ),
- ),
+
                 ],
 
         ),
