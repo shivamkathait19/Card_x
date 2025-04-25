@@ -41,8 +41,8 @@ class _cardScreenState extends State<cardScreen> {
             width: 150,
           ),
         ),
-
-Padding(
+  Container(
+   Padding(
   padding: EdgeInsets.only(left: 30,right: 30),
   child: ListTile(
     leading: Icon(Icons.person,),
@@ -55,7 +55,7 @@ Padding(
         ),
       ),
       ),
-        child:Text(widget.username ?? "username", style: TextStyle(
+        child:Text(widget.username ?? "Username", style: TextStyle(
           fontStyle: FontStyle.italic
         ),
 ),
@@ -95,7 +95,7 @@ Padding(
 
 
                   ),
-                  child: Text(widget.father ??' father name',style: TextStyle(
+                  child: Text(widget.father ??' Father name',style: TextStyle(
                       fontStyle: FontStyle.italic
                   ),),
                 ),
@@ -114,7 +114,7 @@ Padding(
                        )
                       )
                     ),
-                    child: Text(widget.mother ?? "enter a monther name ",style: TextStyle(
+                    child: Text(widget.mother ?? " Mother name ",style: TextStyle(
                         fontStyle: FontStyle.italic
                     ),),
                   ),
@@ -133,7 +133,7 @@ Padding(
                       )
                       )
                   ),
-                  child: Text(widget.mother ?? "enter a mobile name ",style: TextStyle(
+                  child: Text(widget.mother ?? " mobile number ",style: TextStyle(
                       fontStyle: FontStyle.italic
                   ),),
                 ),
@@ -152,11 +152,15 @@ Padding(
                       )
                       )
                   ),
-                  child: Text(widget.mother ?? "enter a email name "),
+                  child: Text(widget.mother ?? " Email  ",style: TextStyle(
+                      fontStyle: FontStyle.italic
+                  ),),
                 ),
               ),
             ),
+ ),
                 ],
+
         ),
       ),
     );
