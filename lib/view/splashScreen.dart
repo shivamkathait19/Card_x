@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 80,
             ),
-            
+
             Padding(
                  padding: EdgeInsets.only(left: 90),
                  child: Container(
@@ -68,12 +68,15 @@ class _SplashScreenState extends State<SplashScreen> {
                           color: Colors.black54
                       )
                   ),
+
                   child: Row(
                     children: [Image.network("https://bsmedia.business-standard.com/_media/bs/img/article/2023-03/26/full/1679835161-6589.jpg?im=FeatureCrop,size=(826,465)", width: 347, height: 265,),
                     ],
                   ),
                  ),
                ),
+
+            
             Spacer(),
             Text("App Create by",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 12,wordSpacing: 5.0,decoration: TextDecoration.underline,decorationStyle: TextDecorationStyle.solid,),),
             Text("Shubham",style: TextStyle(fontStyle: FontStyle.italic,fontSize: 10,wordSpacing: 5.0,decoration: TextDecoration.underline,decorationStyle: TextDecorationStyle.solid,)),
