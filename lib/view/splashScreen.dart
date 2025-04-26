@@ -16,7 +16,6 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +53,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ],
             ),
+
             SizedBox(
               height: 80,
             ),
+            
             Padding(
                  padding: EdgeInsets.only(left: 90),
                  child: Container(
