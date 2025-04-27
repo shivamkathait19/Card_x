@@ -29,7 +29,7 @@ class _cardScreenState extends State<cardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
+    return Scaffold(backgroundColor: Colors.black,
       body: Center(
         child:Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -49,41 +49,20 @@ class _cardScreenState extends State<cardScreen> {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Colors.black,
+              color: Colors.white,
               width: 2.0,
           ),
         ),
         ),
           child:Center(
             child: Text(widget.username ?? "Username", style: TextStyle(
-              fontStyle: FontStyle.italic
+              fontStyle: FontStyle.italic,color: Colors.white
             ),
                   ),
           ),
       ),
     )),
-      Padding(
-   padding: EdgeInsets.only(left: 30,right: 30),
-   child: ListTile(
-     leading: Icon(Icons.date_range ,),
-     title: Container(
-       decoration: BoxDecoration(
-         border: Border( bottom:
-         BorderSide(
-           color: Colors.black,
-           width: 2.0,
-       ),
-         )
-       ),
-       child: Center(
-          child:Text(widget.date ??'Date',style: TextStyle(
-             fontStyle: FontStyle.italic
-         ),),
-       ),
 
-     ),
-   ),
- ),
             Padding(
               padding: EdgeInsets.only(left: 30,right: 30),
               child: ListTile(
@@ -92,7 +71,7 @@ class _cardScreenState extends State<cardScreen> {
                   decoration: BoxDecoration(
                     border: Border( bottom:
                       BorderSide(
-                        color: Colors.black,
+                        color: Colors.white,
                         width: 2.0,
                       ),
 
@@ -102,7 +81,7 @@ class _cardScreenState extends State<cardScreen> {
                   ),
                   child: Center(
                     child: Text(widget.father ??' Father name',style: TextStyle(
-                        fontStyle: FontStyle.italic
+                        fontStyle: FontStyle.italic,color: Colors.white
                     ),),
                   ),
                 ),
@@ -116,14 +95,14 @@ class _cardScreenState extends State<cardScreen> {
                     decoration: BoxDecoration(
                       border: Border(bottom:
                        BorderSide(
-                          color: Colors.black,
+                          color: Colors.white,
                          width: 2.0,
                        )
                       )
                     ),
                     child: Center(
                       child: Text(widget.mother ?? " Mother name ",style: TextStyle(
-                          fontStyle: FontStyle.italic
+                          fontStyle: FontStyle.italic,color: Colors.white
                       ),),
                     ),
                   ),
@@ -137,14 +116,38 @@ class _cardScreenState extends State<cardScreen> {
                   decoration: BoxDecoration(
                       border: Border(bottom:
                       BorderSide(
-                        color: Colors.black,
+                        color: Colors.white,
                         width: 2.0,
                       )
                       )
                   ),
-                  child: Text(widget.mother ?? " mobile number ",style: TextStyle(
-                      fontStyle: FontStyle.italic
-                  ),),
+                  child: Center(
+                    child: Text(widget.mother ?? " Mobile number ",style: TextStyle(
+                        fontStyle: FontStyle.italic,color: Colors.white
+                    ),),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 30,right: 30),
+              child: ListTile(
+                leading: Icon(Icons.date_range ,),
+                title: Container(
+                  decoration: BoxDecoration(
+                      border: Border( bottom:
+                      BorderSide(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
+                      )
+                  ),
+                  child: Center(
+                    child:Text(widget.date ??'Date',style: TextStyle(
+                        fontStyle: FontStyle.italic,color: Colors.white
+                    ),),
+                  ),
+
                 ),
               ),
             ),
@@ -156,14 +159,16 @@ class _cardScreenState extends State<cardScreen> {
                   decoration: BoxDecoration(
                       border: Border(bottom:
                       BorderSide(
-                        color: Colors.black,
+                        color: Colors.white,
                         width: 2.0,
                       )
                       )
                   ),
-                  child: Text(widget.mother ?? " Email  ",style: TextStyle(
-                      fontStyle: FontStyle.italic
-                  ),),
+                  child:  Center(
+                    child: Text(widget.mother ?? " Email  ",style: TextStyle(
+                        fontStyle: FontStyle.italic,color: Colors.white
+                    ),),
+                  )
                 ),
               ),
             ),
