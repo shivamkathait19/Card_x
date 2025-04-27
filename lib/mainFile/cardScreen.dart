@@ -75,9 +75,12 @@ class _cardScreenState extends State<cardScreen> {
        ),
          )
        ),
-       child: Text(widget.date ??'date',style: TextStyle(
-           fontStyle: FontStyle.italic
-       ),),
+       child: Center(
+          child:Text(widget.date ??'Date',style: TextStyle(
+             fontStyle: FontStyle.italic
+         ),),
+       ),
+
      ),
    ),
  ),
@@ -97,9 +100,11 @@ class _cardScreenState extends State<cardScreen> {
 
 
                   ),
-                  child: Text(widget.father ??' Father name',style: TextStyle(
-                      fontStyle: FontStyle.italic
-                  ),),
+                  child: Center(
+                    child: Text(widget.father ??' Father name',style: TextStyle(
+                        fontStyle: FontStyle.italic
+                    ),),
+                  ),
                 ),
               ),
             ),
@@ -116,9 +121,11 @@ class _cardScreenState extends State<cardScreen> {
                        )
                       )
                     ),
-                    child: Text(widget.mother ?? " Mother name ",style: TextStyle(
-                        fontStyle: FontStyle.italic
-                    ),),
+                    child: Center(
+                      child: Text(widget.mother ?? " Mother name ",style: TextStyle(
+                          fontStyle: FontStyle.italic
+                      ),),
+                    ),
                   ),
                ),
              ),
