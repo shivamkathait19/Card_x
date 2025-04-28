@@ -64,7 +64,6 @@ class _cardScreenState extends State<cardScreen> {
             ),
         ),
             )),
-
               Padding(
                 padding: EdgeInsets.only(left: 30,right: 30),
                 child: ListTile(
