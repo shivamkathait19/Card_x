@@ -17,8 +17,7 @@ class cardScreen extends StatefulWidget {
     this.mother,
     this.mobile,
     this.email,
-  }
-  );
+  }): super(key: key);
 
 
   @override
@@ -41,10 +40,10 @@ class _cardScreenState extends State<cardScreen> {
               width: 150,
             ),
           ),
-
-        Padding(
-          padding: const EdgeInsets.only(left: 30,right: 30),
-          child: ListTile(
+       Column(
+         /*Padding(
+          padding: const EdgeInsets.only(left: 30,right: 30),*/
+          children: [ ListTile(
             leading: Icon(Icons.person,),
             title: Container(
           decoration: BoxDecoration(
@@ -62,7 +61,7 @@ class _cardScreenState extends State<cardScreen> {
                     ),
             ),
         ),
-            )),
+            ),
               Padding(
                 padding: EdgeInsets.only(left: 30,right: 30),
                 child: ListTile(
@@ -173,11 +172,11 @@ class _cardScreenState extends State<cardScreen> {
                 ),
               ),
 
+
              ],
-          ),
-          ),
-
-
+       ),
+    ),
+    ),
     );
   }
 }
