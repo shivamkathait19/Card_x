@@ -30,9 +30,7 @@ class _cardScreenState extends State<cardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.only(bottom:200),
-        child: Center(
+      body: Center(
           child:Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -43,6 +41,7 @@ class _cardScreenState extends State<cardScreen> {
               width: 150,
             ),
           ),
+
         Padding(
           padding: const EdgeInsets.only(left: 30,right: 30),
           child: ListTile(
@@ -177,7 +176,7 @@ class _cardScreenState extends State<cardScreen> {
              ],
           ),
           ),
-      ),
+
 
     );
   }
