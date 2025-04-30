@@ -26,7 +26,9 @@ class cardScreen extends StatefulWidget {
 
 class _cardScreenState extends State<cardScreen> {
 
-  @override
+
+
+    @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.black,
       body: Center(
