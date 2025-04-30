@@ -43,7 +43,7 @@ class _cardScreenState extends State<cardScreen> {
             ),
           ),
        Column(
-         
+
           children: [ ListTile(
             leading: Icon(Icons.person,),
             title: Container(
@@ -63,7 +63,10 @@ class _cardScreenState extends State<cardScreen> {
             ),
         ),
             ),
-              Padding(
+
+
+
+            Padding(
                 padding: EdgeInsets.only(left: 30,right: 30),
                 child: ListTile(
                   leading: Icon(Icons.person_2),
