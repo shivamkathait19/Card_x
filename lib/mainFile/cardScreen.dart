@@ -43,8 +43,7 @@ class _cardScreenState extends State<cardScreen> {
             ),
           ),
        Column(
-         /*Padding(
-          padding: const EdgeInsets.only(left: 30,right: 30),*/
+         
           children: [ ListTile(
             leading: Icon(Icons.person,),
             title: Container(
