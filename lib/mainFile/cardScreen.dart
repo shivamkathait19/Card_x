@@ -36,10 +36,10 @@ class _cardScreenState extends State<cardScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-            padding:  EdgeInsets.only(bottom:200),
+            padding:  EdgeInsets.only(),
             child: Image.asset('asset/solated-on-black.jpg',
-              height: 200,
-              width: 150,
+              height: 300,
+              width: 200,
             ),
           ),
        Padding(
@@ -59,16 +59,16 @@ class _cardScreenState extends State<cardScreen> {
               ),
               ),
                 child:Center(
-                  child: Text(widget.username ?? "Username", style: TextStyle(
-                    fontStyle: FontStyle.italic,color: Colors.white24
+                  child: Text(
+                    widget.username ?? "Username", style: TextStyle(
+                    fontStyle: FontStyle.italic,color: Colors.white24,
                   ),
                         ),
                 ),
                      ),
                 ),
            ),
-
-              Padding(
+             Padding(
                   padding: EdgeInsets.only(left: 30,right: 30),
                   child: ListTile(
                     leading: Icon(Icons.person_2),
@@ -79,14 +79,12 @@ class _cardScreenState extends State<cardScreen> {
                             color: Colors.white,
                             width: 2.0,
                           ),
-
                         ),
-
-
                       ),
                       child: Center(
-                        child: Text(widget.father ??' Father name',style: TextStyle(
-                            fontStyle: FontStyle.italic,color: Colors.white24
+                        child: Text(widget.father ??' Father name',
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,color: Colors.white24,
                         ),),
                       ),
                     ),
