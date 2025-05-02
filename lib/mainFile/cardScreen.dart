@@ -29,7 +29,7 @@ class _cardScreenState extends State<cardScreen> {
 
 
     @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(backgroundColor: Colors.black,
       body: Center(
           child:Column(
@@ -61,7 +61,7 @@ class _cardScreenState extends State<cardScreen> {
                 child:Center(
                   child: Text(
                     widget.username ?? "Username", style: TextStyle(
-                    fontStyle: FontStyle.italic,color: Colors.white24,
+                    fontStyle: FontStyle.italic,color: Colors.white24, fontSize: 20
                   ),
                         ),
                 ),
@@ -84,7 +84,7 @@ class _cardScreenState extends State<cardScreen> {
                       child: Center(
                         child: Text(widget.father ??' Father name',
                           style: TextStyle(
-                            fontStyle: FontStyle.italic,color: Colors.white24,
+                            fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20
                         ),),
                       ),
                     ),
@@ -105,7 +105,8 @@ class _cardScreenState extends State<cardScreen> {
                         ),
                         child: Center(
                           child: Text(widget.mother ?? " Mother name ",style: TextStyle(
-                              fontStyle: FontStyle.italic,color: Colors.white24
+                              fontStyle: FontStyle.italic,color: Colors.white24,fk
+                              fontSize:20,
                           ),),
                         ),
                       ),
