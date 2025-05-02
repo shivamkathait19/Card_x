@@ -42,143 +42,147 @@ class _cardScreenState extends State<cardScreen> {
               width: 150,
             ),
           ),
-       Column(
-
-          children: [ ListTile(
-            leading: Icon(Icons.person,),
-            title: Container(
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Colors.white,
-                width: 2.0,
-            ),
-          ),
-          ),
-            child:Center(
-              child: Text(widget.username ?? "Username", style: TextStyle(
-                fontStyle: FontStyle.italic,color: Colors.white24
-              ),
-                    ),
-            ),
-        ),
-            ),
-
-
-
-            Padding(
-                padding: EdgeInsets.only(left: 30,right: 30),
-                child: ListTile(
-                  leading: Icon(Icons.person_2),
-                  title:Container(
-                    decoration: BoxDecoration(
-                      border: Border( bottom:
-                        BorderSide(
-                          color: Colors.white,
-                          width: 2.0,
-                        ),
-
-                      ),
-
-
-                    ),
-                    child: Center(
-                      child: Text(widget.father ??' Father name',style: TextStyle(
-                          fontStyle: FontStyle.italic,color: Colors.white24
-                      ),),
-                    ),
-                  ),
+       Padding(
+         padding: EdgeInsets.only(bottom: 100),
+         child: Column(
+           children: [ Padding(
+             padding: const EdgeInsets.only(left: 30, right: 30),
+             child: ListTile(
+                leading: Icon(Icons.person,),
+                title: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.white,
+                    width: 2.0,
                 ),
               ),
-               Padding(
-                 padding: EdgeInsets.only(left: 30,right: 30),
-                 child: ListTile(
-                   leading: Icon(Icons.person_2),
-                    title: Container(
+              ),
+                child:Center(
+                  child: Text(widget.username ?? "Username", style: TextStyle(
+                    fontStyle: FontStyle.italic,color: Colors.white24
+                  ),
+                        ),
+                ),
+                     ),
+                ),
+           ),
+
+              Padding(
+                  padding: EdgeInsets.only(left: 30,right: 30),
+                  child: ListTile(
+                    leading: Icon(Icons.person_2),
+                    title:Container(
                       decoration: BoxDecoration(
-                        border: Border(bottom:
-                         BorderSide(
+                        border: Border( bottom:
+                          BorderSide(
                             color: Colors.white,
-                           width: 2.0,
-                         )
-                        )
+                            width: 2.0,
+                          ),
+
+                        ),
+
+
                       ),
                       child: Center(
-                        child: Text(widget.mother ?? " Mother name ",style: TextStyle(
+                        child: Text(widget.father ??' Father name',style: TextStyle(
                             fontStyle: FontStyle.italic,color: Colors.white24
                         ),),
                       ),
                     ),
-                 ),
-               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 30,right: 30),
-                child: ListTile(
-                  leading: Icon(Icons.numbers),
-                  title: Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom:
-                        BorderSide(
-                          color: Colors.white,
-                          width: 2.0,
-                        )
-                        )
-                    ),
-                    child: Center(
-                      child: Text(widget.mother ?? " Mobile number ",style: TextStyle(
-                          fontStyle: FontStyle.italic,color: Colors.white24
-                      ),),
-                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30,right: 30),
-                child: ListTile(
-                  leading: Icon(Icons.date_range ,),
-                  title: Container(
-                    decoration: BoxDecoration(
-                        border: Border( bottom:
-                        BorderSide(
-                          color: Colors.white,
-                          width: 2.0,
+                 Padding(
+                   padding: EdgeInsets.only(left: 30,right: 30),
+                   child: ListTile(
+                     leading: Icon(Icons.person_2),
+                      title: Container(
+                        decoration: BoxDecoration(
+                          border: Border(bottom:
+                           BorderSide(
+                              color: Colors.white,
+                             width: 2.0,
+                           )
+                          )
                         ),
-                        )
+                        child: Center(
+                          child: Text(widget.mother ?? " Mother name ",style: TextStyle(
+                              fontStyle: FontStyle.italic,color: Colors.white24
+                          ),),
+                        ),
+                      ),
+                   ),
+                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30,right: 30),
+                  child: ListTile(
+                    leading: Icon(Icons.numbers),
+                    title: Container(
+                      decoration: BoxDecoration(
+                          border: Border(bottom:
+                          BorderSide(
+                            color: Colors.white,
+                            width: 2.0,
+                          )
+                          )
+                      ),
+                      child: Center(
+                        child: Text(widget.mother ?? " Mobile number ",style: TextStyle(
+                            fontStyle: FontStyle.italic,color: Colors.white24
+                        ),),
+                      ),
                     ),
-                    child: Center(
-                      child:Text(widget.date ??'Date',style: TextStyle(
-                          fontStyle: FontStyle.italic,color: Colors.white24
-                      ),),
-                    ),
-
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 30,right: 30),
-                child: ListTile(
-                  leading: Icon(Icons.email),
-                  title: Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom:
-                        BorderSide(
-                          color: Colors.white,
-                          width: 2.0,
-                        )
-                        )
+                Padding(
+                  padding: EdgeInsets.only(left: 30,right: 30),
+                  child: ListTile(
+                    leading: Icon(Icons.date_range ,),
+                    title: Container(
+                      decoration: BoxDecoration(
+                          border: Border( bottom:
+                          BorderSide(
+                            color: Colors.white,
+                            width: 2.0,
+                          ),
+                          )
+                      ),
+                      child: Center(
+                        child:Text(widget.date ??'Date',style: TextStyle(
+                            fontStyle: FontStyle.italic,color: Colors.white24
+                        ),),
+                      ),
+
                     ),
-                    child:  Center(
-                      child: Text(widget.mother ?? " Email  ",style: TextStyle(
-                          fontStyle: FontStyle.italic,color: Colors.white24
-                      ),),
-                    )
                   ),
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsets.only(left: 30,right: 30),
+                  child: ListTile(
+                    leading: Icon(Icons.email),
+                    title: Container(
+                      decoration: BoxDecoration(
+                          border: Border(bottom:
+                          BorderSide(
+                            color: Colors.white,
+                            width: 2.0,
+                          )
+                          )
+                      ),
+                      child:  Center(
+                        child: Text(widget.mother ?? " Email  ",style: TextStyle(
+                            fontStyle: FontStyle.italic,color: Colors.white24
+                        ),),
+                      )
+                    ),
+                  ),
+                ),
 
 
-             ],
+               ],
+         ),
        ),
+    ],
     ),
     ),
     );
