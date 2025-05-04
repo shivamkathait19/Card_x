@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 
@@ -105,8 +107,8 @@ class _cardScreenState extends State<cardScreen> {
                         ),
                         child: Center(
                           child: Text(widget.mother ?? " Mother name ",style: TextStyle(
-                              fontStyle: FontStyle.italic,color: Colors.white24,fk
-                              fontSize:20,
+                              fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20,
+
                           ),),
                         ),
                       ),
@@ -148,7 +150,7 @@ class _cardScreenState extends State<cardScreen> {
                       ),
                       child: Center(
                         child:Text(widget.date ??'Date',style: TextStyle(
-                            fontStyle: FontStyle.italic,color: Colors.white24
+                            fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20
                         ),),
                       ),
 
@@ -170,7 +172,7 @@ class _cardScreenState extends State<cardScreen> {
                       ),
                       child:  Center(
                         child: Text(widget.mother ?? " Email  ",style: TextStyle(
-                            fontStyle: FontStyle.italic,color: Colors.white24
+                            fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20
                         ),),
                       )
                     ),
