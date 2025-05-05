@@ -325,7 +325,7 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 
-  Widget infoText(String label, String? value) {
+   Widget infoText(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
