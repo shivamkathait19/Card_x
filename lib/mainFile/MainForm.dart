@@ -41,12 +41,12 @@ class _mainFormState extends State<mainForm> {
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => cardScreen(
-          username: usernameController.text,
+          /* username: usernameController.text,
           date: dateController.text,
           father: fatherController.text,
           mother: motherController.text,
           mobile: mobileController.text,
-          email: emailController.text,
+          email: emailController.text,*/
         ),
       ),
     );
@@ -67,7 +67,7 @@ class _mainFormState extends State<mainForm> {
                           height: 200,
                         ),
                      ListTile(
-                               leading: Icon(Icons.person),
+                             leading: Icon(Icons.person),
                                title:TextFormField(
                                  controller: usernameController,
                                  decoration: InputDecoration(
