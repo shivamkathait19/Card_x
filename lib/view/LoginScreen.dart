@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Don\'t have an account? ', style: TextStyle(
+                            Text('Don\'t have an account? ',style: TextStyle(
                                 color: Colors.grey
                             ),),
                              isLoadingsingup ? CircularProgressIndicator()
@@ -183,8 +183,8 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ),
-      //),
-    );
+      );
+
   }
 }
 
