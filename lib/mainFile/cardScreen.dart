@@ -1,4 +1,4 @@
-/*import 'package:card_x/view/splashScreen.dart';
+import 'package:card_x/view/splashScreen.dart';
 import 'package:flutter/material.dart';
 
 class cardScreen extends StatefulWidget {
@@ -11,14 +11,25 @@ class _cardScreenState extends State<cardScreen> {
 
   void _goToBlankPage(){
     Navigator.push(
-        context, MaterialPageRoute(builder: (context)=> BlankPage())
+        context, MaterialPageRoute(builder: (context)=> BlankPage(
+        username: widget.username,
+          date: widget.date,
+          father: widget.father,
+          mother: widget.mother,
+          mobile: widget.mobile,
+          email: widget.email,))
     );
   }
 
 
   @override
   Widget build(BuildContext context){
-    return Scaffold(backgroundColor: Colors.black,
+    return Scaffold(
+    backgroundColor: Colors.black,
+      floatingActionButton: FloatingActionButton(
+        onPressed: BlankPage,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
@@ -47,7 +58,7 @@ class BlankPage extends StatefulWidget {
 
  class _BlankPageState  extends  State<BlankPage>{
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
           title: Text("Blank Page")),
@@ -196,7 +207,7 @@ class BlankPage extends StatefulWidget {
                       ),
                     ),
                   ),
-                  Padding(
+                 /* Padding(
                     padding:  EdgeInsets.only(left: 30,top: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
@@ -206,7 +217,7 @@ class BlankPage extends StatefulWidget {
                         // backgroundColor: Colors.blue,
                       ),
                     ),
-                  ),
+                  ),*/
 
                 ],
               ),
@@ -217,9 +228,9 @@ class BlankPage extends StatefulWidget {
     );
   }
 }
-*/
 
-import 'package:flutter/material.dart';
+
+/*import 'package:flutter/material.dart';
 
 class cardScreen extends StatefulWidget {
   final String? username;
@@ -398,4 +409,4 @@ class _BlankPageState extends State<BlankPage> {
       ),
     );
   }
-}
+}*/
