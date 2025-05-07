@@ -76,14 +76,14 @@ class BlankPage extends StatefulWidget {
   State<BlankPage> createState() => _BlankPageState();
 }
 
-class _BlankPageState extends State<BlankPage> {
-  Widget infoTile(String label, String? value, IconData icon) {
+class _BlankPageState extends State<BlankPage>{
+  Widget infoTile(String label, String? value, IconData icon){
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: ListTile(
         leading: Icon(icon, color: Colors.white70),
         title: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(color: Colors.white, width: 2.0),
             ),
@@ -102,12 +102,11 @@ class _BlankPageState extends State<BlankPage> {
       ),
     );
   }
-
   Widget infoText(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
-        "$label: ${value ?? 'N/A'}",
+        "",
         style: const TextStyle(
           color: Colors.white70,
           fontSize: 16,
