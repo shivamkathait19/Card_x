@@ -42,11 +42,11 @@ class _cardScreenState extends State<cardScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: ElevatedButton(
           onPressed: _goToBlankPage,
-          child: Text(),
+          child: Icon(Icons.person,size: 20,),
         ),
       ),
     );
@@ -170,10 +170,7 @@ class _BlankPageState extends State<BlankPage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: showInfoDialog,
-        child: const Icon(Icons.info),
-      ),
+      
     );
   }
-}   
+}

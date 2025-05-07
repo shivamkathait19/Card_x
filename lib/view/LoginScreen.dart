@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       isLoadinglogin = true;
     });
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 5),(){
       setState(() {
         isLoadinglogin = false; // Hide loading indicator
       });
@@ -56,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
   @override
-       Widget build(BuildContext context) {
+       Widget build(BuildContext context){
     return Scaffold(backgroundColor: Colors.black,
       body: Container(
         decoration: BoxDecoration(
