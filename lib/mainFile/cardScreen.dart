@@ -1,236 +1,4 @@
-import 'package:card_x/view/splashScreen.dart';
 import 'package:flutter/material.dart';
-
-class cardScreen extends StatefulWidget {
-
-  @override
-  State<cardScreen> createState() => _cardScreenState();
-}
-
-class _cardScreenState extends State<cardScreen> {
-
-  void _goToBlankPage(){
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context)=> BlankPage(
-        username: widget.username,
-          date: widget.date,
-          father: widget.father,
-          mother: widget.mother,
-          mobile: widget.mobile,
-          email: widget.email,))
-    );
-  }
-
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-    backgroundColor: Colors.black,
-      floatingActionButton: FloatingActionButton(
-        onPressed: BlankPage,
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-}
-class BlankPage extends StatefulWidget {
-
-  final String? username;
-  final String? date;
-  final String? father;
-  final String? mother;
-  final String? mobile;
-  final String? email;
-
-  cardScreen({
-     Key? key,
-    this.username,
-    this.date,
-    this.father,
-    this.mother,
-    this.mobile,
-    this.email,
-  }): super(key: key);
-
-  @override
-  State<BlankPage> createState() => _BlankPageState();
-}
-
- class _BlankPageState  extends  State<BlankPage>{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-          title: Text("Blank Page")),
-      body: Center(
-        child:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-            Padding(
-              padding:  EdgeInsets.only(),
-              child: Image.asset('asset/solated-on-black.jpg',
-                height: 300,
-                width: 200,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 100),
-              child: Column(
-                children: [ Padding(
-                  padding: const EdgeInsets.only(left: 30, right: 30),
-                  child: ListTile(
-                    leading: Icon(Icons.person,),
-                    title: Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Colors.white,
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      child:Center(
-                        child: Text(
-                          widget.username ?? "Username", style: TextStyle(
-                            fontStyle: FontStyle.italic,color: Colors.white24, fontSize: 20
-                        ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 30,right: 30),
-                    child: ListTile(
-                      leading: Icon(Icons.person_2),
-                      title:Container(
-                        decoration: BoxDecoration(
-                          border: Border( bottom:
-                          BorderSide(
-                            color: Colors.white,
-                            width: 2.0,
-                          ),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(widget.father ??' Father name',
-                            style: TextStyle(
-                                fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20
-                            ),),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 30,right: 30),
-                    child: ListTile(
-                      leading: Icon(Icons.person_2),
-                      title: Container(
-                        decoration: BoxDecoration(
-                            border: Border(bottom:
-                            BorderSide(
-                              color: Colors.white,
-                              width: 2.0,
-                            )
-                            )
-                        ),
-                        child: Center(
-                          child: Text(widget.mother ?? " Mother name ",style: TextStyle(
-                            fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20,
-
-                          ),),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30,right: 30),
-                    child: ListTile(
-                      leading: Icon(Icons.numbers),
-                      title: Container(
-                        decoration: BoxDecoration(
-                            border: Border(bottom:
-                            BorderSide(
-                              color: Colors.white,
-                              width: 2.0,
-                            )
-                            )
-                        ),
-                        child: Center(
-                          child: Text(widget.mother ?? " Mobile number ",style: TextStyle(
-                              fontStyle: FontStyle.italic,color: Colors.white24
-                          ),),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 30,right: 30),
-                    child: ListTile(
-                      leading: Icon(Icons.date_range ,),
-                      title: Container(
-                        decoration: BoxDecoration(
-                            border: Border( bottom:
-                            BorderSide(
-                              color: Colors.white,
-                              width: 2.0,
-                            ),
-                            )
-                        ),
-                        child: Center(
-                          child:Text(widget.date ??'Date',style: TextStyle(
-                              fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20
-                          ),),
-                        ),
-
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 30,right: 30),
-                    child: ListTile(
-                      leading: Icon(Icons.email),
-                      title: Container(
-                          decoration: BoxDecoration(
-                              border: Border(bottom:
-                              BorderSide(
-                                color: Colors.white,
-                                width: 2.0,
-                              )
-                              )
-                          ),
-                          child:  Center(
-                            child: Text(widget.mother ?? " Email  ",style: TextStyle(
-                                fontStyle: FontStyle.italic,color: Colors.white24,fontSize: 20
-                            ),),
-                          )
-                      ),
-                    ),
-                  ),
-                 /* Padding(
-                    padding:  EdgeInsets.only(left: 30,top: 40),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: FloatingActionButton(
-                        onPressed: (){},
-                        child: Icon(Icons.person),
-                        // backgroundColor: Colors.blue,
-                      ),
-                    ),
-                  ),*/
-
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-/*import 'package:flutter/material.dart';
 
 class cardScreen extends StatefulWidget {
   final String? username;
@@ -272,13 +40,13 @@ class _cardScreenState extends State<cardScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
         child: ElevatedButton(
           onPressed: _goToBlankPage,
-          child: Text("Go to Blank Page"),
+          child: Text(),
         ),
       ),
     );
@@ -286,7 +54,6 @@ class _cardScreenState extends State<cardScreen> {
 }
 
 class BlankPage extends StatefulWidget {
-
 
   final String? username;
   final String? date;
@@ -336,7 +103,7 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 
-   Widget infoText(String label, String? value) {
+  Widget infoText(String label, String? value) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Text(
@@ -409,4 +176,4 @@ class _BlankPageState extends State<BlankPage> {
       ),
     );
   }
-}*/
+}   
