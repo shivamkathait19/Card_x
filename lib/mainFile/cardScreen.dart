@@ -79,7 +79,7 @@ class BlankPage extends StatefulWidget {
 class _BlankPageState extends State<BlankPage>{
   Widget infoTile(String label, String? value, IconData icon){
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+      padding:  EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: ListTile(
         leading: Icon(icon, color: Colors.white70),
         title: Container(
@@ -90,7 +90,7 @@ class _BlankPageState extends State<BlankPage>{
           ),
           child: Center(
             child: Text(
-              value ?? "$label not provided",
+              value ?? "$label",
               style: const TextStyle(
                 fontStyle: FontStyle.italic,
                 color: Colors.white24,
@@ -104,7 +104,7 @@ class _BlankPageState extends State<BlankPage>{
   }
   Widget infoText(String label, String? value) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
+      padding: const EdgeInsets.only(bottom: 20.0),
       child: Text(
         "",
         style: const TextStyle(
@@ -115,61 +115,39 @@ class _BlankPageState extends State<BlankPage>{
       ),
     );
   }
-  void showInfoDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.black87,
-          title: const Text("User Details", style: TextStyle(color: Colors.white)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              infoText("Username", widget.username),
-              infoText("Father", widget.father),
-              infoText("Mother", widget.mother),
-              infoText("Mobile", widget.mobile),
-              infoText("DOB", widget.date),
-              infoText("Email", widget.email),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Close", style: TextStyle(color: Colors.white)),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text("Blank Page")),
+      //appBar: AppBar(title: const Text("Blank Page")),
       backgroundColor: Colors.black,
       body: Center(
-        child: Column(
+         child: Container(
+           decoration: BoxDecoration(
+             gradient: LinearGradient(
+               begin: Alignment.centerLeft,
+               end:Alignment.centerRight,
+               colors: [Colors.red, Colors.cyan],
+             )
+           ),
+         ),
+        //child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'asset/solated-on-black.jpg',
+          children:[
+            Image.asset('asset/solated-on-black.jpg',
               height: 300,
-              width: 200,
+              width: 150,
             ),
-            const SizedBox(height: 40),
             infoTile("Username", widget.username, Icons.person),
             infoTile("Father Name", widget.father, Icons.person_2),
             infoTile("Mother Name", widget.mother, Icons.person_2_outlined),
             infoTile("Mobile Number", widget.mobile, Icons.numbers),
             infoTile("Date of Birth", widget.date, Icons.date_range),
             infoTile("Email", widget.email, Icons.email),
+            SizedBox(height: 100,)
           ],
         ),
       ),
-      
     );
   }
 }
