@@ -128,10 +128,18 @@ class _BlankPageState extends State<BlankPage>{
                begin: Alignment.centerLeft,
                end:Alignment.centerRight,
                colors: [Colors.red, Colors.cyan],
-             )
-           ),
+             ),
+               borderRadius: BorderRadius.circular(20),
+               boxShadow:[
+                BoxShadow(
+               color: Colors.cyan.withOpacity(0.6),
+               blurRadius: 30,
+               spreadRadius: 5,
+             ),
+           ],
          ),
-        //child: Column(
+
+           child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
             Image.asset('asset/solated-on-black.jpg',
@@ -147,6 +155,7 @@ class _BlankPageState extends State<BlankPage>{
             SizedBox(height: 100,)
           ],
         ),
+      ),
       ),
     );
   }
