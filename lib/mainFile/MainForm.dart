@@ -12,8 +12,6 @@ import 'package:flutter/services.dart';
 class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  TextEditingController fatherController = TextEditingController();
-  TextEditingController motherController = TextEditingController();
   TextEditingController mobileController =TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
@@ -33,7 +31,7 @@ class _mainFormState extends State<mainForm> {
         isloadingdone= false;
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (BuildContext context) => cardScreen())
+            MaterialPageRoute(builder: (BuildContext context) => BlankPage())
         );
       });
     });
@@ -41,12 +39,10 @@ class _mainFormState extends State<mainForm> {
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => cardScreen(
-          /* username: usernameController.text,
+          username: usernameController.text,
           date: dateController.text,
-          father: fatherController.text,
-          mother: motherController.text,
           mobile: mobileController.text,
-          email: emailController.text,*/
+          email: emailController.text,
         ),
       ),
     );

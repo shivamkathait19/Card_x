@@ -131,8 +131,6 @@ class _BlankPageState extends State<BlankPage>{
               width: 150,
             ),
             infoTile("Username", widget.username, Icons.person),
-            infoTile("Father Name", widget.father, Icons.person_2),
-            infoTile("Mother Name", widget.mother, Icons.person_2_outlined),
             infoTile("Mobile Number", widget.mobile, Icons.numbers),
             infoTile("Date of Birth", widget.date, Icons.date_range),
             infoTile("Email", widget.email, Icons.email),
