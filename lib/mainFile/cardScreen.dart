@@ -120,15 +120,18 @@ class _BlankPageState extends State<BlankPage>{
            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
-            Icon(Icons.person,)
+            Icon(Icons.person,size: 90,)
             //Image.asset('asset/solated-on-black.jpg',
              // height: 300,
               //width: 150,
             ,
+            SizedBox(
+              height: 50,
+            ),
             infoTile("Username", widget.username, Icons.person),
-            infoTile("Mobile Number", widget.mobile, Icons.numbers),
-            infoTile("Date of Birth", widget.date, Icons.date_range),
             infoTile("Email", widget.email, Icons.email),
+            infoTile("Date of Birth", widget.date, Icons.date_range),
+            infoTile("Mobile Number", widget.mobile, Icons.numbers),
             SizedBox(height: 100,)
           ],
         ),
