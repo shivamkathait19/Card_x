@@ -123,22 +123,6 @@ class _BlankPageState extends State<BlankPage>{
       backgroundColor: Colors.black,
       body: Center(
          child: Container(
-           decoration: BoxDecoration(
-             gradient: LinearGradient(
-               begin: Alignment.centerLeft,
-               end:Alignment.centerRight,
-               colors: [Colors.red, Colors.cyan],
-             ),
-               borderRadius: BorderRadius.circular(20),
-               boxShadow:[
-                BoxShadow(
-               color: Colors.cyan.withOpacity(0.6),
-               blurRadius: 30,
-               spreadRadius: 5,
-             ),
-           ],
-         ),
-
            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
