@@ -120,10 +120,7 @@ class _BlankPageState extends State<BlankPage>{
            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
-            Icon(Icons.person,size: 90,)
-            //Image.asset('asset/solated-on-black.jpg',
-             // height: 300,
-              //width: 150,
+            Icon(Icons.person,size: 80,)
             ,
             SizedBox(
               height: 50,
@@ -132,11 +129,14 @@ class _BlankPageState extends State<BlankPage>{
             infoTile("Email", widget.email, Icons.email),
             infoTile("Date of Birth", widget.date, Icons.date_range),
             infoTile("Mobile Number", widget.mobile, Icons.numbers),
-            SizedBox(height: 100,)
+            SizedBox(height: 100,),
+            ElevatedButton(onPressed: mainPage(), child: Text("log Out"))
           ],
+
         ),
+         ),
       ),
-      ),
+
     );
   }
 }
