@@ -22,7 +22,7 @@ class cardScreen extends StatefulWidget {
   State<cardScreen> createState() => _cardScreenState();
 }
 
-class _cardScreenState extends State<cardScreen> {
+class _cardScreenState extends State<cardScreen>{
   void _goToBlankPage() {
     Navigator.push(
       context,
@@ -30,8 +30,6 @@ class _cardScreenState extends State<cardScreen> {
         builder: (context) => BlankPage(
           username: widget.username,
           date: widget.date,
-          father: widget.father,
-          mother: widget.mother,
           mobile: widget.mobile,
           email: widget.email,
         ),
@@ -57,8 +55,6 @@ class BlankPage extends StatefulWidget {
 
   final String? username;
   final String? date;
-  final String? father;
-  final String? mother;
   final String? mobile;
   final String? email;
 
@@ -66,8 +62,6 @@ class BlankPage extends StatefulWidget {
     Key? key,
     this.username,
     this.date,
-    this.father,
-    this.mother,
     this.mobile,
     this.email,
   }) : super(key: key);
@@ -81,11 +75,11 @@ class _BlankPageState extends State<BlankPage>{
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: ListTile(
-        leading: Icon(icon, color: Colors.white70),
+        leading: Icon(icon, color: Colors.black),
         title: Container(
           decoration: BoxDecoration(
             border: Border(
-              bottom: BorderSide(color: Colors.white, width: 2.0),
+              bottom: BorderSide(color: Colors.black, width: 2.0),
             ),
           ),
           child: Center(
@@ -93,7 +87,7 @@ class _BlankPageState extends State<BlankPage>{
               value ?? "$label",
               style: const TextStyle(
                 fontStyle: FontStyle.italic,
-                color: Colors.white24,
+                color: Colors.black,
                 fontSize: 20,
               ),
             ),
@@ -120,16 +114,17 @@ class _BlankPageState extends State<BlankPage>{
   Widget build(BuildContext context){
     return Scaffold(
       //appBar: AppBar(title: const Text("Blank Page")),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
          child: Container(
            child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:[
-            Image.asset('asset/solated-on-black.jpg',
-              height: 300,
-              width: 150,
-            ),
+            Icon(Icons.person,)
+            //Image.asset('asset/solated-on-black.jpg',
+             // height: 300,
+              //width: 150,
+            ,
             infoTile("Username", widget.username, Icons.person),
             infoTile("Mobile Number", widget.mobile, Icons.numbers),
             infoTile("Date of Birth", widget.date, Icons.date_range),

@@ -26,7 +26,7 @@ class _mainFormState extends State<mainForm> {
     setState(() {
       isloadingdone = true;
     });
-    Future.delayed(Duration(seconds:7),() {
+    Future.delayed(Duration(seconds:1),() {
       setState(() {
         isloadingdone= false;
         Navigator.push(
@@ -50,7 +50,7 @@ class _mainFormState extends State<mainForm> {
      @override
           Widget build(BuildContext context) {
           return Scaffold(
-           backgroundColor: Colors.black12,
+           backgroundColor: Colors.white,
           body: Container(
          child :SingleChildScrollView(
          child: Padding(
@@ -182,7 +182,7 @@ class _mainFormState extends State<mainForm> {
                                 Icon(Icons.navigate_next,
                                     size: 50,),
                                style: ElevatedButton.styleFrom(
-                             foregroundColor: Colors.white, backgroundColor: Colors.black45, // Set color for text/icon
+                              backgroundColor: Colors.white, // Set color for text/icon
                              padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 5.0 ,),// Optional: padding
 
                                ),
