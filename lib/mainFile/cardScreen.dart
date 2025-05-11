@@ -1,3 +1,4 @@
+import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
 class cardScreen extends StatefulWidget {
@@ -71,6 +72,13 @@ class BlankPage extends StatefulWidget {
 }
 
 class _BlankPageState extends State<BlankPage>{
+    void mainPage(){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) =>LoginScreen()),
+    );
+  }
+
   Widget infoTile(String label, String? value, IconData icon){
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 30, vertical: 5),
@@ -113,30 +121,26 @@ class _BlankPageState extends State<BlankPage>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      //appBar: AppBar(title: const Text("Blank Page")),
       backgroundColor: Colors.white,
       body: Center(
-         child: Container(
-           child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:[
-            Icon(Icons.person,size: 80,)
-            ,
-            SizedBox(
-              height: 50,
-            ),
+          children: [
+            const Icon(Icons.person, size: 80),
+            const SizedBox(height: 50),
             infoTile("Username", widget.username, Icons.person),
             infoTile("Email", widget.email, Icons.email),
             infoTile("Date of Birth", widget.date, Icons.date_range),
             infoTile("Mobile Number", widget.mobile, Icons.numbers),
-            SizedBox(height: 100,),
-            ElevatedButton(onPressed: mainPage(), child: Text("log Out"))
+            const SizedBox(height: 100),
+            ElevatedButton(
+              onPressed: mainPage,
+              child: const Text("Log Out"),
+            ),
           ],
-
         ),
-         ),
       ),
-
     );
   }
 }
+
