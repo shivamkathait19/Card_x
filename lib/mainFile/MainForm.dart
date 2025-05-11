@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 
 class _mainFormState extends State<mainForm> {
   TextEditingController usernameController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController mobileController =TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -40,6 +41,7 @@ class _mainFormState extends State<mainForm> {
       MaterialPageRoute(
         builder: (BuildContext context) => cardScreen(
           username: usernameController.text,
+          full : fullnameController.text,
           date: dateController.text,
           mobile: mobileController.text,
           email: emailController.text,
@@ -62,24 +64,46 @@ class _mainFormState extends State<mainForm> {
                      SizedBox(
                           height: 200,
                         ),
-                     ListTile(
-                             leading: Icon(Icons.person),
-                               title:TextFormField(
-                                 controller: usernameController,
-                                 decoration: InputDecoration(
-                                   labelText: "Username",
-                                     labelStyle: TextStyle(
-                                       fontStyle: FontStyle.italic,
-                                     ),
-                                 ),
-                                   validator: (value) {
-                                   if (value == null || value.isEmpty) {
-                                     return "Username is required";
-                                   }
-                                   return null;
-                                 },
+                     Row(
+                       children: [
+                         Expanded(
+                           child: TextFormField(
+                             controller: usernameController,
+                             decoration: InputDecoration(
+                               labelText: "Username",
+                               labelStyle: TextStyle(
+                                 fontStyle: FontStyle.italic,
                                ),
                              ),
+                             validator: (value) {
+                               if (value == null || value.isEmpty) {
+                                 return "Username is required";
+                               }
+                               return null;
+                             },
+                           ),
+                         ),
+                         SizedBox(width: 16), // Space between the fields
+                         Expanded(
+                           child: TextFormField(
+                             controller: fullnameController,
+                             decoration: InputDecoration(
+                               labelText: "Full Name",
+                               labelStyle: TextStyle(
+                                 fontStyle: FontStyle.italic,
+                               ),
+                             ),
+                             validator: (value) {
+                               if (value == null || value.isEmpty) {
+                                 return "Full Name is required";
+                               }
+                               return null;
+                             },
+                           ),
+                         ),
+                       ],
+                     ),
+
 
                      ListTile(
                          leading: Icon(Icons.calendar_today),
