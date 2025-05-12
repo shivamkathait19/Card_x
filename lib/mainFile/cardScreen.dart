@@ -96,10 +96,11 @@ class _BlankPageState extends State<BlankPage> {
         leading: Icon(icon, color: Colors.black),
         title: Container(
           decoration: BoxDecoration(
-            border: Border(  
+            border: Border(
               bottom: BorderSide(color: Colors.black, width: 2.0),
             ),
           ),
+        )
           child: Center(
             Padding(
               padding: const EdgeInsets.only(left: 30, right: 30),
@@ -202,7 +203,7 @@ class _BlankPageState extends State<BlankPage> {
             ),
           ),
         ),
-      ),
+
     );
   }
 }
