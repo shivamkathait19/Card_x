@@ -102,7 +102,7 @@ class _BlankPageState extends State<BlankPage> {
           ),
         ),
         child: Center(
-          Padding(
+           Padding(
             padding: const EdgeInsets.only(left: 30, right: 30),
             child: ListTile(
               leading: Icon(Icons.person,),
@@ -207,7 +207,7 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
-}
+
 
 
   /*Widget infoText(String label, String? value) {
