@@ -100,112 +100,113 @@ class _BlankPageState extends State<BlankPage> {
               bottom: BorderSide(color: Colors.black, width: 2.0),
             ),
           ),
-        )
-          child: Center(
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30),
-              child: ListTile(
-                leading: Icon(Icons.person,),
-                title: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      widget.username ?? "Username", style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white24,
-                        fontSize: 20
-                    ),
+        ),
+        child: Center(
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: ListTile(
+              leading: Icon(Icons.person,),
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.white,
+                      width: 2.0,
                     ),
                   ),
                 ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30),
-              child: ListTile(
-                leading: Icon(Icons.numbers),
-                title: Container(
-                  decoration: BoxDecoration(
-                      border: Border(bottom:
-                      BorderSide(
-                        color: Colors.white,
-                        width: 2.0,
-                      )
-                      )
+                child: Center(
+                  child: Text(
+                    widget.username ?? "Username", style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white24,
+                      fontSize: 20
                   ),
-                  child: Center(
-                    child: Text(widget.mobile ?? " Mobile number ",
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: Colors.white24
-                      ),),
                   ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 30, right: 30),
-              child: ListTile(
-                leading: Icon(Icons.date_range,),
-                title: Container(
-                  decoration: BoxDecoration(
-                      border: Border(bottom:
-                      BorderSide(
-                        color: Colors.white,
-                        width: 2.0,
-                      ),
-                      )
-                  ),
-                  child: Center(
-                    child: Text(
-                      widget.date ?? 'Date', style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white24,
-                        fontSize: 20
-                    ),),
-                  ),
-
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 30, right: 30),
-              child: ListTile(
-                leading: Icon(Icons.email),
-                title: Container(
-                    decoration: BoxDecoration(
-                        border: Border(bottom:
-                        BorderSide(
-                          color: Colors.white,
-                          width: 2.0,
-                        )
-                        )
-                    ),
-                    child: Center(
-                      child: Text(
-                        widget.email ?? " Email  ", style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          color: Colors.white24,
-                          fontSize: 20
-                      ),
-                      ),
-                    )
                 ),
               ),
             ),
           ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 30, right: 30),
+            child: ListTile(
+              leading: Icon(Icons.numbers),
+              title: Container(
+                decoration: BoxDecoration(
+                    border: Border(bottom:
+                    BorderSide(
+                      color: Colors.white,
+                      width: 2.0,
+                    )
+                    )
+                ),
+                child: Center(
+                  child: Text(widget.mobile ?? " Mobile number ",
+                    style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white24
+                    ),),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 30, right: 30),
+            child: ListTile(
+              leading: Icon(Icons.date_range,),
+              title: Container(
+                decoration: BoxDecoration(
+                    border: Border(bottom:
+                    BorderSide(
+                      color: Colors.white,
+                      width: 2.0,
+                    ),
+                    )
+                ),
+                child: Center(
+                  child: Text(
+                    widget.date ?? 'Date', style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white24,
+                      fontSize: 20
+                  ),),
+                ),
+
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 30, right: 30),
+            child: ListTile(
+              leading: Icon(Icons.email),
+              title: Container(
+                  decoration: BoxDecoration(
+                      border: Border(bottom:
+                      BorderSide(
+                        color: Colors.white,
+                        width: 2.0,
+                      )
+                      )
+                  ),
+                  child: Center(
+                    child: Text(
+                      widget.email ?? " Email  ", style: TextStyle(
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white24,
+                        fontSize: 20
+                    ),
+                    ),
+                  )
+              ),
+            ),
+          ),
         ),
+      ),
 
     );
   }
+}
 }
 
 
