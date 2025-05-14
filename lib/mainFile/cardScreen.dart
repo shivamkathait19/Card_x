@@ -90,7 +90,8 @@ class _BlankPageState extends State<BlankPage> {
   }
 
   Widget infoTile(String label, String? value, IconData icon) {
-    return Padding(
+    return  Scaffold(
+        Padding(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: ListTile(
         leading: Icon(icon, color: Colors.black),
