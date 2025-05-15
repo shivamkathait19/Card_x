@@ -143,8 +143,8 @@ class _BlankPageState extends State<BlankPage> {
               padding:  EdgeInsets.only(left: 50),
               child: infoTile("Email", widget.email, Icons.email),
             ),
-            infoTile("Date of Birth", widget.date, Icons.date_range),
-            infoTile("Mobile Number", widget.mobile, Icons.numbers),
+              infoTile("Date of Birth", widget.date, Icons.date_range),
+              infoTile("Mobile Number", widget.mobile, Icons.numbers),
             const SizedBox(height: 100),
            /* ElevatedButton(
               onPressed: mainPage,
