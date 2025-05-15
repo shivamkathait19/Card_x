@@ -81,7 +81,6 @@ class BlankPage extends StatefulWidget {
 }
 
 class _BlankPageState extends State<BlankPage> {
-
   void mainPage() {
     Navigator.push(
       context,
@@ -94,16 +93,28 @@ class _BlankPageState extends State<BlankPage> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(icon, color: Colors.black),
           SizedBox(width: 10),
           Expanded(
-            child: Text(
-              "$label: ${value ?? 'N/A'}",
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontSize: 16,
-                color: Colors.black,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.black,
+                    width: 1.5,
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.only(bottom: 4), // optional spacing
+              child: Text(
+                "$label: ${value ?? 'N/A'}",
+                style: TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 16,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
@@ -118,26 +129,28 @@ class _BlankPageState extends State<BlankPage> {
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
              Icon(Icons.person, size: 80),
              SizedBox(height: 50),
             Row(
               children: [
-                infoTile("Username", widget.username, Icons.person),
-                infoTile("full name ", widget.full, Icons.person),
+                Expanded(child: infoTile("Username", widget.username, Icons.person)),
+                Expanded(child: infoTile("Full Name", widget.full, Icons.person)),
               ],
             ),
-            infoTile("Email", widget.email, Icons.email),
+            Padding(
+              padding:  EdgeInsets.only(left: 50),
+              child: infoTile("Email", widget.email, Icons.email),
+            ),
             infoTile("Date of Birth", widget.date, Icons.date_range),
             infoTile("Mobile Number", widget.mobile, Icons.numbers),
             const SizedBox(height: 100),
-            ElevatedButton(
+           /* ElevatedButton(
               onPressed: mainPage,
               child: const Text("Log Out"),
             ),
-            ElevatedButton(onPressed:(){}, child: Icon(FeatherIcons.camera))
+            ElevatedButton(onPressed:(){}, child: Icon(FeatherIcons.camera))*/
           ],
         ),
       ),
