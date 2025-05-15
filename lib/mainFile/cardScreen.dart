@@ -109,7 +109,7 @@ class _BlankPageState extends State<BlankPage> {
               ),
               padding: EdgeInsets.only(bottom: 4), // optional spacing
               child: Text(
-                "$label: ${value ?? 'N/A'}",
+                "$label: ${value ?? ''}",
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
                   fontSize: 16,
@@ -146,11 +146,11 @@ class _BlankPageState extends State<BlankPage> {
               infoTile("Date of Birth", widget.date, Icons.date_range),
               infoTile("Mobile Number", widget.mobile, Icons.numbers),
             const SizedBox(height: 100),
-           /* ElevatedButton(
+            ElevatedButton(
               onPressed: mainPage,
               child: const Text("Log Out"),
             ),
-            ElevatedButton(onPressed:(){}, child: Icon(FeatherIcons.camera))*/
+           // ElevatedButton(onPressed:(){}, child: Icon(FeatherIcons.camera))*/
           ],
         ),
       ),
