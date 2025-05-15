@@ -108,14 +108,16 @@ class _BlankPageState extends State<BlankPage> {
                 ),
               ),
               padding: EdgeInsets.only(bottom: 4), // optional spacing
-              child: Text(
-                "$label: ${value ?? ''}",
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
-              ),
+               child: Center(
+                 child: Text(
+                  "$label: ${value ?? ''}",
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                               ),
+               ),
             ),
           ),
         ],
@@ -139,11 +141,15 @@ class _BlankPageState extends State<BlankPage> {
                 Expanded(child: infoTile("Full Name", widget.full, Icons.person)),
               ],
             ),
-            Padding(
-              padding:  EdgeInsets.only(left: 50),
-              child: infoTile("Email", widget.email, Icons.email),
-            ),
+              SizedBox(height: 15,),
+              infoTile("Email", widget.email, Icons.email),
+             SizedBox(
+               height: 15,
+             ),
               infoTile("Date of Birth", widget.date, Icons.date_range),
+            SizedBox(
+              height: 15,
+            ),
               infoTile("Mobile Number", widget.mobile, Icons.numbers),
             const SizedBox(height: 100),
             ElevatedButton(
