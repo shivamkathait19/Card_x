@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
   State<mainForm> createState() => _mainFormState();
 }
 
-class _mainFormState extends State<mainForm> {
+class _mainFormState extends State<mainForm>{
   TextEditingController usernameController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -27,8 +27,8 @@ class _mainFormState extends State<mainForm> {
     setState(() {
       isloadingdone = true;
     });
-    Future.delayed(Duration(seconds:1),() {
-      setState(() {
+    Future.delayed(Duration(seconds:1),(){
+      setState((){
         isloadingdone= false;
         Navigator.push(
             context,
@@ -65,9 +65,12 @@ class _mainFormState extends State<mainForm> {
                           height: 200,
                         ),
                      Row(
-                       children: [
+                       children:[
                          Expanded(
-                           child: TextFormField(
+                           child:  ListTile(
+                             leading: Icon(Icons.person),
+                             title:
+                            TextFormField(
                              controller: usernameController,
                              decoration: InputDecoration(
                                labelText: "Username",
@@ -83,9 +86,11 @@ class _mainFormState extends State<mainForm> {
                              },
                            ),
                          ),
+                         ),
                          SizedBox(width: 16), // Space between the fields
                          Expanded(
-                           child: TextFormField(
+                           child: ListTile(leading: Icon(Icons.person),
+                             title: TextFormField(
                              controller: fullnameController,
                              decoration: InputDecoration(
                                labelText: "Full Name",
@@ -101,9 +106,9 @@ class _mainFormState extends State<mainForm> {
                              },
                            ),
                          ),
+                         ),
                        ],
                      ),
-
 
                      ListTile(
                          leading: Icon(Icons.calendar_today),
@@ -201,14 +206,11 @@ class _mainFormState extends State<mainForm> {
                          padding:  EdgeInsets.only(left: 100),
                            child: ElevatedButton(
                            onPressed: (NextScreen),
-                           child:
-                             isloadingdone ? CircularProgressIndicator():
-                                Icon(Icons.navigate_next,
+                           child: isloadingdone ? CircularProgressIndicator(): Icon(Icons.navigate_next,
                                     size: 50,),
                                style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white, // Set color for text/icon
                              padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 5.0 ,),// Optional: padding
-
                                ),
                          ),
                        )
