@@ -62,15 +62,15 @@ class _mainFormState extends State<mainForm>{
           return Scaffold(
            backgroundColor: Colors.white,
           body: Container(
-         child :SingleChildScrollView(
+        // child :SingleChildScrollView(
          child: Padding(
-           padding: EdgeInsets.all(20.0),
+           padding: EdgeInsets.only(top: 100,bottom: 0,left: 20,right: 20),
            child: Form
                  (key: _key,
                  child: Column(
                    children: [
                      SizedBox(
-                          height: 200,
+                          height:10,
                         ),
                      Row(
                        children:[
@@ -117,59 +117,9 @@ class _mainFormState extends State<mainForm>{
                          ),
                        ],
                      ),
-// --- Gender Field ---
-               Padding(
-                 padding: const EdgeInsets.symmetric(vertical: 10.0),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Row(
-                       children: [
-                         Icon(Icons.wc, color: Colors.grey),
-                         SizedBox(width: 10),
-                         Text("Gender", style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
-                       ],
-                     ),
-                     Row(
-                       children: [
-                         Expanded(
-                           child: RadioListTile<String>(
-                             title: Text("Male"),
-                             value: "Male",
-                             groupValue: selectedGender,
-                             onChanged: (value) {
-                               setState(() {
-                                 selectedGender = value;
-                               });
-                             },
-                           ),
-                         ),
-                         Expanded(
-                           child: RadioListTile<String>(
-                             title: Text("Female"),
-                             value: "Female",
-                             groupValue: selectedGender,
-                             onChanged: (value) {
-                               setState(() {
-                                 selectedGender = value;
-                               });
-                             },
-                           ),
-                         ),
-                       ],
-                     ),
-                     if(selectedGender == null)
-                       Padding(
-                         padding: const EdgeInsets.only(left: 16.0),
-                         child: Text(
-                           "Please select gender",
-                           style: TextStyle(color: Colors.red, fontSize: 12),
-                         ),
-                       )
-                   ],
-                 ),
-               ),
-
+             SizedBox(
+               height: 10,
+             ),
                      ListTile(
                          leading: Icon(Icons.calendar_today),
                          title:
@@ -189,6 +139,9 @@ class _mainFormState extends State<mainForm>{
                           },
                          ),
                        ),
+                     SizedBox(
+                       height: 10,
+                     ),
                      ListTile(
                        leading: Icon(Icons.phone),
                        title:
@@ -212,6 +165,9 @@ class _mainFormState extends State<mainForm>{
                          },
                         ),
                      ),
+                     SizedBox(
+                       height: 10,
+                     ),
                         ListTile(
                            leading: Icon(Icons.email),
                            title:
@@ -232,7 +188,9 @@ class _mainFormState extends State<mainForm>{
                           },
                         ),
                          ),
-
+                     SizedBox(
+                       height: 10,
+                     ),
                      ListTile(
                                leading: Icon(Icons.password),
                                title: TextFormField(
@@ -249,18 +207,68 @@ class _mainFormState extends State<mainForm>{
                                    if (value == null || value.isEmpty) {
                                      return " Password is required";
                                    }
-                                   if (value.length < 6) {
+                                   if (value.length<6) {
                                      return "Password must be at least 6 characters";
                                    }
                                    return null;
                                  },
                              ),
                              ),
-                        SizedBox(
-                          height: 30,
+                     SizedBox(
+                       height: 10,
+                     ),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(vertical: 10.0),
+                       child: Column(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           Row(
+                             children: [
+                               Icon(Icons.wc, color: Colors.grey),
+                               SizedBox(width: 10),
+                               Text("Gender", style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
+                             ],
+                           ),
+
+                              RadioListTile<String>(
+                                   title: Text("Male"),
+                                   value: "Male",
+                                   groupValue: selectedGender,
+                                   onChanged: (value) {
+                                     setState(() {
+                                       selectedGender = value;
+                                     });
+                                   },
+                                 ),
+
+
+                               RadioListTile<String>(
+                                   title: Text("Female"),
+                                   value: "Female",
+                                   groupValue: selectedGender,
+                                   onChanged: (value) {
+                                     setState(() {
+                                       selectedGender = value;
+                                     });
+                                   },
+                                 ),
+
+                             ],
+                       )
+                     ),
+                           if(selectedGender == null)
+                             Padding(
+                               padding: const EdgeInsets.only(left: 16.0),
+                               child: Text(
+                                 "Please select gender",
+                                 style: TextStyle(color: Colors.red, fontSize: 12),
+                               ),
+                             ),
+                      SizedBox(
+                          height: 10,
                         ),
                      Padding(
-                         padding:  EdgeInsets.only(top:50,left: 200,),
+                         padding:  EdgeInsets.only(top:0,left: 200,),
                          child:
                          Padding(
                          padding:  EdgeInsets.only(left: 100),
@@ -275,12 +283,15 @@ class _mainFormState extends State<mainForm>{
                          ),
                        )
                        ),
+                     SizedBox(
+                       height: 100,
+                     )
                    ],
                      ),
                  ),
               ),
          ),
-       ),
+       //),
        );
   }
 }
