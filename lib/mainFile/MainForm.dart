@@ -19,35 +19,44 @@ class _mainFormState extends State<mainForm>{
   GlobalKey<FormState> _key = new GlobalKey();
 
   bool isloadingdone = false;
+  String? selectedGender;
 
-  NextScreen(){
+  NextScreen() {
     if (_key.currentState != null && _key.currentState!.validate()) {
+      if (selectedGender == null) {
+        setState(() {});
+        return;
+      }
+
       _key.currentState!.save();
-    }
-    setState(() {
-      isloadingdone = true;
-    });
-    Future.delayed(Duration(seconds:1),(){
-      setState((){
-        isloadingdone= false;
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (BuildContext context) => BlankPage())
-        );
+      setState(() {
+        isloadingdone = true;
       });
-    });
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => cardScreen(
-          username: usernameController.text,
-          full : fullnameController.text,
-          date: dateController.text,
-          mobile: mobileController.text,
-          email: emailController.text,
+
+      Future.delayed(Duration(seconds: 1),(){
+        setState((){
+          isloadingdone = false;
+         Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => BlankPage())
+          );
+        });
+      });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) =>
+            cardScreen(
+                username: usernameController.text,
+                full: fullnameController.text,
+                date: dateController.text,
+                mobile: mobileController.text,
+                email: emailController.text,
+              ),
         ),
-      ),
-    );
+      );
+    }
   }
      @override
           Widget build(BuildContext context) {
