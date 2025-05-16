@@ -21,42 +21,41 @@ class _mainFormState extends State<mainForm>{
   bool isloadingdone = false;
   String? selectedGender;
 
-  NextScreen() {
-    if (_key.currentState != null && _key.currentState!.validate()) {
-      if (selectedGender == null) {
-        setState(() {});
-        return;
-      }
-
+  NextScreen(){
+    if (_key.currentState != null && _key.currentState!.validate()){
+      if(selectedGender == null){}
       _key.currentState!.save();
-      setState(() {
-        isloadingdone = true;
-      });
-
-      Future.delayed(Duration(seconds: 1),(){
-        setState((){
-          isloadingdone = false;
-         Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => BlankPage())
-          );
-        });
-      });
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) =>
-            cardScreen(
-                username: usernameController.text,
-                full: fullnameController.text,
-                date: dateController.text,
-                mobile: mobileController.text,
-                email: emailController.text,
-              ),
-        ),
-      );
     }
+    setState(() {
+      isloadingdone = true;
+    });
+    Future.delayed(Duration(seconds:1),(){
+      setState((){
+        isloadingdone= false;
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) => BlankPage(
+              username: usernameController.text,
+              full : fullnameController.text,
+              date: dateController.text,
+              mobile: mobileController.text,
+              email: emailController.text,
+            ))
+        );
+      });
+    });
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => cardScreen(
+          username: usernameController.text,
+          full : fullnameController.text,
+          date: dateController.text,
+          mobile: mobileController.text,
+          email: emailController.text,
+        ),
+      ),
+    );
   }
      @override
           Widget build(BuildContext context) {
@@ -118,6 +117,58 @@ class _mainFormState extends State<mainForm>{
                          ),
                        ],
                      ),
+// --- Gender Field ---
+               Padding(
+                 padding: const EdgeInsets.symmetric(vertical: 10.0),
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                     Row(
+                       children: [
+                         Icon(Icons.wc, color: Colors.grey),
+                         SizedBox(width: 10),
+                         Text("Gender", style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
+                       ],
+                     ),
+                     Row(
+                       children: [
+                         Expanded(
+                           child: RadioListTile<String>(
+                             title: Text("Male"),
+                             value: "Male",
+                             groupValue: selectedGender,
+                             onChanged: (value) {
+                               setState(() {
+                                 selectedGender = value;
+                               });
+                             },
+                           ),
+                         ),
+                         Expanded(
+                           child: RadioListTile<String>(
+                             title: Text("Female"),
+                             value: "Female",
+                             groupValue: selectedGender,
+                             onChanged: (value) {
+                               setState(() {
+                                 selectedGender = value;
+                               });
+                             },
+                           ),
+                         ),
+                       ],
+                     ),
+                     if(selectedGender == null)
+                       Padding(
+                         padding: const EdgeInsets.only(left: 16.0),
+                         child: Text(
+                           "Please select gender",
+                           style: TextStyle(color: Colors.red, fontSize: 12),
+                         ),
+                       )
+                   ],
+                 ),
+               ),
 
                      ListTile(
                          leading: Icon(Icons.calendar_today),
