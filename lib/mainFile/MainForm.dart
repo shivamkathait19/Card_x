@@ -20,6 +20,7 @@ class _mainFormState extends State<mainForm>{
 
   bool isloadingdone = false;
   String? selectedGender;
+  bool _obscurePassword = true;
 
   NextScreen(){
     if (_key.currentState != null && _key.currentState!.validate()){
@@ -125,7 +126,22 @@ class _mainFormState extends State<mainForm>{
                          title:
                          TextFormField(
                           controller: dateController,
-                          decoration: InputDecoration(
+                          readOnly: true,
+                          onTap: ()async{
+                            DateTime? pickeddate =await showDatePicker(context: context,
+                                initialDate: DateTime(2000),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime.now(),
+                            );
+                            if(pickeddate ! = null){
+                              String formattedDate = "${pickeddate.day}/${pickeddate.month}/${pickeddate.year}";
+                           setState(() {
+                             dateController.text=formattedDate;
+                           });
+                             }
+                            }
+                          }  ,
+                           decoration: InputDecoration(
                             labelText: "Date Of Birth",
                               labelStyle: TextStyle(
                                   fontStyle: FontStyle.italic
@@ -191,29 +207,30 @@ class _mainFormState extends State<mainForm>{
                      SizedBox(
                        height: 10,
                      ),
-                     ListTile(
-                               leading: Icon(Icons.password),
-                               title: TextFormField(
-                                 controller: passController,
-                                 keyboardType: TextInputType.visiblePassword,
-                                 decoration: InputDecoration(
-                                   labelText:"Password",
-                                   labelStyle: TextStyle(
-                                     fontStyle: FontStyle.italic,
-                                   ),
+                     TextFormField(
+                       controller: passController,
+                       obscureText: _obscurePassword,
+                       decoration: _inputDecoration("Password").copyWith(
+                         suffixIcon: IconButton(
+                           icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+                           onPressed: () {
+                             setState(() {
+                               _obscurePassword = !_obscurePassword;
+                             });
+                           },
+                         ),
+                       ),
+                       validator: (value) {
+                         if (value == null || value.isEmpty) {
+                           return "Password is required";
+                         }
+                         if (value.length < 6) {
+                           return "Password must be at least 6 characters";
+                         }
+                         return null;
+                       },
+                     ),
 
-                               ),
-                                 validator: (value) {
-                                   if (value == null || value.isEmpty) {
-                                     return " Password is required";
-                                   }
-                                   if (value.length<6) {
-                                     return "Password must be at least 6 characters";
-                                   }
-                                   return null;
-                                 },
-                             ),
-                             ),
                      SizedBox(
                        height: 10,
                      ),
