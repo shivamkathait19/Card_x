@@ -58,14 +58,28 @@ class _mainFormState extends State<mainForm>{
       ),
     );
   }
+  InputDecoration _inputDecoration(String label){
+    return InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
+    );
+  }
      @override
           Widget build(BuildContext context) {
           return Scaffold(
-           backgroundColor: Colors.white,
+            appBar: AppBar(
+              title: Text("User Registration"),
+              backgroundColor: Colors.teal,
+              foregroundColor: Colors.white,
+              centerTitle: true,
+            ),
+           //backgroundColor: Colors.white,
           body: Container(
-        // child :SingleChildScrollView(
+         child :SingleChildScrollView(
          child: Padding(
-           padding: EdgeInsets.only(top: 100,bottom: 0,left: 20,right: 20),
+           padding: EdgeInsets.all(16),
            child: Form
                  (key: _key,
                  child: Column(
@@ -127,32 +141,28 @@ class _mainFormState extends State<mainForm>{
                          TextFormField(
                           controller: dateController,
                           readOnly: true,
-                          onTap: ()async{
-                            DateTime? pickeddate =await showDatePicker(context: context,
-                                initialDate: DateTime(2000),
+                          onTap: () async{
+                            DateTime? pickedDate =await showDatePicker(context: context,
+                              initialDate: DateTime(2000),
                             firstDate: DateTime(1900),
                             lastDate: DateTime.now(),
                             );
-                            if(pickeddate ! = null){
-                              String formattedDate = "${pickeddate.day}/${pickeddate.month}/${pickeddate.year}";
+                            if(pickedDate ! = null){
+                              String formattedDate =
+                                  "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                            setState(() {
                              dateController.text=formattedDate;
                            });
                              }
-                            }
-                          }  ,
+                            },
+
                            decoration: InputDecoration(
                             labelText: "Date Of Birth",
                               labelStyle: TextStyle(
-                                  fontStyle: FontStyle.italic
-                              ) ,
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return " Date Of Birth is required";
-                            }
-                            return null;
-                          },
+                                  fontStyle: FontStyle.italic).copyWith(
+                                  suffixIcon: Icon(Icons.calendar_today)) ,
+                          ), validator: (value) =>
+                           value!.isEmpty? "Date of Birth is required" : null
                          ),
                        ),
                      SizedBox(
@@ -173,12 +183,8 @@ class _mainFormState extends State<mainForm>{
                                   fontStyle: FontStyle.italic
                               ) ,
                           ),
-                         validator: (value) {
-                           if (value == null || value.isEmpty) {
-                             return " Mobile name  is required";
-                           }
-                           return null;
-                         },
+                           validator: (value) =>
+                           value!.isEmpty? "Date of Birth is required" : null
                         ),
                      ),
                      SizedBox(
@@ -196,12 +202,8 @@ class _mainFormState extends State<mainForm>{
                               fontStyle: FontStyle.italic
                             ),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return " email is required";
-                            }
-                            return null;
-                          },
+                               validator: (value) =>
+                               value!.isEmpty? "Date of Birth is required" : null
                         ),
                          ),
                      SizedBox(
@@ -308,7 +310,7 @@ class _mainFormState extends State<mainForm>{
                  ),
               ),
          ),
-       //),
+       ),
        );
   }
 }
