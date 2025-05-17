@@ -61,7 +61,7 @@ class _MainFormState extends State<MainForm>{
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label,
-      labelStyle: const TextStyle(),
+      labelStyle:  TextStyle(),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
     );
@@ -97,9 +97,6 @@ class _MainFormState extends State<MainForm>{
                              controller: usernameController,
                              decoration: InputDecoration(
                                labelText: "Username",
-                               labelStyle: TextStyle(
-                                 fontStyle: FontStyle.italic,
-                               ),
                              ),
                              validator: (value) {
                                if (value == null || value.isEmpty) {
@@ -110,17 +107,15 @@ class _MainFormState extends State<MainForm>{
                            ),
                          ),
                          ),
-                         SizedBox(width: 16), // Space between the fields
+                         SizedBox(width: 10), // Space between the fields
                          Expanded(
                            child: ListTile(leading: Icon(Icons.person),
                              title: TextFormField(
                              controller: fullnameController,
                              decoration: InputDecoration(
                                labelText: "Full Name",
-                               labelStyle: TextStyle(
-                                 fontStyle: FontStyle.italic,
-                               ),
                              ),
+
                              validator: (value) {
                                if (value == null || value.isEmpty) {
                                  return "Full Name is required";
@@ -141,15 +136,15 @@ class _MainFormState extends State<MainForm>{
                          TextFormField(
                           controller: dateController,
                           readOnly: true,
-                          onTap: () async{
+                          onTap:() async{
                             DateTime? pickedDate =await showDatePicker(context: context,
                               initialDate: DateTime(2000),
                             firstDate: DateTime(1900),
                             lastDate: DateTime.now(),
                             );
                            if (pickedDate != null) {
-                           // if (pickedDate != null) {
-                              String formattedDate =
+
+                             String formattedDate =
                                   "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                            setState(() {
                              dateController.text=formattedDate;
@@ -157,12 +152,6 @@ class _MainFormState extends State<MainForm>{
                              }
                             },
 
-                          /* decoration: _inputDecoration(
-                            labelText: "Date Of Birth",
-                              labelStyle: TextStyle(
-                                  fontStyle: FontStyle.italic).copyWith(
-                                  suffixIcon: Icon(Icons.calendar_today)) ,
-                          ),*/
                              decoration: _inputDecoration("Date of Birth").copyWith(
                                suffixIcon: const Icon(Icons.calendar_today),
                              ),
@@ -182,12 +171,7 @@ class _MainFormState extends State<MainForm>{
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                          decoration: InputDecoration(
-                              labelText: "Mobile number",
-                             labelStyle: TextStyle(
-                                  fontStyle: FontStyle.italic
-                              ) ,
-                          ),
+                          decoration: _inputDecoration("Mobile number",),
                            validator: (value) =>
                            value!.isEmpty? "Date of Birth is required" : null
                         ),
@@ -201,11 +185,9 @@ class _MainFormState extends State<MainForm>{
                            TextFormField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: "Email address",
-                            labelStyle: TextStyle(
-                              fontStyle: FontStyle.italic
-                            ),
+                          decoration: _inputDecoration(
+                            "Email address",
+
                           ),
                                validator: (value) =>
                                value!.isEmpty? "Date of Birth is required" : null
@@ -214,7 +196,9 @@ class _MainFormState extends State<MainForm>{
                      SizedBox(
                        height: 10,
                      ),
-                     TextFormField(
+                     ListTile(
+                         leading: Icon(Icons.password) ,
+                       title:TextFormField(
                        controller: passController,
                        obscureText: _obscurePassword,
                        decoration: _inputDecoration("Password").copyWith(
@@ -237,7 +221,7 @@ class _MainFormState extends State<MainForm>{
                          return null;
                        },
                      ),
-
+                     ),
                      SizedBox(
                        height: 10,
                      ),
