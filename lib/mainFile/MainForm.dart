@@ -2,14 +2,14 @@ import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
- class mainForm extends StatefulWidget {
-    mainForm({super.key});
+ class MainForm extends StatefulWidget {
+    MainForm({super.key});
 
   @override
-  State<mainForm> createState() => _mainFormState();
+  State<MainForm> createState() => _MainFormState();
 }
 
-class _mainFormState extends State<mainForm>{
+class _MainFormState extends State<MainForm>{
   TextEditingController usernameController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -147,7 +147,8 @@ class _mainFormState extends State<mainForm>{
                             firstDate: DateTime(1900),
                             lastDate: DateTime.now(),
                             );
-                            if(pickedDate ! = null){
+                           if (pickedDate != null) {
+                           // if (pickedDate != null) {
                               String formattedDate =
                                   "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                            setState(() {
@@ -156,12 +157,16 @@ class _mainFormState extends State<mainForm>{
                              }
                             },
 
-                           decoration: InputDecoration(
+                          /* decoration: _inputDecoration(
                             labelText: "Date Of Birth",
                               labelStyle: TextStyle(
                                   fontStyle: FontStyle.italic).copyWith(
                                   suffixIcon: Icon(Icons.calendar_today)) ,
-                          ), validator: (value) =>
+                          ),*/
+                             decoration: _inputDecoration("Date of Birth").copyWith(
+                               suffixIcon: const Icon(Icons.calendar_today),
+                             ),
+                             validator: (value) =>
                            value!.isEmpty? "Date of Birth is required" : null
                          ),
                        ),
@@ -236,81 +241,91 @@ class _mainFormState extends State<mainForm>{
                      SizedBox(
                        height: 10,
                      ),
-                     Padding(
-                       padding: const EdgeInsets.symmetric(vertical: 10.0),
-                       child: Column(
-                         crossAxisAlignment: CrossAxisAlignment.start,
-                         children: [
-                           Row(
-                             children: [
-                               Icon(Icons.wc, color: Colors.grey),
-                               SizedBox(width: 10),
-                               Text("Gender", style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
-                             ],
-                           ),
 
-                              RadioListTile<String>(
-                                   title: Text("Male"),
-                                   value: "Male",
-                                   groupValue: selectedGender,
-                                   onChanged: (value) {
-                                     setState(() {
-                                       selectedGender = value;
-                                     });
-                                   },
-                                 ),
+               Card(
+       elevation: 2,
+       shape: RoundedRectangleBorder(
+       borderRadius: BorderRadius.circular(10)),
+       child: Padding(
+       padding: const EdgeInsets.symmetric(vertical: 8),
+       child: Column(
+       children: [
+       const ListTile(
+       leading: Icon(Icons.wc),
+       title: Text("Select Gender"),
+       ),
+       RadioListTile<String>(
+       title: const Text("Male"),
+       value: "Male",
+       groupValue: selectedGender,
+       onChanged: (value) =>
+       setState(() => selectedGender = value),
+       ),
+       RadioListTile<String>(
+       title: const Text("Female"),
+       value: "Female",
+       groupValue: selectedGender,
+       onChanged: (value) =>
+       setState(() => selectedGender = value),
+       ),
+       if (selectedGender == null)
+       const Padding(
+       padding: EdgeInsets.only(left: 16.0),
+       child: Align(
+       alignment: Alignment.centerLeft,
+       child: Text(
+       "Please select gender",
+       style:
+       TextStyle(color: Colors.red, fontSize: 12),
+       ),
+       ),
+       ),
+       ],
+       ),
+       ),
+       ),
 
-
-                               RadioListTile<String>(
-                                   title: Text("Female"),
-                                   value: "Female",
-                                   groupValue: selectedGender,
-                                   onChanged: (value) {
-                                     setState(() {
-                                       selectedGender = value;
-                                     });
-                                   },
-                                 ),
-
-                             ],
-                       )
-                     ),
-                           if(selectedGender == null)
-                             Padding(
-                               padding: const EdgeInsets.only(left: 16.0),
-                               child: Text(
-                                 "Please select gender",
-                                 style: TextStyle(color: Colors.red, fontSize: 12),
-                               ),
-                             ),
                       SizedBox(
                           height: 10,
                         ),
-                     Padding(
-                         padding:  EdgeInsets.only(top:0,left: 200,),
-                         child:
-                         Padding(
-                         padding:  EdgeInsets.only(left: 100),
-                           child: ElevatedButton(
-                           onPressed: (NextScreen),
-                           child: isloadingdone ? CircularProgressIndicator(): Icon(Icons.navigate_next,
-                                    size: 50,),
+                           SizedBox(
+                             width: double.infinity,
+                             child: ElevatedButton.icon(
+                               onPressed: isloadingdone ? null : NextScreen,
                                style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white, // Set color for text/icon
-                             padding: EdgeInsets.symmetric(vertical: 1.0, horizontal: 5.0 ,),// Optional: padding
+                                 padding: const EdgeInsets.symmetric(vertical: 16),
+                                 backgroundColor: Colors.teal,
+                                 shape: RoundedRectangleBorder(
+                                   borderRadius: BorderRadius.circular(12),
+                                 ),
                                ),
-                         ),
-                       )
-                       ),
+                               icon: isloadingdone
+                                   ? const SizedBox(
+                                 height: 20,
+                                 width: 20,
+                                 child: CircularProgressIndicator(
+                                   color: Colors.white,
+                                   strokeWidth: 2,
+                                 ),
+                               )
+                                   : const Icon(Icons.navigate_next),
+                               label: Text(
+                                 isloadingdone ? "Loading..." : "Submit",
+                                 style: const TextStyle(fontSize: 16),
+                               ),
+                             ),
+                           ),
                      SizedBox(
                        height: 100,
                      )
                    ],
                      ),
                  ),
-              ),
+
          ),
        ),
+          ),
+
        );
   }
 }
