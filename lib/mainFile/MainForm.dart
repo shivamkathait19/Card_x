@@ -30,7 +30,7 @@ class _MainFormState extends State<MainForm>{
     setState(() {
       isloadingdone = true;
     });
-    Future.delayed(Duration(seconds:1),(){
+   /* Future.delayed(Duration(),(){
       setState((){
         isloadingdone= false;
         Navigator.push(
@@ -44,7 +44,7 @@ class _MainFormState extends State<MainForm>{
             ))
         );
       });
-    });
+    });*/
     Navigator.push(
       context,
       MaterialPageRoute(
