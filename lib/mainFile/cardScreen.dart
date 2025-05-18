@@ -45,6 +45,7 @@ class _cardScreenState extends State<cardScreen>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
+
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(
@@ -87,11 +88,18 @@ class _BlankPageState extends State<BlankPage> {
       MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
     );
   }
-
+  InputDecoration _inputDecoration(String label){
+    /*return InputDecoration(
+      labelText: label,
+      labelStyle:  TextStyle(),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
+    );
+  }*/
 
   Widget infoTile (String label, String? value, IconData icon){
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+     padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -100,12 +108,7 @@ class _BlankPageState extends State<BlankPage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Colors.black,
-                    width: 1.5,
-                  ),
-                ),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               padding: EdgeInsets.only(bottom: 4), // optional spacing
                child: Center(
@@ -128,6 +131,12 @@ class _BlankPageState extends State<BlankPage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile"),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
