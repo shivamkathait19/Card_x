@@ -108,8 +108,10 @@ class _BlankPageState extends State<BlankPage> {
           SizedBox(width: 10),
           Expanded(
             child: Container(
+              height: 50,
               decoration: BoxDecoration(
-                
+                border: Border.all(color: Colors.black), // You can customize the color and width
+                borderRadius: BorderRadius.circular(10),
               ),
               padding: EdgeInsets.only(bottom: 4), // optional spacing
                child: Center(
