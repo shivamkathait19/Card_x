@@ -89,13 +89,13 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
   InputDecoration _inputDecoration(String label){
-    /*return InputDecoration(
+    return InputDecoration(
       labelText: label,
       labelStyle:  TextStyle(),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
     );
-  }*/
+  }
 
   Widget infoTile (String label, String? value, IconData icon){
     return Padding(
@@ -108,7 +108,8 @@ class _BlankPageState extends State<BlankPage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                border: Border.all(),
+                //border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
               ),
               padding: EdgeInsets.only(bottom: 4), // optional spacing
                child: Center(
