@@ -97,6 +97,7 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 
+
   Widget infoTile (String label, String? value, IconData icon){
     return Padding(
      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
@@ -108,8 +109,7 @@ class _BlankPageState extends State<BlankPage> {
           Expanded(
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(),
-                //border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                
               ),
               padding: EdgeInsets.only(bottom: 4), // optional spacing
                child: Center(
