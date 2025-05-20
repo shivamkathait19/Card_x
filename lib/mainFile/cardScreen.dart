@@ -81,6 +81,8 @@ class BlankPage extends StatefulWidget {
   State<BlankPage> createState() => _BlankPageState();
 }
 
+
+
 class _BlankPageState extends State<BlankPage> {
   void mainPage() {
     Navigator.push(
