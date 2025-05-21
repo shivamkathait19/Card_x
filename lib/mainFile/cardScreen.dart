@@ -49,17 +49,19 @@ class _CardScreenState extends State<CardScreen> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(16.0),
-          child:  FloatingActionButton(
+         /* floatingActionButton: FloatingActionButton.extended(
             onPressed: _goToBlankPage,
-             Icon(Icons.person_outline),
+            icon: const Icon(Icons.person_outline),
+            label: const Text("View Profile"),
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
-            elevation: 6,
+            elevation: 8,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(14),
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+*/
         ),
       ),
     );
