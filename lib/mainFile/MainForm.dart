@@ -48,7 +48,7 @@ class _MainFormState extends State<MainForm>{
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => cardScreen(
+        builder: (BuildContext context) => CardScreen(
           username: usernameController.text,
           full : fullnameController.text,
           date: dateController.text,

@@ -49,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (BuildContext context) =>cardScreen()),
+        MaterialPageRoute(builder: (BuildContext context) =>CardScreen()),
       );
     });
   }
