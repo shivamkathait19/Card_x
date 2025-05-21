@@ -1,3 +1,140 @@
+/*import 'package:flutter/material.dart';
+import 'package:card_x/view/LoginScreen.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+
+class CardScreen extends StatefulWidget {
+  final String? username;
+  final String? full;
+  final String? date;
+  final String? father;
+  final String? mother;
+  final String? mobile;
+  final String? email;
+
+  const CardScreen({
+    Key? key,
+    this.username,
+    this.full,
+    this.date,
+    this.father,
+    this.mother,
+    this.mobile,
+    this.email,
+  }) : super(key: key);
+
+  @override
+  State<CardScreen> createState() => _CardScreenState();
+}
+
+class _CardScreenState extends State<CardScreen> {
+  void _goToBlankPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BlankPage(
+          username: widget.username,
+          full: widget.full,
+          date: widget.date,
+          mobile: widget.mobile,
+          email: widget.email,
+        ),
+      ),
+    );
+  }
+  String imgUrl = "";
+  int? memeNO;
+  bool isLoading = true;
+
+  int number = 1;
+
+
+  @override
+  void initState() {
+    // TODO : implement initState
+
+    super.initState();
+
+
+    UpdateImg();
+  }
+  void UpdateImg() async{
+    String getImgUrl =  await FetchMeme.fetchNewMemes();
+    setState(() {
+      imgUrl = getImgUrl ;
+      isLoading = false;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      body: Center(
+        child:Text(
+            number.toString(),
+            style:  TextStyle(fontSize:20, fontWeight: FontWeight.w400)),
+          SizedBox(
+            height: 10,
+          ),
+
+          Text(
+            "Keep watching until you get a smile on your face",
+            style: TextStyle(decoration: TextDecoration.underline ,decorationStyle: TextDecorationStyle.solid,
+                fontSize: 14,fontWeight:FontWeight.w500),),
+          SizedBox(
+            height: 20,
+          ),
+
+          SizedBox(
+            height: 500,
+            child:
+            isLoading ?
+            Container(
+              height: 400, width: MediaQuery.of(context).size.width,
+              child: const Center(
+                child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: CircularProgressIndicator()),
+              ),
+            ):
+            Image.network(
+                height: 600, width: MediaQuery.of(context).size.width,
+                imgUrl
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+
+          ElevatedButton(
+              onPressed: ()async{
+                setState(() {
+                  number++;
+                });
+                UpdateImg();
+              } ,
+
+              child: const SizedBox(
+                  height: 20,
+                  width: 200,
+                  child: Center(child: Text("More funny")))),
+        child: Padding(
+          padding: EdgeInsets.only(top:0),
+           child: FloatingActionButton(
+             onPressed: _goToBlankPage,
+           child: Icon(Icons.person_2),
+             backgroundColor: Colors.black,
+           foregroundColor: Colors.white,
+             shape:  RoundedRectangleBorder(
+               borderRadius: BorderRadius.circular(25)
+             ),
+           ),
+        ),
+      ),
+    );
+  }
+}*/
+import 'package:card_x/mainFile/FetchMemes.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -42,31 +179,105 @@ class _CardScreenState extends State<CardScreen> {
     );
   }
 
+  String imgUrl = "";
+  int number = 1;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    UpdateImg();
+  }
+
+  void UpdateImg() async {
+    String getImgUrl = await FetchMemes.fetchNewMemes();
+    setState(() {
+      imgUrl = getImgUrl;
+      isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: const Color(0xFFf0f2f5),
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        title: const Text("Funny Memes"),
+        centerTitle: true,
+        elevation: 4,
+      ),
       body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-         /* floatingActionButton: FloatingActionButton.extended(
-            onPressed: _goToBlankPage,
-            icon: const Icon(Icons.person_outline),
-            label: const Text("View Profile"),
-            backgroundColor: Colors.teal,
-            foregroundColor: Colors.white,
-            elevation: 8,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              number.toString(),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
             ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-*/
+            const SizedBox(height: 10),
+            const Text(
+              "Keep watching until you get a smile on your face",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                decorationStyle: TextDecorationStyle.solid,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 400,
+              child: isLoading
+                  ? const Center(
+                child: CircularProgressIndicator(),
+              )
+                  : Image.network(
+                imgUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                setState(() {
+                  number++;
+                });
+                UpdateImg();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.teal,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: const Text("More Funny"),
+            ),
+          ],
         ),
       ),
+
+      // ✅ Floating Button
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 20, right: 10),
+        child: FloatingActionButton(
+          onPressed: _goToBlankPage,
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: const Icon(Icons.person_2),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }
+
 
 class BlankPage extends StatefulWidget {
   final String? username;
@@ -111,7 +322,7 @@ class _BlankPageState extends State<BlankPage> {
           leading: Icon(icon, color: Colors.teal, size: 28),
           title: Text(
             label,
-            style: const TextStyle(fontWeight: FontWeight.w500),
+            style: const TextStyle(fontWeight: FontWeight.w500,fontStyle: FontStyle.italic),
           ),
           subtitle: Text(
             value ?? 'Not provided',
@@ -169,161 +380,3 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
-
-
-/*
-import 'package:card_x/view/splashScreen.dart';
-import 'package:flutter/material.dart';
-import 'dart:ui';
- // Your detailed screen
-
-class CardScreen extends StatefulWidget {
-  final String? username;
-  final String? full;
-  final String? date;
-  final String? father;
-  final String? mother;
-  final String? mobile;
-  final String? email;
-
-  const CardScreen({
-    Key? key,
-    this.username,
-    this.full,
-    this.date,
-    this.father,
-    this.mother,
-    this.mobile,
-    this.email,
-  }) : super(key: key);
-
-  @override
-  State<CardScreen> createState() => _CardScreenState();
-}
-
-class _CardScreenState extends State<CardScreen> {
-  void _goToBlankPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BlankPage(
-
-        ),
-      ),
-    );
-  }
-
-  Widget _infoRow(IconData icon, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          Icon(icon, color: Colors.white, size: 22),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              text,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildGlassCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-        child: Container(
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(color: Colors.white.withOpacity(0.2)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const CircleAvatar(
-                radius: 45,
-                backgroundColor: Colors.white30,
-                child: Icon(Icons.person, size: 40, color: Colors.white),
-              ),
-              const SizedBox(height: 15),
-              Text(
-                widget.full ?? "Full Name",
-                style: const TextStyle(
-                  fontSize: 22,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                widget.username ?? "Username",
-                style: const TextStyle(fontSize: 16, color: Colors.white70),
-              ),
-              const SizedBox(height: 25),
-              _infoRow(Icons.email, widget.email ?? "Email not provided"),
-              _infoRow(Icons.phone_android, widget.mobile ?? "Mobile not provided"),
-              _infoRow(Icons.cake, widget.date ?? "DOB not provided"),
-              const SizedBox(height: 25),
-              ElevatedButton.icon(
-                onPressed: _goToBlankPage,
-                icon: const Icon(Icons.arrow_forward),
-                label: const Text("View Full Profile"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.teal,
-                  elevation: 4,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  textStyle: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text("Digital Card"),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.white,
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF0F2027), Color(0xFF203A43), Color(0xFF2C5364)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: Center(
-          child: _buildGlassCard(),
-        ),
-      ),
-    );
-  }
-}
-*/
