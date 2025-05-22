@@ -45,7 +45,7 @@ class _CardScreenState extends State<CardScreen> {
 
    String imgUrl = "";
    int number = 0;
-   int target = 50;
+   int target = 10  ;
    bool isLoading = true;
 
   @override
@@ -58,12 +58,11 @@ class _CardScreenState extends State<CardScreen> {
     String getImgUrl = await FetchMemes.fetchNewMemes();
     setState(() {
       imgUrl = getImgUrl;
-      number++;
       if(number == target){
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _showTargetDialog();
         });
-          target +=100;
+          target +=50;
       }
       isLoading = false;
     });
