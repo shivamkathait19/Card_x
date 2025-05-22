@@ -107,7 +107,7 @@ class _CardScreenState extends State<CardScreen> {
             ),
              SizedBox(height: 10),
              Text(
-             
+
               "Target to see # $target memes",
               textAlign: TextAlign.center,
               style: TextStyle(
