@@ -45,7 +45,7 @@ class _CardScreenState extends State<CardScreen> {
 
    String imgUrl = "";
    int number = 0;
-   int target = 10;
+   int target = 50;
    bool isLoading = true;
 
   @override
@@ -87,26 +87,6 @@ class _CardScreenState extends State<CardScreen> {
       },
     );
   }
-
-  /*void _showTargetDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("🎉 Target Achieved!"),
-          content: Text("You have seen $number memes!\nNext target: $target memes."),
-          actions: [
-            TextButton(
-              child: const Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }*/
 
   @override
   Widget build(BuildContext context) {
