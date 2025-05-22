@@ -54,7 +54,7 @@ class _CardScreenState extends State<CardScreen> {
     UpdateImg();
   }
 
-   Future<void> UpdateImg() async {
+  Future<void> UpdateImg() async {
     String getImgUrl = await FetchMemes.fetchNewMemes();
     setState(() {
       imgUrl = getImgUrl;
@@ -107,7 +107,7 @@ class _CardScreenState extends State<CardScreen> {
             ),
              SizedBox(height: 10),
              Text(
-              //"Target to see #10 memes",
+             
               "Target to see # $target memes",
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -148,7 +148,7 @@ class _CardScreenState extends State<CardScreen> {
                   borderRadius: BorderRadius.circular(16),
                 ),
               ),
-              child: Text("More Funny"),
+              child: Text("Next"),
             ),
           ],
         ),
