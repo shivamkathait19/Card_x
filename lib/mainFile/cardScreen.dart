@@ -68,8 +68,7 @@ Color(0xFFE3F2FD),
     setState(() {
       imgUrl = getImgUrl;
       currentBgColor = (bgColors.toList()..shuffle()).first;
-
-     if(number == target){
+      if(number == target){
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _showTargetDialog();
         });
@@ -101,50 +100,39 @@ Color(0xFFE3F2FD),
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Color(0xFFf0f2f5),
+      backgroundColor: currentBgColor,
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.teal.shade700,
         title: const Text("Funny Memes"),
         centerTitle: true,
-        elevation: 4,
+        elevation: 5,
+        shadowColor: Colors.teal,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding:  EdgeInsets.only(left: 150),
-                  child: Text(
-                    "Target#$target/",
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationStyle: TextDecorationStyle.solid,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-                Text(
-                  number.toString(),
-                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,decoration: TextDecoration.underline,fontStyle: FontStyle.italic,),
-                ),
+                Text("Target: ", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                Text("$number/$target", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.teal.shade700)),
               ],
             ),
-
-             SizedBox(height: 20),
-            SizedBox(
-              height: 300,
-              child: isLoading
-                  ? const Center(
-                child: CircularProgressIndicator(),
-              )
-                  : Image.network(
-                imgUrl,
-                fit: BoxFit.cover,
-              ),
+            SizedBox(height: 20),
+             AnimatedContainer(
+             duration: Duration(milliseconds: 500),
+             height: 300,
+             width: double.infinity,
+             margin: const EdgeInsets.symmetric(horizontal: 20),
+             decoration: BoxDecoration(
+             color: Colors.white,
+             borderRadius: BorderRadius.circular(20),
+             boxShadow: const [
+             BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 6)),
+             ],
+             ),
+               
             ),
             const SizedBox(height: 20),
             ElevatedButton(
