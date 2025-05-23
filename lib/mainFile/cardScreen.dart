@@ -132,28 +132,23 @@ Color(0xFFE3F2FD),
              BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 6)),
              ],
              ),
-               
+
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed:()async{
-                setState((){
-                  isLoading =true;
-                });
-                 await UpdateImg();
-                 setState(() {
-                   number++;
-                 });
+            ElevatedButton.icon(
+              onPressed: () async {
+                setState(() => isLoading = true);
+                await UpdateImg();
               },
+              icon: Icon(Icons.navigate_next),
+              label: Text("Next Meme"),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
                 foregroundColor: Colors.white,
-                padding : EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              child: Text("Next"),
             ),
           ],
         ),
