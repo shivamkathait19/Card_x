@@ -101,23 +101,29 @@ class _CardScreenState extends State<CardScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              number.toString(),
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            Row(
+              children: [
+                Padding(
+                  padding:  EdgeInsets.only(left: 150),
+                  child: Text(
+                    "Target#$target/",
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      decorationStyle: TextDecorationStyle.solid,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+                Text(
+                  number.toString(),
+                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400,decoration: TextDecoration.underline,fontStyle: FontStyle.italic,),
+                ),
+              ],
             ),
-             SizedBox(height: 10),
-             Text(
 
-              "Target to see # $target memes",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                decoration: TextDecoration.underline,
-                decorationStyle: TextDecorationStyle.solid,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20),
             SizedBox(
               height: 300,
               child: isLoading
