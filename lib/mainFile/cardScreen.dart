@@ -1,4 +1,4 @@
-import 'package:card_x/mainFile/FetchMemes.dart';
+ import 'package:card_x/mainFile/FetchMemes.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -28,6 +28,13 @@ class CardScreen extends StatefulWidget {
 }
 
 class _CardScreenState extends State<CardScreen> {
+final List<Color> bgColors = [
+Color(0xFFF0F2F5),
+Color(0xFFE8F5E9),
+Color(0xFFFFF3E0),
+Color(0xFFFFEBEE),
+Color(0xFFE3F2FD),
+];
   void _goToBlankPage() {
     Navigator.push(
       context,
@@ -47,6 +54,8 @@ class _CardScreenState extends State<CardScreen> {
    int number = 0;
    int target = 10  ;
    bool isLoading = true;
+   Color currentBgColor = Color(0xFFF0F2F5);
+
 
   @override
   void initState() {
@@ -58,7 +67,9 @@ class _CardScreenState extends State<CardScreen> {
     String getImgUrl = await FetchMemes.fetchNewMemes();
     setState(() {
       imgUrl = getImgUrl;
-      if(number == target){
+      currentBgColor = (bgColors.toList()..shuffle()).first;
+
+     if(number == target){
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _showTargetDialog();
         });
@@ -280,3 +291,7 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
+
+
+
+
