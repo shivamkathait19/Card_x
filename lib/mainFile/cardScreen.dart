@@ -1,4 +1,6 @@
- import 'package:card_x/mainFile/FetchMemes.dart';
+ import 'dart:math';
+
+import 'package:card_x/mainFile/FetchMemes.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -98,7 +100,44 @@ Color(0xFFE3F2FD),
       },
     );
   }
+void triggerEmojiBurst(String emoji) {
+  final random = Random();
+  for (int i = 0; i < 5; i++) {
+    final controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 1000 + random.nextInt(500)),
+    );
+    final animation = Tween<Offset>(
+      begin: Offset(0, 0),
+      end: Offset((random.nextDouble() * 2 - 1), -2 - random.nextDouble()),
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeOut));
 
+    final particle = EmojiParticle(
+      emoji: emoji,
+      controller: controller,
+      animation: animation,
+      key: UniqueKey(),
+    );
+
+    controller.forward().whenComplete(() {
+      setState(() {
+        emojiParticles.remove(particle);
+      });
+    });
+
+    setState(() {
+      emojiParticles.add(particle);
+    });
+  }
+}
+
+@override
+void dispose() {
+  for (var p in emojiParticles) {
+    p.controller.dispose();
+  }
+  super.dispose();
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,16 +195,18 @@ Color(0xFFE3F2FD),
                  IconButton(
                    icon: Text('😆', style: TextStyle(fontSize: 32)),
                    onPressed: () {
-                     ScaffoldMessenger.of(context).showSnackBar(
-                         SnackBar(content: Text("You liked this meme!"))
-                     );
+                     triggerEmojiBurst('😆');
+                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                         content: Text("You liked this meme!")));
+
                    },
                  ),
                  IconButton(
                    icon: Text('😒', style: TextStyle(fontSize: 32)),
                    onPressed: () {
-                     ScaffoldMessenger.of(context).showSnackBar(
-                         SnackBar(content: Text("You disliked this meme."))
+                     triggerEmojiBurst('😒');
+                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                         content: Text("You disliked this meme."))
                      );
                    },
                  ),
@@ -209,6 +250,41 @@ Color(0xFFE3F2FD),
     );
   }
 }
+ class EmojiParticle extends StatelessWidget {
+   final String emoji;
+   final AnimationController controller;
+   final Animation<Offset> animation;
+
+   const EmojiParticle({
+     super.key,
+     required this.emoji,
+     required this.controller,
+     required this.animation,
+   });
+
+   @override
+   Widget build(BuildContext context) {
+     return AnimatedBuilder(
+       animation: controller,
+       builder: (_, __) {
+         return Positioned(
+           bottom: 100,
+           left: MediaQuery.of(context).size.width / 2 - 16,
+           child: SlideTransition(
+             position: animation,
+             child: Opacity(
+               opacity: 1 - controller.value,
+               child: Text(
+                 emoji,
+                 style: TextStyle(fontSize: 28),
+               ),
+             ),
+           ),
+         );
+       },
+     );
+   }
+ }
 
 
 class BlankPage extends StatefulWidget {
@@ -312,7 +388,5 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
-
-
 
 
