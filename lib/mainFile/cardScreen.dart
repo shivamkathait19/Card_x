@@ -29,7 +29,7 @@ class CardScreen extends StatefulWidget {
   State<CardScreen> createState() => _CardScreenState();
 }
 
-class _CardScreenState extends State<CardScreen> {
+class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin  {
 final List<Color> bgColors = [
 Color(0xFFF0F2F5),
 Color(0xFFE8F5E9),
@@ -101,7 +101,7 @@ List<EmojiParticle> emojiParticles = [];
       },
     );
   }
-void triggerEmojiBurst(String emoji) {
+void showEmojiBurst(String emoji) {
   final random = Random();
   for (int i = 0; i < 5; i++) {
     final controller = AnimationController(
@@ -191,7 +191,7 @@ void dispose() {
                ),
             ),
              Row(
-               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               /*mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                children: [
                  IconButton(
                    icon: Text('😆', style: TextStyle(fontSize: 32)),
@@ -211,8 +211,18 @@ void dispose() {
                      );
                    },
                  ),
-               ],
-
+               ],*/
+             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+             children: [
+                 GestureDetector(
+                 onTap: () => showEmojiBurst("😂"),
+      child: Text("😂", style: TextStyle(fontSize: 36)),
+    ),
+    GestureDetector(
+    onTap: () => showEmojiBurst("😒"),
+    child: Text("😒", style: TextStyle(fontSize: 36)),
+    ),
+    ],
              ),
              SizedBox(height: 20),
             ElevatedButton.icon(
