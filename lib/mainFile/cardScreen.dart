@@ -63,11 +63,13 @@ Color(0xFFE3F2FD),
     UpdateImg();
   }
 
-  Future<void> UpdateImg() async {
+  Future<void> UpdateImg() async{
     String getImgUrl = await FetchMemes.fetchNewMemes();
     setState(() {
       imgUrl = getImgUrl;
+      number++;
       currentBgColor = (bgColors.toList()..shuffle()).first;
+
       if(number == target){
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _showTargetDialog();
@@ -121,8 +123,8 @@ Color(0xFFE3F2FD),
             ),
             SizedBox(height: 20),
              AnimatedContainer(
-             duration: Duration(milliseconds: 500),
-             height: 300,
+             duration: Duration(milliseconds: 100),
+             height: 500,
              width: double.infinity,
              margin: const EdgeInsets.symmetric(horizontal: 20),
              decoration: BoxDecoration(
@@ -132,11 +134,47 @@ Color(0xFFE3F2FD),
              BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 6)),
              ],
              ),
-
+               child: isLoading
+                   ? Center(child: CircularProgressIndicator())
+                   : ClipRRect(
+                 borderRadius: BorderRadius.circular(20),
+                 child: Image.network(
+                   imgUrl,
+                  // fit: BoxFit.cover,
+                   loadingBuilder: (context, child, loadingProgress) {
+                     if (loadingProgress == null) return child;
+                     return Center(child: CircularProgressIndicator());
+                   },
+                   errorBuilder: (context, error, stackTrace) =>
+                       Center(child: Text("Failed to load image")),
+                 ),
+               ),
             ),
-            const SizedBox(height: 20),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               children: [
+                 IconButton(
+                   icon: Text('😆', style: TextStyle(fontSize: 32)),
+                   onPressed: () {
+                     ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(content: Text("You liked this meme!"))
+                     );
+                   },
+                 ),
+                 IconButton(
+                   icon: Text('😒', style: TextStyle(fontSize: 32)),
+                   onPressed: () {
+                     ScaffoldMessenger.of(context).showSnackBar(
+                         SnackBar(content: Text("You disliked this meme."))
+                     );
+                   },
+                 ),
+               ],
+
+             ),
+             SizedBox(height: 20),
             ElevatedButton.icon(
-              onPressed: () async {
+              onPressed:()async{
                 setState(() => isLoading = true);
                 await UpdateImg();
               },
