@@ -37,6 +37,7 @@ Color(0xFFFFF3E0),
 Color(0xFFFFEBEE),
 Color(0xFFE3F2FD),
 ];
+List<EmojiParticle> emojiParticles = [];
   void _goToBlankPage() {
     Navigator.push(
       context,
