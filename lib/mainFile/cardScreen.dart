@@ -1,5 +1,7 @@
  import 'dart:math';
+import 'package:card_x/main.dart';
 import 'package:card_x/mainFile/FetchMemes.dart';
+import 'package:card_x/mainFile/MainForm.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -198,7 +200,33 @@ void dispose() {
                   Navigator.pop(context);
                   _goToBlankPage();
                 },
-              )
+              ),
+             ListTile(
+               leading: Icon(Icons.logout),
+               title: Text("LogOut ",style: TextStyle(color: Colors.red),),
+               onTap: (){
+                 Navigator.pop(context);
+                 Navigator.pushReplacement(
+                     context, MaterialPageRoute(builder: (_)=>LoginScreen())
+                 );
+               },
+             )
+             /* ElevatedButton.icon(
+                onPressed: MainForm,
+                icon: const Icon(Icons.logout),
+                label: const Text("Log Out"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.redAccent,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+              ),*/
+
+
             ]
         ),
       ),
@@ -302,7 +330,7 @@ void dispose() {
       ),
     // ✅ Floating Button
 
-      floatingActionButton: Padding(
+      /*floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 20, right: 10),
         child: FloatingActionButton(
           onPressed: _goToBlankPage,
@@ -314,7 +342,7 @@ void dispose() {
           child: const Icon(Icons.person_2),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,*/
     );
   }
 }
