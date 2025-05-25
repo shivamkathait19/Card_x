@@ -148,8 +148,63 @@ void dispose() {
         centerTitle: true,
         elevation: 5,
         shadowColor: Colors.teal,
+        automaticallyImplyLeading: true,
       ),
-      body: Center(
+     /* drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.teal,
+              ),
+              child: Text(
+                'Welcome, ${widget.username ?? "User"}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('My Profile'),
+              onTap: () {
+                Navigator.pop(context);
+                _goToBlankPage();
+              },
+            ),
+          ],
+        ),
+      ),*/
+      drawer: Drawer(
+        child: ListView(
+          children:  <Widget>[
+             DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.teal
+                ),
+                child: Text('Welcome, ${widget.username ?? "User"}',
+                style: TextStyle(
+                    color: Colors.white,
+                  fontSize: 24,
+                ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('My profile'),
+                onTap: (){
+                  Navigator.pop(context);
+                  _goToBlankPage();
+                },
+              )
+            ]
+        ),
+      ),
+      body: Stack(
+    children: [
+      Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -242,7 +297,10 @@ void dispose() {
           ],
         ),
       ),
-      // ✅ Floating Button
+      ...emojiParticles,
+    ]
+      ),
+    // ✅ Floating Button
 
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 20, right: 10),
