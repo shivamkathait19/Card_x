@@ -1,5 +1,4 @@
  import 'dart:math';
-
 import 'package:card_x/mainFile/FetchMemes.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
@@ -393,7 +392,7 @@ class _BlankPageState extends State<BlankPage> {
               ),
             ),
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
         ],
       ),
     );
