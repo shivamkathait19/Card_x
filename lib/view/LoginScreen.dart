@@ -22,16 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
  bool isLoadingsingup = false;
 
 
- /*void NextScreen (){
-   if(_formKey.currentState!.validate()){
-     setState(() => isLoadingsingup = true);
-     Future.delayed( Duration(seconds: 2),() {
-       setState(() =>isLoadinglogin = false);
-       Navigator.push(context, MaterialPageRoute(builder : (context)=> MainForm()),
-       );
-     });
-   }
- }*/
+
   void _loginUser() {
     if (_formKey.currentState!.validate()) {
       setState(() => isLoadinglogin = true);
