@@ -23,9 +23,8 @@ class _MainFormState extends State<MainForm>{
   bool _obscurePassword = true;
 
 
-  void _lodingcard() {
-    GlobalKey<FormState> _key = new GlobalKey();
-    {
+  void _lodingcard(){
+    if (_key.currentState != null && _key.currentState!.validate()){
       setState(() => isloadingdone = true);
       Future.delayed(const Duration(seconds: 2), () {
         setState(() => isloadingdone = true);
@@ -275,11 +274,28 @@ class _MainFormState extends State<MainForm>{
        ),
        ),
        ),
-
-                      SizedBox(
+                     SizedBox(
                           height: 10,
                         ),
-                           SizedBox(
+                     isloadingdone
+                         ?  CircularProgressIndicator()
+                         : ElevatedButton(
+                       onPressed: _lodingcard,
+                       style: ElevatedButton.styleFrom(
+                         backgroundColor: Colors.teal,
+                         foregroundColor: Colors.white,
+                         minimumSize: const Size(double.infinity, 50),
+                         shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(12),
+                         ),
+                       ),
+                       child: const Text(
+                         'Login',
+                         style: TextStyle(fontWeight: FontWeight.bold),
+                       ),
+                     ),
+
+                     /*  SizedBox(
                              width: double.infinity,
                              child: ElevatedButton.icon(
                                onPressed: isloadingdone ? null : _lodingcard,
@@ -305,7 +321,7 @@ class _MainFormState extends State<MainForm>{
                                  style: const TextStyle(fontSize: 16),
                                ),
                              ),
-                           ),
+                           ),*/
                      SizedBox(
                        height: 100,
                      )
