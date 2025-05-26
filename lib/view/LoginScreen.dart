@@ -22,16 +22,16 @@ class _LoginScreenState extends State<LoginScreen> {
  bool isLoadingsingup = false;
 
 
- void _navigateTosigup (){
+ /*void NextScreen (){
    if(_formKey.currentState!.validate()){
      setState(() => isLoadingsingup = true);
-     Future.delayed(const Duration(seconds: 2),() {
+     Future.delayed( Duration(seconds: 2),() {
        setState(() =>isLoadinglogin = false);
        Navigator.push(context, MaterialPageRoute(builder : (context)=> MainForm()),
        );
      });
    }
- }
+ }*/
   void _loginUser() {
     if (_formKey.currentState!.validate()) {
       setState(() => isLoadinglogin = true);
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
       });
     }
   }
- /* NextScreen() {
+  NextScreen() {
     if (_formKey.currentState!.validate()) {}
     setState(() {
       isLoadingsingup = true;
@@ -60,22 +60,8 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     });
   }
-    Nextpage(){
-    if (_formKey.currentState!.validate()) {}
-    setState(() {
-      isLoadinglogin = true;
-    });
-    Future.delayed(Duration(seconds: 5),(){
-      setState(() {
-        isLoadinglogin = false; // Hide loading indicator
-      });
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (BuildContext context) =>CardScreen()),
-      );
-    });
-  }
-*/
+
+
 
   @override
        Widget build(BuildContext context){
@@ -208,8 +194,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: CircularProgressIndicator(strokeWidth: 2)),
                             )
                                 : TextButton(
-                              onPressed: _navigateTosigup,
-                              child: const Text(
+                              onPressed: NextScreen,
+                              child:  Text(
                                 'Sign Up',
                                 style: TextStyle(color: Colors.lightBlueAccent),
                               ),
