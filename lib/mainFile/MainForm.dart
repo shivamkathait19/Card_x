@@ -22,7 +22,28 @@ class _MainFormState extends State<MainForm>{
   String? selectedGender;
   bool _obscurePassword = true;
 
-  NextScreen(){
+
+  void _lodingcard() {
+    GlobalKey<FormState> _key = new GlobalKey();
+    {
+      setState(() => isloadingdone = true);
+      Future.delayed(const Duration(seconds: 2), () {
+        setState(() => isloadingdone = true);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  CardScreen(
+            username: usernameController.text,
+            full : fullnameController.text,
+            date: dateController.text,
+            mobile: mobileController.text,
+            email: emailController.text,
+          )),
+        );
+      });
+    }
+  }
+
+  /*void _loadinguser(){
     if (_key.currentState != null && _key.currentState!.validate()){
       if(selectedGender == null){}
       _key.currentState!.save();
@@ -30,21 +51,7 @@ class _MainFormState extends State<MainForm>{
     setState(() {
       isloadingdone = true;
     });
-   /* Future.delayed(Duration(),(){
-      setState((){
-        isloadingdone= false;
-        Navigator.push(
-            context,
-            MaterialPageRoute(builder: (BuildContext context) => BlankPage(
-              username: usernameController.text,
-              full : fullnameController.text,
-              date: dateController.text,
-              mobile: mobileController.text,
-              email: emailController.text,
-            ))
-        );
-      });
-    });*/
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -57,7 +64,7 @@ class _MainFormState extends State<MainForm>{
         ),
       ),
     );
-  }
+  }*/
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label,
@@ -275,7 +282,7 @@ class _MainFormState extends State<MainForm>{
                            SizedBox(
                              width: double.infinity,
                              child: ElevatedButton.icon(
-                               onPressed: isloadingdone ? null : NextScreen,
+                               onPressed: isloadingdone ? null : _lodingcard,
                                style: ElevatedButton.styleFrom(
                                  padding: const EdgeInsets.symmetric(vertical: 16),
                                  backgroundColor: Colors.teal,
