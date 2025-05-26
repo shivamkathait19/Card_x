@@ -201,6 +201,7 @@ void dispose() {
                   _goToBlankPage();
                 },
               ),
+             
              ListTile(
                leading: Icon(Icons.logout),
                title: Text("LogOut ",style: TextStyle(color: Colors.red),),
@@ -211,20 +212,7 @@ void dispose() {
                  );
                },
              )
-             /* ElevatedButton.icon(
-                onPressed: MainForm,
-                icon: const Icon(Icons.logout),
-                label: const Text("Log Out"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                ),
-              ),*/
+
 
 
             ]
@@ -273,27 +261,7 @@ void dispose() {
                ),
             ),
              Row(
-               /*mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-               children: [
-                 IconButton(
-                   icon: Text('😆', style: TextStyle(fontSize: 32)),
-                   onPressed: () {
-                     triggerEmojiBurst('😆');
-                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                         content: Text("You liked this meme!")));
 
-                   },
-                 ),
-                 IconButton(
-                   icon: Text('😒', style: TextStyle(fontSize: 32)),
-                   onPressed: () {
-                     triggerEmojiBurst('😒');
-                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                         content: Text("You disliked this meme."))
-                     );
-                   },
-                 ),
-               ],*/
              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
              children: [
                  GestureDetector(
@@ -330,19 +298,6 @@ void dispose() {
       ),
     // ✅ Floating Button
 
-      /*floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 20, right: 10),
-        child: FloatingActionButton(
-          onPressed: _goToBlankPage,
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: const Icon(Icons.person_2),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,*/
     );
   }
 }
@@ -463,20 +418,7 @@ class _BlankPageState extends State<BlankPage> {
           infoCard("Mobile Number", widget.mobile, Icons.phone_android),
           const SizedBox(height: 40),
           Center(
-            child: ElevatedButton.icon(
-              onPressed: mainPage,
-              icon: const Icon(Icons.logout),
-              label: const Text("Log Out"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-            ),
+
           ),
           SizedBox(height: 40),
         ],
