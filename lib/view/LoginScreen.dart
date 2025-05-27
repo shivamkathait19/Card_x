@@ -52,8 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-
-
   @override
        Widget build(BuildContext context){
     return Scaffold(backgroundColor: Colors.black,
@@ -85,13 +83,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
+                   SizedBox(height: 10),
+                     Text(
                     "Login to continue",
                     style: TextStyle(color: Colors.white54),
                   ),
                   SizedBox(
-                    height: 150,
+                    height: 120,
                   ),
                   Form(
                     key: _formKey,
@@ -99,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         // Email TextFormField
                         Padding(
-                          padding: EdgeInsets.only(left: 50, right: 50),
+                          padding: EdgeInsets.only(left: 10, right: 10),
                           child:  TextFormField(
                             controller: _emailController,
                             style: const TextStyle(color: Colors.white),
@@ -119,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 10,),
                         Padding(
-                          padding: EdgeInsets.only(left: 50, right: 50),
+                          padding: EdgeInsets.only(left: 10, right: 10),
                           child:  TextFormField(
                             controller: _passController,
                             obscureText: true,
@@ -151,23 +149,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Login Button
                         isLoadinglogin
                             ? const CircularProgressIndicator()
-                            : ElevatedButton(
-                          onPressed: _loginUser,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.teal,
-                            foregroundColor: Colors.white,
-                            minimumSize: const Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                            : Padding(
+                              padding: const EdgeInsets.only(left: 100,right: 100),
+                              child: ElevatedButton(
+                                                        onPressed: _loginUser,
+                                                        style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              foregroundColor: Colors.white,
+                              minimumSize: Size(double.infinity,50,),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                                                        ),
+                                                        child:Text(
+                              'Login',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                                                        ),
+                                                      ),
                             ),
-                          ),
-                          child: const Text(
-                            'Login',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
                         SizedBox(
-                          height: 270,
+                          height: 200,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
