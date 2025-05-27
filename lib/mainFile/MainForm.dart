@@ -67,15 +67,18 @@ class _MainFormState extends State<MainForm>{
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label,
-      labelStyle:  TextStyle(),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      labelStyle: TextStyle(fontStyle: FontStyle.italic),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)borderSide:
+      BorderSide(color: Colors.teal ,width:2))enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey)
+    ),
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
     );
   }
      @override
           Widget build(BuildContext context) {
           return Scaffold(
-            //backgroundColor: Colors.grey,
+           // backgroundColor: Colors.black26,
             appBar: AppBar(
               title: Text("User Registration"),
               backgroundColor: Colors.teal,
@@ -106,7 +109,7 @@ class _MainFormState extends State<MainForm>{
                                labelText: "Username",
                              ),
                              validator: (value) {
-                               if (value == null || value.isEmpty) {
+                               if (value == null || value.isEmpty){
                                  return "Username is required";
                                }
                                return null;
@@ -123,7 +126,7 @@ class _MainFormState extends State<MainForm>{
                                labelText: "Full Name",
                              ),
 
-                             validator: (value) {
+                             validator: (value){
                                if (value == null || value.isEmpty) {
                                  return "Full Name is required";
                                }
