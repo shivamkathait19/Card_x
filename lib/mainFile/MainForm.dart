@@ -68,26 +68,23 @@ class _MainFormState extends State<MainForm>{
     return InputDecoration(
       labelText: label,
       labelStyle: TextStyle(fontStyle: FontStyle.italic),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)borderSide:
-      BorderSide(color: Colors.teal ,width:2))enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.grey)
-    ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
     );
   }
      @override
           Widget build(BuildContext context) {
           return Scaffold(
-           // backgroundColor: Colors.black26,
+            // backgroundColor: Colors.black26,
             appBar: AppBar(
-              title: Text("User Registration"),
+              title: Text("User Registration",style: TextStyle(fontWeight: FontWeight.bold),),
               backgroundColor: Colors.teal,
-              foregroundColor: Colors.white,
+              foregroundColor: Colors.white70,
               centerTitle: true,
             ),
            //backgroundColor: Colors.white,
           body: Container(
-         child :SingleChildScrollView(
+            child :SingleChildScrollView(
          child: Padding(
            padding: EdgeInsets.all(16),
            child: Form
@@ -340,4 +337,6 @@ class _MainFormState extends State<MainForm>{
        );
   }
 }
+
+
 
