@@ -75,6 +75,7 @@ class _MainFormState extends State<MainForm>{
      @override
           Widget build(BuildContext context) {
           return Scaffold(
+            //backgroundColor: Colors.grey,
             appBar: AppBar(
               title: Text("User Registration"),
               backgroundColor: Colors.teal,
@@ -115,7 +116,7 @@ class _MainFormState extends State<MainForm>{
                          ),
                          SizedBox(width: 10), // Space between the fields
                          Expanded(
-                           child: ListTile(leading: Icon(Icons.person),
+                           child: ListTile(leading: Icon(Icons.badge),
                              title: TextFormField(
                              controller: fullnameController,
                              decoration: InputDecoration(
