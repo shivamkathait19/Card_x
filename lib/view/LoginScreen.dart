@@ -70,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       'asset/solated-on-black.jpg',
-                      height: 140,
+                      height: 150,
                       width: 140,
                       fit: BoxFit.cover,
                     ),
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Welcome Back!",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: Colors.white54),
                   ),
                   SizedBox(
-                    height: 120,
+                    height: 100,
                   ),
                   Form(
                     key: _formKey,
@@ -168,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       ),
                             ),
                         SizedBox(
-                          height: 200,
+                          height: 230,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
