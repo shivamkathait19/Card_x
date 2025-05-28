@@ -30,7 +30,7 @@ class CardScreen extends StatefulWidget {
   State<CardScreen> createState() => _CardScreenState();
 }
 
-class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin  {
+class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin {
 final List<Color> bgColors = [
 Color(0xFFF0F2F5),
 Color(0xFFE8F5E9),
@@ -84,7 +84,7 @@ List<EmojiParticle> emojiParticles = [];
     });
   }
 
-  void  _showTargetDialog() {
+  void  _showTargetDialog(){
     showDialog(
       context: context,
       builder: (BuildContext context) {

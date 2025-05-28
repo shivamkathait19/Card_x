@@ -30,7 +30,7 @@ class _MainFormState extends State<MainForm>{
         setState(() => isloadingdone = true);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  CardScreen(
+          MaterialPageRoute(builder: (context) => CardScreen(
             username: usernameController.text,
             full : fullnameController.text,
             date: dateController.text,
@@ -67,7 +67,7 @@ class _MainFormState extends State<MainForm>{
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(fontStyle: FontStyle.italic),
+      labelStyle: TextStyle(fontStyle: FontStyle.italic,),
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
     );
@@ -234,16 +234,16 @@ class _MainFormState extends State<MainForm>{
                      ),
 
                Card(
-       elevation: 2,
+    //   elevation: 2,
        shape: RoundedRectangleBorder(
        borderRadius: BorderRadius.circular(10)),
        child: Padding(
-       padding: const EdgeInsets.symmetric(vertical: 8),
+       padding: EdgeInsets.symmetric(vertical: 8),
        child: Column(
        children: [
        const ListTile(
        leading: Icon(Icons.wc),
-       title: Text("Select Gender"),
+       title: Text("Select Gender",style: TextStyle(fontWeight: FontWeight.w300 ),),
        ),
        RadioListTile<String>(
        title: const Text("Male"),
@@ -295,7 +295,6 @@ class _MainFormState extends State<MainForm>{
                          style: TextStyle(fontWeight: FontWeight.bold),
                        ),
                      ),
-
                      /*  SizedBox(
                              width: double.infinity,
                              child: ElevatedButton.icon(
