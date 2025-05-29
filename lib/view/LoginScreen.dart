@@ -91,9 +91,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: Colors.white54),
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 40,
                   ),
-                  Form(
+              Container(
+                padding: const EdgeInsets.all(50),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.05),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.white10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child:   Form(
                     key: _formKey,
                     child: Column(
                       children: [
@@ -152,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         isLoadinglogin
                             ? const CircularProgressIndicator()
                             : Padding(
-                              padding: const EdgeInsets.only(left: 100,right: 100),
+                              padding: const EdgeInsets.only(left:50,right:50),
                               child: ElevatedButton(
                                                         onPressed: _loginUser,
                                                         style: ElevatedButton.styleFrom(
@@ -166,6 +180,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child:Text('Login', style: TextStyle(fontWeight: FontWeight.bold),),
                               ),
                             ),
+
+SizedBox(height: 90,) ,
                         SizedBox(
                           width: double.infinity,
                           child: Padding(
@@ -174,11 +190,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               onPressed: (){
                                 // Add Facebook login logic here
                               },
-                              icon: const Icon(Icons.facebook, color: Colors.white),
+                              icon:  Icon(Icons.facebook, color: Colors.white),
                               label: const Text("Continue with Facebook"),
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFF1877F2),
-                               // padding:  EdgeInsets.symmetric(vertical: 15),
+                                padding:  EdgeInsets.symmetric(vertical: 5),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -187,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        Text("Or",style: TextStyle(fontSize:12),),
+                        Text("Or",style: TextStyle(fontSize:12,color: Colors.white60),),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
@@ -201,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             label: Text("Continue with Google"),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:  Color(0xFF30A1D2), // Google red
-                            //  padding:  EdgeInsets.symmetric(vertical:10),
+                             padding:  EdgeInsets.symmetric(vertical:5),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -211,7 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
 
                         SizedBox(
-                          height: 150,
+                          height: 50,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -242,6 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
 
                   ),
+              ),
                 ],
               ),
             ),
@@ -251,3 +268,32 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 }
+Widget _buildTextField({
+  required TextEditingController controller,
+  required String label,
+  required IconData icon,
+  required bool isPassword,
+}) {
+  return TextFormField(
+    controller: controller,
+    obscureText: isPassword,
+    style: const TextStyle(color: Colors.white),
+    decoration: InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(color: Colors.white70),
+      prefixIcon: Icon(icon, color: Colors.white70),
+      filled: true,
+      fillColor: Colors.white.withOpacity(0.1),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Colors.white24),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: const BorderSide(color: Colors.blueAccent),
+      ),
+    ),
+    validator: (value) => value!.isEmpty ? 'Please enter your $label' : null,
+  );
+}
+
