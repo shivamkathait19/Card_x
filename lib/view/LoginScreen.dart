@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           // Email TextFormField
                           Padding(
-                            padding: EdgeInsets.only(left: 10, right: 10),
+                            padding: EdgeInsets.only(left: 10, right: 10,top: 30),
                             child:  TextFormField(
                               controller: _emailController,
                               style: const TextStyle(color: Colors.white),
@@ -170,8 +170,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               : Padding(
                                 padding: const EdgeInsets.only(left:50,right:50),
                                 child: ElevatedButton(
-                                                          onPressed: _loginUser,
-                                                          style: ElevatedButton.styleFrom(
+                                  onPressed: _loginUser,
+                                  style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
                                 minimumSize: Size(double.infinity,50,),
@@ -183,11 +183,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
 
-                SizedBox(height: 90,) ,
+                           SizedBox(height: 100,) ,
                           SizedBox(
                             width: double.infinity,
+                            height: 45,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 50,right: 50),
+                              padding: const EdgeInsets.only(left: 10,right: 10),
                               child: ElevatedButton.icon(
                                 onPressed: (){
                                   // Add Facebook login logic here
@@ -196,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 label: const Text("Continue with Facebook"),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Color(0xFF1877F2),
-                                  padding:  EdgeInsets.symmetric(vertical: 5),
+                                 //padding:  EdgeInsets.symmetric(vertical:10),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
@@ -208,28 +209,32 @@ class _LoginScreenState extends State<LoginScreen> {
                           Text("Or",style: TextStyle(fontSize:12,color: Colors.white60),),
                           SizedBox(
                             width: double.infinity,
-                            child: ElevatedButton.icon(
-                              onPressed: (){
-                                // Add Google login logic here
-                              },
-                              icon:  Icon(
-                                FontAwesomeIcons.google,
-                                color: Colors.white,
-                              ),
-                              label: Text("Continue with Google"),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:  Color(0xFF30A1D2), // Google red
-                               padding:  EdgeInsets.symmetric(vertical:5),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                            height: 45,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10,right: 10),
+                              child: ElevatedButton.icon(
+                                onPressed: (){
+                                  // Add Google login logic here
+                                },
+                                icon:  Icon(
+                                  FontAwesomeIcons.google,
+                                  color: Colors.white,
                                 ),
-                                foregroundColor: Colors.white,
+                                label: Text("Continue with Google"),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:  Color(0xFF30A1D2), // Google red
+                                // padding:  EdgeInsets.symmetric(vertical:5),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  foregroundColor: Colors.white,
+                                ),
                               ),
                             ),
                           ),
 
                           SizedBox(
-                            height: 50,
+                            height: 20,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -253,6 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   style: TextStyle(color: Colors.lightBlueAccent),
                                 ),
                               ),
+                              SizedBox(height: 80,)
                             ],
                           )
 
@@ -271,32 +277,3 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 }
-Widget _buildTextField({
-  required TextEditingController controller,
-  required String label,
-  required IconData icon,
-  required bool isPassword,
-}) {
-  return TextFormField(
-    controller: controller,
-    obscureText: isPassword,
-    style: const TextStyle(color: Colors.white),
-    decoration: InputDecoration(
-      labelText: label,
-      labelStyle: const TextStyle(color: Colors.white70),
-      prefixIcon: Icon(icon, color: Colors.white70),
-      filled: true,
-      fillColor: Colors.white.withOpacity(0.1),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.white24),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Colors.blueAccent),
-      ),
-    ),
-    validator: (value) => value!.isEmpty ? 'Please enter your $label' : null,
-  );
-}
-
