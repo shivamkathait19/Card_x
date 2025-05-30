@@ -168,11 +168,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           isLoadinglogin
                               ? const CircularProgressIndicator()
                               : Padding(
-                                padding: const EdgeInsets.only(left:50,right:50),
+                                padding: const EdgeInsets.only(left:10,right:10),
                                 child: ElevatedButton(
                                   onPressed: _loginUser,
                                   style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue,
+                                backgroundColor: Colors.blue.withOpacity(0.30),
                                 foregroundColor: Colors.white,
                                 minimumSize: Size(double.infinity,50,),
                                 shape: RoundedRectangleBorder(
@@ -183,7 +183,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
 
-                           SizedBox(height: 100,) ,
+                           SizedBox(height: 80,) ,
                           SizedBox(
                             width: double.infinity,
                             height: 45,
@@ -196,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 icon:  Icon(Icons.facebook, color: Colors.white),
                                 label: const Text("Continue with Facebook"),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Color(0xFF1877F2),
+                                  backgroundColor: Colors.blue.withOpacity(0.50),
                                  //padding:  EdgeInsets.symmetric(vertical:10),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -222,7 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 label: Text("Continue with Google"),
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor:  Color(0xFF30A1D2), // Google red
+                                  backgroundColor:  Colors.blue.withOpacity(0.70), // Google red
                                 // padding:  EdgeInsets.symmetric(vertical:5),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
