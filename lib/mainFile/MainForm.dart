@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +25,25 @@ class _MainFormState extends State<MainForm>{
   bool _obscurePassword = true;
 
 
+  // Gradient Colors for background animation
+  List<List<Color>> gradientColors = [
+    [Colors.teal.shade300, Colors.blue.shade200],
+    [Colors.purple.shade300, Colors.pink.shade200],
+    [Colors.orange.shade200, Colors.deepOrange.shade300],
+    [Colors.green.shade300, Colors.lightGreen.shade200],
+  ];
+  int currentGradientIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 5), (timer) {
+      setState(() {
+        currentGradientIndex =
+            (currentGradientIndex + 1) % gradientColors.length;
+      });
+    });
+  }
   void _lodingcard(){
     if (_key.currentState != null && _key.currentState!.validate()){
       setState(() => isloadingdone = true);
