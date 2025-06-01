@@ -90,10 +90,25 @@ class _MainFormState extends State<MainForm>{
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(fontStyle: FontStyle.italic,color: Colors.white),
-     // border: Border.all(color: Colors.white),
-      border:  OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide:BorderSide(color: Colors.white), ),
-      contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
+      labelStyle: TextStyle(
+        fontStyle: FontStyle.italic,
+        color: Colors.white,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white54),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.amber, width: 2),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.redAccent),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      filled: true,
+      fillColor: Colors.white.withOpacity(0.1),
+      contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
     );
   }
      @override
@@ -171,7 +186,7 @@ class _MainFormState extends State<MainForm>{
                height: 10,
              ),
                      ListTile(
-                         leading: Icon(Icons.calendar_today),
+                         leading: Icon(Icons.calendar_today,color: Colors.white,),
                          title:
                          TextFormField(
                           controller: dateController,
@@ -193,7 +208,7 @@ class _MainFormState extends State<MainForm>{
                             },
 
                              decoration: _inputDecoration("Date of Birth").copyWith(
-                               suffixIcon: const Icon(Icons.calendar_today),
+                               suffixIcon: const Icon(Icons.calendar_today,color: Colors.white,),
                              ),
                              validator: (value) =>
                            value!.isEmpty? "Date of Birth is required" : null
@@ -203,7 +218,7 @@ class _MainFormState extends State<MainForm>{
                        height: 10,
                      ),
                      ListTile(
-                       leading: Icon(Icons.phone),
+                       leading: Icon(Icons.phone,color: Colors.white),
                        title:
                        TextFormField(
                           controller: mobileController,
@@ -220,7 +235,7 @@ class _MainFormState extends State<MainForm>{
                        height: 10,
                      ),
                         ListTile(
-                           leading: Icon(Icons.email),
+                           leading: Icon(Icons.email,color: Colors.white,),
                            title:
                            TextFormField(
                           controller: emailController,
@@ -237,13 +252,13 @@ class _MainFormState extends State<MainForm>{
                        height: 10,
                      ),
                      ListTile(
-                         leading: Icon(Icons.password) ,
+                         leading: Icon(Icons.password,color: Colors.white,) ,
                        title:TextFormField(
                        controller: passController,
                        obscureText: _obscurePassword,
                        decoration: _inputDecoration("Password").copyWith(
                          suffixIcon: IconButton(
-                           icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+                           icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off,color: Colors.white),
                            onPressed: () {
                              setState(() {
                                _obscurePassword = !_obscurePassword;
@@ -269,24 +284,24 @@ class _MainFormState extends State<MainForm>{
                Card(
     //   elevation: 2,
        shape: RoundedRectangleBorder(
-       borderRadius: BorderRadius.circular(10),),color: Colors.white70.withOpacity(0.15),
+       borderRadius: BorderRadius.circular(10),),color: Colors.white70.withOpacity(0.500),
        child: Padding(
        padding: EdgeInsets.symmetric(vertical: 8),
        child: Column(
        children: [
        const ListTile(
-       leading: Icon(Icons.wc),
+       leading: Icon(Icons.wc,color: Colors.white,),
        title: Text("Select Gender",style: TextStyle(fontWeight: FontWeight.w300 ),),
        ),
        RadioListTile<String>(
-       title: const Text("Male"),
+       title: const Text("Male",style: TextStyle(color: Colors.white),),
        value: "Male",
        groupValue: selectedGender,
        onChanged: (value) =>
        setState(() => selectedGender = value),
        ),
        RadioListTile<String>(
-       title: const Text("Female"),
+       title: const Text("Female",style: TextStyle(color: Colors.white)),
        value: "Female",
        groupValue: selectedGender,
        onChanged: (value) =>
@@ -356,7 +371,7 @@ class _MainFormState extends State<MainForm>{
                              ),
                            ),*/
                      SizedBox(
-                       height: 100,
+                       height: 150,
                      )
                    ],
                      ),
