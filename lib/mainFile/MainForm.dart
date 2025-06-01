@@ -1,3 +1,5 @@
+
+
 import 'dart:async';
 
 import 'package:card_x/mainFile/cardScreen.dart';
@@ -104,7 +106,13 @@ class _MainFormState extends State<MainForm>{
               centerTitle: true,
             ),
            //backgroundColor: Colors.white,
-          body: Container(
+          body: AnimatedContainer(duration: Duration(seconds: 3),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: gradientColors[currentGradientIndex],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight),
+          ),
+          child:SafeArea(
             child :SingleChildScrollView(
          child: Padding(
            padding: EdgeInsets.all(16),
@@ -353,7 +361,7 @@ class _MainFormState extends State<MainForm>{
          ),
        ),
           ),
-
+          ),
        );
   }
 }
