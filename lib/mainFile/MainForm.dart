@@ -29,17 +29,17 @@ class _MainFormState extends State<MainForm>{
 
   // Gradient Colors for background animation
   List<List<Color>> gradientColors = [
-    [Colors.teal.shade300, Colors.blue.shade200],
-    [Colors.purple.shade300, Colors.pink.shade200],
-    [Colors.orange.shade200, Colors.deepOrange.shade300],
-    [Colors.green.shade300, Colors.lightGreen.shade200],
+  //  [Colors.teal.shade300, Colors.blue.shade200],
+    //[Colors.purple.shade300, Colors.pink.shade200],
+    //[Colors.orange.shade200, Colors.deepOrange.shade300],
+    //[Colors.green.shade300, Colors.lightGreen.shade200],
   ];
   int currentGradientIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 5), (timer) {
+    Timer.periodic(const Duration(seconds: 2), (timer) {
       setState(() {
         currentGradientIndex =
             (currentGradientIndex + 1) % gradientColors.length;
@@ -90,8 +90,9 @@ class _MainFormState extends State<MainForm>{
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(fontStyle: FontStyle.italic,),
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      labelStyle: TextStyle(fontStyle: FontStyle.italic,color: Colors.white),
+     // border: Border.all(color: Colors.white),
+      border:  OutlineInputBorder(borderRadius: BorderRadius.circular(10),borderSide:BorderSide(color: Colors.white), ),
       contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
     );
   }
@@ -106,13 +107,14 @@ class _MainFormState extends State<MainForm>{
               centerTitle: true,
             ),
            //backgroundColor: Colors.white,
-          body: AnimatedContainer(duration: Duration(seconds: 3),
+          body: /*AnimatedContainer(duration: Duration(seconds: 3),
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: gradientColors[currentGradientIndex],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight),
-          ),
-          child:SafeArea(
+          ),*/
+          Container(
+            color: Colors.black,
             child :SingleChildScrollView(
          child: Padding(
            padding: EdgeInsets.all(16),
@@ -127,12 +129,14 @@ class _MainFormState extends State<MainForm>{
                        children:[
                          Expanded(
                            child:  ListTile(
-                             leading: Icon(Icons.person),
+                             leading: Icon(Icons.person,color: Colors.white,),
                              title:
                             TextFormField(
                              controller: usernameController,
                              decoration: InputDecoration(
-                               labelText: "Username",
+                                 labelText: "Username",labelStyle: TextStyle(
+                               color: Colors.white,
+                             )
                              ),
                              validator: (value) {
                                if (value == null || value.isEmpty){
@@ -145,11 +149,11 @@ class _MainFormState extends State<MainForm>{
                          ),
                          SizedBox(width: 10), // Space between the fields
                          Expanded(
-                           child: ListTile(leading: Icon(Icons.badge),
+                           child: ListTile(leading: Icon(Icons.badge,color: Colors.white,),
                              title: TextFormField(
                              controller: fullnameController,
                              decoration: InputDecoration(
-                               labelText: "Full Name",
+                               labelText: "Full Name",labelStyle: TextStyle(color: Colors.white),
                              ),
 
                              validator: (value){
@@ -265,7 +269,7 @@ class _MainFormState extends State<MainForm>{
                Card(
     //   elevation: 2,
        shape: RoundedRectangleBorder(
-       borderRadius: BorderRadius.circular(10)),
+       borderRadius: BorderRadius.circular(10),),color: Colors.white70.withOpacity(0.15),
        child: Padding(
        padding: EdgeInsets.symmetric(vertical: 8),
        child: Column(
@@ -361,7 +365,7 @@ class _MainFormState extends State<MainForm>{
          ),
        ),
           ),
-          ),
+       //   ),
        );
   }
 }
