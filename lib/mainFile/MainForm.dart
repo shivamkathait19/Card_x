@@ -1,12 +1,9 @@
-
-
 import 'dart:async';
-
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
- class MainForm extends StatefulWidget {
+  class MainForm extends StatefulWidget {
     MainForm({super.key});
 
   @override
@@ -65,31 +62,9 @@ class _MainFormState extends State<MainForm>{
     }
   }
 
-  /*void _loadinguser(){
-    if (_key.currentState != null && _key.currentState!.validate()){
-      if(selectedGender == null){}
-      _key.currentState!.save();
-    }
-    setState(() {
-      isloadingdone = true;
-    });
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) => CardScreen(
-          username: usernameController.text,
-          full : fullnameController.text,
-          date: dateController.text,
-          mobile: mobileController.text,
-          email: emailController.text,
-        ),
-      ),
-    );
-  }*/
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
-      labelText: label,
+      labelText: label ,
       labelStyle: TextStyle(
         fontStyle: FontStyle.italic,
         color: Colors.white,
@@ -122,12 +97,7 @@ class _MainFormState extends State<MainForm>{
               centerTitle: true,
             ),
            //backgroundColor: Colors.white,
-          body: /*AnimatedContainer(duration: Duration(seconds: 3),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(colors: gradientColors[currentGradientIndex],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight),
-          ),*/
+          body:
           Container(
             color: Colors.black,
             child :SingleChildScrollView(
@@ -147,7 +117,7 @@ class _MainFormState extends State<MainForm>{
                              leading: Icon(Icons.person,color: Colors.white,),
                              title:
                             TextFormField(
-                             controller: usernameController,
+                             controller: usernameController, style: TextStyle(color: Colors.white),
                              decoration: InputDecoration(
                                  labelText: "Username",labelStyle: TextStyle(
                                color: Colors.white,
@@ -166,7 +136,7 @@ class _MainFormState extends State<MainForm>{
                          Expanded(
                            child: ListTile(leading: Icon(Icons.badge,color: Colors.white,),
                              title: TextFormField(
-                             controller: fullnameController,
+                             controller: fullnameController,style: TextStyle(color: Colors.white),
                              decoration: InputDecoration(
                                labelText: "Full Name",labelStyle: TextStyle(color: Colors.white),
                              ),
@@ -189,7 +159,7 @@ class _MainFormState extends State<MainForm>{
                          leading: Icon(Icons.calendar_today,color: Colors.white,),
                          title:
                          TextFormField(
-                          controller: dateController,
+                          controller: dateController, style: TextStyle(color: Colors.white),
                           readOnly: true,
                           onTap:() async{
                             DateTime? pickedDate =await showDatePicker(context: context,
@@ -221,7 +191,7 @@ class _MainFormState extends State<MainForm>{
                        leading: Icon(Icons.phone,color: Colors.white),
                        title:
                        TextFormField(
-                          controller: mobileController,
+                          controller: mobileController, style: TextStyle(color: Colors.white),
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.digitsOnly
@@ -238,7 +208,7 @@ class _MainFormState extends State<MainForm>{
                            leading: Icon(Icons.email,color: Colors.white,),
                            title:
                            TextFormField(
-                          controller: emailController,
+                          controller: emailController, style: TextStyle(color: Colors.white),
                           keyboardType: TextInputType.emailAddress,
                           decoration: _inputDecoration(
                             "Email address",
@@ -254,7 +224,7 @@ class _MainFormState extends State<MainForm>{
                      ListTile(
                          leading: Icon(Icons.password,color: Colors.white,) ,
                        title:TextFormField(
-                       controller: passController,
+                       controller: passController, style: TextStyle(color: Colors.white),
                        obscureText: _obscurePassword,
                        decoration: _inputDecoration("Password").copyWith(
                          suffixIcon: IconButton(
@@ -343,33 +313,7 @@ class _MainFormState extends State<MainForm>{
                          style: TextStyle(fontWeight: FontWeight.bold),
                        ),
                      ),
-                     /*  SizedBox(
-                             width: double.infinity,
-                             child: ElevatedButton.icon(
-                               onPressed: isloadingdone ? null : _lodingcard,
-                               style: ElevatedButton.styleFrom(
-                                 padding: const EdgeInsets.symmetric(vertical: 16),
-                                 backgroundColor: Colors.teal,
-                                 shape: RoundedRectangleBorder(
-                                   borderRadius: BorderRadius.circular(12),
-                                 ),
-                               ),
-                               icon: isloadingdone
-                                   ? const SizedBox(
-                                 height: 20,
-                                 width: 20,
-                                 child: CircularProgressIndicator(
-                                   color: Colors.white,
-                                   strokeWidth: 2,
-                                 ),
-                               )
-                                   : const Icon(Icons.navigate_next),
-                               label: Text(
-                                 isloadingdone ? "Loading..." : "Submit",
-                                 style: const TextStyle(fontSize: 16),
-                               ),
-                             ),
-                           ),*/
+
                      SizedBox(
                        height: 150,
                      )
