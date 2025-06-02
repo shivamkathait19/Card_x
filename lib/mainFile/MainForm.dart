@@ -99,7 +99,7 @@ class _MainFormState extends State<MainForm>{
         borderRadius: BorderRadius.circular(12),
       ),
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.amber, width: 2),
+        borderSide: BorderSide(color: Colors.white, width: 2),
         borderRadius: BorderRadius.circular(12),
       ),
       errorBorder: OutlineInputBorder(
