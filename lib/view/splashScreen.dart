@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+   SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>{
+
+
   void _goToBlankPage() {
     Navigator.push(
       context,
@@ -17,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: Colors.white,
       body:
@@ -38,6 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(
               height: 100,
             ),
+
             Row(
               children: [
                 Padding(
@@ -94,17 +97,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
 
 
-class BlankPage extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text("Blank Page")),
-body: Center(
-child: Text(
-'This is a blank page.',
-style: TextStyle(fontSize: 24, color: Colors.black),
-),
-),
-);
-}
-}
+ class BlankPage extends StatelessWidget {
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+   appBar: AppBar(title: Text("Blank Page")),
+     body: Center(
+     child: Text(
+  'This is a blank page.',
+    style: TextStyle(fontSize: 24, color: Colors.black),
+ ),
+ ),
+  );
+  }
+   }
