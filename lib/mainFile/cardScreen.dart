@@ -152,33 +152,6 @@ void dispose() {
         shadowColor: Colors.teal,
         automaticallyImplyLeading: true,
       ),
-     /* drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.teal,
-              ),
-              child: Text(
-                'Welcome, ${widget.username ?? "User"}',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('My Profile'),
-              onTap: () {
-                Navigator.pop(context);
-                _goToBlankPage();
-              },
-            ),
-          ],
-        ),
-      ),*/
       drawer: Drawer(
         child: ListView(
           children:  <Widget>[
@@ -261,8 +234,7 @@ void dispose() {
                ),
             ),
              Row(
-
-             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
              children: [
                  GestureDetector(
                  onTap: () => showEmojiBurst("😂"),
@@ -402,10 +374,10 @@ class _BlankPageState extends State<BlankPage> {
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          const SizedBox(height: 30),
-          const CircleAvatar(
+       body: ListView(
+         children: [
+           const SizedBox(height: 30),
+           const CircleAvatar(
             radius: 50,
             backgroundColor: Colors.teal,
             child: Icon(Icons.person, size: 50, color: Colors.white),
