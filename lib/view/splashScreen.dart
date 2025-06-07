@@ -21,17 +21,8 @@ class _SplashScreenState extends State<SplashScreen>{
       Container(
         child: Column(
           children:[
-          Padding(
-            padding:  EdgeInsets.only(left: 30,top: 40),
-            child: Align(
-            alignment: Alignment.topLeft,
-            child: FloatingActionButton(
-            onPressed: _goToBlankPage,
-            child: Icon(Icons.person),
-           // backgroundColor: Colors.blue,
-            ),
-            ),
-          ),
+
+          
             SizedBox(
               height: 100,
             ),
