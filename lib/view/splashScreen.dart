@@ -11,12 +11,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>{
 
 
-  void _goToBlankPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder:(context) => BlankPage()),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context){
@@ -94,6 +89,7 @@ class _SplashScreenState extends State<SplashScreen>{
     );
   }
 }
+
 
 
 
