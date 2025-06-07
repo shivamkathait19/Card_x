@@ -21,8 +21,6 @@ class _SplashScreenState extends State<SplashScreen>{
       Container(
         child: Column(
           children:[
-
-          
             SizedBox(
               height: 100,
             ),
