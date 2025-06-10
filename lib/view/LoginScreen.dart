@@ -2,7 +2,69 @@ import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+void main() {
+  runApp(MaterialApp(home: LoginScreen()));
+}
 
+class JumpingDots extends StatefulWidget {
+  const JumpingDots({super.key, this.color = Colors.white});
+  final Color color;
+
+  @override
+  State<JumpingDots> createState() => _JumpingDotsState();
+}
+
+class _JumpingDotsState extends State<JumpingDots>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late List<Animation<double>> _animations;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 800), vsync: this)
+      ..repeat(reverse: true);
+    _animations = List.generate(3, (i) {
+      return Tween<double>(begin: 0, end: -8).animate(CurvedAnimation(
+        parent: _controller,
+        curve: Interval(i * 0.2, 1.0, curve: Curves.easeInOut),
+      ));
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Widget _buildDot(Animation<double> animation) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (_, child) {
+        return Transform.translate(offset: Offset(0, animation.value), child: child);
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 2),
+        width: 8,
+        height: 8,
+        decoration: BoxDecoration(
+          color: widget.color,
+          shape: BoxShape.circle,
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: _animations.map(_buildDot).toList(),
+    );
+  }
+}
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -166,9 +228,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           // Login Button
                           isLoadinglogin
-                              ? const CircularProgressIndicator()
+                              ? const JumpingDots(color: Colors.white,)
                               : Padding(
-                                padding: const EdgeInsets.only(left:10,right:10),
+                                padding: EdgeInsets.only(left:10,right:10),
                                 child: ElevatedButton(
                                   onPressed: _loginUser,
                                   style: ElevatedButton.styleFrom(
@@ -249,7 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: SizedBox(
                                     height: 20,
                                     width: 20,
-                                    child: CircularProgressIndicator(strokeWidth: 2)),
+                                    child: JumpingDots(color: Colors.white,)),
                               )
                                   : TextButton(
                                 onPressed: NextScreen,
