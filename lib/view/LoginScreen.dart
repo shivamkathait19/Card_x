@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
@@ -117,12 +119,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
-       Widget build(BuildContext context){
+  bool get showOverlay => isLoadinglogin || isLoadingsingup;
+  Widget build(BuildContext context){
     return Scaffold(backgroundColor: Colors.black,
       body: Container(
         decoration: BoxDecoration(
         ),
-          child: SafeArea(
+          child: Stack(
+    children: [
+          SafeArea(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -230,7 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           isLoadinglogin
                               ? const JumpingDots(color: Colors.white,)
                               : Padding(
-                                padding: EdgeInsets.only(left:10,right:10),
+                                padding: const EdgeInsets.only(left:10,right:10),
                                 child: ElevatedButton(
                                   onPressed: _loginUser,
                                   style: ElevatedButton.styleFrom(
@@ -334,8 +339,21 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
           ),
-        ),
-      );
 
+    if (showOverlay)
+    Positioned.fill(
+    child: BackdropFilter(
+    filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+    child: Container(
+    color: Colors.black.withOpacity(0.5),
+    alignment: Alignment.center,
+    child: const JumpingDots(),
+    ),
+    ),
+    ),
+    ],
+        ),
+      ),
+    );
   }
 }
