@@ -2,7 +2,6 @@ import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
-import 'package:card_x/mainFile/lock.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
