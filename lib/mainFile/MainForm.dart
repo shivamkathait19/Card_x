@@ -138,8 +138,7 @@ class _MainFormState extends State<MainForm>{
                              decoration: _inputDecoration(
                                "Full Name",
                              ),
-
-                             validator: (value){
+                               validator: (value){
                                if (value == null || value.isEmpty) {
                                  return "Full Name is required";
                                }
