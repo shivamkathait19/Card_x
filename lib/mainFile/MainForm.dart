@@ -118,10 +118,8 @@ class _MainFormState extends State<MainForm>{
                              title:
                             TextFormField(
                              controller: usernameController, style: TextStyle(color: Colors.white),
-                             decoration: InputDecoration(
-                                 labelText: "Username",labelStyle: TextStyle(
-                               color: Colors.white,
-                             )
+                             decoration: _inputDecoration(
+                                 "Username"
                              ),
                              validator: (value) {
                                if (value == null || value.isEmpty){
@@ -137,8 +135,8 @@ class _MainFormState extends State<MainForm>{
                            child: ListTile(leading: Icon(Icons.badge,color: Colors.white,),
                              title: TextFormField(
                              controller: fullnameController,style: TextStyle(color: Colors.white),
-                             decoration: InputDecoration(
-                               labelText: "Full Name",labelStyle: TextStyle(color: Colors.white),
+                             decoration: _inputDecoration(
+                               "Full Name",
                              ),
 
                              validator: (value){
