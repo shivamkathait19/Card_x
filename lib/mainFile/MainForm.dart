@@ -4,37 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
-
-void main() {
-
-  runApp(MaterialApp(home: LiquidLoader()));
-}
-
-class LiquidLoader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SizedBox(
-          width: 120,
-          height: 120,
-          child: LiquidCircularProgressIndicator(
-            value: 0.6, // Fill 60%
-            valueColor: AlwaysStoppedAnimation(Colors.orange),
-            backgroundColor: Colors.white,
-            borderColor: Colors.deepPurple,
-            borderWidth: 2.0,
-            direction: Axis.vertical,
-            center: Text("Loading", style: TextStyle(fontSize: 14)),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
   class MainForm extends StatefulWidget {
     MainForm({super.key});
 
@@ -170,7 +139,8 @@ class _MainFormState extends State<MainForm>{
                              decoration: _inputDecoration(
                                "Full Name",
                              ),
-                               validator: (value){
+
+                             validator: (value){
                                if (value == null || value.isEmpty) {
                                  return "Full Name is required";
                                }
@@ -326,7 +296,7 @@ class _MainFormState extends State<MainForm>{
                           height: 10,
                         ),
                      isloadingdone
-                         ? LiquidLinearProgressIndicator()
+                         ? LiquidCircularProgressIndicator()
                          : ElevatedButton(
                        onPressed: _lodingcard,
                        style: ElevatedButton.styleFrom(
