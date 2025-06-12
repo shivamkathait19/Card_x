@@ -154,41 +154,86 @@ void dispose() {
       ),
       drawer: Drawer(
         child: ListView(
-          children:  <Widget>[
-             DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.teal
-                ),
-                child: Text('Welcome, ${widget.username ?? "User"}',
-                style: TextStyle(
-                    color: Colors.white,
-                  fontSize: 24,
-                ),
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.teal, Colors.tealAccent.shade200],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
               ),
-              ListTile(
-                leading: Icon(Icons.person),
-                title: Text('My profile'),
-                onTap: (){
-                  Navigator.pop(context);
-                  _goToBlankPage();
-                },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person, color: Colors.teal, size: 30),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Welcome, ${widget.username ?? "User"}',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  SizedBox(height: 10,),
+
+                ],
               ),
-             
-             ListTile(
-               leading: Icon(Icons.logout),
-               title: Text("LogOut ",style: TextStyle(color: Colors.red),),
-               onTap: (){
-                 Navigator.pop(context);
-                 Navigator.pushReplacement(
-                     context, MaterialPageRoute(builder: (_)=>LoginScreen())
-                 );
-               },
-             )
+            ),
 
-
-
-            ]
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () => Navigator.pop(context),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('My Profile'),
+              onTap: () {
+                Navigator.pop(context);
+                _goToBlankPage();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.favorite),
+              title: Text('Favorites'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.info_outline),
+              title: Text('About App'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.help_outline),
+              title: Text('Help & Support'),
+              onTap:(){},
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Log Out", style: TextStyle(color: Colors.red)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+              },
+            ),
+            SizedBox(height: 20),
+            Center(
+              child: Text(
+                "Made with ❤️ by shivam",
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+            SizedBox(height: 10),
+          ],
         ),
       ),
       body: Stack(
