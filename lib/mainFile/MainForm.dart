@@ -292,13 +292,11 @@ class _MainFormState extends State<MainForm>{
        ),
        ),
        ),
-                     SizedBox(
-                          height: 10,
-                        ),
+                     SizedBox(height: 10,),
                      isloadingdone
                          ? SpinKitPouringHourGlass(
                        color: Colors.white70,
-                       size: 50.0,
+                       size: 100.0,
                        //type: SpinKitWaveType.center,
                      )
                          : ElevatedButton(
