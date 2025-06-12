@@ -296,10 +296,10 @@ class _MainFormState extends State<MainForm>{
                           height: 10,
                         ),
                      isloadingdone
-                         ? SpinKitWave(
-                       color: Colors.teal,
+                         ? SpinKitPouringHourGlass(
+                       color: Colors.white70,
                        size: 50.0,
-                       type: SpinKitWaveType.center,
+                       //type: SpinKitWaveType.center,
                      )
                          : ElevatedButton(
                        onPressed: _lodingcard,
