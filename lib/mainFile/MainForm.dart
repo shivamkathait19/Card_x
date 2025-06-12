@@ -298,7 +298,7 @@ class _MainFormState extends State<MainForm>{
                      isloadingdone
                          ? SpinKitWave(
                        color: Colors.teal,
-                       size:50.0,
+                       size: 50.0,
                        type: SpinKitWaveType.center,
                      )
                          : ElevatedButton(
