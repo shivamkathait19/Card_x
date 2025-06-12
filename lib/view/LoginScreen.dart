@@ -1,9 +1,9 @@
 import 'dart:ui';
-
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 void main() {
   runApp(MaterialApp(home: LoginScreen()));
 }
@@ -89,8 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-  void _loginUser() {
-    if (_formKey.currentState!.validate()) {
+  void _loginUser(){
+    if (_formKey.currentState!.validate()){
       setState(() => isLoadinglogin = true);
       Future.delayed(const Duration(seconds: 2), () {
         setState(() => isLoadinglogin = false);
