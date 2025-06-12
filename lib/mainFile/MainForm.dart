@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
   class MainForm extends StatefulWidget {
     MainForm({super.key});
@@ -296,7 +296,11 @@ class _MainFormState extends State<MainForm>{
                           height: 10,
                         ),
                      isloadingdone
-                         ? LiquidCircularProgressIndicator()
+                         ? SpinKitWave(
+                       color: Colors.teal,
+                       size:50.0,
+                       type: SpinKitWaveType.center,
+                     )
                          : ElevatedButton(
                        onPressed: _lodingcard,
                        style: ElevatedButton.styleFrom(
