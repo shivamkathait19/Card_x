@@ -23,7 +23,7 @@ class _MainFormState extends State<MainForm>{
   bool isloadingdone = false;
   String? selectedGender;
   bool _obscurePassword = true;
-  
+
   List<List<Color>> gradientColors = [
   //  [Colors.teal.shade300, Colors.blue.shade200],
     //[Colors.purple.shade300, Colors.pink.shade200],
@@ -60,6 +60,8 @@ class _MainFormState extends State<MainForm>{
       });
     }
   }
+
+
 
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
