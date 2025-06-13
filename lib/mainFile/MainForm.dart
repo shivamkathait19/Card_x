@@ -23,9 +23,7 @@ class _MainFormState extends State<MainForm>{
   bool isloadingdone = false;
   String? selectedGender;
   bool _obscurePassword = true;
-
-
-  // Gradient Colors for background animation
+  
   List<List<Color>> gradientColors = [
   //  [Colors.teal.shade300, Colors.blue.shade200],
     //[Colors.purple.shade300, Colors.pink.shade200],
