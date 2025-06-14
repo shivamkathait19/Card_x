@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() => isLoadinglogin = false);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const CardScreen()),
+          MaterialPageRoute(builder: (context) => CardScreen()),
         );
       });
     }
