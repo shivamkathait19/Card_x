@@ -5,7 +5,7 @@ import 'package:card_x/mainFile/MainForm.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CardScreen extends StatefulWidget {
   final String? username;
@@ -134,6 +134,37 @@ void showEmojiBurst(String emoji) {
   }
 }
 
+List<String> favoriteMemes = [];
+
+
+
+Future<void> loadFavorites() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  setState(() {
+    favoriteMemes = prefs.getStringList('favorites') ?? [];
+  });
+}
+
+Future<void> saveToFavorites(String memeUrl) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  if (!favoriteMemes.contains(memeUrl)) {
+    favoriteMemes.add(memeUrl);
+    await prefs.setStringList('favorites', favoriteMemes);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Saved to Favorites"),
+      backgroundColor: Colors.teal,
+    ));
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Already in Favorites"),
+      backgroundColor: Colors.orange,
+    ));
+  }
+}
+
+
+
 @override
 void dispose() {
   for (var p in emojiParticles) {
@@ -200,7 +231,13 @@ void dispose() {
             ListTile(
               leading: Icon(Icons.favorite),
               title: Text('Favorites'),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context,
+                    MaterialPageRoute(
+                      builder: (_) => FavoritesPage(favorites: favoriteMemes),
+                    ),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.settings),
@@ -292,6 +329,17 @@ void dispose() {
     ),
     ],
              ),
+          ElevatedButton.icon(
+            onPressed: () => saveToFavorites(imgUrl),
+            icon: Icon(Icons.favorite_border),
+            label: Text("Save to Favorites"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.teal.shade600,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            ),
+          ),
+          
              SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed:()async{
@@ -444,5 +492,32 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
+ class FavoritesPage extends StatelessWidget {
+   final List<String> favorites;
+
+   const FavoritesPage({super.key, required this.favorites});
+
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+       appBar: AppBar(
+         title: Text("My Favorites"),
+         backgroundColor: Colors.teal,
+       ),
+       body: favorites.isEmpty
+           ? Center(child: Text("No favorites yet!"))
+           : ListView.builder(
+         itemCount: favorites.length,
+         itemBuilder: (_, index) => Padding(
+           padding: const EdgeInsets.all(12.0),
+           child: ClipRRect(
+             borderRadius: BorderRadius.circular(20),
+             child: Image.network(favorites[index]),
+           ),
+         ),
+       ),
+     );
+   }
+ }
 
 
