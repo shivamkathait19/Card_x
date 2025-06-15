@@ -65,6 +65,7 @@ List<EmojiParticle> emojiParticles = [];
   @override
   void initState() {
     super.initState();
+    loadFavorites();
     UpdateImg();
   }
 
@@ -135,9 +136,6 @@ void showEmojiBurst(String emoji) {
 }
 
 List<String> favoriteMemes = [];
-
-
-
 Future<void> loadFavorites() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   setState(() {
@@ -163,8 +161,26 @@ Future<void> saveToFavorites(String memeUrl) async {
   }
 }
 
+ /* List<String> favoriteMemes = [];
 
+  void saveToFavorites(String memeUrl) {
+    if (!favoriteMemes.contains(memeUrl)) {
+      setState(() {
+        favoriteMemes.add(memeUrl);
+      });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Saved to Favorites"),
+        backgroundColor: Colors.teal,
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Already in Favorites"),
+        backgroundColor: Colors.orange,
+      ));
+    }
+  }
 
+*/
 @override
 void dispose() {
   for (var p in emojiParticles) {
@@ -329,18 +345,28 @@ void dispose() {
     ),
     ],
              ),
-          ElevatedButton.icon(
-            onPressed: () => saveToFavorites(imgUrl),
-            icon: Icon(Icons.favorite_border),
-            label: Text("Save to Favorites"),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.teal.shade600,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            ElevatedButton.icon(
+              onPressed: () {
+                if (imgUrl.isNotEmpty && !favoriteMemes.contains(imgUrl)) {
+                  saveToFavorites(imgUrl);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Already in favorites")),
+                  );
+                }
+              },
+              icon: Icon(Icons.favorite_border),
+              label: Text("Save to Favorites"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.pink.shade400,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              ),
             ),
-          ),
-          
-             SizedBox(height: 20),
+
+
+            SizedBox(height: 20),
             ElevatedButton.icon(
               onPressed:()async{
                 setState(() => isLoading = true);
