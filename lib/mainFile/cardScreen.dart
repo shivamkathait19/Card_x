@@ -298,6 +298,10 @@ void dispose() {
              ),
 
             SizedBox(height: 20),
+            ElevatedButton.icon(onPressed: (){}, label: Text("Add to favorite"),icon: Icon(Icons.favorite
+            ),
+            ),
+             SizedBox(height: 5,),
             ElevatedButton.icon(
               onPressed:()async{
                 setState(() => isLoading = true);
