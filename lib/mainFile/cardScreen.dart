@@ -1,11 +1,11 @@
- import 'dart:math';
+import 'dart:math';
 import 'package:card_x/main.dart';
 import 'package:card_x/mainFile/FetchMemes.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class CardScreen extends StatefulWidget {
   final String? username;
@@ -65,7 +65,7 @@ List<EmojiParticle> emojiParticles = [];
   @override
   void initState() {
     super.initState();
-    loadFavorites();
+    //loadFavorites();
     UpdateImg();
   }
 
@@ -135,52 +135,6 @@ void showEmojiBurst(String emoji) {
   }
 }
 
-List<String> favoriteMemes = [];
-Future<void> loadFavorites() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  setState(() {
-    favoriteMemes = prefs.getStringList('favorites') ?? [];
-  });
-}
-
-Future<void> saveToFavorites(String memeUrl) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-
-  if (!favoriteMemes.contains(memeUrl)) {
-    favoriteMemes.add(memeUrl);
-    await prefs.setStringList('favorites', favoriteMemes);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Saved to Favorites"),
-      backgroundColor: Colors.teal,
-    ));
-  } else {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text("Already in Favorites"),
-      backgroundColor: Colors.orange,
-    ));
-  }
-}
-
- /* List<String> favoriteMemes = [];
-
-  void saveToFavorites(String memeUrl) {
-    if (!favoriteMemes.contains(memeUrl)) {
-      setState(() {
-        favoriteMemes.add(memeUrl);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Saved to Favorites"),
-        backgroundColor: Colors.teal,
-      ));
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Already in Favorites"),
-        backgroundColor: Colors.orange,
-      ));
-    }
-  }
-
-*/
 @override
 void dispose() {
   for (var p in emojiParticles) {
@@ -248,11 +202,8 @@ void dispose() {
               leading: Icon(Icons.favorite),
               title: Text('Favorites'),
               onTap: () {
-                Navigator.pop(context,
-                    MaterialPageRoute(
-                      builder: (_) => FavoritesPage(favorites: favoriteMemes),
-                    ),
-                );
+               Navigator.pop(context);
+               Navigator.push(context, MaterialPageRoute(builder: (_)=> Favoritespage(),));
               },
             ),
             ListTile(
@@ -345,26 +296,6 @@ void dispose() {
     ),
     ],
              ),
-            ElevatedButton.icon(
-              onPressed: () {
-                if (imgUrl.isNotEmpty && !favoriteMemes.contains(imgUrl)) {
-                  saveToFavorites(imgUrl);
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Already in favorites")),
-                  );
-                }
-              },
-              icon: Icon(Icons.favorite_border),
-              label: Text("Save to Favorites"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.pink.shade400,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              ),
-            ),
-
 
             SizedBox(height: 20),
             ElevatedButton.icon(
@@ -518,32 +449,23 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
- class FavoritesPage extends StatelessWidget {
-   final List<String> favorites;
-
-   const FavoritesPage({super.key, required this.favorites});
-
-   @override
-   Widget build(BuildContext context) {
-     return Scaffold(
-       appBar: AppBar(
-         title: Text("My Favorites"),
-         backgroundColor: Colors.teal,
-       ),
-       body: favorites.isEmpty
-           ? Center(child: Text("No favorites yet!"))
-           : ListView.builder(
-         itemCount: favorites.length,
-         itemBuilder: (_, index) => Padding(
-           padding: const EdgeInsets.all(12.0),
-           child: ClipRRect(
-             borderRadius: BorderRadius.circular(20),
-             child: Image.network(favorites[index]),
-           ),
-         ),
-       ),
-     );
-   }
- }
-
-
+class Favoritespage extends StatelessWidget{
+  Favoritespage ({Key? key }) : super (key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My Favorites'),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(
+          "Your favorite memes will appear here.",
+          style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+        ),
+      ),
+    );
+  }
+}
