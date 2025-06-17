@@ -5,7 +5,7 @@ import 'package:card_x/mainFile/MainForm.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class CardScreen extends StatefulWidget {
   final String? username;
@@ -30,6 +30,13 @@ class CardScreen extends StatefulWidget {
   @override
   State<CardScreen> createState() => _CardScreenState();
 }
+bool isFavorite = false;
+String imgUrl = "";
+int number = 0;
+int target = 10  ;
+bool isLoading = true;
+List<String> favorites = [];
+Color currentBgColor = Color(0xFFF0F2F5);
 
 class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin {
 final List<Color> bgColors = [
@@ -55,14 +62,12 @@ List<EmojiParticle> emojiParticles = [];
     );
   }
 
-   String imgUrl = "";
-   int number = 0;
-   int target = 10  ;
-   bool isLoading = true;
-   Color currentBgColor = Color(0xFFF0F2F5);
+ // ✅ Define this at the top of your State class
 
 
-  @override
+
+
+@override
   void initState() {
     super.initState();
     //loadFavorites();
@@ -214,7 +219,10 @@ void dispose() {
             ListTile(
               leading: Icon(Icons.info_outline),
               title: Text('About App'),
-              onTap: () {},
+              onTap: () {
+               // Navigator.pop(context);
+                //Navigator.push(context, MaterialPageRoute(builder: (_) => AboutAppPage()));
+              },
             ),
             ListTile(
               leading: Icon(Icons.help_outline),
@@ -227,7 +235,7 @@ void dispose() {
               title: Text("Log Out", style: TextStyle(color: Colors.red)),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
               },
             ),
             SizedBox(height: 20),
@@ -298,10 +306,21 @@ void dispose() {
              ),
 
             SizedBox(height: 20),
-            ElevatedButton.icon(onPressed: (){}, label: Text("Add to favorite"),icon: Icon(Icons.favorite
+            /*ElevatedButton.icon(onPressed: (){}, label: Text("Add to favorite"),icon: Icon(Icons.favorite
             ),
+            ),*/
+            ElevatedButton.icon(
+              icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border, color: Colors.red),
+              label: Text(isFavorite ? "Saved" : "Save"),
+              onPressed: (){},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                side: BorderSide(color: Colors.redAccent),
+              ),
             ),
-             SizedBox(height: 5,),
+
+            SizedBox(height: 5,),
             ElevatedButton.icon(
               onPressed:()async{
                 setState(() => isLoading = true);
@@ -472,4 +491,7 @@ class Favoritespage extends StatelessWidget{
       ),
     );
   }
-}
+
+
+
+  
