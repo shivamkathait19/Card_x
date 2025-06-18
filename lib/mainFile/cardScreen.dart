@@ -530,11 +530,13 @@ class BlankDrawerPage extends StatelessWidget {
   @override
   State<Aboutpage> createState()=> _AboutpageState();
  }
- class _Aboutpage extends State<Aboutpage>{
+ class _AboutpageState extends State<Aboutpage>{
 
   @override
    Widget build(BuildContext context){
-    
+    return Scaffold(
+      body: Text("shivam "),
+    );
   }
 
  }
