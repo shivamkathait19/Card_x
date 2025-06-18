@@ -523,7 +523,20 @@ class BlankDrawerPage extends StatelessWidget {
   }
 }
 
-class SettingsPage extends StatefulWidget {
+
+ class Aboutpage extends StatefulWidget{
+  Aboutpage ({Key? key}) : super (key: key);
+
+  @override
+  State<Aboutpage> createState()=> _AboutpageState();
+ }
+ class _Aboutpage extends State<Aboutpage>{
+  
+ }
+
+
+
+class SettingsPage extends StatefulWidget{
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
