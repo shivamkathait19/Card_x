@@ -216,8 +216,7 @@ void dispose() {
               title: Text('Settings'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_)=> BlankDrawerPage(title: "Setting")));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>  SettingsPage(),));
               },
             ),
             ListTile(
@@ -524,4 +523,58 @@ class BlankDrawerPage extends StatelessWidget {
   }
 }
 
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({Key? key}) : super(key: key);
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool isDarkMode = false;
+  bool notificationsEnabled = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Settings"),
+        backgroundColor: Colors.teal,
+      ),
+      body: ListView(
+        children: [
+          SwitchListTile(
+            title: Text("Dark Mode"),
+            subtitle: Text("Toggle app theme"),
+            secondary: Icon(Icons.dark_mode),
+            value: isDarkMode,
+            onChanged: (value) {
+              setState(() => isDarkMode = value);
+              // Add logic here to switch theme globally if needed
+            },
+          ),
+          SwitchListTile(
+            title: Text("Notifications"),
+            subtitle: Text("Enable push notifications"),
+            secondary: Icon(Icons.notifications),
+            value: notificationsEnabled,
+            onChanged: (value) {
+              setState(() => notificationsEnabled = value);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.language),
+            title: Text("Language"),
+            subtitle: Text("English (Default)"),
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Language settings coming soon!")),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
 
