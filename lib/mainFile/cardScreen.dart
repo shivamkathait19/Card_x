@@ -531,7 +531,12 @@ class BlankDrawerPage extends StatelessWidget {
   State<Aboutpage> createState()=> _AboutpageState();
  }
  class _Aboutpage extends State<Aboutpage>{
-  
+
+  @override
+   Widget build(BuildContext context){
+    
+  }
+
  }
 
 
