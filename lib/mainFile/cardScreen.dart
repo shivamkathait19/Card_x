@@ -214,20 +214,28 @@ void dispose() {
             ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_)=> BlankDrawerPage(title: "Setting")));
+              },
             ),
             ListTile(
               leading: Icon(Icons.info_outline),
               title: Text('About App'),
               onTap: () {
-               // Navigator.pop(context);
-                //Navigator.push(context, MaterialPageRoute(builder: (_) => AboutAppPage()));
+               Navigator.pop(context);
+                Navigator.push(context,
+                   MaterialPageRoute(builder: (_) => BlankDrawerPage(title: "About App")));
               },
             ),
             ListTile(
               leading: Icon(Icons.help_outline),
               title: Text('Help & Support'),
-              onTap:(){},
+              onTap:(){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> BlankDrawerPage(title: "shivam ")));
+              },
             ),
             Divider(),
             ListTile(
@@ -472,8 +480,9 @@ class _BlankPageState extends State<BlankPage> {
     );
   }
 }
-class Favoritespage extends StatelessWidget{
-  Favoritespage ({Key? key }) : super (key: key);
+class Favoritespage extends StatelessWidget {
+  Favoritespage({Key? key }) : super (key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -491,6 +500,28 @@ class Favoritespage extends StatelessWidget{
       ),
     );
   }
+}
+class BlankDrawerPage extends StatelessWidget {
+  final String title;
+  const BlankDrawerPage({Key? key, required this.title}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: Colors.teal,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(
+          '$title page is under construction.',
+          style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+        ),
+      ),
+    );
+  }
+}
 
 
