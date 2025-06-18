@@ -225,7 +225,7 @@ void dispose() {
               onTap: () {
                Navigator.pop(context);
                 Navigator.push(context,
-                   MaterialPageRoute(builder: (_) => BlankDrawerPage(title: "About App")));
+                   MaterialPageRoute(builder: (_) => Aboutpage()));
               },
             ),
             ListTile(
