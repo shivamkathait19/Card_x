@@ -63,7 +63,7 @@ List<EmojiParticle> emojiParticles = [];
   }
 
 @override
-  void initState() {
+  void initState(){
     super.initState();
     //loadFavorites();
     UpdateImg();
@@ -155,6 +155,7 @@ void dispose() {
         automaticallyImplyLeading: true,
       ),
       drawer: Drawer(
+        backgroundColor: Colors.blueGrey,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -184,7 +185,6 @@ void dispose() {
                 ],
               ),
             ),
-
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Home'),
@@ -726,7 +726,7 @@ class _HelppageState extends State<Helppage> {
            ListTile(
              leading: Icon(Icons.phone),
              title: Text("Need more help?"),
-             subtitle: Text("Call us at: +91 98765 43210"),
+             subtitle: Text("Call us at: +91 7895272732"),
            ),
          ],
        )
