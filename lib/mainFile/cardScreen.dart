@@ -5,7 +5,7 @@ import 'package:card_x/mainFile/MainForm.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-//import 'package:shared_preferences/shared_preferences.dart';
+
 
 class CardScreen extends StatefulWidget {
   final String? username;
@@ -61,11 +61,6 @@ List<EmojiParticle> emojiParticles = [];
       ),
     );
   }
-
- // ✅ Define this at the top of your State class
-
-
-
 
 @override
   void initState() {
@@ -557,15 +552,19 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
-        title: Text("Settings"),
+        title: Padding(
+          padding:  EdgeInsets.only(right: 20),
+          child: Center(child: Text("SETTINGS")),
+        ),
         backgroundColor: Colors.teal,
       ),
       body: ListView(
         children: [
           SwitchListTile(
-            title: Text("Dark Mode"),
-            subtitle: Text("Toggle app theme"),
+            title: Text("Dark Mode",style: TextStyle(color: Colors.white70)),
+            subtitle: Text("Toggle app theme" ,),
             secondary: Icon(Icons.dark_mode),
             value: isDarkMode,
             onChanged: (value) {
@@ -574,8 +573,8 @@ class _SettingsPageState extends State<SettingsPage> {
             },
           ),
           SwitchListTile(
-            title: Text("Notifications"),
-            subtitle: Text("Enable push notifications"),
+            title: Text("Notifications",style: TextStyle(color: Colors.white70)),
+            subtitle: Text("Enable push notifications",),
             secondary: Icon(Icons.notifications),
             value: notificationsEnabled,
             onChanged: (value) {
@@ -584,15 +583,47 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             leading: Icon(Icons.language),
-            title: Text("Language"),
-            subtitle: Text("English (Default)"),
+            title: Text("Language",style: TextStyle(color: Colors.white70)),
+    ,subtitle: Text("English (Default)"),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text("Language settings coming soon!")),
               );
             },
           ),
-        ],
+          ListTile(
+            leading: Icon(Icons.privacy_tip),
+            title: Text("Privacy Policy",style: TextStyle(color: Colors.white70)),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: Text("Privacy Policy",),
+                  content: Text("Your data is safe."),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text("OK"),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+    ListTile(
+    leading: Icon(Icons.info_outline),
+    title: Text("About App",style: TextStyle(color: Colors.white70)),
+    subtitle: Text("Version 1.0.0"),
+    onTap: () {
+    showAboutDialog(
+    context: context,
+    applicationName: "Card X",
+    applicationVersion: "1.0.0",
+    applicationLegalese: "© 2025 by Shivam",
+    );
+    },
+    ),
+  ],
       ),
     );
   }
