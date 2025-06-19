@@ -228,7 +228,7 @@ void dispose() {
               title: Text('Help & Support'),
               onTap:(){
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> BlankDrawerPage(title: "shivam ")));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> Helppage()));
               },
             ),
             Divider(),
@@ -629,9 +629,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ListTile(
             leading: Icon(Icons.language),
             title: Text("Language",style: TextStyle(color: Colors.white70)),
-            subtitle: Drawer(
-              child: Text("shivam"),
-            ),
+            subtitle: Text("shivam"),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text("Language settings coming soon!")),
@@ -674,5 +672,65 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     );
   }
+}
+ class Helppage extends StatefulWidget {
+   const Helppage({super.key});
+
+  @override
+  State<Helppage> createState() => _HelppageState();
+}
+
+class _HelppageState extends State<Helppage> {
+   @override
+   Widget build(BuildContext context){
+     return Scaffold(
+       appBar:  AppBar(
+         title: Center(
+           child: Text("Help & Support"),
+         )
+       ),
+       body: ListView(
+         children: [
+           ListTile(
+             leading: Icon(Icons.question_answer_outlined),
+             title: Text("How to use the app?"),
+             subtitle: Text("Tap on Next Meme to load memes.\nReact using 😂 or 😒."),
+             isThreeLine: true,
+           ),
+           Divider(),
+           ListTile(
+             leading: Icon(Icons.favorite_outline),
+             title: Text("How to save favorites?"),
+             subtitle: Text("Tap the heart icon 💖 to save memes to your Favorites."),
+           ),
+           Divider(),
+           ListTile(
+             leading: Icon(Icons.person),
+             title: Text("How to view my profile?"),
+             subtitle: Text("Go to the drawer and tap on My Profile."),
+           ),
+           Divider(),
+           ListTile(
+             leading: Icon(Icons.bug_report),
+             title: Text("Found a bug or issue?"),
+             subtitle: Text("Contact us: help@cardxapp.com"),
+           ),
+           Divider(),
+           ListTile(
+             leading: Icon(Icons.feedback_outlined),
+             title: Text("Want to give feedback?"),
+             subtitle: Text("We love your feedback!\nEmail us at: feedback@cardxapp.com"),
+             isThreeLine: true,
+           ),
+           Divider(),
+           ListTile(
+             leading: Icon(Icons.phone),
+             title: Text("Need more help?"),
+             subtitle: Text("Call us at: +91 98765 43210"),
+           ),
+         ],
+       )
+     );
+   }
 }
 
