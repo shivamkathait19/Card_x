@@ -530,7 +530,46 @@ class BlankDrawerPage extends StatelessWidget {
   @override
    Widget build(BuildContext context){
     return Scaffold(
-      body: Text("shivam "),
+      backgroundColor: Colors.black26,
+      appBar: AppBar(
+        title: Center(child: Text("About phone",style: TextStyle(color: Colors.white),)),
+        backgroundColor: Colors.black,
+      ),
+      body:
+      ListView(
+        children: [
+          ListTile(
+            title: Text("Device Name",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
+            subtitle: Text("Card X Ultra Pro Max"),
+            leading: Icon(Icons.devices),
+          ),
+          ListTile(
+            title: Text("Model Number",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
+            subtitle: Text("CX-9999"),
+            leading: Icon(Icons.confirmation_number),
+          ),
+          ListTile(
+            title: Text("Android Version",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
+            subtitle: Text("14.0 (Tiramisu++)"),
+            leading: Icon(Icons.android),
+          ),
+          ListTile(
+            title: Text("Security Patch Level",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
+            subtitle: Text("1 June 2025"),
+            leading: Icon(Icons.security),
+          ),
+          ListTile(
+            title: Text("Build Number",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
+            subtitle: Text("CAX999.1.5.9.21"),
+            leading: Icon(Icons.code),
+          ),
+          ListTile(
+            title: Text("Kernel Version",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
+            subtitle: Text("5.15.92-android"),
+            leading: Icon(Icons.memory),
+          ),
+        ],
+      ),
     );
   }
 
@@ -584,7 +623,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ListTile(
             leading: Icon(Icons.language),
             title: Text("Language",style: TextStyle(color: Colors.white70)),
-    ,subtitle: Text("English (Default)"),
+            subtitle: Drawer(
+              child: Text("shivam"),
+            ),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text("Language settings coming soon!")),
