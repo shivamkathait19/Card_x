@@ -532,12 +532,18 @@ class BlankDrawerPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black26,
       appBar: AppBar(
-        title: Center(child: Text("About phone",style: TextStyle(color: Colors.white),)),
-        backgroundColor: Colors.black,
+        title: Padding(
+          padding:  EdgeInsets.only(right:50),
+          child: Center(child: Text("About phone",style: TextStyle(color: Colors.black),)),
+        ),
+        backgroundColor: Colors.teal,
       ),
       body:
       ListView(
         children: [
+          SizedBox(
+            height: 50,
+          ),
           ListTile(
             title: Text("Device Name",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontSize: 20),),
             subtitle: Text("Card X Ultra Pro Max"),
