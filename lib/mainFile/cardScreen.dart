@@ -252,7 +252,8 @@ void dispose() {
         ),
       ),
       body: Stack(
-    children: [
+          children: [
+
       Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -306,22 +307,6 @@ void dispose() {
     ),
     ],
              ),
-
-            SizedBox(height: 20),
-            /*ElevatedButton.icon(onPressed: (){}, label: Text("Add to favorite"),icon: Icon(Icons.favorite
-            ),
-            ),*/
-            ElevatedButton.icon(
-              icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border, color: Colors.red),
-              label: Text(isFavorite ? "Saved" : "Save"),
-              onPressed: (){},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.black,
-                side: BorderSide(color: Colors.redAccent),
-              ),
-            ),
-
             SizedBox(height: 5,),
             ElevatedButton.icon(
               onPressed:()async{
