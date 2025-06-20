@@ -419,7 +419,7 @@ class _BlankPageState extends State<BlankPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.black,
           borderRadius: BorderRadius.circular(16),
           boxShadow: const [
             BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
@@ -429,21 +429,22 @@ class _BlankPageState extends State<BlankPage> {
           leading: Icon(icon, color: Colors.teal, size: 28),
           title: Text(
             label,
-            style: const TextStyle(fontWeight: FontWeight.w500,fontStyle: FontStyle.italic),
+            style: const TextStyle(fontWeight: FontWeight.w500,fontStyle: FontStyle.italic,color: Colors.white),
           ),
           subtitle: Text(
             value ?? 'Not provided',
-            style: const TextStyle(color: Colors.black87, fontSize: 16),
+            style: const TextStyle(color: Colors.white, fontSize: 16),
           ),
         ),
       ),
+
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.black26,
       appBar: AppBar(
         title: const Text("My Profile"),
         backgroundColor: Colors.teal,
@@ -458,7 +459,7 @@ class _BlankPageState extends State<BlankPage> {
             backgroundColor: Colors.teal,
             child: Icon(Icons.person, size: 50, color: Colors.white),
           ),
-          const SizedBox(height: 30),
+            SizedBox(height: 30),
           infoCard("Username", widget.username, Icons.person),
           infoCard("Full Name", widget.full, FeatherIcons.userCheck),
           infoCard("Email", widget.email, Icons.email_outlined),
@@ -495,28 +496,7 @@ class Favoritespage extends StatelessWidget {
     );
   }
 }
-class BlankDrawerPage extends StatelessWidget {
-  final String title;
-  const BlankDrawerPage({Key? key, required this.title}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Colors.teal,
-        foregroundColor: Colors.white,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          '$title page is under construction.',
-          style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
-        ),
-      ),
-    );
-  }
-}
 
 
  class Aboutpage extends StatefulWidget{
@@ -582,8 +562,7 @@ class BlankDrawerPage extends StatelessWidget {
  }
 
 
-
-class SettingsPage extends StatefulWidget{
+class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
@@ -597,82 +576,142 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Padding(
-          padding:  EdgeInsets.only(right: 20),
-          child: Center(child: Text("SETTINGS")),
+        title: const Text("SETTINGS", style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.teal, Colors.deepPurple],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
         ),
-        backgroundColor: Colors.teal,
       ),
-      body: ListView(
-        children: [
-          SwitchListTile(
-            title: Text("Dark Mode",style: TextStyle(color: Colors.white70)),
-            subtitle: Text("Toggle app theme" ,),
-            secondary: Icon(Icons.dark_mode),
-            value: isDarkMode,
-            onChanged: (value) {
-              setState(() => isDarkMode = value);
-              // Add logic here to switch theme globally if needed
-            },
-          ),
-          SwitchListTile(
-            title: Text("Notifications",style: TextStyle(color: Colors.white70)),
-            subtitle: Text("Enable push notifications",),
-            secondary: Icon(Icons.notifications),
-            value: notificationsEnabled,
-            onChanged: (value) {
-              setState(() => notificationsEnabled = value);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.language),
-            title: Text("Language",style: TextStyle(color: Colors.white70)),
-            subtitle: Text("shivam"),
-            onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Language settings coming soon!")),
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.privacy_tip),
-            title: Text("Privacy Policy",style: TextStyle(color: Colors.white70)),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: Text("Privacy Policy",),
-                  content: Text("Your data is safe."),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text("OK"),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-    ListTile(
-    leading: Icon(Icons.info_outline),
-    title: Text("About App",style: TextStyle(color: Colors.white70)),
-    subtitle: Text("Version 1.0.0"),
-    onTap: () {
-    showAboutDialog(
-    context: context,
-    applicationName: "Card X",
-    applicationVersion: "1.0.0",
-    applicationLegalese: "© 2025 by Shivam",
+      backgroundColor: Colors.black,
+      body: Container(
+        padding: EdgeInsets.only(top: 10, left: 16, right: 16, bottom: 16),
+        child: ListView(
+          children: [
+            _buildSwitchTile(
+              icon: Icons.dark_mode,
+              title: "Dark Mode",
+              subtitle: "Toggle app theme",
+              value: isDarkMode,
+              onChanged: (value) => setState(() => isDarkMode = value),
+            ),
+            _buildSwitchTile(
+              icon: Icons.notifications_active_outlined,
+              title: "Notifications",
+              subtitle: "Enable push notifications",
+              value: notificationsEnabled,
+              onChanged: (value) => setState(() => notificationsEnabled = value),
+            ),
+            _buildTile(
+              icon: Icons.language,
+              title: "Language",
+              subtitle: "shivam",
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Language settings coming soon!"),
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.teal,
+                  ),
+                );
+              },
+            ),
+            _buildTile(
+              icon: Icons.privacy_tip_outlined,
+              title: "Privacy Policy",
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    title: const Text("Privacy Policy"),
+                    content: const Text("Your data is safe."),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("OK"),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+            _buildTile(
+              icon: Icons.info_outline,
+              title: "About App",
+              subtitle: "Version 1.0.0",
+              onTap: () {
+                showAboutDialog(
+                  context: context,
+                  applicationName: "Card X",
+                  applicationVersion: "1.0.0",
+                  applicationLegalese: "© 2025 by Shivam",
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
-    },
-    ),
-  ],
+  }
+
+  Widget _buildSwitchTile({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required bool value,
+    required Function(bool) onChanged,
+  }) {
+    return Card(
+      color: Colors.white.withOpacity(0.08),
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: SwitchListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        secondary: Icon(icon, color: Colors.tealAccent),
+        title: Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+        subtitle: Text(subtitle, style: const TextStyle(color: Colors.white70)),
+        value: value,
+        onChanged: onChanged,
+        activeColor: Colors.tealAccent,
+        inactiveThumbColor: Colors.grey,
+        inactiveTrackColor: Colors.white24,
+      ),
+    );
+  }
+
+  Widget _buildTile({
+    required IconData icon,
+    required String title,
+    String? subtitle,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      color: Colors.white.withOpacity(0.08),
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.tealAccent),
+        title: Text(title, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+        subtitle: subtitle != null
+            ? Text(subtitle, style: const TextStyle(color: Colors.white70))
+            : null,
+        onTap: onTap,
       ),
     );
   }
 }
+
 
 
 class Helppage extends StatefulWidget {
@@ -716,7 +755,7 @@ class _HelppageState extends State<Helppage> {
               subtitle: "Tap on Next Meme to load memes.\nReact using 😂 or 😒.",
             ),
             _buildHelpCard(
-              icon: Icons.favorite_outline,
+              icon: Icons.favorite,
               title: "How to save favorites?",
               subtitle: "Tap the heart icon 💖 to save memes to your Favorites.",
             ),
