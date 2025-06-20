@@ -418,12 +418,14 @@ class _BlankPageState extends State<BlankPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
       child: Container(
+        height: 90,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: Colors.white.withOpacity(0.10),
           borderRadius: BorderRadius.circular(16),
           boxShadow: const [
             BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
           ],
+
         ),
         child: ListTile(
           leading: Icon(icon, color: Colors.teal, size: 28),
