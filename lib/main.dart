@@ -5,13 +5,58 @@ import 'package:card_x/view/splashScreen.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+
+
 void main() /*async*/ {
 //WidgetsFlutterBinding.ensureInitialized();
 //await Firebase.initializeApp();
   runApp(MyApp());
 }
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, ThemeMode currentMode, __) {
+        return MaterialApp(
+          title: 'Theme Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: currentMode, // 3️⃣ use notifier
+          home: HomePage(),
+        );
+      },
+    );
+  }
+}
 
-  class MyApp extends StatefulWidget {
+// 4️⃣ Home Page with Drawer
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Dark Mode Demo")),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Text("Menu")),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("Settings"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => SettingsPage()));
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(child: Text("Welcome!")),
+    );
+  }
+}
+  /*class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
@@ -33,7 +78,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     LoadHome();
-  }
+  }*/
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -62,7 +107,7 @@ class _MyAppState extends State<MyApp> {
 
     );
   }
-}
+//}
 
 /*class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
