@@ -13,7 +13,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 
-class _MainFormState extends State<MainForm>{
+
+   class _MainFormState extends State<MainForm>{
   TextEditingController usernameController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
