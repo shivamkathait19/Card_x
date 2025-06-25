@@ -12,7 +12,7 @@ void main() /*async*/ {
 //await Firebase.initializeApp();
   runApp(MyApp());
 }
-/*class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
@@ -29,7 +29,7 @@ void main() /*async*/ {
       },
     );
   }
-}*/
+}
 
 // 4️⃣ Home Page with Drawer
 class HomePage extends StatelessWidget {
