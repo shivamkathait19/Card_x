@@ -1,4 +1,4 @@
-import  'package:card_x/mainFile/MainForm.dart';
+/*import  'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
@@ -12,7 +12,7 @@ void main() /*async*/ {
 //await Firebase.initializeApp();
   runApp(MyApp());
 }
-class MyApp extends StatelessWidget {
+/*class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
       body: Center(child: Text("Welcome!")),
     );
   }
-}
+}*/
   /*class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -197,3 +197,55 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 */
+*/
+import 'package:flutter/material.dart';
+import 'package:card_x/mainFile/cardScreen.dart';
+import 'package:card_x/view/splashScreen.dart';
+import 'package:card_x/view/LoginScreen.dart';
+import 'package:card_x/mainFile/MainForm.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+// Create a global theme notifier
+ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool showSplash = true;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      setState(() {
+        showSplash = false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: themeNotifier,
+      builder: (_, ThemeMode currentMode, __) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Card_X',
+          theme: ThemeData.light(useMaterial3: true),
+          darkTheme: ThemeData.dark(useMaterial3: true),
+          themeMode: currentMode,
+          home: showSplash ?  SplashScreen() :  CardScreen(),
+        );
+      },
+    );
+  }
+}
+
