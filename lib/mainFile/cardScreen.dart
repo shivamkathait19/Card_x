@@ -15,6 +15,8 @@ class CardScreen extends StatefulWidget {
   final String? mobile;
   final String? email;
 
+
+
    CardScreen({
     Key? key,
     this.username,
