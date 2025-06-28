@@ -70,6 +70,8 @@ List<EmojiParticle> emojiParticles = [];
     UpdateImg();
   }
 
+
+
   Future<void> UpdateImg() async{
     String getImgUrl = await FetchMemes.fetchNewMemes();
     setState(() {
