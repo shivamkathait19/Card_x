@@ -35,6 +35,8 @@ class _SplashScreenState extends State<SplashScreen>{
                     ),
                    child: Image.network("https://www.usatoday.com/gcdn/authoring/authoring-images/2024/08/28/USAT/74988734007-debitcredit.jpg?crop=699,393,x0,y0&width=660&height=371&format=pjpg&auto=webp",width: 350, height: 300,)),
                 ),
+
+
               ],
             ),
             SizedBox(
