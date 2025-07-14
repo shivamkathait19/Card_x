@@ -14,7 +14,9 @@ class CardScreen extends StatefulWidget {
   final String? mother;
   final String? mobile;
   final String? email;
-  
+
+
+
    CardScreen({
     Key? key,
     this.username,
@@ -146,7 +148,7 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.black87,
       appBar: AppBar(
         backgroundColor: Colors.teal.shade500,
         title: const Text("Funny Memes"),
