@@ -150,7 +150,7 @@ void dispose() {
     return Scaffold(
       backgroundColor: currentBgColor,
       appBar: AppBar(
-        backgroundColor: Colors.teal.shade700,
+        backgroundColor: Colors.teal.shade500,
         title: const Text("Funny Memes"),
         centerTitle: true,
         elevation: 5,
@@ -203,7 +203,7 @@ void dispose() {
             ),
             ListTile(
               leading: Icon(Icons.favorite),
-              title: Text('Favorites'),
+              title: Text('Favorites',style: TextStyle(color: Colors.white60),),
               onTap: () {
                Navigator.pop(context);
                Navigator.push(context, MaterialPageRoute(builder: (_)=> Favoritespage(),));
@@ -211,7 +211,7 @@ void dispose() {
             ),
             ListTile(
               leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              title: Text('Settings',style: TextStyle(color: Colors.white60),),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=>  SettingsPage(),));
@@ -219,7 +219,7 @@ void dispose() {
             ),
             ListTile(
               leading: Icon(Icons.info_outline),
-              title: Text('About App'),
+              title: Text('About App',style: TextStyle(color: Colors.white60),),
               onTap: () {
                Navigator.pop(context);
                 Navigator.push(context,
@@ -228,7 +228,7 @@ void dispose() {
             ),
             ListTile(
               leading: Icon(Icons.help_outline),
-              title: Text('Help & Support'),
+              title: Text('Help & Support',style: TextStyle(color: Colors.white60),),
               onTap:(){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> Helppage()));
@@ -268,16 +268,16 @@ void dispose() {
                 Text("$number/$target", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.teal.shade700)),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
              AnimatedContainer(
              duration: Duration(milliseconds: 100),
-             height: 500,
+             height: 650,
              width: double.infinity,
-             margin: const EdgeInsets.symmetric(horizontal: 20),
+             margin: EdgeInsets.symmetric(horizontal: 20),
              decoration: BoxDecoration(
              color: Colors.white,
              borderRadius: BorderRadius.circular(20),
-             boxShadow: const [
+             boxShadow:  [
              BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 6)),
              ],
              ),
@@ -285,6 +285,7 @@ void dispose() {
                    ? Center(child: CircularProgressIndicator())
                    : ClipRRect(
                  borderRadius: BorderRadius.circular(20),
+
                  child: Image.network(
                    imgUrl,
                   // fit: BoxFit.cover,
