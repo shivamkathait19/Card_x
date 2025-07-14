@@ -14,9 +14,7 @@ class CardScreen extends StatefulWidget {
   final String? mother;
   final String? mobile;
   final String? email;
-
-
-
+  
    CardScreen({
     Key? key,
     this.username,
@@ -41,11 +39,11 @@ Color currentBgColor = Color(0xFFF0F2F5);
 
 class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin {
 final List<Color> bgColors = [
-Color(0xFFF0F2F5),
+/*Color(0xFFF0F2F5),
 Color(0xFFE8F5E9),
 Color(0xFFFFF3E0),
 Color(0xFFFFEBEE),
-Color(0xFFE3F2FD),
+Color(0xFFE3F2FD),*/
 ];
 List<EmojiParticle> emojiParticles = [];
   void _goToBlankPage() {
@@ -148,7 +146,7 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: currentBgColor,
+      backgroundColor: Colors.black12,
       appBar: AppBar(
         backgroundColor: Colors.teal.shade500,
         title: const Text("Funny Memes"),
