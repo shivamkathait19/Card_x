@@ -158,7 +158,7 @@ void dispose() {
         automaticallyImplyLeading: true,
       ),
       drawer: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -190,12 +190,12 @@ void dispose() {
             ),
             ListTile(
               leading: Icon(Icons.home),
-              title: Text('Home'),
+              title: Text('Home',style: TextStyle(color: Colors.white60),),
               onTap: () => Navigator.pop(context),
             ),
             ListTile(
               leading: Icon(Icons.person),
-              title: Text('My Profile'),
+              title: Text('My Profile',style: TextStyle(color: Colors.white60),),
               onTap: () {
                 Navigator.pop(context);
                 _goToBlankPage();
