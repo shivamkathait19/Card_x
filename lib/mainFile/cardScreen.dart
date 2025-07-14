@@ -256,8 +256,7 @@ void dispose() {
       ),
       body: Stack(
           children: [
-
-      Center(
+            Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
