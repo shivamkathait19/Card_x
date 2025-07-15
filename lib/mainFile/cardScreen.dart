@@ -41,11 +41,11 @@ Color currentBgColor = Color(0xFFF0F2F5);
 
 class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin {
 final List<Color> bgColors = [
-/*Color(0xFFF0F2F5),
-Color(0xFFE8F5E9),
-Color(0xFFFFF3E0),
-Color(0xFFFFEBEE),
-Color(0xFFE3F2FD),*/
+Color(0xFF7AA3E0),
+Color(0xFFA9A16C),
+Color(0xFFB6A488),
+Color(0xFF644D4F),
+Color(0xFF6FA6CC),
 ];
 List<EmojiParticle> emojiParticles = [];
   void _goToBlankPage() {
@@ -148,7 +148,7 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: currentBgColor ,
       appBar: AppBar(
         backgroundColor: Colors.teal.shade500,
         title: const Text("Funny Memes"),
