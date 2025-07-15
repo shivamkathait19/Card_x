@@ -1,3 +1,5 @@
+import groovyjarjarantlr.Version
+
 plugins {
     id 'com.android.application'
     id "kotlin-android"
@@ -11,11 +13,14 @@ android {
     compileSdkVersion 35
     ndkVersion = '29.0.13599879'
     //ndkVersion "27.2.12479018"
+
     compileOptions {
        // sourceCompatibility = JavaVersion.VERSION_1_8
         //targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility =  JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+
+
     }
 
 
@@ -34,7 +39,8 @@ android {
         targetSdkVersion 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-
+        versionCode 1
+        versionName "1.0"
 
     }
 
@@ -43,11 +49,10 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
-
+            getDefaultProguardFile('proguard-android-optimize.txt')
+            'prograd-rules.pro'
         }
     }
-
-
 }
 flutter {
     source = "../.."
