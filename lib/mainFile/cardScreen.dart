@@ -41,11 +41,11 @@ Color currentBgColor = Color(0xFFF0F2F5);
 
 class _CardScreenState extends State<CardScreen> with TickerProviderStateMixin {
 final List<Color> bgColors = [
-Color(0xFF7AA3E0),
+//Color(0xFF7AA3E0),
 Color(0xFFA9A16C),
-Color(0xFFB6A488),
+//Color(0xFFB6A488),
 Color(0xFF644D4F),
-Color(0xFF6FA6CC),
+//Color(0xFF6FA6CC),
 ];
 List<EmojiParticle> emojiParticles = [];
   void _goToBlankPage() {
@@ -271,10 +271,10 @@ void dispose() {
              AnimatedContainer(
              duration: Duration(milliseconds: 100),
              height: 650,
-             width: double.infinity,
+             width: 700,
              margin: EdgeInsets.symmetric(horizontal: 20),
              decoration: BoxDecoration(
-             color: Colors.white,
+             color: Colors.white.withOpacity(0.1),
              borderRadius: BorderRadius.circular(20),
              boxShadow:  [
              BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 6)),
@@ -284,7 +284,6 @@ void dispose() {
                    ? Center(child: CircularProgressIndicator())
                    : ClipRRect(
                  borderRadius: BorderRadius.circular(20),
-
                  child: Image.network(
                    imgUrl,
                   // fit: BoxFit.cover,

@@ -1,18 +1,23 @@
-/*import  'package:card_x/mainFile/MainForm.dart';
+import  'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
-//import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 
 
 
-void main() /*async*/ {
-//WidgetsFlutterBinding.ensureInitialized();
-//await Firebase.initializeApp();
+
+
+void main() async {
+WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+  options: DefaultFrirebaseOption.currentPlatfrom,
+);
   runApp(MyApp());
 }
-/*class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeMode>(
@@ -196,8 +201,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-*/
-*/
+
+/*
 import 'package:flutter/material.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
@@ -247,4 +252,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
+*/
