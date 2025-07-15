@@ -4,64 +4,16 @@ import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'firebase_options.dart';
-
-
-
-
 
 void main() async {
 WidgetsFlutterBinding.ensureInitialized();
 await Firebase.initializeApp(
-  options: DefaultFrirebaseOption.currentPlatfrom,
+  options: DefaultFirebaseOption.currentPlatform,
 );
   runApp(MyApp());
 }
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: themeNotifier,
-      builder: (_, ThemeMode currentMode, __) {
-        return MaterialApp(
-          title: 'Theme Demo',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData.light(),
-          darkTheme: ThemeData.dark(),
-          themeMode: currentMode, // 3️⃣ use notifier
-          home: HomePage(),
-        );
-      },
-    );
-  }
-}
 
-// 4️⃣ Home Page with Drawer
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Dark Mode Demo")),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(child: Text("Menu")),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("Settings"),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => SettingsPage()));
-              },
-            ),
-          ],
-        ),
-      ),
-      body: Center(child: Text("Welcome!")),
-    );
-  }
-}*/
-  /*class MyApp extends StatefulWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
@@ -71,11 +23,11 @@ class HomePage extends StatelessWidget {
 class _MyAppState extends State<MyApp> {
   bool showingsplash = true;
   LoadHome(){
-   Future.delayed(Duration(seconds: 7),(){
-     setState(() {
-       showingsplash= false;
-     });
-   });
+    Future.delayed(Duration(seconds: 7),(){
+      setState(() {
+        showingsplash= false;
+      });
+    });
   }
 
   @override
@@ -83,10 +35,10 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
     LoadHome();
-  }*/
+  }
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Card_X',
       theme: ThemeData(
@@ -112,7 +64,7 @@ class _MyAppState extends State<MyApp> {
 
     );
   }
-//}
+}
 
 /*class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -198,57 +150,6 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-/*
-import 'package:flutter/material.dart';
-import 'package:card_x/mainFile/cardScreen.dart';
-import 'package:card_x/view/splashScreen.dart';
-import 'package:card_x/view/LoginScreen.dart';
-import 'package:card_x/mainFile/MainForm.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-// Create a global theme notifier
-ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  bool showSplash = true;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      setState(() {
-        showSplash = false;
-      });
-    });
-  }
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: themeNotifier,
-      builder: (_, ThemeMode currentMode, __) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Card_X',
-          theme: ThemeData.light(useMaterial3: true),
-          darkTheme: ThemeData.dark(useMaterial3: true),
-          themeMode: currentMode,
-          home: showSplash ?  SplashScreen() :  CardScreen(),
-        );
-      },
     );
   }
 }
