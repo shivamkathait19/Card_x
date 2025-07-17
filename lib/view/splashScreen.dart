@@ -22,6 +22,8 @@ class _SplashScreenState extends State<SplashScreen>{
               height: 100,
             ),
 
+
+
             Row(
               children: [
                 Padding(
