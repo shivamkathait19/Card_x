@@ -148,7 +148,7 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: currentBgColor ,
+      backgroundColor: currentBgColor.withOpacity(0.7),
       appBar: AppBar(
         backgroundColor: Colors.teal.shade500,
         title: const Text("Funny Memes"),
