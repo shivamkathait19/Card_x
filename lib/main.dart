@@ -2,7 +2,6 @@ import  'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 
@@ -43,7 +42,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Card_X',
       theme: ThemeData(
-        // This is the theme of your application.
+        // This is the theme of your application
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
         // the application has a purple toolbar. Then, without quitting the app,
