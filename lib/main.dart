@@ -1,3 +1,4 @@
+import 'package:card_x/mainFile/Barcoms.dart';
 import  'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
@@ -60,7 +61,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  /*showingsplash ? splashScreen() :*/CardScreen(),
+      home:  /*showingsplash ? splashScreen() :*/Barcoms(),
 
     );
   }

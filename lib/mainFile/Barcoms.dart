@@ -6,8 +6,10 @@ class Barcoms extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Text("shivam kathait"
-            ""),
+        child: Center(
+          child: Text("shivam kathait"
+              ""),
+        ),
       ),
     );
   }
