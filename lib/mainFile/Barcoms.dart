@@ -4,11 +4,12 @@ class Barcoms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( backgroundColor: Colors.black,
       body: Container(
+
         child: Center(
-          child: Text("shivam kathait"
-              ""),
+          child: Text("shivam kathait",style: TextStyle(color: Colors.white)
+              ),
         ),
       ),
     );
