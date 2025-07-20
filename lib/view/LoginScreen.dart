@@ -9,7 +9,7 @@ void main() {
 }
 
 class JumpingDots extends StatefulWidget {
-  const JumpingDots({super.key, this.color = Colors.white});
+   JumpingDots({super.key, this.color = Colors.white});
   final Color color;
 
   @override
