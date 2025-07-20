@@ -5,12 +5,12 @@ class Barcoms extends StatefulWidget {
 
   @override
   State<Barcoms> createState() => _BarcomsState();
+
 }
 
 class _BarcomsState extends State<Barcoms> {
 
   Bartext(){
-
     setState(() {
 
     });
@@ -21,20 +21,54 @@ class _BarcomsState extends State<Barcoms> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.brown,
       body: Container(
-        decoration: const BoxDecoration(
-        gradient: LinearGradient(
-        colors: [Color(0xFF1f1c2c), Color(0xFF928DAB)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    ),),
         child: Center(
-          child:
-          ElevatedButton(onPressed: Bartext, child:
-          Text("TAP TO SEE MEMES,",
-            style: TextStyle(fontStyle: FontStyle.italic,fontSize: 15,color: Colors.black),))
-        ),
+          child:Column(
+            mainAxisSize: MainAxisSize.min,
+           children: [
+             ElevatedButton(
+            onPressed: Bartext,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black.withOpacity(0.7),
+              foregroundColor: Colors.black,
+              padding:  EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+              elevation: 10,
+              shadowColor: Colors.black45,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+               // side:  BorderSide(color: Colors.white, width: 3),
+              ),
+            ),
+            child: Text(
+              "TAP TO SEE MEMES",
+              style: TextStyle(
+                fontSize: 16,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w200,
+                letterSpacing:1,
+                color: Colors.white,
+              ),
+            ),
+          ),
+
+SizedBox(height: 20,),
+          ElevatedButton(onPressed: (){},  style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.black.withOpacity(0.7),
+            foregroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 30,vertical: 16),
+            elevation: 10,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          )
+          ),
+
+              child: Text("TAP TO CREATE OWN CARD",style: TextStyle(
+            fontSize: 16,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w100
+          ),)) ],
+          ),),
       ),
     );
   }
