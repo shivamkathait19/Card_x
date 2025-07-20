@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  /*showingsplash ? splashScreen() :*/LoginScreen(),
+      home:  /*showingsplash ? splashScreen() :*/Barcoms(),
 
     );
   }
