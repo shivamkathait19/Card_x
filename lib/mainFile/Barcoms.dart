@@ -19,9 +19,12 @@ class _BarcomsState extends State<Barcoms> {
         MaterialPageRoute
           (builder: (BuildContext Context)=> CardScreen()));
   }
+   Cardmaker(){
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext Context)=>Card()));
+   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.brown,
+    return Scaffold(backgroundColor: Colors.brown.shade50,
       body: Container(
         child: Center(
           child:Column(
@@ -53,7 +56,7 @@ class _BarcomsState extends State<Barcoms> {
           ),
 
 SizedBox(height: 20,),
-          ElevatedButton(onPressed: (){},  style: ElevatedButton.styleFrom(
+          ElevatedButton(onPressed: Cardmaker,  style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black.withOpacity(0.7),
             foregroundColor: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 30,vertical: 16),
