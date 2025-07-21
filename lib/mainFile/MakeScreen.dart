@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 class Cardlogo extends StatefulWidget {
   const Cardlogo({super.key});
@@ -11,17 +9,13 @@ class Cardlogo extends StatefulWidget {
 class _CardlogoState extends State<Cardlogo> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Card(
-        child:
-        ListTile(
+        child: ListTile(
           leading: Icon(Icons.location_city),
-          title: TextField(
-
-          ),
-        )
+          title: Text("shivam"),
+        ),
       ),
     );
   }
 }
-
