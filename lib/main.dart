@@ -1,5 +1,6 @@
 import 'package:card_x/mainFile/Barcoms.dart';
 import  'package:card_x/mainFile/MainForm.dart';
+import 'package:card_x/mainFile/MakeScreen.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
