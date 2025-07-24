@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-class Cardlogo extends StatefulWidget {
+
+class Cardlogo extends StatelessWidget {
   const Cardlogo({super.key});
 
-  @override
-  State<Cardlogo> createState() => _CardlogoState();
-}
-
-class _CardlogoState extends State<Cardlogo> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
