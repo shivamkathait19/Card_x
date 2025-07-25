@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
 
-class Cardlogo extends StatelessWidget {
-  const Cardlogo({super.key});
+class Makescreen extends StatelessWidget {
+  const Makescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Card(
-        child: ListTile(
-          leading: Icon(Icons.location_city),
-          title: Text("Shivam  "),
-        ),
-      ),
-    );
+    return Scaffold(
+      body: Container(
+        child: Form(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 100,right: 20,left: 20),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: "Enter the location name "
+                  ),
+                ),
+              ),
+SizedBox(
+  height: 20,
+),
+              Padding(
+                padding:  EdgeInsets.only(top: 20,right: 20,left: 20),
+                child: TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    labelText: 'ENTER THE PRICE '
+                  ),
+                ),
+              )
+            ],
+          ),
+        )
+      )
+      );
+
   }
 }
+/*child: Form(
+          key: _formKey,
+          child: Column(
+            children: [*/
