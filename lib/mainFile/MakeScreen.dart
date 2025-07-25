@@ -46,39 +46,45 @@ class Makescreen extends StatelessWidget  {
         ),
       ],
     ),
-
       body: Padding(
         padding:  EdgeInsets.all(15.0),
         child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.5),
-              border: Border.all(
-                color: Colors.black12.withOpacity(0.5), // Change to your preferred border color
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(25),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.5),
+            border: Border.all(
+              width: 1.0
             ),
-            child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextFormField(
-                decoration: InputDecoration(
+              borderRadius: BorderRadius.circular(20)
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
                     labelText: 'Location',
-                    labelStyle: TextStyle(
-                    color: Colors.black,
-                        fontStyle: FontStyle.italic
+                    labelStyle: const TextStyle(
+                      color: Colors.black,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
                 ),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),
               ),
-
-                        ),
-              
-                      ),
-
-            ),
-
-          )
-
+               SizedBox(height:2), // space between fields
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Trek Name',
+                    labelStyle: const TextStyle(
+                      color: Colors.black,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ));
 
