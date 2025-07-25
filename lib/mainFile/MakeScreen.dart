@@ -68,7 +68,7 @@ class Makescreen extends StatelessWidget  {
                 SizedBox(height: 19,),
                 _buildField('Location'),
                 const SizedBox(height: 16),
-                _buildField('Trek Name'),
+                _buildField(''),
                 const SizedBox(height: 16),
                 _buildField('Duration'),
                 const SizedBox(height: 16),
@@ -106,6 +106,7 @@ class Makescreen extends StatelessWidget  {
         labelStyle: const TextStyle(
           color: Colors.black,
           fontStyle: FontStyle.italic,
+          fontSize: 15
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
