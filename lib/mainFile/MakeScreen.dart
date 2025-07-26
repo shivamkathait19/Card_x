@@ -66,15 +66,15 @@ class Makescreen extends StatelessWidget  {
                fit: BoxFit.cover,
                 ),
                 SizedBox(height: 19,),
-                _buildField('Location'),
+                _buildField('Text'),
                 const SizedBox(height: 16),
-                _buildField(''),
+                _buildField('Location'),
                 const SizedBox(height: 16),
                 _buildField('Duration'),
                 const SizedBox(height: 16),
                 _buildField('People'),
                 const SizedBox(height: 16),
-                _buildField('Description', maxLines:2),
+                _buildField('Description', maxLines:1),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
                   onPressed: () {
