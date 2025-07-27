@@ -77,13 +77,14 @@ class Makescreen extends StatelessWidget  {
                 _buildField('Description', maxLines:1),
                 const SizedBox(height: 24),
                 //_buildField("Book now "),
-             //   Text("JUST 10000",style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic),),
+               // ElevatedButton(onPressed: (){}, child: Text("Just 89999",style: TextStyle(fontSize: 20,fontStyle: FontStyle.italic),)),
+               //SizedBox(height:''),
                 ElevatedButton.icon(
                   onPressed: () {
                     // Submit action or Firebase logic
                   },
                   icon: const Icon(Icons.add),
-                  label:  Text("Book now",style: TextStyle(color: Colors.black),),
+                  label:  Text(" JUST 8999 BOOK NOW ",style: TextStyle(color: Colors.black),),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue.withOpacity(0.6),
                     shape: RoundedRectangleBorder(
