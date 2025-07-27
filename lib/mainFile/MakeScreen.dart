@@ -12,8 +12,9 @@ class Makescreen extends StatelessWidget  {
       backgroundColor: Colors.white10,
       elevation: 2,
       leading: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:  EdgeInsets.all(8.0),
         child: CircleAvatar(
+          radius: 2,
             backgroundImage: AssetImage("",) // Your logo
         ),
       ),
