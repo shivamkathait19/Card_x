@@ -7,6 +7,7 @@ class Makescreen extends StatelessWidget  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.brown,
     appBar:   AppBar(
       backgroundColor: Colors.white10,
       elevation: 2,
