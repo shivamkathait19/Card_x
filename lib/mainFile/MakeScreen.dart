@@ -102,7 +102,7 @@ class Makescreen extends StatelessWidget  {
       ),
     );
   }
-   Widget _buildField(String label, {int maxLines = 1}) {
+   Widget _buildField(String label, {int maxLines = 2}) {
     return TextFormField(
       maxLines: maxLines,
       decoration: InputDecoration(
