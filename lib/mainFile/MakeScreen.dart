@@ -8,13 +8,14 @@ class Makescreen extends StatelessWidget  {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown,
-    appBar:   AppBar(
+      appBar:  AppBar(
+
       backgroundColor: Colors.white10,
-      elevation: 2,
+      elevation: 5,
       leading: Padding(
         padding:  EdgeInsets.all(8.0),
         child: CircleAvatar(
-          radius: 2,
+          radius: 10,
             backgroundImage: AssetImage("",) // Your logo
         ),
       ),
@@ -40,15 +41,15 @@ class Makescreen extends StatelessWidget  {
           ),
         ],
       ),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black87),
-          onPressed: () {
-            Scaffold.of(context).openEndDrawer(); // Optional drawer trigger
-          },
-        ),
-      ],
     ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          children: [
+            
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
@@ -103,7 +104,7 @@ class Makescreen extends StatelessWidget  {
       ),
     );
   }
-   Widget _buildField(String label, {int maxLines = 2}) {
+   Widget _buildField(String label, {int maxLines = 1}) {
     return TextFormField(
       maxLines: maxLines,
       decoration: InputDecoration(
