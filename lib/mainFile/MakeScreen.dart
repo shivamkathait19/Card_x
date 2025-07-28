@@ -13,10 +13,10 @@ class Makescreen extends StatelessWidget  {
       backgroundColor: Colors.white10,
       elevation: 5,
       leading: Padding(
-        padding:  EdgeInsets.all(8.0),
+        padding:  EdgeInsets.only(left: 30),
         child: CircleAvatar(
-          radius: 10,
-            backgroundImage: AssetImage("",) // Your logo
+          radius: 1,
+            backgroundImage: AssetImage("asset/avatar-png.jpg") // Your logo
         ),
       ),
       title: Column(
@@ -41,15 +41,50 @@ class Makescreen extends StatelessWidget  {
           ),
         ],
       ),
-    ),
+      ),
+
       drawer: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            
+            DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [Colors.deepPurple, Colors.pinkAccent]),
+              ),
+              child: Text(
+                'Menu',
+                style: TextStyle(color: Colors.white, fontSize: 24),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+                // Handle navigation
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {
+                Navigator.pop(context);
+                // Handle navigation
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About'),
+              onTap: () {
+                Navigator.pop(context);
+                // Handle navigation
+              },
+            ),
           ],
         ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
