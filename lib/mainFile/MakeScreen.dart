@@ -9,8 +9,7 @@ class Makescreen extends StatelessWidget  {
     return Scaffold(
       backgroundColor: Colors.brown,
       appBar:  AppBar(
-
-      backgroundColor: Colors.white10,
+        backgroundColor: Colors.white10,
       elevation: 5,
       leading: Padding(
         padding:  EdgeInsets.only(left: 30),
@@ -41,12 +40,16 @@ class Makescreen extends StatelessWidget  {
           ),
         ],
       ),
+      actions: [
+        ElevatedButton(onPressed: onPressed, child: child)
+      ],
       ),
-
+      
+      
       drawer: Drawer(
         backgroundColor: Colors.black,
         child: ListView(
-          padding: EdgeInsets.zero,
+         // padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
