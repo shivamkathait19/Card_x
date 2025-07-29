@@ -1,4 +1,55 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
+      home: Makescreen(),
+    );
+  }
+}
+
+class CardData {
+  final String text;
+  final String location;
+  final String duration;
+  final String people;
+  final String description;
+  final String imageUrl;
+
+  CardData({
+    required this.text,
+    required this.location,
+    required this.duration,
+    required this.people,
+    required this.description,
+    required this.imageUrl,
+  });
+
+  Map<String, dynamic> toJson() => {
+    'text': text,
+    'location': location,
+    'duration': duration,
+    'people': people,
+    'description': description,
+    'imageUrl': imageUrl,
+  };
+
+  factory CardData.fromJson(Map<String, dynamic> json) => CardData(
+    text: json['text'],
+    location: json['location'],
+    duration: json['duration'],
+    people: json['people'],
+    description: json['description'],
+    imageUrl: json['imageUrl'],
+  );
+}
 
 class Makescreen extends StatefulWidget {
   @override
@@ -6,49 +57,61 @@ class Makescreen extends StatefulWidget {
 }
 
 class _MakescreenState extends State<Makescreen> {
-  final _textController = TextEditingController();
-  final _locationController = TextEditingController();
-  final _durationController = TextEditingController();
-  final _peopleController = TextEditingController();
-  final _descController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController textController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController durationController = TextEditingController();
+  final TextEditingController peopleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
-  List<Map<String, String>> savedCards = [];
+  String imageUrl =
+      "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
 
-  void _saveCard() {
-    if (_textController.text.isEmpty) return;
-    setState(() {
-      savedCards.add({
-        'Text': _textController.text,
-        'Location': _locationController.text,
-        'Duration': _durationController.text,
-        'People': _peopleController.text,
-        'Description': _descController.text,
-      });
+  void saveCard() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> cards = prefs.getStringList('cards') ?? [];
 
-      // Clear fields
-      _textController.clear();
-      _locationController.clear();
-      _durationController.clear();
-      _peopleController.clear();
-      _descController.clear();
-    });
+    CardData newCard = CardData(
+      text: textController.text,
+      location: locationController.text,
+      duration: durationController.text,
+      people: peopleController.text,
+      description: descriptionController.text,
+      imageUrl: imageUrl,
+    );
+
+    cards.add(jsonEncode(newCard.toJson()));
+    await prefs.setStringList('cards', cards);
+
+    // Clear fields after saving
+    textController.clear();
+    locationController.clear();
+    durationController.clear();
+    peopleController.clear();
+    descriptionController.clear();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Card saved successfully!")),
+      SnackBar(content: Text("Card Saved!")),
+    );
+  }
+
+  void goToHome() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown,
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.white10,
         elevation: 5,
         leadingWidth: 100,
         leading: Builder(
           builder: (context) => Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               IconButton(
                 icon: Icon(Icons.menu, color: Colors.white),
@@ -66,14 +129,12 @@ class _MakescreenState extends State<Makescreen> {
         ),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: const [
             Text('Make', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
             Text('Card', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.pinkAccent)),
           ],
         ),
       ),
-
       drawer: Drawer(
         backgroundColor: Colors.black,
         child: ListView(
@@ -84,94 +145,51 @@ class _MakescreenState extends State<Makescreen> {
               ),
               child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
             ),
-            ExpansionTile(
-              title: Text("Home (Saved Cards)", style: TextStyle(color: Colors.white)),
-              iconColor: Colors.white,
-              collapsedIconColor: Colors.white,
-              children: savedCards.map((card) {
-                return ListTile(
-                  title: Text(card['Text'] ?? '', style: TextStyle(color: Colors.white)),
-                  subtitle: Text("People: ${card['People']} | ${card['Location']}", style: TextStyle(color: Colors.white70)),
-                );
-              }).toList(),
-            ),
             ListTile(
-              leading: Icon(Icons.settings, color: Colors.white),
-              title: Text('Settings', style: TextStyle(color: Colors.white)),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: Icon(Icons.info, color: Colors.white),
-              title: Text('About', style: TextStyle(color: Colors.white)),
-              onTap: () => Navigator.pop(context),
+              leading: Icon(Icons.home, color: Colors.white),
+              title: Text('Home', style: TextStyle(color: Colors.white)),
+              onTap: goToHome,
             ),
           ],
         ),
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.5),
-            border: Border.all(color: Colors.black12.withOpacity(0.5), width: 1.0),
+            color: Colors.white.withOpacity(0.1),
             borderRadius: BorderRadius.circular(25),
           ),
           padding: EdgeInsets.all(16),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.network(
-                  "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg",
-                  fit: BoxFit.cover,
-                ),
-                SizedBox(height: 19),
-                _buildField('Text', controller: _textController),
-                SizedBox(height: 16),
-                _buildField('Location', controller: _locationController),
-                SizedBox(height: 16),
-                _buildField('Duration', controller: _durationController),
-                SizedBox(height: 16),
-                _buildField('People', controller: _peopleController,),
-                SizedBox(height: 16),
-                _buildField('Description', controller: _descController),
-                SizedBox(height: 24),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _saveCard,
-                        icon: Icon(Icons.save, color: Colors.black),
-                        label: Text("SAVE CARD", style: TextStyle(color: Colors.black)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.greenAccent.withOpacity(0.7),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                        ),
-                      ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Image.network(imageUrl),
+                  SizedBox(height: 19),
+                  _buildField('Text', textController),
+                  SizedBox(height: 16),
+                  _buildField('Location', locationController),
+                  SizedBox(height: 16),
+                  _buildField('Duration', durationController),
+                  SizedBox(height: 16),
+                  _buildField('People', peopleController),
+                  SizedBox(height: 16),
+                  _buildField('Description', descriptionController, maxLines: 2),
+                  SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    onPressed: saveCard,
+                    icon: Icon(Icons.save, color: Colors.black),
+                    label: Text("SAVE CARD", style: TextStyle(color: Colors.black)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.withOpacity(0.6),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          // Firebase logic or booking
-                        },
-                        icon: Icon(Icons.add, color: Colors.black),
-                        label: Text("JUST 8999 BOOK NOW", style: TextStyle(color: Colors.black)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blue.withOpacity(0.6),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -179,15 +197,60 @@ class _MakescreenState extends State<Makescreen> {
     );
   }
 
-  Widget _buildField(String label, {int maxLines = 1, TextEditingController? controller}) {
+  Widget _buildField(String label, TextEditingController controller, {int maxLines = 1}) {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
       decoration: InputDecoration(
         labelText: label,
-        hintText: '$label',
-        labelStyle: TextStyle(color: Colors.black, fontStyle: FontStyle.italic, fontSize: 15),
+        labelStyle: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        filled: true,
+        fillColor: Colors.white10,
+      ),
+      style: TextStyle(color: Colors.white),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  Future<List<CardData>> loadCards() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> cardsJson = prefs.getStringList('cards') ?? [];
+    return cardsJson.map((card) => CardData.fromJson(jsonDecode(card))).toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text("Saved Cards"),
+      ),
+      body: FutureBuilder<List<CardData>>(
+        future: loadCards(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
+          final cards = snapshot.data!;
+          if (cards.isEmpty) return Center(child: Text("No cards saved", style: TextStyle(color: Colors.white)));
+          return ListView.builder(
+            itemCount: cards.length,
+            itemBuilder: (context, index) {
+              final card = cards[index];
+              return Card(
+                color: Colors.white10,
+                margin: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                child: ListTile(
+                  contentPadding: EdgeInsets.all(10),
+                  leading: Image.network(card.imageUrl, width: 60, height: 60, fit: BoxFit.cover),
+                  title: Text(card.text, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  subtitle: Text(card.description, style: TextStyle(color: Colors.white70)),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
