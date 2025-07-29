@@ -54,8 +54,7 @@ class _BarcomsState extends State<Barcoms> {
               ),
             ),
           ),
-
-SizedBox(height: 20,),
+             SizedBox(height: 20,),
           ElevatedButton(onPressed: Cardmaker,  style: ElevatedButton.styleFrom(
             backgroundColor: Colors.black.withOpacity(0.7),
             foregroundColor: Colors.white,
