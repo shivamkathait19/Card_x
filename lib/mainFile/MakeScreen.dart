@@ -20,6 +20,7 @@ class CardData {
   final String people;
   final String description;
   final String imageUrl;
+  final String serviceOption;
 
   CardData({
     required this.text,
@@ -28,8 +29,12 @@ class CardData {
     required this.people,
     required this.description,
     required this.imageUrl,
+    required this.serviceOption,
   });
 }
+
+// Enum for service options
+enum TravelOption { none, taxi, hotel }
 
 class Makescreen extends StatefulWidget {
   @override
@@ -47,15 +52,20 @@ class _MakescreenState extends State<Makescreen> {
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
 
+  TravelOption _selectedOption = TravelOption.none;
+
   void clearForm() {
     textController.clear();
     locationController.clear();
     durationController.clear();
     peopleController.clear();
     descriptionController.clear();
+    setState(() {
+      _selectedOption = TravelOption.none;
+    });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Card Submitted! (Not saved permanently)")),
+      SnackBar(content: Text("Card Submitted with option: ${_selectedOption.name}")),
     );
   }
 
@@ -85,7 +95,8 @@ class _MakescreenState extends State<Makescreen> {
                 padding: const EdgeInsets.only(left: 0),
                 child: CircleAvatar(
                   radius: 16,
-                  backgroundImage: AssetImage("assets/avatar-png.jpg"),
+                  backgroundImage: NetworkImage(
+                      "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
                 ),
               ),
             ],
@@ -94,8 +105,16 @@ class _MakescreenState extends State<Makescreen> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text('Make', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.deepPurple)),
-            Text('Card', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.pinkAccent)),
+            Text('Make',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple)),
+            Text('Card',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.pinkAccent)),
           ],
         ),
       ),
@@ -105,9 +124,15 @@ class _MakescreenState extends State<Makescreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Colors.deepPurple, Colors.pinkAccent]),
+                gradient: LinearGradient(
+                    colors: [Colors.deepPurple, Colors.pinkAccent]),
               ),
-              child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 24)),
+              child: Text('Menu',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic)),
             ),
             ListTile(
               leading: Icon(Icons.home, color: Colors.white),
@@ -140,16 +165,64 @@ class _MakescreenState extends State<Makescreen> {
                   SizedBox(height: 16),
                   _buildField('People', peopleController),
                   SizedBox(height: 16),
-                  _buildField('Description', descriptionController, maxLines: 2),
+                  _buildField('Description', descriptionController,
+                      maxLines: 2),
+                  SizedBox(height: 24),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Select Extra Service:',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  RadioListTile<TravelOption>(
+                    title: Text("Want a taxi for travelling",
+                        style: TextStyle(color: Colors.white)),
+                    value: TravelOption.taxi,
+                    groupValue: _selectedOption,
+                    activeColor: Colors.pinkAccent,
+                    onChanged: (TravelOption? value) {
+                      setState(() {
+                        _selectedOption = value!;
+                      });
+                    },
+                    tileColor: Colors.white10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+                  RadioListTile<TravelOption>(
+                    title: Text("Want a hotel",
+                        style: TextStyle(color: Colors.white)),
+                    value: TravelOption.hotel,
+                    groupValue: _selectedOption,
+                    activeColor: Colors.pinkAccent,
+                    onChanged: (TravelOption? value) {
+                      setState(() {
+                        _selectedOption = value!;
+                      });
+                    },
+                    tileColor: Colors.white10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                  ),
+
                   SizedBox(height: 24),
                   ElevatedButton.icon(
                     onPressed: clearForm,
                     icon: Icon(Icons.check, color: Colors.black),
-                    label: Text("SUBMIT CARD", style: TextStyle(color: Colors.black)),
+                    label: Text("SUBMIT CARD",
+                        style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.withOpacity(0.6),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 14),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      padding:
+                      EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                     ),
                   ),
                 ],
@@ -161,13 +234,15 @@ class _MakescreenState extends State<Makescreen> {
     );
   }
 
-  Widget _buildField(String label, TextEditingController controller, {int maxLines = 1}) {
+  Widget _buildField(String label, TextEditingController controller,
+      {int maxLines = 1}) {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
+        labelStyle: TextStyle(
+            color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         filled: true,
         fillColor: Colors.white10,
@@ -177,7 +252,7 @@ class _MakescreenState extends State<Makescreen> {
   }
 }
 
-// Basic placeholder HomeScreen (with no saved cards)
+// Basic placeholder HomeScreen
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -185,7 +260,8 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(title: Text("Home")),
       body: Center(
-        child: Text("No saved cards (storage removed)", style: TextStyle(color: Colors.white)),
+        child: Text("No saved cards (storage removed)",
+            style: TextStyle(color: Colors.white)),
       ),
     );
   }
