@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,24 +29,6 @@ class CardData {
     required this.description,
     required this.imageUrl,
   });
-
-  Map<String, dynamic> toJson() => {
-    'text': text,
-    'location': location,
-    'duration': duration,
-    'people': people,
-    'description': description,
-    'imageUrl': imageUrl,
-  };
-
-  factory CardData.fromJson(Map<String, dynamic> json) => CardData(
-    text: json['text'],
-    location: json['location'],
-    duration: json['duration'],
-    people: json['people'],
-    description: json['description'],
-    imageUrl: json['imageUrl'],
-  );
 }
 
 class Makescreen extends StatefulWidget {
@@ -67,23 +47,7 @@ class _MakescreenState extends State<Makescreen> {
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
 
-  void saveCard() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> cards = prefs.getStringList('cards') ?? [];
-
-    CardData newCard = CardData(
-      text: textController.text,
-      location: locationController.text,
-      duration: durationController.text,
-      people: peopleController.text,
-      description: descriptionController.text,
-      imageUrl: imageUrl,
-    );
-
-    cards.add(jsonEncode(newCard.toJson()));
-    await prefs.setStringList('cards', cards);
-
-    // Clear fields after saving
+  void clearForm() {
     textController.clear();
     locationController.clear();
     durationController.clear();
@@ -91,7 +55,7 @@ class _MakescreenState extends State<Makescreen> {
     descriptionController.clear();
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Card Saved!")),
+      SnackBar(content: Text("Card Submitted! (Not saved permanently)")),
     );
   }
 
@@ -179,9 +143,9 @@ class _MakescreenState extends State<Makescreen> {
                   _buildField('Description', descriptionController, maxLines: 2),
                   SizedBox(height: 24),
                   ElevatedButton.icon(
-                    onPressed: saveCard,
-                    icon: Icon(Icons.save, color: Colors.black),
-                    label: Text("SAVE CARD", style: TextStyle(color: Colors.black)),
+                    onPressed: clearForm,
+                    icon: Icon(Icons.check, color: Colors.black),
+                    label: Text("SUBMIT CARD", style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue.withOpacity(0.6),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -213,44 +177,15 @@ class _MakescreenState extends State<Makescreen> {
   }
 }
 
+// Basic placeholder HomeScreen (with no saved cards)
 class HomeScreen extends StatelessWidget {
-  Future<List<CardData>> loadCards() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    List<String> cardsJson = prefs.getStringList('cards') ?? [];
-    return cardsJson.map((card) => CardData.fromJson(jsonDecode(card))).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: Text("Saved Cards"),
-      ),
-      body: FutureBuilder<List<CardData>>(
-        future: loadCards(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
-          final cards = snapshot.data!;
-          if (cards.isEmpty) return Center(child: Text("No cards saved", style: TextStyle(color: Colors.white)));
-          return ListView.builder(
-            itemCount: cards.length,
-            itemBuilder: (context, index) {
-              final card = cards[index];
-              return Card(
-                color: Colors.white10,
-                margin: EdgeInsets.all(10),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(10),
-                  leading: Image.network(card.imageUrl, width: 60, height: 60, fit: BoxFit.cover),
-                  title: Text(card.text, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                  subtitle: Text(card.description, style: TextStyle(color: Colors.white70)),
-                ),
-              );
-            },
-          );
-        },
+      appBar: AppBar(title: Text("Home")),
+      body: Center(
+        child: Text("No saved cards (storage removed)", style: TextStyle(color: Colors.white)),
       ),
     );
   }
