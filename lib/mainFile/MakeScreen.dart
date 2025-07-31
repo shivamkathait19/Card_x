@@ -51,6 +51,8 @@ class _MakescreenState extends State<Makescreen> {
 
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
+  bool _wantTaxi = false;
+  bool _wantHotel = false;
 
   TravelOption _selectedOption = TravelOption.none;
 
@@ -61,9 +63,12 @@ class _MakescreenState extends State<Makescreen> {
     peopleController.clear();
     descriptionController.clear();
     setState(() {
-      _selectedOption = TravelOption.none;
+      _wantHotel =false;
+      _wantTaxi = false;
     });
-
+  String selectedServices ='';
+  if (_wantTaxi) selectedServices+='Taxi';
+  if (_wantHotel) selectedServices +='Hotel';
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Card Submitted with option: ${_selectedOption.name}")),
     );
@@ -169,10 +174,11 @@ class _MakescreenState extends State<Makescreen> {
                       maxLines: 2),
                   SizedBox(height: 24),
 
+
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Select Extra Service:',
+                      'Select Extra Services:',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
@@ -180,36 +186,34 @@ class _MakescreenState extends State<Makescreen> {
                     ),
                   ),
                   SizedBox(height: 8),
-                  RadioListTile<TravelOption>(
-                    title: Text("Want a taxi for travelling",
-                        style: TextStyle(color: Colors.white)),
-                    value: TravelOption.taxi,
-                    groupValue: _selectedOption,
+
+                  CheckboxListTile(
+                    title: Text("Want a taxi for travelling", style: TextStyle(color: Colors.white)),
+                    value: _wantTaxi,
                     activeColor: Colors.pinkAccent,
-                    onChanged: (TravelOption? value) {
+                    onChanged: (bool? value) {
                       setState(() {
-                        _selectedOption = value!;
+                        _wantTaxi = value!;
                       });
                     },
                     tileColor: Colors.white10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    controlAffinity: ListTileControlAffinity.leading,
                   ),
-                  RadioListTile<TravelOption>(
-                    title: Text("Want a hotel",
-                        style: TextStyle(color: Colors.white)),
-                    value: TravelOption.hotel,
-                    groupValue: _selectedOption,
+                  CheckboxListTile(
+                    title: Text("Want a hotel", style: TextStyle(color: Colors.white)),
+                    value: _wantHotel,
                     activeColor: Colors.pinkAccent,
-                    onChanged: (TravelOption? value) {
+                    onChanged: (bool? value) {
                       setState(() {
-                        _selectedOption = value!;
+                        _wantHotel = value!;
                       });
                     },
                     tileColor: Colors.white10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    controlAffinity: ListTileControlAffinity.leading,
                   ),
+
 
                   SizedBox(height: 24),
                   ElevatedButton.icon(
