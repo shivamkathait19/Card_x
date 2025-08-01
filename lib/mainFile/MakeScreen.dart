@@ -166,10 +166,14 @@ class _MakescreenState extends State<Makescreen> {
                   SizedBox(height: 16),
                   _buildField('Location', locationController),
                   SizedBox(height: 16),
-                  _buildField('Duration', durationController),
-                  SizedBox(height: 16),
-                  _buildField('People', peopleController),
-                  SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(child:
+                  _buildField('Duration', durationController)),
+                  SizedBox(width: 5,),
+                  Expanded(child:
+                  _buildField('People', peopleController),)],),
+                  SizedBox(height: 10,),
                   _buildField('Description', descriptionController,
                       maxLines: 2),
                   SizedBox(height: 24),
@@ -200,6 +204,7 @@ class _MakescreenState extends State<Makescreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
+                   SizedBox(height: 10,),
                   CheckboxListTile(
                     title: Text("Want a hotel", style: TextStyle(color: Colors.white)),
                     value: _wantHotel,
