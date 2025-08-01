@@ -190,7 +190,6 @@ class _MakescreenState extends State<Makescreen> {
                     ),
                   ),
                   SizedBox(height: 8),
-
                   CheckboxListTile(
                     title: Text("Want a taxi for travelling", style: TextStyle(color: Colors.white)),
                     value: _wantTaxi,
