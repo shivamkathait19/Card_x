@@ -40,7 +40,7 @@ class _BarcomsState extends State<Barcoms> {
               shadowColor: Colors.black45,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-               // side:  BorderSide(color: Colors.white, width: 3),
+               
               ),
             ),
             child: Text(
