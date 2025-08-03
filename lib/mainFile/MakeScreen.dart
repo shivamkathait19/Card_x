@@ -34,7 +34,7 @@ class CardData {
 }
 
 // Enum for service options
-enum TravelOption { none, taxi, hotel, shivam }
+enum TravelOption { none, taxi, hotel, lunch$dinner }
 
 class Makescreen extends StatefulWidget {
   @override
@@ -53,7 +53,7 @@ class _MakescreenState extends State<Makescreen> {
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
   bool _wantTaxi = false;
   bool _wantHotel = false;
-  bool _shivam  = false;
+  bool _wantiunch$dinner  = false;
 
   TravelOption _selectedOption = TravelOption.none;
 
@@ -66,12 +66,12 @@ class _MakescreenState extends State<Makescreen> {
     setState(() {
       _wantHotel =false;
       _wantTaxi = false;
-      _shivam = false;
+      _wantiunch$dinner = false;
     });
   String selectedServices ='';
   if (_wantTaxi) selectedServices+='Taxi';
   if (_wantHotel) selectedServices +='Hotel';
-  if (_shivam) selectedServices +='Shivam';
+  if (_wantiunch$dinner) selectedServices +='_Want lunch/dinner';
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Card Submitted with option: ${_selectedOption.name}")),
     );
@@ -84,7 +84,7 @@ class _MakescreenState extends State<Makescreen> {
     );
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -220,12 +220,12 @@ class _MakescreenState extends State<Makescreen> {
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
                   SizedBox(height: 10,),
-                  CheckboxListTile(title: Text("shivam",style: TextStyle(color: Colors.white),),
-                      value: _shivam,
+                  CheckboxListTile(title: Text("Lunch/dinner",style: TextStyle(color: Colors.white),),
+                      value: _wantiunch$dinner,
                       activeColor: Colors.cyan,
                       onChanged: (bool? value){
                     setState(() {
-                      _shivam = value!;
+                      _wantiunch$dinner = value!;
                     });
                       },
                     tileColor: Colors.white10,
