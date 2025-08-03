@@ -34,7 +34,7 @@ class CardData {
 }
 
 // Enum for service options
-enum TravelOption { none, taxi, hotel }
+enum TravelOption { none, taxi, hotel, shivam }
 
 class Makescreen extends StatefulWidget {
   @override
@@ -53,6 +53,7 @@ class _MakescreenState extends State<Makescreen> {
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
   bool _wantTaxi = false;
   bool _wantHotel = false;
+  bool _shivam  = false;
 
   TravelOption _selectedOption = TravelOption.none;
 
@@ -65,10 +66,12 @@ class _MakescreenState extends State<Makescreen> {
     setState(() {
       _wantHotel =false;
       _wantTaxi = false;
+      _shivam = false;
     });
   String selectedServices ='';
   if (_wantTaxi) selectedServices+='Taxi';
   if (_wantHotel) selectedServices +='Hotel';
+  if (_shivam) selectedServices +='Shivam';
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Card Submitted with option: ${_selectedOption.name}")),
     );
@@ -178,8 +181,6 @@ class _MakescreenState extends State<Makescreen> {
                   _buildField('Description', descriptionController,
                       maxLines: 2),
                   SizedBox(height: 24),
-
-
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -206,7 +207,7 @@ class _MakescreenState extends State<Makescreen> {
                   ),
                    SizedBox(height: 10,),
                   CheckboxListTile(
-                    title: Text("Want a hotel", style: TextStyle(color: Colors.white)),
+                    title: Text("Want a hotels", style: TextStyle(color: Colors.white)),
                     value: _wantHotel,
                     activeColor: Colors.pinkAccent,
                     onChanged: (bool? value) {
@@ -218,8 +219,19 @@ class _MakescreenState extends State<Makescreen> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
-
-
+                  SizedBox(height: 10,),
+                  CheckboxListTile(title: Text("shivam",style: TextStyle(color: Colors.white),),
+                      value: _shivam,
+                      activeColor: Colors.cyan,
+                      onChanged: (bool? value){
+                    setState(() {
+                      _shivam = value!;
+                    });
+                      },
+                    tileColor: Colors.white10,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    controlAffinity: ListTileControlAffinity.leading,
+                      ),
                   SizedBox(height: 24),
                   ElevatedButton.icon(
                     onPressed: clearForm,
