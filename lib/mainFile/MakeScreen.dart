@@ -90,7 +90,7 @@ class _MakescreenState extends State<Makescreen> {
       appBar: AppBar(
         backgroundColor: Colors.white10,
         elevation: 5,
-        leadingWidth: 100,
+        leadingWidth: 80,
         leading: Builder(
           builder: (context) => Row(
             children: [
@@ -176,7 +176,7 @@ class _MakescreenState extends State<Makescreen> {
                   _buildField('Duration', durationController)),
                   SizedBox(width: 5,),
                   Expanded(child:
-                  _buildField('People', peopleController),)],),
+                  _buildField('People', peopleController,),)],),
                   SizedBox(height: 10,),
                   _buildField('Description', descriptionController,
                       maxLines: 2),
@@ -193,45 +193,49 @@ class _MakescreenState extends State<Makescreen> {
                   ),
                   SizedBox(height: 8),
                   CheckboxListTile(
-                    title: Text("Want a taxi for travelling", style: TextStyle(color: Colors.white)),
+                    title: Text("Want a taxi for travelling", style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500)),
                     value: _wantTaxi,
-                    activeColor: Colors.pinkAccent,
+                    activeColor: Colors.blue,
                     onChanged: (bool? value) {
                       setState(() {
                         _wantTaxi = value!;
                       });
                     },
-                    tileColor: Colors.white10,
+                    tileColor: Colors.pink,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
                    SizedBox(height: 10,),
-                  CheckboxListTile(
-                    title: Text("Want a hotels", style: TextStyle(color: Colors.white)),
-                    value: _wantHotel,
-                    activeColor: Colors.pinkAccent,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _wantHotel = value!;
-                      });
-                    },
-                    tileColor: Colors.white10,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                  SizedBox(height: 10,),
-                  CheckboxListTile(title: Text("Lunch/dinner",style: TextStyle(color: Colors.white),),
-                      value: _wantiunch$dinner,
-                      activeColor: Colors.cyan,
-                      onChanged: (bool? value){
-                    setState(() {
-                      _wantiunch$dinner = value!;
-                    });
-                      },
-                    tileColor: Colors.white10,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    controlAffinity: ListTileControlAffinity.leading,
-                      ),
+                  Row(
+                    children: [
+                      Expanded(child: CheckboxListTile(
+                        title: Text("Want a hotels", style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500)),
+                        value: _wantHotel,
+                        activeColor: Colors.blue,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _wantHotel = value!;
+                          });
+                        },
+                        tileColor: Colors.brown,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),),
+                      SizedBox(width:5,),
+                 Expanded(child: CheckboxListTile(title: Text("Lunch/dinner",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500),),
+                   value: _wantiunch$dinner,
+                   activeColor: Colors.cyan,
+                   onChanged: (bool? value){
+                     setState(() {
+                       _wantiunch$dinner = value!;
+                     });
+                   },
+                   tileColor: Colors.blueAccent,
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                   controlAffinity: ListTileControlAffinity.leading,
+                 ),)
+
+                  ]),
                   SizedBox(height: 24),
                   ElevatedButton.icon(
                     onPressed: clearForm,
@@ -263,7 +267,7 @@ class _MakescreenState extends State<Makescreen> {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-            color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
+            color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15,),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         filled: true,
         fillColor: Colors.white10,
