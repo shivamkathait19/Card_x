@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
 }
 
 class CardData {
-  final String text;
+  final String Name;
+  final String Number;
   final String location;
   final String duration;
   final String people;
@@ -23,7 +24,8 @@ class CardData {
   final String serviceOption;
 
   CardData({
-    required this.text,
+    required this.Name,
+    required this.Number,
     required this.location,
     required this.duration,
     required this.people,
@@ -33,9 +35,6 @@ class CardData {
   });
 }
 
-// Enum for service options
-enum TravelOption { none, taxi, hotel, lunch$dinner }
-
 class Makescreen extends StatefulWidget {
   @override
   _MakescreenState createState() => _MakescreenState();
@@ -43,48 +42,63 @@ class Makescreen extends StatefulWidget {
 
 class _MakescreenState extends State<Makescreen> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController textController = TextEditingController();
+  final TextEditingController NameController = TextEditingController();
+  final TextEditingController NumberController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController durationController = TextEditingController();
   final TextEditingController peopleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
+  List<CardData> savedCards = [];
+
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
   bool _wantTaxi = false;
   bool _wantHotel = false;
-  bool _wantiunch$dinner  = false;
-
-  TravelOption _selectedOption = TravelOption.none;
+  bool _wantiunch$dinner = false;
 
   void clearForm() {
-    textController.clear();
-    locationController.clear();
-    durationController.clear();
-    peopleController.clear();
-    descriptionController.clear();
-    setState(() {
-      _wantHotel =false;
-      _wantTaxi = false;
-      _wantiunch$dinner = false;
-    });
-  String selectedServices ='';
-  if (_wantTaxi) selectedServices+='Taxi';
-  if (_wantHotel) selectedServices +='Hotel';
-  if (_wantiunch$dinner) selectedServices +='_Want lunch/dinner';
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Card Submitted with option: ${_selectedOption.name}")),
-    );
+    if (_formKey.currentState!.validate()) {
+      String selectedServices = '';
+      if (_wantTaxi) selectedServices += 'Taxi ';
+      if (_wantHotel) selectedServices += 'Hotel ';
+      if (_wantiunch$dinner) selectedServices += 'Lunch/Dinner';
+
+      final newCard = CardData(
+        Name: NameController.text,
+        Number: NumberController.text,
+        location: locationController.text,
+        duration: durationController.text,
+        people: peopleController.text,
+        description: descriptionController.text,
+        imageUrl: imageUrl,
+        serviceOption: selectedServices.trim(),
+      );
+
+      savedCards.add(newCard);
+
+      NameController.clear();
+      NumberController.clear();
+      locationController.clear();
+      durationController.clear();
+      peopleController.clear();
+      descriptionController.clear();
+
+      setState(() {
+        _wantHotel = false;
+        _wantTaxi = false;
+        _wantiunch$dinner = false;
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen(cards: savedCards)),
+      );
+    }
   }
 
-  void goToHome() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
-  }
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
@@ -125,45 +139,49 @@ class _MakescreenState extends State<Makescreen> {
           ],
         ),
       ),
-
       drawer: Drawer(
         backgroundColor: Colors.black,
         child: ListView(
-          children:[
-        DrawerHeader(
-        decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.deepPurple, Colors.pinkAccent],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            radius: 35,
-            backgroundImage: AssetImage('assets/avatar.jpg'), // Replace with your asset path
-            backgroundColor: Colors.white,
-          ),
-          SizedBox(height: 12),
-          Text(
-            'Welcome, Shivam',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 15,
-              fontWeight: FontWeight.w600 ,
-              letterSpacing: 1.2,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.deepPurple, Colors.pinkAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage('assets/avatar.jpg'),
+                    backgroundColor: Colors.white,
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    'Welcome, Shivam',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-
-        ],
-      ),),
             ListTile(
               leading: Icon(Icons.home, color: Colors.white),
               title: Text('Home', style: TextStyle(color: Colors.white)),
-              onTap: goToHome,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomeScreen(cards: savedCards)),
+                );
+              },
             ),
           ],
         ),
@@ -183,20 +201,28 @@ class _MakescreenState extends State<Makescreen> {
                 children: [
                   Image.network(imageUrl),
                   SizedBox(height: 19),
-                  _buildField('Text', textController),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: _buildField("Enter Name", NameController)),
+                      SizedBox(width: 5),
+                      Expanded(
+                          child: _buildField('Number', NumberController)),
+                    ],
+                  ),
                   SizedBox(height: 16),
                   _buildField('Location', locationController),
                   SizedBox(height: 16),
                   Row(
                     children: [
-                      Expanded(child:
-                  _buildField('Duration', durationController)),
-                  SizedBox(width: 5,),
-                  Expanded(child:
-                  _buildField('People', peopleController,),)],),
-                  SizedBox(height: 10,),
-                  _buildField('Description', descriptionController,
-                      maxLines: 2),
+                      Expanded(
+                          child: _buildField('Duration', durationController)),
+                      SizedBox(width: 5),
+                      Expanded(child: _buildField('People', peopleController)),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  _buildField('Description', descriptionController, maxLines: 2),
                   SizedBox(height: 24),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -210,7 +236,11 @@ class _MakescreenState extends State<Makescreen> {
                   ),
                   SizedBox(height: 8),
                   CheckboxListTile(
-                    title: Text("Want a taxi for travelling", style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500)),
+                    title: Text("Want a taxi for travelling",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                            fontWeight: FontWeight.w500)),
                     value: _wantTaxi,
                     activeColor: Colors.blue,
                     onChanged: (bool? value) {
@@ -219,14 +249,19 @@ class _MakescreenState extends State<Makescreen> {
                       });
                     },
                     tileColor: Colors.pink,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     controlAffinity: ListTileControlAffinity.leading,
                   ),
-                   SizedBox(height: 10,),
-                  Row(
-                    children: [
-                      Expanded(child: CheckboxListTile(
-                        title: Text("Want a hotels", style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500)),
+                  SizedBox(height: 10),
+                  Row(children: [
+                    Expanded(
+                      child: CheckboxListTile(
+                        title: Text("Want a hotel",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w500)),
                         value: _wantHotel,
                         activeColor: Colors.blue,
                         onChanged: (bool? value) {
@@ -235,23 +270,32 @@ class _MakescreenState extends State<Makescreen> {
                           });
                         },
                         tileColor: Colors.brown,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
                         controlAffinity: ListTileControlAffinity.leading,
-                      ),),
-                      SizedBox(width:5,),
-                 Expanded(child: CheckboxListTile(title: Text("Lunch/dinner",style: TextStyle(color: Colors.white,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500),),
-                   value: _wantiunch$dinner,
-                   activeColor: Colors.cyan,
-                   onChanged: (bool? value){
-                     setState(() {
-                       _wantiunch$dinner = value!;
-                     });
-                   },
-                   tileColor: Colors.blueAccent,
-                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                   controlAffinity: ListTileControlAffinity.leading,
-                 ),)
-
+                      ),
+                    ),
+                    SizedBox(width: 5),
+                    Expanded(
+                      child: CheckboxListTile(
+                        title: Text("Lunch/dinner",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w500)),
+                        value: _wantiunch$dinner,
+                        activeColor: Colors.cyan,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _wantiunch$dinner = value!;
+                          });
+                        },
+                        tileColor: Colors.blueAccent,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),
+                    ),
                   ]),
                   SizedBox(height: 24),
                   ElevatedButton.icon(
@@ -284,26 +328,57 @@ class _MakescreenState extends State<Makescreen> {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-            color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15,),
+            color: Colors.white,
+            fontStyle: FontStyle.italic,
+            fontSize: 15),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         filled: true,
         fillColor: Colors.white10.withOpacity(0.10),
       ),
       style: TextStyle(color: Colors.white),
+      validator: (value) =>
+      value == null || value.isEmpty ? 'Required field' : null,
     );
   }
 }
 
-// Basic placeholder HomeScreen
 class HomeScreen extends StatelessWidget {
+  final List<CardData> cards;
+
+  HomeScreen({required this.cards});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Home")),
-      body: Center(
-        child: Text("No saved cards (storage removed)",
-            style: TextStyle(color: Colors.white)),
+      appBar: AppBar(title: Text("Saved Cards")),
+      body: cards.isEmpty
+          ? Center(
+          child:
+          Text("No saved cards", style: TextStyle(color: Colors.white)))
+          : ListView.builder(
+        itemCount: cards.length,
+        itemBuilder: (context, index) {
+          final card = cards[index];
+          return Card(
+            color: Colors.white10,
+            margin: EdgeInsets.all(12),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16)),
+            child: ListTile(
+              leading: CircleAvatar(
+                  backgroundImage: NetworkImage(card.imageUrl)),
+              title: Text(card.Name,
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
+              subtitle: Text(
+                "${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                style: TextStyle(color: Colors.grey),
+              ),
+              isThreeLine: true,
+            ),
+          );
+        },
       ),
     );
   }
