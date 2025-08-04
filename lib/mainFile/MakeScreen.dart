@@ -126,23 +126,40 @@ class _MakescreenState extends State<Makescreen> {
         ),
       ),
 
-
       drawer: Drawer(
         backgroundColor: Colors.black,
         child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [Colors.deepPurple, Colors.pinkAccent]),
-              ),
-              child: Text('Menu',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic)),
+          children:[
+        DrawerHeader(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.deepPurple, Colors.pinkAccent],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 35,
+            backgroundImage: AssetImage('assets/avatar.jpg'), // Replace with your asset path
+            backgroundColor: Colors.white,
+          ),
+          SizedBox(height: 12),
+          Text(
+            'Welcome, Shivam',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w600 ,
+              letterSpacing: 1.2,
             ),
+          ),
+
+        ],
+      ),),
             ListTile(
               leading: Icon(Icons.home, color: Colors.white),
               title: Text('Home', style: TextStyle(color: Colors.white)),
@@ -270,7 +287,7 @@ class _MakescreenState extends State<Makescreen> {
             color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15,),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         filled: true,
-        fillColor: Colors.white10,
+        fillColor: Colors.white10.withOpacity(0.10),
       ),
       style: TextStyle(color: Colors.white),
     );
