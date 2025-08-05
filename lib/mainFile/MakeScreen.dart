@@ -331,9 +331,9 @@ class _MakescreenState extends State<Makescreen> {
             color: Colors.white,
             fontStyle: FontStyle.italic,
             fontSize: 15),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10) ,borderSide: BorderSide(color: Colors.blue)),
         filled: true,
-        fillColor: Colors.white10.withOpacity(0.10),
+        fillColor: Colors.black.withOpacity(0.10),
       ),
       style: TextStyle(color: Colors.white),
       validator: (value) =>
