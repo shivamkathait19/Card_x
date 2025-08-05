@@ -333,7 +333,7 @@ class _MakescreenState extends State<Makescreen> {
             fontSize: 15),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10) ,borderSide: BorderSide(color: Colors.blue)),
         filled: true,
-        fillColor: Colors.black.withOpacity(0.10),
+        fillColor: Colors.white.withOpacity(0.10),
       ),
       style: TextStyle(color: Colors.white),
       validator: (value) =>
