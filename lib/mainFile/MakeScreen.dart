@@ -207,7 +207,7 @@ class _MakescreenState extends State<Makescreen> {
                           child: _buildField("Enter Name", NameController)),
                       SizedBox(width: 5),
                       Expanded(
-                          child: _buildField('Number', NumberController)),
+                          child: _buildField('Gmail/Number', NumberController)),
                     ],
                   ),
                   SizedBox(height: 16),
@@ -372,7 +372,7 @@ class HomeScreen extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold)),
               subtitle: Text(
-                "${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(color: Colors.grey),
               ),
               isThreeLine: true,
