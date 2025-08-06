@@ -96,8 +96,8 @@ class _MakescreenState extends State<Makescreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ) ,
-          title: Text("Succes"),
-          content: Text("Form submitted successfully "),
+          title: Text("Succes,",style: TextStyle(color: Colors.white),),
+          content: Text("Form submitted successfully ",style: TextStyle(color: Colors.white),),
           actions: [
             TextButton(onPressed: (){
               Navigator.of(context).pop();
