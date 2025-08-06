@@ -101,11 +101,11 @@ class _MakescreenState extends State<Makescreen> {
           actions: [
             TextButton(onPressed: (){
               Navigator.of(context).pop();
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen(cards: savedCards)) )
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen(cards: savedCards)));
             }, child: Text("okk"))
           ],
-        )
-      })
+        );
+      });
 
       Navigator.push(
         context,
