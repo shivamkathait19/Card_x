@@ -90,6 +90,23 @@ class _MakescreenState extends State<Makescreen> {
         _wantiunch$dinner = false;
       });
 
+      showDialog(context: context, builder: (BuildContext Context){
+        return AlertDialog(
+          backgroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ) ,
+          title: Text("Succes"),
+          content: Text("Form submitted successfully "),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.of(context).pop();
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen(cards: savedCards)) )
+            }, child: Text("okk"))
+          ],
+        )
+      })
+
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen(cards: savedCards)),
@@ -156,12 +173,12 @@ class _MakescreenState extends State<Makescreen> {
                 children: [
                   CircleAvatar(
                     radius: 35,
-                    backgroundImage: AssetImage('assets/avatar.jpg'),
-                    backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage("https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
+                      backgroundColor: Colors.white,
                   ),
                   SizedBox(height: 12),
                   Text(
-                    'Welcome, Shivam',
+                    NameController.text.isEmpty ? 'Guest User ' : NameController.text,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -172,9 +189,16 @@ class _MakescreenState extends State<Makescreen> {
                 ],
               ),
             ),
+
+           ListTile(
+             leading: Icon(Icons.home,color: Colors.white,),title:
+             Text('Home',style: TextStyle(color: Colors.white),),
+
+
+           ),
             ListTile(
-              leading: Icon(Icons.home, color: Colors.white),
-              title: Text('Home', style: TextStyle(color: Colors.white)),
+              leading: Icon(Icons.details ,color: Colors.white),
+              title: Text('Save details', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.push(
                   context,
