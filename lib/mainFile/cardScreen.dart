@@ -107,7 +107,7 @@ List<EmojiParticle> emojiParticles = [];
       },
     );
   }
-void showEmojiBurst(String emoji) {
+void showEmojiBurst(String emoji){
   final random = Random();
   for (int i = 0; i < 5; i++) {
     final controller = AnimationController(
@@ -150,112 +150,113 @@ void dispose() {
     return Scaffold(
       backgroundColor: currentBgColor.withOpacity(0.7),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black.withOpacity(0.5),
         title: const Text("Funny Memes",style: TextStyle(color: Colors.white),),
         centerTitle: true,
         elevation: 3,
+        //leading: Icon(Icons.arrow_back),
         shadowColor: Colors.white,
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: true
       ),
       drawer: Drawer(
-        backgroundColor: Colors.black,
-        shadowColor: Colors.white,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.black, Colors.brown],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+          backgroundColor: Colors.black,
+          shadowColor: Colors.white,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.black, Colors.brown],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.person, color: Colors.teal, size: 30),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Welcome, ${widget.username ?? "User"}',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    SizedBox(height: 10,),
+                  ],
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Colors.white,
-                    child: Icon(Icons.person, color: Colors.teal, size: 30),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Welcome, ${widget.username ?? "User"}',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  SizedBox(height: 10,),
-
-                ],
+            // SizedBox.shrink(),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home',style: TextStyle(color: Colors.white60),),
+                onTap: () => Navigator.pop(context),
               ),
-            ),
-          // SizedBox.shrink(),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home',style: TextStyle(color: Colors.white60),),
-              onTap: () => Navigator.pop(context),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('My Profile',style: TextStyle(color: Colors.white60),),
-              onTap: () {
-                Navigator.pop(context);
-                _goToBlankPage();
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.favorite),
-              title: Text('Favorites',style: TextStyle(color: Colors.white60),),
-              onTap: () {
-               Navigator.pop(context);
-               Navigator.push(context, MaterialPageRoute(builder: (_)=> Favoritespage(),));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings',style: TextStyle(color: Colors.white60),),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>  SettingsPage(),));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.info_outline),
-              title: Text('About App',style: TextStyle(color: Colors.white60),),
-              onTap: () {
-               Navigator.pop(context);
-                Navigator.push(context,
-                   MaterialPageRoute(builder: (_) => Aboutpage()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.help_outline),
-              title: Text('Help & Support',style: TextStyle(color: Colors.white60),),
-              onTap:(){
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> Helppage()));
-              },
-            ),
-            Divider(),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Log Out", style: TextStyle(color: Colors.red)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
-              },
-            ),
-            SizedBox(height: 20),
-            Center(
-              child: Text(
-                "Made with ❤️ by shivam",
-                style: TextStyle(color: Colors.grey),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('My Profile',style: TextStyle(color: Colors.white60),),
+                onTap: () {
+                  Navigator.pop(context);
+                  _goToBlankPage();
+                },
               ),
-            ),
-            SizedBox(height: 10),
-          ],
+              ListTile(
+                leading: Icon(Icons.favorite),
+                title: Text('Favorites',style: TextStyle(color: Colors.white60),),
+                onTap: () {
+                 Navigator.pop(context);
+                 Navigator.push(context, MaterialPageRoute(builder: (_)=> Favoritespage(),));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings',style: TextStyle(color: Colors.white60),),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>  SettingsPage(),));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.info_outline),
+                title: Text('About App',style: TextStyle(color: Colors.white60),),
+                onTap: () {
+                 Navigator.pop(context);
+                  Navigator.push(context,
+                     MaterialPageRoute(builder: (_) => Aboutpage()));
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.help_outline),
+                title: Text('Help & Support',style: TextStyle(color: Colors.white60),),
+                onTap:(){
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> Helppage()));
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text("Log Out", style: TextStyle(color: Colors.red)),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                },
+              ),
+              SizedBox(height: 20),
+              Center(
+                child: Text(
+                  "Made with ❤️ by shivam",
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              SizedBox(height: 10),
+            ],
+          ),
         ),
-      ),
+      
       body: Stack(
           children: [
             Center(
