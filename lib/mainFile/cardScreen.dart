@@ -150,22 +150,23 @@ void dispose() {
     return Scaffold(
       backgroundColor: currentBgColor.withOpacity(0.7),
       appBar: AppBar(
-        backgroundColor: Colors.teal.shade500,
-        title: const Text("Funny Memes"),
+        backgroundColor: Colors.black,
+        title: const Text("Funny Memes",style: TextStyle(color: Colors.white),),
         centerTitle: true,
-        elevation: 5,
-        shadowColor: Colors.teal,
+        elevation: 3,
+        shadowColor: Colors.white,
         automaticallyImplyLeading: true,
       ),
       drawer: Drawer(
         backgroundColor: Colors.black,
+        shadowColor: Colors.white,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [Colors.teal, Colors.tealAccent.shade200],
+                  colors: [Colors.black, Colors.brown],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -188,6 +189,7 @@ void dispose() {
                 ],
               ),
             ),
+          // SizedBox.shrink(),
             ListTile(
               leading: Icon(Icons.home),
               title: Text('Home',style: TextStyle(color: Colors.white60),),
@@ -270,7 +272,7 @@ void dispose() {
             SizedBox(height: 10),
              AnimatedContainer(
              duration: Duration(milliseconds: 100),
-             height: 650,
+             height: 600,
              width: 700,
              margin: EdgeInsets.symmetric(horizontal: 20),
              decoration: BoxDecoration(
