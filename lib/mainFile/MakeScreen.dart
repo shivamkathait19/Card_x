@@ -189,12 +189,17 @@ class _MakescreenState extends State<Makescreen> {
                 ],
               ),
             ),
-
+            ListTile(
+              leading: Icon(Icons.person,color: Colors.white,),
+              title: Text("Profile",style: TextStyle(color: Colors.white),),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Profiles() ));
+              }
+              ,
+            ),
            ListTile(
              leading: Icon(Icons.home,color: Colors.white,),title:
              Text('Home',style: TextStyle(color: Colors.white),),
-
-
            ),
             ListTile(
               leading: Icon(Icons.details ,color: Colors.white),
@@ -365,6 +370,28 @@ class _MakescreenState extends State<Makescreen> {
     );
   }
 }
+
+
+  class Profiles extends StatelessWidget {
+    const Profiles({super.key});
+
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.teal,
+          title: Center(
+             child: Padding(
+               padding: EdgeInsets.only(right: 40),
+               child: Text("Profile",style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500),),
+             ),
+        ),),
+        body: Container(
+
+        ),
+      );
+    }
+  }
 
 class HomeScreen extends StatelessWidget {
   final List<CardData> cards;
