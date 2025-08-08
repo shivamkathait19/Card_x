@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.card_x"
-    compileSdkVersion 35
+    compileSdkVersion 36
     ndkVersion = '29.0.13599879'
     //ndkVersion "27.2.12479018"
 
