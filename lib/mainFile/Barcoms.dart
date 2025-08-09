@@ -22,6 +22,8 @@ class _BarcomsState extends State<Barcoms> {
    Cardmaker(){
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext Context)=>Card()));
    }
+   
+   
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.brown.shade50,
