@@ -43,6 +43,9 @@ class _BarcomsState extends State<Barcoms> {
 
               ),
             ),
+
+
+            
             child: Text(
               "TAP TO SEE MEMES",
               style: TextStyle(
