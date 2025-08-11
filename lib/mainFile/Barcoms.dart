@@ -67,9 +67,6 @@ class _BarcomsState extends State<Barcoms> {
             borderRadius: BorderRadius.circular(10)
           )
           ),
-
-
-
               child: Text("TAP TO CREATE OWN CARD",style: TextStyle(
             fontSize: 16,
             fontStyle: FontStyle.italic,
