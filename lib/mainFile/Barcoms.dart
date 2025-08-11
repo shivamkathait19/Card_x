@@ -8,7 +8,7 @@ class Barcoms extends StatefulWidget {
 
 }
 
-class _BarcomsState extends State<Barcoms> {
+  class _BarcomsState extends State<Barcoms> {
 
   Bartext(){
     setState(() {
