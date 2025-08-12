@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,6 +35,32 @@ class CardData {
     required this.imageUrl,
     required this.serviceOption,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'Name': Name,
+      'Number': Number,
+      'location': location,
+      'duration': duration,
+      'people': people,
+      'description': description,
+      'imageUrl': imageUrl,
+      'serviceOption': serviceOption,
+    };
+  }
+
+  factory CardData.fromMap(Map<String, dynamic> map) {
+    return CardData(
+      Name: map['Name'],
+      Number: map['Number'],
+      location: map['location'],
+      duration: map['duration'],
+      people: map['people'],
+      description: map['description'],
+      imageUrl: map['imageUrl'],
+      serviceOption: map['serviceOption'],
+    );
+  }
 }
 
 class Makescreen extends StatefulWidget {
@@ -55,14 +83,39 @@ class _MakescreenState extends State<Makescreen> {
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
   bool _wantTaxi = false;
   bool _wantHotel = false;
-  bool _wantiunch$dinner = false;
+  bool _wantLunchDinner = false;
+
+  @override
+  void initState() {
+    super.initState();
+    loadCardsFromPrefs();
+  }
+
+  Future<void> saveCardsToPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> cardList =
+    savedCards.map((card) => jsonEncode(card.toMap())).toList();
+    await prefs.setStringList('savedCards', cardList);
+  }
+
+  Future<void> loadCardsFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String>? cardList = prefs.getStringList('savedCards');
+    if (cardList != null) {
+      savedCards = cardList
+          .map((cardString) =>
+          CardData.fromMap(jsonDecode(cardString)))
+          .toList();
+      setState(() {});
+    }
+  }
 
   void clearForm() {
     if (_formKey.currentState!.validate()) {
       String selectedServices = '';
       if (_wantTaxi) selectedServices += 'Taxi ';
       if (_wantHotel) selectedServices += 'Hotel ';
-      if (_wantiunch$dinner) selectedServices += 'Lunch/Dinner';
+      if (_wantLunchDinner) selectedServices += 'Lunch/Dinner';
 
       final newCard = CardData(
         Name: NameController.text,
@@ -76,6 +129,7 @@ class _MakescreenState extends State<Makescreen> {
       );
 
       savedCards.add(newCard);
+      saveCardsToPrefs();
 
       NameController.clear();
       NumberController.clear();
@@ -87,29 +141,35 @@ class _MakescreenState extends State<Makescreen> {
       setState(() {
         _wantHotel = false;
         _wantTaxi = false;
-        _wantiunch$dinner = false;
+        _wantLunchDinner = false;
       });
 
-      showDialog(context: context, builder: (BuildContext Context){
-        return AlertDialog(
-          backgroundColor: Colors.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ) ,
-          title: Text("Succes,",style: TextStyle(color: Colors.white),),
-          content: Text("Form submitted successfully ",style: TextStyle(color: Colors.white),),
-          actions: [
-            TextButton(onPressed: (){
-              Navigator.of(context).pop();
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen(cards: savedCards)));
-            }, child: Text("okk"))
-          ],
-        );
-      });
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen(cards: savedCards)),
+      showDialog(
+        context: context,
+        builder: (BuildContext Context) {
+          return AlertDialog(
+            backgroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            title: Text("Success", style: TextStyle(color: Colors.white)),
+            content: Text("Form submitted successfully",
+                style: TextStyle(color: Colors.white)),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomeScreen(cards: savedCards)),
+                  );
+                },
+                child: Text("OK"),
+              )
+            ],
+          );
+        },
       );
     }
   }
@@ -173,12 +233,15 @@ class _MakescreenState extends State<Makescreen> {
                 children: [
                   CircleAvatar(
                     radius: 35,
-                    backgroundImage: NetworkImage("https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
-                      backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage(
+                        "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
+                    backgroundColor: Colors.white,
                   ),
                   SizedBox(height: 12),
                   Text(
-                    NameController.text.isEmpty ? 'Guest User ' : NameController.text,
+                    NameController.text.isEmpty
+                        ? 'Guest User '
+                        : NameController.text,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -190,19 +253,19 @@ class _MakescreenState extends State<Makescreen> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person,color: Colors.white,),
-              title: Text("Profile",style: TextStyle(color: Colors.white),),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Profiles() ));
-              }
-              ,
+              leading: Icon(Icons.person, color: Colors.white),
+              title: Text("Profile", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Profiles()));
+              },
             ),
-           ListTile(
-             leading: Icon(Icons.home,color: Colors.white,),title:
-             Text('Home',style: TextStyle(color: Colors.white),),
-           ),
             ListTile(
-              leading: Icon(Icons.details ,color: Colors.white),
+              leading: Icon(Icons.home, color: Colors.white),
+              title: Text('Home', style: TextStyle(color: Colors.white)),
+            ),
+            ListTile(
+              leading: Icon(Icons.details, color: Colors.white),
               title: Text('Save details', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.push(
@@ -277,7 +340,6 @@ class _MakescreenState extends State<Makescreen> {
                         _wantTaxi = value!;
                       });
                     },
-                    tileColor: Colors.pink,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     controlAffinity: ListTileControlAffinity.leading,
@@ -298,7 +360,6 @@ class _MakescreenState extends State<Makescreen> {
                             _wantHotel = value!;
                           });
                         },
-                        tileColor: Colors.brown,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                         controlAffinity: ListTileControlAffinity.leading,
@@ -312,14 +373,13 @@ class _MakescreenState extends State<Makescreen> {
                                 color: Colors.white,
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.w500)),
-                        value: _wantiunch$dinner,
+                        value: _wantLunchDinner,
                         activeColor: Colors.cyan,
                         onChanged: (bool? value) {
                           setState(() {
-                            _wantiunch$dinner = value!;
+                            _wantLunchDinner = value!;
                           });
                         },
-                        tileColor: Colors.blueAccent,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12)),
                         controlAffinity: ListTileControlAffinity.leading,
@@ -357,10 +417,10 @@ class _MakescreenState extends State<Makescreen> {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-            color: Colors.white,
-            fontStyle: FontStyle.italic,
-            fontSize: 15),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10) ,borderSide: BorderSide(color: Colors.blue)),
+            color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: BorderSide(color: Colors.blue)),
         filled: true,
         fillColor: Colors.white.withOpacity(0.10),
       ),
@@ -371,27 +431,29 @@ class _MakescreenState extends State<Makescreen> {
   }
 }
 
+class Profiles extends StatelessWidget {
+  const Profiles({super.key});
 
-  class Profiles extends StatelessWidget {
-    const Profiles({super.key});
-
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: Center(
-             child: Padding(
-               padding: EdgeInsets.only(right: 40),
-               child: Text("Profile",style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500),),
-             ),
-        ),),
-        body: Container(
-
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.teal,
+        title: Center(
+          child: Padding(
+            padding: EdgeInsets.only(right: 40),
+            child: Text("Profile",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.w500)),
+          ),
         ),
-      );
-    }
+      ),
+      body: Container(),
+    );
   }
+}
 
 class HomeScreen extends StatelessWidget {
   final List<CardData> cards;
@@ -405,8 +467,8 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Saved Cards")),
       body: cards.isEmpty
           ? Center(
-          child:
-          Text("No saved cards", style: TextStyle(color: Colors.white)))
+          child: Text("No saved cards",
+              style: TextStyle(color: Colors.white)))
           : ListView.builder(
         itemCount: cards.length,
         itemBuilder: (context, index) {
@@ -421,7 +483,8 @@ class HomeScreen extends StatelessWidget {
                   backgroundImage: NetworkImage(card.imageUrl)),
               title: Text(card.Name,
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
               subtitle: Text(
                 "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(color: Colors.grey),
