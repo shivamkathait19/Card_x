@@ -1,6 +1,6 @@
-import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -88,9 +88,9 @@ class _MakescreenState extends State<Makescreen> {
   @override
   void initState() {
     super.initState();
-    loadCardsFromPrefs();
+    //loadCardsFromPrefs();
   }
-
+/*
   Future<void> saveCardsToPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     List<String> cardList =
@@ -109,7 +109,7 @@ class _MakescreenState extends State<Makescreen> {
       setState(() {});
     }
   }
-
+*/
   void clearForm() {
     if (_formKey.currentState!.validate()) {
       String selectedServices = '';
@@ -129,7 +129,7 @@ class _MakescreenState extends State<Makescreen> {
       );
 
       savedCards.add(newCard);
-      saveCardsToPrefs();
+    //  saveCardsToPrefs();
 
       NameController.clear();
       NumberController.clear();
