@@ -468,6 +468,7 @@ class HomeScreen extends StatelessWidget {
       body: cards.isEmpty
           ? Center(
           child: Text("No saved cards",
+
               style: TextStyle(color: Colors.white)))
           : ListView.builder(
         itemCount: cards.length,
