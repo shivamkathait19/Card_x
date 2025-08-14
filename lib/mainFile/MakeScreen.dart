@@ -1,9 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
-
-void main() => runApp(MyApp());
-
+//void main() => runApp(MyApp());
+ void main () async {
+   WidgetsFlutterBinding.ensureInitialized();
+   await GetStorage.init ();
+   runApp(MyApp());
+ }
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -602,13 +606,37 @@ class Viewcards extends StatefulWidget {
 }
 
 class _ViewcardsState extends State<Viewcards> {
+
+  final box = GetStorage();
+  List<CardData> savedCards = [];
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadCardsFromStorage();
+  }
+
+  void  loadCardsFromStorage(){
+    List<dynamic>? cardList = box.read('savrdCards');
+    if(cardList != null ){
+      setState(() {
+        savedCards = cardList.map((map)=> CardData.fromMap(Map<String,dynamic>.from(map)))
+     .toList();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
-        leading: CircleAvatar(backgroundImage: NetworkImage(""),),
-      ),
+        leading:  IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back))
+       // title: Center(child: Text("save data",style: TextStyle(color: Colors.black),),)
+    )  ,
+
     body: widget.cards.isEmpty
         ? Center(child: Text("No Card saved "))
       : ListView.builder(
