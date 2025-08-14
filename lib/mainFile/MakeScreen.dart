@@ -265,8 +265,8 @@ class _MakescreenState extends State<Makescreen> {
               title: Text('Home', style: TextStyle(color: Colors.white)),
             ),
             ListTile(
-              leading: Icon(Icons.details, color: Colors.white),
-              title: Text('Save details', style: TextStyle(color: Colors.white)),
+              leading: Icon(Icons.card_membership, color: Colors.white),
+              title: Text('View card ', style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.push(
                   context,
@@ -275,6 +275,15 @@ class _MakescreenState extends State<Makescreen> {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(Icons.view_agenda,color: Colors.white,),
+              title: Text("Save info",style: TextStyle(color: Colors.white),),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Viewcards(cards:savedCards)));
+              },
+            ),
+
+
           ],
         ),
       ),
@@ -455,7 +464,7 @@ class Profiles extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+/*class HomeScreen extends StatelessWidget {
   final List<CardData> cards;
 
   HomeScreen({required this.cards});
@@ -498,3 +507,191 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+*/
+
+class HomeScreen extends StatefulWidget {
+  final List<CardData> cards;
+
+  HomeScreen({required this.cards});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  void deleteCard(int index) {
+    setState(() {
+      widget.cards.removeAt(index);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text("Saved Cards")),
+      body: widget.cards.isEmpty
+          ? Center(
+        child: Text(
+          "No saved cards",
+          style: TextStyle(color: Colors.white),
+        ),
+      )
+          : ListView.builder(
+        itemCount: widget.cards.length,
+        itemBuilder: (context, index) {
+          final card = widget.cards[index];
+          return Card(
+            color: Colors.white10,
+            margin: EdgeInsets.all(12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(card.imageUrl),
+              ),
+              title: Text(
+                card.Name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                style: TextStyle(color: Colors.grey),
+              ),
+              isThreeLine: true,
+              trailing: PopupMenuButton<String>(
+                onSelected: (value) {
+                  if (value == 'delete') {
+                    deleteCard(index);
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete, color: Colors.red),
+                        SizedBox(width: 8),
+                        Text('Delete'),
+                      ],
+                    ),
+                  ),
+                ],
+                icon: Icon(Icons.more_vert, color: Colors.white),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+class Viewcards extends StatefulWidget {
+  final List<CardData> cards;
+  Viewcards({required this.cards});
+   // Viewcards({super.key});
+
+  @override
+  State<Viewcards> createState() => _ViewcardsState();
+}
+
+class _ViewcardsState extends State<Viewcards> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        
+        leading: CircleAvatar(backgroundImage: NetworkImage(""),),
+      ),
+    body: widget.cards.isEmpty
+        ? Center(child: Text("No Card saved "))
+      : ListView.builder(
+      itemCount: widget.cards.length,
+        itemBuilder: (context,index){
+        final card = widget.cards[index];
+        return Card(
+          color: Colors.white,
+
+          child: ListTile(
+            leading: CircleAvatar(backgroundColor: Colors.white,),
+            title: Text(card.Name,style: TextStyle(color: Colors.black),),
+            subtitle: Text(
+              "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+              style: TextStyle(color: Colors.grey),
+            ),
+            isThreeLine: true,
+          ),
+
+        );
+    }
+    )
+    );
+  }
+}
+
+
+/*
+class Viewcards extends StatefulWidget {
+  final List<CardData> cards;
+
+  Viewcards({required this.cards});
+
+  @override
+  State<Viewcards> createState() => _ViewcardsState();
+}
+
+class _ViewcardsState extends State<Viewcards> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text("Saved Cards")),
+      body: widget.cards.isEmpty
+          ? Center(
+        child: Text(
+          "No saved cards",
+          style: TextStyle(color: Colors.white),
+        ),
+      ) : ListView.builder(
+        itemCount: widget.cards.length,
+        itemBuilder: (context, index){
+          final card = widget.cards[index];
+          return Card(
+            color: Colors.white10,
+            margin: EdgeInsets.all(12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(card.imageUrl),
+              ),
+              title: Text(
+                card.Name,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                style: TextStyle(color: Colors.grey),
+              ),
+              isThreeLine: true,
+
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+*/
