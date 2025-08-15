@@ -1,13 +1,13 @@
-
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
-//void main() => runApp(MyApp());
- void main () async {
-   WidgetsFlutterBinding.ensureInitialized();
-   await GetStorage.init ();
-   runApp(MyApp());
- }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init(); // Initialize storage
+  runApp(MyApp());
+}
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -82,6 +82,7 @@ class _MakescreenState extends State<Makescreen> {
   final TextEditingController descriptionController = TextEditingController();
 
   List<CardData> savedCards = [];
+  final box = GetStorage();
 
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
@@ -92,28 +93,26 @@ class _MakescreenState extends State<Makescreen> {
   @override
   void initState() {
     super.initState();
-    //loadCardsFromPrefs();
-  }
-/*
-  Future<void> saveCardsToPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String> cardList =
-    savedCards.map((card) => jsonEncode(card.toMap())).toList();
-    await prefs.setStringList('savedCards', cardList);
+    loadCardsFromStorage();
   }
 
-  Future<void> loadCardsFromPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String>? cardList = prefs.getStringList('savedCards');
+  void saveCardsToStorage() {
+    List<Map<String, dynamic>> cardList =
+    savedCards.map((card) => card.toMap()).toList();
+    box.write('savedCards', cardList);
+  }
+
+  void loadCardsFromStorage() {
+    List<dynamic>? cardList = box.read('savedCards');
     if (cardList != null) {
-      savedCards = cardList
-          .map((cardString) =>
-          CardData.fromMap(jsonDecode(cardString)))
-          .toList();
-      setState(() {});
+      setState(() {
+        savedCards = cardList
+            .map((map) => CardData.fromMap(Map<String, dynamic>.from(map)))
+            .toList();
+      });
     }
   }
-*/
+
   void clearForm() {
     if (_formKey.currentState!.validate()) {
       String selectedServices = '';
@@ -133,7 +132,7 @@ class _MakescreenState extends State<Makescreen> {
       );
 
       savedCards.add(newCard);
-    //  saveCardsToPrefs();
+      saveCardsToStorage();
 
       NameController.clear();
       NumberController.clear();
@@ -178,250 +177,6 @@ class _MakescreenState extends State<Makescreen> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.white10,
-        elevation: 5,
-        leadingWidth: 80,
-        leading: Builder(
-          builder: (context) => Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.menu, color: Colors.white),
-                onPressed: () => Scaffold.of(context).openDrawer(),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 0),
-                child: CircleAvatar(
-                  radius: 16,
-                  backgroundImage: NetworkImage(
-                      "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
-                ),
-              ),
-            ],
-          ),
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Make',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.deepPurple)),
-            Text('Card',
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.pinkAccent)),
-          ],
-        ),
-      ),
-      drawer: Drawer(
-        backgroundColor: Colors.black,
-        child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.deepPurple, Colors.pinkAccent],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: NetworkImage(
-                        "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
-                    backgroundColor: Colors.white,
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    NameController.text.isEmpty
-                        ? 'Guest User '
-                        : NameController.text,
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.person, color: Colors.white),
-              title: Text("Profile", style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Profiles()));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.home, color: Colors.white),
-              title: Text('Home', style: TextStyle(color: Colors.white)),
-            ),
-            ListTile(
-              leading: Icon(Icons.card_membership, color: Colors.white),
-              title: Text('View card ', style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeScreen(cards: savedCards)),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.view_agenda,color: Colors.white,),
-              title: Text("Save info",style: TextStyle(color: Colors.white),),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Viewcards(cards:savedCards)));
-              },
-            ),
-
-
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          padding: EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Image.network(imageUrl),
-                  SizedBox(height: 19),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: _buildField("Enter Name", NameController)),
-                      SizedBox(width: 5),
-                      Expanded(
-                          child: _buildField('Gmail/Number', NumberController)),
-                    ],
-                  ),
-                  SizedBox(height: 16),
-                  _buildField('Location', locationController),
-                  SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: _buildField('Duration', durationController)),
-                      SizedBox(width: 5),
-                      Expanded(child: _buildField('People', peopleController)),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  _buildField('Description', descriptionController, maxLines: 2),
-                  SizedBox(height: 24),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Select Extra Services:',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  CheckboxListTile(
-                    title: Text("Want a taxi for travelling",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.w500)),
-                    value: _wantTaxi,
-                    activeColor: Colors.blue,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _wantTaxi = value!;
-                      });
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
-                    controlAffinity: ListTileControlAffinity.leading,
-                  ),
-                  SizedBox(height: 10),
-                  Row(children: [
-                    Expanded(
-                      child: CheckboxListTile(
-                        title: Text("Want a hotel",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w500)),
-                        value: _wantHotel,
-                        activeColor: Colors.blue,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _wantHotel = value!;
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                    ),
-                    SizedBox(width: 5),
-                    Expanded(
-                      child: CheckboxListTile(
-                        title: Text("Lunch/dinner",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w500)),
-                        value: _wantLunchDinner,
-                        activeColor: Colors.cyan,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            _wantLunchDinner = value!;
-                          });
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        controlAffinity: ListTileControlAffinity.leading,
-                      ),
-                    ),
-                  ]),
-                  SizedBox(height: 24),
-                  ElevatedButton.icon(
-                    onPressed: clearForm,
-                    icon: Icon(Icons.check, color: Colors.black),
-                    label: Text("SUBMIT CARD",
-                        style: TextStyle(color: Colors.black)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.withOpacity(0.6),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      padding:
-                      EdgeInsets.symmetric(horizontal: 30, vertical: 14),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildField(String label, TextEditingController controller,
       {int maxLines = 1}) {
     return TextFormField(
@@ -442,35 +197,91 @@ class _MakescreenState extends State<Makescreen> {
       value == null || value.isEmpty ? 'Required field' : null,
     );
   }
-}
-
-class Profiles extends StatelessWidget {
-  const Profiles({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.teal,
-        title: Center(
-          child: Padding(
-            padding: EdgeInsets.only(right: 40),
-            child: Text("Profile",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.w500)),
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text("Make Card")),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.network(imageUrl),
+                SizedBox(height: 19),
+                Row(
+                  children: [
+                    Expanded(
+                        child: _buildField("Enter Name", NameController)),
+                    SizedBox(width: 5),
+                    Expanded(
+                        child: _buildField('Gmail/Number', NumberController)),
+                  ],
+                ),
+                SizedBox(height: 16),
+                _buildField('Location', locationController),
+                SizedBox(height: 16),
+                Row(
+                  children: [
+                    Expanded(
+                        child: _buildField('Duration', durationController)),
+                    SizedBox(width: 5),
+                    Expanded(child: _buildField('People', peopleController)),
+                  ],
+                ),
+                SizedBox(height: 10),
+                _buildField('Description', descriptionController, maxLines: 2),
+                SizedBox(height: 24),
+                CheckboxListTile(
+                  title: Text("Want a taxi for travelling",
+                      style: TextStyle(color: Colors.white)),
+                  value: _wantTaxi,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _wantTaxi = value!;
+                    });
+                  },
+                ),
+                CheckboxListTile(
+                  title: Text("Want a hotel",
+                      style: TextStyle(color: Colors.white)),
+                  value: _wantHotel,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _wantHotel = value!;
+                    });
+                  },
+                ),
+                CheckboxListTile(
+                  title: Text("Lunch/dinner",
+                      style: TextStyle(color: Colors.white)),
+                  value: _wantLunchDinner,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _wantLunchDinner = value!;
+                    });
+                  },
+                ),
+                ElevatedButton.icon(
+                  onPressed: clearForm,
+                  icon: Icon(Icons.check, color: Colors.black),
+                  label: Text("SUBMIT CARD",
+                      style: TextStyle(color: Colors.black)),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-      body: Container(),
     );
   }
 }
 
-/*class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   final List<CardData> cards;
-
   HomeScreen({required this.cards});
 
   @override
@@ -480,25 +291,18 @@ class Profiles extends StatelessWidget {
       appBar: AppBar(title: Text("Saved Cards")),
       body: cards.isEmpty
           ? Center(
-          child: Text("No saved cards",
-
-              style: TextStyle(color: Colors.white)))
+          child: Text("No saved cards", style: TextStyle(color: Colors.white)))
           : ListView.builder(
         itemCount: cards.length,
         itemBuilder: (context, index) {
           final card = cards[index];
           return Card(
             color: Colors.white10,
-            margin: EdgeInsets.all(12),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16)),
             child: ListTile(
               leading: CircleAvatar(
                   backgroundImage: NetworkImage(card.imageUrl)),
               title: Text(card.Name,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+                  style: TextStyle(color: Colors.white)),
               subtitle: Text(
                 "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(color: Colors.grey),
@@ -511,120 +315,29 @@ class Profiles extends StatelessWidget {
     );
   }
 }
-*/
-
-class HomeScreen extends StatefulWidget {
-  final List<CardData> cards;
-
-  HomeScreen({required this.cards});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  void deleteCard(int index) {
-    setState(() {
-      widget.cards.removeAt(index);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Saved Cards")),
-      body: widget.cards.isEmpty
-          ? Center(
-        child: Text(
-          "No saved cards",
-          style: TextStyle(color: Colors.white),
-        ),
-      )
-          : ListView.builder(
-        itemCount: widget.cards.length,
-        itemBuilder: (context, index) {
-          final card = widget.cards[index];
-          return Card(
-            color: Colors.white10,
-            margin: EdgeInsets.all(12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(card.imageUrl),
-              ),
-              title: Text(
-                card.Name,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Text(
-                "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(color: Colors.grey),
-              ),
-              isThreeLine: true,
-              trailing: PopupMenuButton<String>(
-                onSelected: (value) {
-                  if (value == 'delete') {
-                    deleteCard(index);
-                  }
-                },
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: 'delete',
-                    child: Row(
-                      children: [
-                        Icon(Icons.delete, color: Colors.red),
-                        SizedBox(width: 8),
-                        Text('Delete'),
-                      ],
-                    ),
-                  ),
-                ],
-                icon: Icon(Icons.more_vert, color: Colors.white),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
 
 class Viewcards extends StatefulWidget {
-  final List<CardData> cards;
-  Viewcards({required this.cards});
-   // Viewcards({super.key});
-
   @override
   State<Viewcards> createState() => _ViewcardsState();
 }
 
 class _ViewcardsState extends State<Viewcards> {
-
   final box = GetStorage();
   List<CardData> savedCards = [];
 
-
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     loadCardsFromStorage();
   }
 
-  void  loadCardsFromStorage(){
-    List<dynamic>? cardList = box.read('savrdCards');
-    if(cardList != null ){
+  void loadCardsFromStorage() {
+    List<dynamic>? cardList = box.read('savedCards');
+    if (cardList != null) {
       setState(() {
-        savedCards = cardList.map((map)=> CardData.fromMap(Map<String,dynamic>.from(map)))
-     .toList();
+        savedCards = cardList
+            .map((map) => CardData.fromMap(Map<String, dynamic>.from(map)))
+            .toList();
       });
     }
   }
@@ -632,89 +345,27 @@ class _ViewcardsState extends State<Viewcards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading:  IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back))
-       // title: Center(child: Text("save data",style: TextStyle(color: Colors.black),),)
-    )  ,
-
-    body: widget.cards.isEmpty
-        ? Center(child: Text("No Card saved "))
-      : ListView.builder(
-      itemCount: widget.cards.length,
-        itemBuilder: (context,index){
-        final card = widget.cards[index];
-        return Card(
-          color: Colors.white,
-
-          child: ListTile(
-            leading: CircleAvatar(backgroundColor: Colors.white,),
-            title: Text(card.Name,style: TextStyle(color: Colors.black),),
-            subtitle: Text(
-              "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-              style: TextStyle(color: Colors.grey),
-            ),
-            isThreeLine: true,
-          ),
-
-        );
-    }
-    )
-    );
-  }
-}
-
-
-/*
-class Viewcards extends StatefulWidget {
-  final List<CardData> cards;
-
-  Viewcards({required this.cards});
-
-  @override
-  State<Viewcards> createState() => _ViewcardsState();
-}
-
-class _ViewcardsState extends State<Viewcards> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Saved Cards")),
-      body: widget.cards.isEmpty
+      appBar: AppBar(title: Text("View Saved Cards")),
+      body: savedCards.isEmpty
           ? Center(
-        child: Text(
-          "No saved cards",
-          style: TextStyle(color: Colors.white),
-        ),
-      ) : ListView.builder(
-        itemCount: widget.cards.length,
-        itemBuilder: (context, index){
-          final card = widget.cards[index];
+          child: Text("No Card saved", style: TextStyle(color: Colors.white)))
+          : ListView.builder(
+        itemCount: savedCards.length,
+        itemBuilder: (context, index) {
+          final card = savedCards[index];
           return Card(
             color: Colors.white10,
-            margin: EdgeInsets.all(12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
             child: ListTile(
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(card.imageUrl),
-              ),
-              title: Text(
-                card.Name,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+                  backgroundImage: NetworkImage(card.imageUrl)),
+              title: Text(card.Name,
+                  style: TextStyle(color: Colors.white)),
               subtitle: Text(
                 "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(color: Colors.grey),
               ),
               isThreeLine: true,
-
             ),
           );
         },
@@ -722,4 +373,3 @@ class _ViewcardsState extends State<Viewcards> {
     );
   }
 }
-*/
