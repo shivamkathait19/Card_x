@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -19,6 +18,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ================= CardData Model =================
 class CardData {
   final String Name;
   final String Number;
@@ -67,6 +67,7 @@ class CardData {
   }
 }
 
+// ================= Make Screen =================
 class Makescreen extends StatefulWidget {
   @override
   _MakescreenState createState() => _MakescreenState();
@@ -74,6 +75,7 @@ class Makescreen extends StatefulWidget {
 
 class _MakescreenState extends State<Makescreen> {
   final _formKey = GlobalKey<FormState>();
+
   final TextEditingController NameController = TextEditingController();
   final TextEditingController NumberController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
@@ -86,6 +88,7 @@ class _MakescreenState extends State<Makescreen> {
 
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
+
   bool _wantTaxi = false;
   bool _wantHotel = false;
   bool _wantLunchDinner = false;
@@ -134,6 +137,7 @@ class _MakescreenState extends State<Makescreen> {
       savedCards.add(newCard);
       saveCardsToStorage();
 
+      // Clear input fields
       NameController.clear();
       NumberController.clear();
       locationController.clear();
@@ -202,7 +206,116 @@ class _MakescreenState extends State<Makescreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Make Card")),
+      appBar: AppBar(
+        backgroundColor: Colors.white10,
+        elevation: 5,
+        leadingWidth: 80,
+        leading: Builder(
+          builder: (context) => Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.menu, color: Colors.white),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 0),
+                child: CircleAvatar(
+                  radius: 16,
+                  backgroundImage: NetworkImage(
+                      "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
+                ),
+              ),
+            ],
+          ),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text('Make',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurple)),
+            Text('Card',
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.pinkAccent)),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.deepPurple, Colors.pinkAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 35,
+                    backgroundImage: NetworkImage(
+                        "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
+                    backgroundColor: Colors.white,
+                  ),
+                  SizedBox(height: 12),
+                  Text(
+                    NameController.text.isEmpty
+                        ? 'Guest User '
+                        : NameController.text,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person, color: Colors.white),
+              title: Text("Profile", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profiles()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: Colors.white),
+              title: Text('Home', style: TextStyle(color: Colors.white)),
+            ),
+            ListTile(
+              leading: Icon(Icons.card_membership, color: Colors.white),
+              title: Text('View card ', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomeScreen(cards: savedCards)),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.view_agenda, color: Colors.white),
+              title: Text("Save info", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Viewcards(cards: savedCards)));
+              },
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
@@ -214,8 +327,7 @@ class _MakescreenState extends State<Makescreen> {
                 SizedBox(height: 19),
                 Row(
                   children: [
-                    Expanded(
-                        child: _buildField("Enter Name", NameController)),
+                    Expanded(child: _buildField("Enter Name", NameController)),
                     SizedBox(width: 5),
                     Expanded(
                         child: _buildField('Gmail/Number', NumberController)),
@@ -226,8 +338,7 @@ class _MakescreenState extends State<Makescreen> {
                 SizedBox(height: 16),
                 Row(
                   children: [
-                    Expanded(
-                        child: _buildField('Duration', durationController)),
+                    Expanded(child: _buildField('Duration', durationController)),
                     SizedBox(width: 5),
                     Expanded(child: _buildField('People', peopleController)),
                   ],
@@ -280,6 +391,7 @@ class _MakescreenState extends State<Makescreen> {
   }
 }
 
+// ================= Home Screen =================
 class HomeScreen extends StatelessWidget {
   final List<CardData> cards;
   HomeScreen({required this.cards});
@@ -291,7 +403,8 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: Text("Saved Cards")),
       body: cards.isEmpty
           ? Center(
-          child: Text("No saved cards", style: TextStyle(color: Colors.white)))
+          child:
+          Text("No saved cards", style: TextStyle(color: Colors.white)))
           : ListView.builder(
         itemCount: cards.length,
         itemBuilder: (context, index) {
@@ -299,10 +412,10 @@ class HomeScreen extends StatelessWidget {
           return Card(
             color: Colors.white10,
             child: ListTile(
-              leading: CircleAvatar(
-                  backgroundImage: NetworkImage(card.imageUrl)),
-              title: Text(card.Name,
-                  style: TextStyle(color: Colors.white)),
+              leading:
+              CircleAvatar(backgroundImage: NetworkImage(card.imageUrl)),
+              title:
+              Text(card.Name, style: TextStyle(color: Colors.white)),
               subtitle: Text(
                 "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(color: Colors.grey),
@@ -316,7 +429,11 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+// ================= View Cards =================
 class Viewcards extends StatefulWidget {
+  final List<CardData> cards;
+  Viewcards({required this.cards});
+
   @override
   State<Viewcards> createState() => _ViewcardsState();
 }
@@ -349,7 +466,8 @@ class _ViewcardsState extends State<Viewcards> {
       appBar: AppBar(title: Text("View Saved Cards")),
       body: savedCards.isEmpty
           ? Center(
-          child: Text("No Card saved", style: TextStyle(color: Colors.white)))
+          child:
+          Text("No Card saved", style: TextStyle(color: Colors.white)))
           : ListView.builder(
         itemCount: savedCards.length,
         itemBuilder: (context, index) {
@@ -357,10 +475,10 @@ class _ViewcardsState extends State<Viewcards> {
           return Card(
             color: Colors.white10,
             child: ListTile(
-              leading: CircleAvatar(
-                  backgroundImage: NetworkImage(card.imageUrl)),
-              title: Text(card.Name,
-                  style: TextStyle(color: Colors.white)),
+              leading:
+              CircleAvatar(backgroundImage: NetworkImage(card.imageUrl)),
+              title:
+              Text(card.Name, style: TextStyle(color: Colors.white)),
               subtitle: Text(
                 "  ${card.Number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(color: Colors.grey),
@@ -369,6 +487,28 @@ class _ViewcardsState extends State<Viewcards> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+// ================= Profile Screen =================
+class Profiles extends StatefulWidget {
+  const Profiles({super.key});
+
+  @override
+  State<Profiles> createState() => _ProfilesState();
+}
+
+class _ProfilesState extends State<Profiles> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile"),
+      ),
+      body: Center(
+        child: Text("Profile Screen", style: TextStyle(color: Colors.white)),
       ),
     );
   }
