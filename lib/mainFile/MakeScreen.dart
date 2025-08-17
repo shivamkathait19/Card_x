@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
+//import 'package:get_storage/get_storage.dart';
 
-void main() async {
+/*void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init(); // Initialize storage
   runApp(MyApp());
-}
-
+}*/
+ void main (){
+   runApp(MyApp());
+ }
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,7 @@ class _MakescreenState extends State<Makescreen> {
   final TextEditingController descriptionController = TextEditingController();
 
   List<CardData> savedCards = [];
-  final box = GetStorage();
+  //final box = GetStorage();
 
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
@@ -93,7 +95,7 @@ class _MakescreenState extends State<Makescreen> {
   bool _wantHotel = false;
   bool _wantLunchDinner = false;
 
-  @override
+  /*@override
   void initState() {
     super.initState();
     loadCardsFromStorage();
@@ -115,7 +117,7 @@ class _MakescreenState extends State<Makescreen> {
       });
     }
   }
-
+*/
   void clearForm() {
     if (_formKey.currentState!.validate()) {
       String selectedServices = '';
@@ -135,7 +137,7 @@ class _MakescreenState extends State<Makescreen> {
       );
 
       savedCards.add(newCard);
-      saveCardsToStorage();
+     // saveCardsToStorage();
 
       // Clear input fields
       NameController.clear();
@@ -439,16 +441,16 @@ class Viewcards extends StatefulWidget {
 }
 
 class _ViewcardsState extends State<Viewcards> {
-  final box = GetStorage();
+ // final box = GetStorage();
   List<CardData> savedCards = [];
 
   @override
   void initState() {
     super.initState();
-    loadCardsFromStorage();
+   // loadCardsFromStorage();
   }
 
-  void loadCardsFromStorage() {
+  /*void loadCardsFromStorage() {
     List<dynamic>? cardList = box.read('savedCards');
     if (cardList != null) {
       setState(() {
@@ -458,7 +460,7 @@ class _ViewcardsState extends State<Viewcards> {
       });
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
