@@ -171,7 +171,7 @@ class _MakescreenState extends State<Makescreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => HomeScreen(cards: savedCards)),
+                        builder: (context) => ViewCards(cards: savedCards)),
                   );
                 },
                 child: Text("OK"),
@@ -290,10 +290,10 @@ class _MakescreenState extends State<Makescreen> {
                     MaterialPageRoute(builder: (context) => Profiles()));
               },
             ),
-            ListTile(
+           /* ListTile(
               leading: Icon(Icons.home, color: Colors.white),
               title: Text('Home', style: TextStyle(color: Colors.white)),
-            ),
+            ),*/
             ListTile(
               leading: Icon(Icons.card_membership, color: Colors.white),
               title: Text('View card ', style: TextStyle(color: Colors.white)),
@@ -301,7 +301,7 @@ class _MakescreenState extends State<Makescreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HomeScreen(cards: savedCards)),
+                      builder: (context) => ViewCards(cards: savedCards)),
                 );
               },
             ),
@@ -312,7 +312,7 @@ class _MakescreenState extends State<Makescreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Viewcards(cards: savedCards)));
+                        builder: (context) => Savedcards(cards: savedCards)));
               },
             ),
           ],
@@ -394,9 +394,104 @@ class _MakescreenState extends State<Makescreen> {
 }
 
 // ================= Home Screen =================
-class HomeScreen extends StatelessWidget {
+
+
+
+class ViewCards extends StatelessWidget {
   final List<CardData> cards;
-  HomeScreen({required this.cards});
+  ViewCards({required this.cards});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text("Saved Cards"),
+        backgroundColor: Colors.deepPurple,
+        elevation: 5,
+        centerTitle: true,
+      ),
+      body: cards.isEmpty
+          ? Center(
+          child: Text("No saved cards",
+              style: TextStyle(color: Colors.white, fontSize: 18)))
+          : ListView.builder(
+        padding: EdgeInsets.all(10),
+        itemCount: cards.length,
+        itemBuilder: (context, index) {
+          final card = cards[index];
+
+          return Card(
+            margin: EdgeInsets.symmetric(vertical: 10),
+            color: Colors.white10,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15)),
+            child: ListTile(
+              contentPadding:
+              EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              leading: CircleAvatar(
+                radius: 30,
+                backgroundImage: NetworkImage(card.imageUrl),
+              ),
+              title: Text(
+                card.Name,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18),
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Text(
+                  "${card.Number}\n📍 ${card.location} | ⏳ ${card.duration} days\n👥 People: ${card.people}\n🍴 Service: ${card.serviceOption}",
+                  style: TextStyle(color: Colors.grey[400], height: 1.4),
+                ),
+              ),
+              isThreeLine: true,
+              trailing: PopupMenuButton<String>(
+                color: Colors.black87,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onSelected: (value) async {
+                  if (value == 'delete') {
+                   // final box = Hive.box<CardData>('cards');
+//                    await box.deleteAt(index);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Card deleted"),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
+                },
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete, color: Colors.red),
+                        SizedBox(width: 8),
+                        Text("Delete",
+                            style: TextStyle(color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                ],
+                icon: Icon(Icons.more_vert, color: Colors.white),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+/*class ViewCards extends StatelessWidget {
+  final List<CardData> cards;
+  ViewCards({required this.cards});
 
   @override
   Widget build(BuildContext context) {
@@ -430,17 +525,17 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
+*/
 // ================= View Cards =================
-class Viewcards extends StatefulWidget {
+class Savedcards extends StatefulWidget {
   final List<CardData> cards;
-  Viewcards({required this.cards});
+  Savedcards({required this.cards});
 
   @override
-  State<Viewcards> createState() => _ViewcardsState();
+  State<Savedcards> createState() => _ViewcardsState();
 }
 
-class _ViewcardsState extends State<Viewcards> {
+class _ViewcardsState extends State<Savedcards> {
  // final box = GetStorage();
   List<CardData> savedCards = [];
 
@@ -515,3 +610,21 @@ class _ProfilesState extends State<Profiles> {
     );
   }
 }
+  /* class HomeScreen extends StatefulWidget {
+     const HomeScreen({super.key});
+   
+     @override
+     State<HomeScreen> createState() => _HomeScreenState();
+   }
+   
+   class _HomeScreenState extends State<HomeScreen> {
+     @override
+     Widget build(BuildContext context) {
+       return Scaffold(
+         appBar: AppBar(
+           leading: Text("Home Screen"),
+         ),
+       );
+     }
+   }*/
+   
