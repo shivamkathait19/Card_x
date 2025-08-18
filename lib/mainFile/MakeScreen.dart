@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:card_x/main.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:ui';
+
 
 
 
@@ -174,7 +176,7 @@ class _MakeScreenState extends State<MakeScreen> {
 
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => ViewCards()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     }
   }
@@ -207,70 +209,107 @@ class _MakeScreenState extends State<MakeScreen> {
       backgroundColor: Colors.black,
       appBar: AppBar(title: Text("Make Card")
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.black,
-        child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.deepPurple, Colors.pinkAccent],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+        drawer: Drawer(
+          backgroundColor: Colors.black,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.deepPurple, Colors.indigoAccent],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  radius: 40,
+                  backgroundImage: NetworkImage(
+                    "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg",
+                  ),
+                ),
+                accountName: Text(
+                  "WELCOME",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                accountEmail: Text(
+                  "Username@example.com",
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: NetworkImage(
-                        "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
-                    backgroundColor: Colors.white,
-                  ),
-                  SizedBox(height: 12),
 
-                ],
+              // Home
+              ListTile(
+                leading: Icon(Icons.home_outlined, color: Colors.deepPurpleAccent),
+                title: Text(
+                  'Home',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                onTap: () {},
               ),
-            ),
-           /* ListTile(
-              leading: Icon(Icons.person, color: Colors.white),
-              title: Text("Profile", style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Profiles()));
-              },
-            ),*/
-            ListTile(
-              leading: Icon(Icons.home, color: Colors.white),
-              title: Text('Home', style: TextStyle(color: Colors.white)),
-            ),
-            ListTile(
-              leading: Icon(Icons.card_membership, color: Colors.white),
-              title: Text('View card ', style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HomeScreen(cards: savedCards)),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.view_agenda, color: Colors.white),
-              title: Text("Save info", style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.push(
+
+              // View Card
+              ListTile(
+                leading: Icon(Icons.credit_card, color: Colors.tealAccent),
+                title: Text(
+                  'View Card',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                onTap: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ViewCards( cards : savedCards)));
-              },
-            ),
-          ],
-        ),
-      ),
+                        builder: (context) => HomeScreen(cards: savedCards)),
+                  );
+                },
+              ),
 
-      body: Padding(
+              // Save Info
+              ListTile(
+                leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
+                title: Text(
+                  "Save Info",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ViewCards(cards: savedCards)));
+                },
+              ),
+
+              Divider(color: Colors.white24, thickness: 1, indent: 16, endIndent: 16),
+
+              // Settings
+             /* ListTile(
+                leading: Icon(Icons.settings, color: Colors.amberAccent),
+                title: Text(
+                  "Settings",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                onTap: () {},
+              ),
+
+              // About
+              ListTile(
+                leading: Icon(Icons.info_outline, color: Colors.lightBlueAccent),
+                title: Text(
+                  "About",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                onTap: () {},
+              ),*/
+            ],
+          ),
+        ),
+
+
+        body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
           key: _formKey,
@@ -350,11 +389,75 @@ class _MakeScreenState extends State<MakeScreen> {
 
 // ================= View Cards =================
 class ViewCards extends StatefulWidget {
+  final List<CardData> cards;
+  ViewCards({required this.cards});
+
   @override
   _ViewCardsState createState() => _ViewCardsState();
 }
 
 class _ViewCardsState extends State<ViewCards> {
+  late List<CardData> localCards;
+
+  @override
+  void initState() {
+    super.initState();
+    // Copy original cards → local list
+    localCards = List.from(widget.cards);
+  }
+
+  void deleteCard(int index) {
+    setState(() {
+      localCards.removeAt(index); // Sirf local list se remove karo
+    });
+    // ⚠️ Storage se delete mat karo!
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text("View Cards")),
+      body: localCards.isEmpty
+          ? Center(
+          child: Text("No cards here", style: TextStyle(color: Colors.white)))
+          : ListView.builder(
+        itemCount: localCards.length,
+        itemBuilder: (context, index) {
+          final card = localCards[index];
+          return Card(
+            color: Colors.white10,
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(card.imageUrl),
+              ),
+              title: Text(card.name, style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                "${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                style: TextStyle(color: Colors.grey),
+              ),
+              trailing: IconButton(
+                icon: Icon(Icons.delete, color: Colors.red),
+                onPressed: () => deleteCard(index),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+
+
+// ================== HomeScreen ==================
+class HomeScreen extends StatefulWidget {
+  final List<CardData>? cards;
+  HomeScreen ({this.cards});
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   List<CardData> cards = [];
 
   @override
@@ -370,97 +473,109 @@ class _ViewCardsState extends State<ViewCards> {
     });
   }
 
-  void deleteCard(int index) async {
-    setState(() {
-      cards.removeAt(index);
-    });
-    await CardStorage.saveCards(cards);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Saved Cards")),
+      backgroundColor: Color(0xFF121212),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text("Saved Cards", style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        elevation: 0,
+      ),
       body: cards.isEmpty
           ? Center(
-          child: Text("No saved cards",
-              style: TextStyle(color: Colors.white, fontSize: 18)))
-          : ListView.builder(
-        padding: EdgeInsets.all(10),
-        itemCount: cards.length,
-        itemBuilder: (context, index) {
-          final card = cards[index];
-          return Card(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            color: Colors.white10,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15)),
-            child: ListTile(
-              contentPadding:
-              EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              leading: CircleAvatar(
-                radius: 30,
-                backgroundImage: NetworkImage(card.imageUrl),
+        child: Text(
+          "No saved cards",
+          style: TextStyle(color: Colors.white70, fontSize: 18),
+        ),
+      )
+          : RefreshIndicator( // 🔄 Add pull-to-refresh
+        onRefresh: () async => loadCards(),
+        child: ListView.builder(
+          padding: EdgeInsets.all(16),
+          itemCount: cards.length,
+          itemBuilder: (context, index) {
+            final card = cards[index];
+            return Container(
+              margin: EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey[900],
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.3),
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
-              title: Text(
-                card.name,
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Text(
-                  "${card.number}\n📍 ${card.location} | ⏳ ${card.duration} days\n👥 People: ${card.people}\n🍴 Service: ${card.serviceOption}\n🕒 Created: ${card.createdAt}",
-                  style: TextStyle(color: Colors.grey[400], height: 1.4),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 28,
+                          backgroundImage: NetworkImage(card.imageUrl),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: Text(
+                            card.name,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    Divider(color: Colors.white24, thickness: 1),
+                    SizedBox(height: 12),
+                    _buildDetailRow(Icons.email, "Contact", card.number),
+                    _buildDetailRow(Icons.location_on, "Location", card.location),
+                    _buildDetailRow(Icons.schedule, "Duration", "${card.duration} days"),
+                    _buildDetailRow(Icons.group, "People", card.people),
+                    _buildDetailRow(Icons.room_service, "Services",
+                        card.serviceOption.isEmpty ? "None" : card.serviceOption),
+                    _buildDetailRow(Icons.access_time, "Created", card.createdAt),
+                  ],
                 ),
               ),
-              trailing: IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
-                onPressed: () => deleteCard(index),
-              ),
-              isThreeLine: true,
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
-}
-class HomeScreen extends StatelessWidget {
-  final List<CardData> cards;
-  HomeScreen({required this.cards});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Saved Cards")),
-      body: cards.isEmpty
-          ? Center(
-          child:
-          Text("No saved cards", style: TextStyle(color: Colors.white)))
-          : ListView.builder(
-        itemCount: cards.length,
-        itemBuilder: (context, index) {
-          final card = cards[index];
-          return Card(
-            color: Colors.white10,
-            child: ListTile(
-              leading:
-              CircleAvatar(backgroundImage: NetworkImage(card.imageUrl)),
-              title:
-              Text(card.name, style: TextStyle(color: Colors.white)),
-              subtitle: Text(
-                "  ${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(color: Colors.grey),
-              ),
-              isThreeLine: true,
+  Widget _buildDetailRow(IconData icon, String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, color: Colors.blueGrey[200], size: 20),
+          SizedBox(width: 10),
+          SizedBox(
+            width: 80,
+            child: Text(
+              "$label:",
+              style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
             ),
-          );
-        },
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(color: Colors.white, fontSize: 15),
+            ),
+          ),
+        ],
       ),
     );
   }
