@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:get_storage/get_storage.dart';
 
 /*void main() async {
@@ -342,7 +343,34 @@ class _MakescreenState extends State<Makescreen> {
                   children: [
                     Expanded(child: _buildField('Duration', durationController)),
                     SizedBox(width: 5),
-                    Expanded(child: _buildField('People', peopleController)),
+                    Expanded(
+                      child: TextFormField(
+                        controller: peopleController,
+                        keyboardType: TextInputType.number, //
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly], //
+                        decoration: InputDecoration(
+                          labelText: "People",
+                          labelStyle: TextStyle(
+                              color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(color: Colors.blue)),
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.10),
+                        ),
+                        style: TextStyle(color: Colors.white),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Required field';
+                          }
+                          if (int.tryParse(value) == null) {
+                            return 'Only numbers allowed';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                   // Expanded(child: _buildField('People', peopleController)),
                   ],
                 ),
                 SizedBox(height: 10),
@@ -455,7 +483,7 @@ class ViewCards extends StatelessWidget {
                 onSelected: (value) async {
                   if (value == 'delete') {
                    // final box = Hive.box<CardData>('cards');
-//                    await box.deleteAt(index);
+                    //await box.deleteAt(index);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
