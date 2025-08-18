@@ -205,7 +205,71 @@ class _MakeScreenState extends State<MakeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Make Card")),
+      appBar: AppBar(title: Text("Make Card")
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: ListView(
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.deepPurple, Colors.pinkAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 35,
+                    backgroundImage: NetworkImage(
+                        "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg"),
+                    backgroundColor: Colors.white,
+                  ),
+                  SizedBox(height: 12),
+
+                ],
+              ),
+            ),
+           /* ListTile(
+              leading: Icon(Icons.person, color: Colors.white),
+              title: Text("Profile", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Profiles()));
+              },
+            ),*/
+            ListTile(
+              leading: Icon(Icons.home, color: Colors.white),
+              title: Text('Home', style: TextStyle(color: Colors.white)),
+            ),
+            ListTile(
+              leading: Icon(Icons.card_membership, color: Colors.white),
+              title: Text('View card ', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomeScreen(cards: savedCards)),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.view_agenda, color: Colors.white),
+              title: Text("Save info", style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewCards( cards : savedCards)));
+              },
+            ),
+          ],
+        ),
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
@@ -356,6 +420,42 @@ class _ViewCardsState extends State<ViewCards> {
               trailing: IconButton(
                 icon: Icon(Icons.delete, color: Colors.red),
                 onPressed: () => deleteCard(index),
+              ),
+              isThreeLine: true,
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+class HomeScreen extends StatelessWidget {
+  final List<CardData> cards;
+  HomeScreen({required this.cards});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(title: Text("Saved Cards")),
+      body: cards.isEmpty
+          ? Center(
+          child:
+          Text("No saved cards", style: TextStyle(color: Colors.white)))
+          : ListView.builder(
+        itemCount: cards.length,
+        itemBuilder: (context, index) {
+          final card = cards[index];
+          return Card(
+            color: Colors.white10,
+            child: ListTile(
+              leading:
+              CircleAvatar(backgroundImage: NetworkImage(card.imageUrl)),
+              title:
+              Text(card.name, style: TextStyle(color: Colors.white)),
+              subtitle: Text(
+                "  ${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                style: TextStyle(color: Colors.grey),
               ),
               isThreeLine: true,
             ),
