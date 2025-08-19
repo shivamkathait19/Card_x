@@ -5,7 +5,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui';
 
 
+// ================= Main =================
+void main() {
+  runApp(MyApp());
+}
 
+class Makescreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
+      home: MakeScreen(),
+    );
+  }
+}
 
 
 // ================= CardData Model =================
@@ -83,25 +97,11 @@ class CardStorage {
   }
 }
 
-// ================= Main =================
-void main() {
-  runApp(MyApp());
-}
 
-class Makescreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: MakeScreen(),
-    );
-  }
-}
 
 // ================= Make Screen =================
 class MakeScreen extends StatefulWidget {
-  @override
+  List<CardData> savedCards = [];
   _MakeScreenState createState() => _MakeScreenState();
 }
 
@@ -115,8 +115,6 @@ class _MakeScreenState extends State<MakeScreen> {
   final TextEditingController peopleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
-  List<CardData> savedCards = [];
-
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
 
@@ -124,80 +122,29 @@ class _MakeScreenState extends State<MakeScreen> {
   bool _wantHotel = false;
   bool _wantLunchDinner = false;
 
-  @override
-  void initState() {
-    super.initState();
-    loadSavedCards();
-  }
-
-  void loadSavedCards() async {
-    final loaded = await CardStorage.loadCards();
-    setState(() {
-      savedCards = loaded;
-    });
-  }
-
-  void clearForm() async {
-    if (_formKey.currentState!.validate()) {
-      String selectedServices = '';
-      if (_wantTaxi) selectedServices += 'Taxi ';
-      if (_wantHotel) selectedServices += 'Hotel ';
-      if (_wantLunchDinner) selectedServices += 'Lunch/Dinner';
-
-      final newCard = CardData(
-        name: nameController.text,
-        number: numberController.text,
-        location: locationController.text,
-        duration: durationController.text,
-        people: peopleController.text,
-        description: descriptionController.text,
-        imageUrl: imageUrl,
-        serviceOption: selectedServices.trim(),
-        createdAt: DateTime.now().toString(),
-      );
-
-      savedCards.add(newCard);
-
-      await CardStorage.saveCards(savedCards);
-
-      // Clear form
-      nameController.clear();
-      numberController.clear();
-      locationController.clear();
-      durationController.clear();
-      peopleController.clear();
-      descriptionController.clear();
-
-      setState(() {
-        _wantHotel = false;
-        _wantTaxi = false;
-        _wantLunchDinner = false;
-      });
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    }
-  }
-
   Widget _buildField(String label, TextEditingController controller,
       {int maxLines = 1, bool numberOnly = false}) {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
       keyboardType: numberOnly ? TextInputType.number : TextInputType.text,
+      style: TextStyle(color: Colors.white, fontSize: 15),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-            color: Colors.white, fontStyle: FontStyle.italic, fontSize: 15),
-        border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: Colors.blue)),
+          color: Colors.white70,
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.5,
+        ),
         filled: true,
-        fillColor: Colors.white.withOpacity(0.10),
+        fillColor: Colors.white.withOpacity(0.08),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       ),
-      style: TextStyle(color: Colors.white),
       validator: (value) =>
       value == null || value.isEmpty ? 'Required field' : null,
     );
@@ -209,177 +156,259 @@ class _MakeScreenState extends State<MakeScreen> {
       backgroundColor: Colors.black,
       appBar: AppBar(title: Text("Make Card")
       ),
-        drawer: Drawer(
-          backgroundColor: Colors.black,
-          child: ListView(
-            padding: EdgeInsets.zero,
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.deepPurple, Colors.indigoAccent],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+              currentAccountPicture: CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage(
+                  "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg",
+                ),
+              ),
+              accountName: Text(
+                "WELCOME",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              accountEmail: Text(
+                "Username@example.com",
+                style: TextStyle(color: Colors.white70, fontSize: 14),
+              ),
+            ),
+
+            // Home
+            ListTile(
+              leading: Icon(Icons.home_outlined, color: Colors.deepPurpleAccent),
+              title: Text(
+                'Home',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              onTap: () {},
+            ),
+
+            // View Card
+            ListTile(
+              leading: Icon(Icons.credit_card, color: Colors.tealAccent),
+              title: Text(
+                'View Card',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => HomeScreen(cards: savedCards)),
+                );
+              },
+            ),
+
+            // Save Info
+            ListTile(
+              leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
+              title: Text(
+                "Save Info",
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ViewCards(cards: savedCards)));
+              },
+            ),
+
+            Divider(color: Colors.white24, thickness: 1, indent: 16, endIndent: 16),
+
+          ],
+        ),
+      ),
+      // Premium gradient background
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF1A1A2E), Color(0xFF16213E), Color(0xFF0F3460)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
             children: [
-              UserAccountsDrawerHeader(
+              // Custom AppBar
+              Container(
+                padding: EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [Colors.deepPurple, Colors.indigoAccent],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.4),
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
                 ),
-                currentAccountPicture: CircleAvatar(
-                  radius: 40,
-                  backgroundImage: NetworkImage(
-                    "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg",
+                child: Row(
+                  children: [
+                    Icon(Icons.create, color: Colors.white),
+                    SizedBox(width: 10),
+                    Text(
+                      "Create Your Card",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.6,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.all(20),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.network(imageUrl, height: 180, fit: BoxFit.cover),
+                        ),
+                        SizedBox(height: 24),
+
+                        // Form fields grouped inside card
+                        Container(
+                          padding: EdgeInsets.all(18),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.05),
+                            borderRadius: BorderRadius.circular(18),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                blurRadius: 8,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(child: _buildField("Enter Name", nameController)),
+                                  SizedBox(width: 10),
+                                  Expanded(child: _buildField("Gmail/Number", numberController)),
+                                ],
+                              ),
+                              SizedBox(height: 16),
+                              _buildField("Location", locationController),
+                              SizedBox(height: 16),
+                              Row(
+                                children: [
+                                  Expanded(child: _buildField("Duration", durationController, numberOnly: true)),
+                                  SizedBox(width: 10),
+                                  Expanded(child: _buildField("People", peopleController, numberOnly: true)),
+                                ],
+                              ),
+                              SizedBox(height: 16),
+                              _buildField("Description", descriptionController, maxLines: 3),
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 24),
+
+                        // Service options checkboxes
+                        Container(
+                          padding: EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.04),
+                            borderRadius: BorderRadius.circular(14),
+                          ),
+                          child: Column(
+                            children: [
+                              CheckboxListTile(
+                                value: _wantTaxi,
+                                onChanged: (val) => setState(() => _wantTaxi = val!),
+                                title: Text("Taxi Service", style: TextStyle(color: Colors.white)),
+                                activeColor: Colors.deepPurple,
+                                checkColor: Colors.white,
+                              ),
+                              CheckboxListTile(
+                                value: _wantHotel,
+                                onChanged: (val) => setState(() => _wantHotel = val!),
+                                title: Text("Hotel Booking", style: TextStyle(color: Colors.white)),
+                                activeColor: Colors.deepPurple,
+                                checkColor: Colors.white,
+                              ),
+                              CheckboxListTile(
+                                value: _wantLunchDinner,
+                                onChanged: (val) => setState(() => _wantLunchDinner = val!),
+                                title: Text("Lunch/Dinner", style: TextStyle(color: Colors.white)),
+                                activeColor: Colors.deepPurple,
+                                checkColor: Colors.white,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(height: 30),
+
+                        // Submit Button
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton.icon(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.deepPurpleAccent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              padding: EdgeInsets.symmetric(vertical: 14),
+                              elevation: 6,
+                            ),
+                            icon: Icon(Icons.check, color: Colors.white),
+                            label: Text(
+                              "Submit Card",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1,
+                                color: Colors.white,
+                              ),
+                            ),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                // TODO: Call your save logic here
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("Card Submitted!")),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                accountName: Text(
-                  "WELCOME",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                accountEmail: Text(
-                  "Username@example.com",
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                ),
               ),
-
-              // Home
-              ListTile(
-                leading: Icon(Icons.home_outlined, color: Colors.deepPurpleAccent),
-                title: Text(
-                  'Home',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                onTap: () {},
-              ),
-
-              // View Card
-              ListTile(
-                leading: Icon(Icons.credit_card, color: Colors.tealAccent),
-                title: Text(
-                  'View Card',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HomeScreen(cards: savedCards)),
-                  );
-                },
-              ),
-
-              // Save Info
-              ListTile(
-                leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
-                title: Text(
-                  "Save Info",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ViewCards(cards: savedCards)));
-                },
-              ),
-
-              Divider(color: Colors.white24, thickness: 1, indent: 16, endIndent: 16),
-
-              // Settings
-             /* ListTile(
-                leading: Icon(Icons.settings, color: Colors.amberAccent),
-                title: Text(
-                  "Settings",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                onTap: () {},
-              ),
-
-              // About
-              ListTile(
-                leading: Icon(Icons.info_outline, color: Colors.lightBlueAccent),
-                title: Text(
-                  "About",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                onTap: () {},
-              ),*/
             ],
-          ),
-        ),
-
-
-        body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Form(
-          key: _formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.network(imageUrl),
-                SizedBox(height: 19),
-                Row(
-                  children: [
-                    Expanded(child: _buildField("Enter Name", nameController)),
-                    SizedBox(width: 5),
-                    Expanded(child: _buildField('Gmail/Number', numberController)),
-                  ],
-                ),
-                SizedBox(height: 16),
-                _buildField('Location', locationController),
-                SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                        child: _buildField('Duration', durationController,
-                            numberOnly: true)),
-                    SizedBox(width: 5),
-                    Expanded(
-                        child: _buildField('People', peopleController,
-                            numberOnly: true)),
-                  ],
-                ),
-                SizedBox(height: 10),
-                _buildField('Description', descriptionController, maxLines: 2),
-                SizedBox(height: 24),
-                CheckboxListTile(
-                  title: Text("Want a taxi for travelling",
-                      style: TextStyle(color: Colors.white)),
-                  value: _wantTaxi,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      _wantTaxi = value!;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: Text("Want a hotel",
-                      style: TextStyle(color: Colors.white)),
-                  value: _wantHotel,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      _wantHotel = value!;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: Text("Lunch/dinner",
-                      style: TextStyle(color: Colors.white)),
-                  value: _wantLunchDinner,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      _wantLunchDinner = value!;
-                    });
-                  },
-                ),
-                ElevatedButton.icon(
-                  onPressed: clearForm,
-                  icon: Icon(Icons.check, color: Colors.black),
-                  label: Text("SUBMIT CARD",
-                      style: TextStyle(color: Colors.black)),
-                ),
-              ],
-            ),
           ),
         ),
       ),
