@@ -1,26 +1,6 @@
 import 'dart:convert';
-import 'package:card_x/main.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:ui';
-
-
-// ================= Main =================
-void main() {
-  runApp(MyApp());
-}
-
-class Makescreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: MakeScreen(),
-    );
-  }
-}
-
 
 // ================= CardData Model =================
 class CardData {
@@ -89,7 +69,6 @@ class CardStorage {
   static Future<List<CardData>> loadCards() async {
     final prefs = await SharedPreferences.getInstance();
     List<String>? jsonList = prefs.getStringList(key);
-
     if (jsonList == null) return [];
     return jsonList
         .map((jsonStr) => CardData.fromMap(json.decode(jsonStr)))
@@ -97,17 +76,26 @@ class CardStorage {
   }
 }
 
-
+// ================= Main =================
+class Makescreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
+      home: MakeScreen(),
+    );
+  }
+}
 
 // ================= Make Screen =================
 class MakeScreen extends StatefulWidget {
-  List<CardData> savedCards = [];
+  @override
   _MakeScreenState createState() => _MakeScreenState();
 }
 
 class _MakeScreenState extends State<MakeScreen> {
   final _formKey = GlobalKey<FormState>();
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
@@ -115,6 +103,7 @@ class _MakeScreenState extends State<MakeScreen> {
   final TextEditingController peopleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
 
+  List<CardData> savedCards = [];
   String imageUrl =
       "https://t3.ftcdn.net/jpg/05/92/76/32/360_F_592763239_V1Bj5YHCIRHreEfYRFwIcVaRBEqcCt1i.jpg";
 
@@ -122,12 +111,67 @@ class _MakeScreenState extends State<MakeScreen> {
   bool _wantHotel = false;
   bool _wantLunchDinner = false;
 
+  @override
+  void initState() {
+    super.initState();
+    loadSavedCards();
+  }
+
+  void loadSavedCards() async {
+    final loaded = await CardStorage.loadCards();
+    setState(() {
+      savedCards = loaded;
+    });
+  }
+
+  void clearForm() async {
+    if (_formKey.currentState!.validate()) {
+      String selectedServices = '';
+      if (_wantTaxi) selectedServices += 'Taxi ';
+      if (_wantHotel) selectedServices += 'Hotel ';
+      if (_wantLunchDinner) selectedServices += 'Lunch/Dinner';
+
+      final newCard = CardData(
+        name: nameController.text,
+        number: numberController.text,
+        location: locationController.text,
+        duration: durationController.text,
+        people: peopleController.text,
+        description: descriptionController.text,
+        imageUrl: imageUrl,
+        serviceOption: selectedServices.trim(),
+        createdAt: DateTime.now().toString(),
+      );
+
+      savedCards.add(newCard);
+      await CardStorage.saveCards(savedCards);
+
+      // Clear form
+      nameController.clear();
+      numberController.clear();
+      locationController.clear();
+      durationController.clear();
+      peopleController.clear();
+      descriptionController.clear();
+
+      setState(() {
+        _wantHotel = false;
+        _wantTaxi = false;
+        _wantLunchDinner = false;
+      });
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Fixdetalis(cards: savedCards)),
+      );
+    }
+  }
+
   Widget _buildField(String label, TextEditingController controller,
       {int maxLines = 1, bool numberOnly = false}) {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
-      keyboardType: numberOnly ? TextInputType.number : TextInputType.text,
       style: TextStyle(color: Colors.white, fontSize: 15),
       decoration: InputDecoration(
         labelText: label,
@@ -145,8 +189,6 @@ class _MakeScreenState extends State<MakeScreen> {
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       ),
-      validator: (value) =>
-      value == null || value.isEmpty ? 'Required field' : null,
     );
   }
 
@@ -154,7 +196,10 @@ class _MakeScreenState extends State<MakeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(title: Text("Make Card")
+      appBar: AppBar(
+        elevation: 6,
+        shadowColor: Colors.white,
+        title: Text("Make Card"),
       ),
       drawer: Drawer(
         backgroundColor: Colors.black,
@@ -170,72 +215,53 @@ class _MakeScreenState extends State<MakeScreen> {
                 ),
               ),
               currentAccountPicture: CircleAvatar(
-                radius: 40,
                 backgroundImage: NetworkImage(
                   "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg",
                 ),
               ),
               accountName: Text(
-                "WELCOME",
+                " Welcome",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              accountEmail: Text(
-                "Username@example.com",
-                style: TextStyle(color: Colors.white70, fontSize: 14),
-              ),
+              accountEmail: null,
             ),
-
-            // Home
             ListTile(
-              leading: Icon(Icons.home_outlined, color: Colors.deepPurpleAccent),
+              leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
               title: Text(
-                'Home',
-                style: TextStyle(color: Colors.white, fontSize: 16),
+                "Your card",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontStyle: FontStyle.italic),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TempCards(cards: savedCards)));
+              },
             ),
-
-            // View Card
             ListTile(
               leading: Icon(Icons.credit_card, color: Colors.tealAccent),
               title: Text(
-                'View Card',
+                'View all details',
                 style: TextStyle(color: Colors.white, fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => HomeScreen(cards: savedCards)),
+                      builder: (context) => Fixdetalis(cards: savedCards)),
                 );
               },
             ),
-
-            // Save Info
-            ListTile(
-              leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
-              title: Text(
-                "Save Info",
-                style: TextStyle(color: Colors.white, fontSize: 16),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ViewCards(cards: savedCards)));
-              },
-            ),
-
-            Divider(color: Colors.white24, thickness: 1, indent: 16, endIndent: 16),
-
           ],
         ),
       ),
-      // Premium gradient background
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -247,40 +273,6 @@ class _MakeScreenState extends State<MakeScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // Custom AppBar
-              Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.deepPurple, Colors.indigoAccent],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.4),
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Icon(Icons.create, color: Colors.white),
-                    SizedBox(width: 10),
-                    Text(
-                      "Create Your Card",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.6,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
               Expanded(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.all(20),
@@ -290,31 +282,27 @@ class _MakeScreenState extends State<MakeScreen> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          child: Image.network(imageUrl, height: 180, fit: BoxFit.cover),
+                          child: Image.network(imageUrl,
+                              height: 180, width: 500, fit: BoxFit.cover),
                         ),
                         SizedBox(height: 24),
-
-                        // Form fields grouped inside card
                         Container(
                           padding: EdgeInsets.all(18),
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.05),
                             borderRadius: BorderRadius.circular(18),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.3),
-                                blurRadius: 8,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
                           ),
                           child: Column(
                             children: [
                               Row(
                                 children: [
-                                  Expanded(child: _buildField("Enter Name", nameController)),
+                                  Expanded(
+                                      child: _buildField(
+                                          "Enter Name", nameController)),
                                   SizedBox(width: 10),
-                                  Expanded(child: _buildField("Gmail/Number", numberController)),
+                                  Expanded(
+                                      child: _buildField(
+                                          "Gmail/Number", numberController)),
                                 ],
                               ),
                               SizedBox(height: 16),
@@ -322,20 +310,24 @@ class _MakeScreenState extends State<MakeScreen> {
                               SizedBox(height: 16),
                               Row(
                                 children: [
-                                  Expanded(child: _buildField("Duration", durationController, numberOnly: true)),
+                                  Expanded(
+                                      child: _buildField("Duration",
+                                          durationController,
+                                          numberOnly: true)),
                                   SizedBox(width: 10),
-                                  Expanded(child: _buildField("People", peopleController, numberOnly: true)),
+                                  Expanded(
+                                      child: _buildField("People",
+                                          peopleController,
+                                          numberOnly: true)),
                                 ],
                               ),
                               SizedBox(height: 16),
-                              _buildField("Description", descriptionController, maxLines: 3),
+                              _buildField("Description", descriptionController,
+                                  maxLines: 3),
                             ],
                           ),
                         ),
-
                         SizedBox(height: 24),
-
-                        // Service options checkboxes
                         Container(
                           padding: EdgeInsets.all(14),
                           decoration: BoxDecoration(
@@ -346,32 +338,29 @@ class _MakeScreenState extends State<MakeScreen> {
                             children: [
                               CheckboxListTile(
                                 value: _wantTaxi,
-                                onChanged: (val) => setState(() => _wantTaxi = val!),
-                                title: Text("Taxi Service", style: TextStyle(color: Colors.white)),
-                                activeColor: Colors.deepPurple,
-                                checkColor: Colors.white,
+                                onChanged: (val) =>
+                                    setState(() => _wantTaxi = val!),
+                                title: Text("Taxi Service",
+                                    style: TextStyle(color: Colors.white)),
                               ),
                               CheckboxListTile(
                                 value: _wantHotel,
-                                onChanged: (val) => setState(() => _wantHotel = val!),
-                                title: Text("Hotel Booking", style: TextStyle(color: Colors.white)),
-                                activeColor: Colors.deepPurple,
-                                checkColor: Colors.white,
+                                onChanged: (val) =>
+                                    setState(() => _wantHotel = val!),
+                                title: Text("Hotel Booking",
+                                    style: TextStyle(color: Colors.white)),
                               ),
                               CheckboxListTile(
                                 value: _wantLunchDinner,
-                                onChanged: (val) => setState(() => _wantLunchDinner = val!),
-                                title: Text("Lunch/Dinner", style: TextStyle(color: Colors.white)),
-                                activeColor: Colors.deepPurple,
-                                checkColor: Colors.white,
+                                onChanged: (val) => setState(
+                                        () => _wantLunchDinner = val!),
+                                title: Text("Lunch/Dinner",
+                                    style: TextStyle(color: Colors.white)),
                               ),
                             ],
                           ),
                         ),
-
                         SizedBox(height: 30),
-
-                        // Submit Button
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton.icon(
@@ -381,7 +370,6 @@ class _MakeScreenState extends State<MakeScreen> {
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               padding: EdgeInsets.symmetric(vertical: 14),
-                              elevation: 6,
                             ),
                             icon: Icon(Icons.check, color: Colors.white),
                             label: Text(
@@ -393,14 +381,7 @@ class _MakeScreenState extends State<MakeScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                // TODO: Call your save logic here
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text("Card Submitted!")),
-                                );
-                              }
-                            },
+                            onPressed: clearForm,
                           ),
                         ),
                       ],
@@ -417,53 +398,56 @@ class _MakeScreenState extends State<MakeScreen> {
 }
 
 // ================= View Cards =================
-class ViewCards extends StatefulWidget {
+class TempCards extends StatefulWidget {
   final List<CardData> cards;
-  ViewCards({required this.cards});
+  TempCards({required this.cards});
 
-  @override
-  _ViewCardsState createState() => _ViewCardsState();
+  _TempCardsState createState() => _TempCardsState();
 }
 
-class _ViewCardsState extends State<ViewCards> {
+class _TempCardsState extends State<TempCards> {
   late List<CardData> localCards;
 
   @override
   void initState() {
     super.initState();
-    // Copy original cards → local list
     localCards = List.from(widget.cards);
   }
 
-  void deleteCard(int index) {
+  void deleteCard(int index) async {
     setState(() {
-      localCards.removeAt(index); // Sirf local list se remove karo
+      localCards.removeAt(index);
+      
     });
-    // ⚠️ Storage se delete mat karo!
+
+    await CardStorage.saveCards(localCards);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(title: Text("View Cards")),
       body: localCards.isEmpty
           ? Center(
-          child: Text("No cards here", style: TextStyle(color: Colors.white)))
+          child: Text("No cards here",
+              style: TextStyle(color: Colors.black)))
           : ListView.builder(
         itemCount: localCards.length,
         itemBuilder: (context, index) {
           final card = localCards[index];
           return Card(
-            color: Colors.white10,
+            color: Colors.white,
+            elevation: 3,
             child: ListTile(
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(card.imageUrl),
               ),
-              title: Text(card.name, style: TextStyle(color: Colors.white)),
+              title:
+              Text(card.name, style: TextStyle(color: Colors.black)),
               subtitle: Text(
                 "${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(color: Colors.grey),
+                style: TextStyle(color: Colors.grey[800]),
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete, color: Colors.red),
@@ -477,16 +461,14 @@ class _ViewCardsState extends State<ViewCards> {
   }
 }
 
-
-
 // ================== HomeScreen ==================
-class HomeScreen extends StatefulWidget {
+class Fixdetalis extends StatefulWidget {
   final List<CardData>? cards;
-  HomeScreen ({this.cards});
-  _HomeScreenState createState() => _HomeScreenState();
+  Fixdetalis({this.cards});
+  _FixdetalisState createState() => _FixdetalisState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _FixdetalisState extends State<Fixdetalis> {
   List<CardData> cards = [];
 
   @override
@@ -505,21 +487,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF121212),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text("Saved Cards", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text("Saved Cards",
+            style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
-        elevation: 0,
       ),
       body: cards.isEmpty
           ? Center(
-        child: Text(
-          "No saved cards",
-          style: TextStyle(color: Colors.white70, fontSize: 18),
-        ),
+        child: Text("No saved cards",
+            style: TextStyle(color: Colors.black87, fontSize: 18)),
       )
-          : RefreshIndicator( // 🔄 Add pull-to-refresh
+          : RefreshIndicator(
         onRefresh: () async => loadCards(),
         child: ListView.builder(
           padding: EdgeInsets.all(16),
@@ -529,11 +508,11 @@ class _HomeScreenState extends State<HomeScreen> {
             return Container(
               margin: EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.grey[900],
+                color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.3),
+                    color: Colors.grey.shade300,
                     blurRadius: 6,
                     offset: Offset(0, 3),
                   ),
@@ -557,22 +536,31 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ),
                       ],
                     ),
                     SizedBox(height: 16),
-                    Divider(color: Colors.white24, thickness: 1),
+                    Divider(color: Colors.black26, thickness: 1),
                     SizedBox(height: 12),
-                    _buildDetailRow(Icons.email, "Contact", card.number),
-                    _buildDetailRow(Icons.location_on, "Location", card.location),
-                    _buildDetailRow(Icons.schedule, "Duration", "${card.duration} days"),
-                    _buildDetailRow(Icons.group, "People", card.people),
-                    _buildDetailRow(Icons.room_service, "Services",
-                        card.serviceOption.isEmpty ? "None" : card.serviceOption),
-                    _buildDetailRow(Icons.access_time, "Created", card.createdAt),
+                    _buildDetailRow(
+                        Icons.email, "Contact", card.number),
+                    _buildDetailRow(
+                        Icons.location_on, "Location", card.location),
+                    _buildDetailRow(Icons.schedule, "Duration",
+                        "${card.duration} days"),
+                    _buildDetailRow(
+                        Icons.group, "People", card.people),
+                    _buildDetailRow(
+                        Icons.room_service,
+                        "Services",
+                        card.serviceOption.isEmpty
+                            ? "None"
+                            : card.serviceOption),
+                    _buildDetailRow(
+                        Icons.access_time, "Created", card.createdAt),
                   ],
                 ),
               ),
@@ -589,19 +577,20 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.blueGrey[200], size: 20),
+          Icon(icon, color: Colors.blueGrey[700], size: 20),
           SizedBox(width: 10),
           SizedBox(
             width: 80,
             child: Text(
               "$label:",
-              style: TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  color: Colors.black87, fontWeight: FontWeight.w500),
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: TextStyle(color: Colors.white, fontSize: 15),
+              style: TextStyle(color: Colors.black, fontSize: 15),
             ),
           ),
         ],
