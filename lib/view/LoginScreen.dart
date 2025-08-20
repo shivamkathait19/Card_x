@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
@@ -94,10 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => isLoadinglogin = true);
       Future.delayed(const Duration(seconds: 2), () {
         setState(() => isLoadinglogin = false);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CardScreen()),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
       });
     }
   }

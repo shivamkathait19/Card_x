@@ -181,6 +181,14 @@ class _CardScreenState extends State<CardScreen>
                 ),
                 onTap: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Favoritespage()))),
+            ListTile(
+              leading: Icon(Icons.help_outline),
+              title: Text('Help & Support',style: TextStyle(color: Colors.white60),),
+              onTap:(){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> Helppage()));
+              },
+            ),
             Divider(),
             ListTile(
               leading: Icon(Icons.arrow_back),
@@ -231,12 +239,7 @@ class _CardScreenState extends State<CardScreen>
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.0),
                   borderRadius: BorderRadius.circular(20),
-                 /* boxShadow: [
-                    BoxShadow(
-                        color: Colors.black26,
-                        blurRadius: 10,
-                        offset: Offset(0, 6)),
-                  ],*/
+
                 ),
                 child: isLoading
                     ? Center(child: CircularProgressIndicator())
@@ -438,3 +441,118 @@ class _FavoritespageState extends State<Favoritespage> {
   }
 }
 
+class Helppage extends StatefulWidget {
+  const Helppage({super.key});
+
+  @override
+  State<Helppage> createState() => _HelppageState();
+}
+
+class _HelppageState extends State<Helppage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text(
+          "Help & Support",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.deepPurple, Colors.pinkAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: Colors.black,
+      body: Container(
+        padding: const EdgeInsets.only(top: kToolbarHeight + 20, left: 16, right: 16, bottom: 16),
+        child: ListView(
+          children: [
+            _buildHelpCard(
+              icon: Icons.question_answer_outlined,
+              title: "How to use the app?",
+              subtitle: "Tap on Next Meme to load memes.\nReact using 😂 or 😒.",
+            ),
+            _buildHelpCard(
+              icon: Icons.favorite,
+              title: "How to save favorites?",
+              subtitle: "Tap the heart icon 💖 to save memes to your Favorites.",
+            ),
+            _buildHelpCard(
+              icon: Icons.person_outline,
+              title: "How to view my profile?",
+              subtitle: "Go to the drawer and tap on My Profile.",
+            ),
+            _buildHelpCard(
+              icon: Icons.bug_report_outlined,
+              title: "Found a bug or issue?",
+              subtitle: "Contact us: help@cardxapp.com",
+            ),
+            _buildHelpCard(
+              icon: Icons.feedback_outlined,
+              title: "Want to give feedback?",
+              subtitle: "We love your feedback!\nEmail us at: feedback@cardxapp.com",
+            ),
+            _buildHelpCard(
+              icon: Icons.phone_outlined,
+              title: "Need more help?",
+              subtitle: "Call us at: +91 7895272732",
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  Widget _buildHelpCard({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
+    return Card(
+      color: Colors.white.withOpacity(0.08),
+      elevation: 8,
+      margin: const EdgeInsets.symmetric(vertical: 12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: Colors.purpleAccent, size: 28),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      )),
+                  const SizedBox(height: 6),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 15,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

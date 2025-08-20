@@ -261,6 +261,23 @@ class _MakeScreenState extends State<MakeScreen> {
                 );
               },
             ),
+
+            ListTile(
+              leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
+              title: Text(
+                "Help and support",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontStyle: FontStyle.italic),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Helpsupprot()));
+              },
+            ),
             Divider(),
             ListTile(
               leading: Icon(Icons.arrow_back, color: Colors.pinkAccent),
@@ -436,30 +453,38 @@ class _TempCardsState extends State<TempCards> {
   void deleteCard(int index) async {
     setState(() {
       localCards.removeAt(index);
-
     });
 
+    // ✅ Snackbar confirmation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Card deleted successfully")),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
-      appBar: AppBar(title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-        Text('View ',
-        style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Colors.deepPurple)),
-    Text('Card',
-    style: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    color: Colors.pinkAccent)),
-      ]
-      )
+      appBar: AppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            Text(
+              'View ',
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple),
+            ),
+            Text(
+              'Card',
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.pinkAccent),
+            ),
+          ],
+        ),
       ),
       body: localCards.isEmpty
           ? Center(
@@ -476,11 +501,16 @@ class _TempCardsState extends State<TempCards> {
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(card.imageUrl),
               ),
-              title:
-              Text(card.name, style: TextStyle(color: Colors.brown,fontWeight: FontWeight.bold)),
+              title: Text(card.name,
+                  style: TextStyle(
+                      color: Colors.brown,
+                      fontWeight: FontWeight.bold)),
               subtitle: Text(
                 "${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(color: Colors.white.withOpacity(0.5),fontStyle: FontStyle.italic,),
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                  fontStyle: FontStyle.italic,
+                ),
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete, color: Colors.red),
@@ -493,6 +523,7 @@ class _TempCardsState extends State<TempCards> {
     );
   }
 }
+
 
 // ================== HomeScreen ==================
 class Fixdetalis extends StatefulWidget {
@@ -624,6 +655,207 @@ class _FixdetalisState extends State<Fixdetalis> {
             child: Text(
               value,
               style: TextStyle(color: Colors.black, fontSize: 15),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+// aapke CardData ka model already bana hai isliye yaha dummy bana raha hu
+// agar aapke pass CardData model already hai to ye mat likhna
+
+
+class Helpsupprot extends StatefulWidget {
+  final List<CardData>? cards; // ✅ cards optional rakha
+  Helpsupprot({this.cards, super.key});
+
+  @override
+  State<Helpsupprot> createState() => _HelpsupprotState();
+}
+
+class _HelpsupprotState extends State<Helpsupprot> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: Text("Help & Support"),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurpleAccent,
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: [
+          // ================= How to use section =================
+          Text(
+            "📖 How to use this app",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 12),
+          _buildGuideStep(
+            step: "1",
+            title: "Create a Card",
+            description:
+            "Go to 'Make Card' option in the drawer. Fill in your details such as name, number, location, and description, then press 'Submit Card'.",
+          ),
+          _buildGuideStep(
+            step: "2",
+            title: "View Your Cards",
+            description:
+            "Check all cards you created by going to 'View All Details'. You can see your saved cards with full details.",
+          ),
+          _buildGuideStep(
+            step: "3",
+            title: "Temporary Cards",
+            description:
+            "Go to 'Your Card' to see temporary saved cards. You can also delete a card from here.",
+          ),
+          _buildGuideStep(
+            step: "4",
+            title: "Edit or Update",
+            description:
+            "Currently, editing is limited. If you want to change details, you can delete the card and create a new one.",
+          ),
+          _buildGuideStep(
+            step: "5",
+            title: "Support",
+            description:
+            "If you face any issue, use the below contact options to reach us.",
+          ),
+
+          SizedBox(height: 24),
+          Divider(color: Colors.white54),
+
+          // ================= Contact section =================
+          Text(
+            "☎️ Contact Options",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 12),
+
+          Card(
+            color: Colors.deepPurple.withOpacity(0.2),
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            child: ListTile(
+              leading: Icon(Icons.email, color: Colors.pinkAccent),
+              title: Text("Contact via Email",
+                  style: TextStyle(color: Colors.white)),
+              subtitle: Text("support@cardx.com",
+                  style: TextStyle(color: Colors.white70)),
+              onTap: () {
+                print("Open Email app here (use url_launcher)");
+              },
+            ),
+          ),
+          SizedBox(height: 12),
+          Card(
+            color: Colors.teal.withOpacity(0.2),
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            child: ListTile(
+              leading: Icon(Icons.phone, color: Colors.tealAccent),
+              title: Text("Call Support", style: TextStyle(color: Colors.white)),
+              subtitle: Text("+91 9876543210",
+                  style: TextStyle(color: Colors.white70)),
+              onTap: () {
+                print("Dial number here (use url_launcher)");
+              },
+            ),
+          ),
+          SizedBox(height: 12),
+          Card(
+            color: Colors.green.withOpacity(0.2),
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            child: ListTile(
+              leading: Icon(Icons.message, color: Colors.greenAccent),
+              title:
+              Text("WhatsApp Chat", style: TextStyle(color: Colors.white)),
+              subtitle: Text("Chat with us on WhatsApp",
+                  style: TextStyle(color: Colors.white70)),
+              onTap: () {
+                print("Open WhatsApp here (use url_launcher)");
+              },
+            ),
+          ),
+          SizedBox(height: 12),
+          Card(
+            color: Colors.blue.withOpacity(0.2),
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            child: ListTile(
+              leading: Icon(Icons.info, color: Colors.blueAccent),
+              title: Text("About App", style: TextStyle(color: Colors.white)),
+              subtitle: Text("Learn more about CardX",
+                  style: TextStyle(color: Colors.white70)),
+              onTap: () {
+                showAboutDialog(
+                  context: context,
+                  applicationName: "CardX",
+                  applicationVersion: "1.0.0",
+                  applicationIcon: Icon(Icons.credit_card),
+                  children: [
+                    Text(
+                        "This app helps you create, save, and manage your cards easily."),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // helper widget to show steps
+  Widget _buildGuideStep({
+    required String step,
+    required String title,
+    required String description,
+  }) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            backgroundColor: Colors.deepPurpleAccent,
+            child: Text(step,
+                style: TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold)),
+          ),
+          SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
+                SizedBox(height: 6),
+                Text(description,
+                    style: TextStyle(color: Colors.white70, fontSize: 14)),
+              ],
             ),
           ),
         ],
