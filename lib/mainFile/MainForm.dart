@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MakeScreen.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
         setState(() => isloadingdone = true);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => CardScreen(
+          MaterialPageRoute(builder: (context) => Barcoms(
             username: usernameController.text,
             full : fullnameController.text,
             date: dateController.text,

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -229,6 +230,7 @@ class _MakeScreenState extends State<MakeScreen> {
               ),
               accountEmail: null,
             ),
+
             ListTile(
               leading: Icon(Icons.save_as_outlined, color: Colors.pinkAccent),
               title: Text(
@@ -257,6 +259,23 @@ class _MakeScreenState extends State<MakeScreen> {
                   MaterialPageRoute(
                       builder: (context) => Fixdetalis(cards: savedCards)),
                 );
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.arrow_back, color: Colors.pinkAccent),
+              title: Text(
+                "Home Screen ",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontStyle: FontStyle.italic),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Barcoms()));
               },
             ),
           ],
@@ -417,17 +436,31 @@ class _TempCardsState extends State<TempCards> {
   void deleteCard(int index) async {
     setState(() {
       localCards.removeAt(index);
-      
+
     });
 
-    await CardStorage.saveCards(localCards);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(title: Text("View Cards")),
+      backgroundColor: Colors.black12,
+      appBar: AppBar(title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+        Text('View ',
+        style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.deepPurple)),
+    Text('Card',
+    style: TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Colors.pinkAccent)),
+      ]
+      )
+      ),
       body: localCards.isEmpty
           ? Center(
           child: Text("No cards here",
@@ -437,17 +470,17 @@ class _TempCardsState extends State<TempCards> {
         itemBuilder: (context, index) {
           final card = localCards[index];
           return Card(
-            color: Colors.white,
+            color: Colors.black.withOpacity(0.50),
             elevation: 3,
             child: ListTile(
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(card.imageUrl),
               ),
               title:
-              Text(card.name, style: TextStyle(color: Colors.black)),
+              Text(card.name, style: TextStyle(color: Colors.brown,fontWeight: FontWeight.bold)),
               subtitle: Text(
                 "${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(color: Colors.grey[800]),
+                style: TextStyle(color: Colors.white.withOpacity(0.5),fontStyle: FontStyle.italic,),
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete, color: Colors.red),
