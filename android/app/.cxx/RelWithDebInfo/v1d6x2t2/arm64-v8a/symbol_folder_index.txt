@@ -1,0 +1,1 @@
+C:\Card_x\build\app\intermediates\cxx\RelWithDebInfo\v1d6x2t2\obj\arm64-v8a

@@ -1,0 +1,2 @@
+C:/Card_x/android/app/.cxx/RelWithDebInfo/v1d6x2t2/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Card_x/android/app/.cxx/RelWithDebInfo/v1d6x2t2/armeabi-v7a/CMakeFiles/rebuild_cache.dir
