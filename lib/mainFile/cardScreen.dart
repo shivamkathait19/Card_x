@@ -262,8 +262,8 @@ class _CardScreenState extends State<CardScreen>
                     child: Text("😂", style: TextStyle(fontSize: 36)),
                   ),
                   GestureDetector(
-                    onTap: () => showEmojiBurst("😒"),
-                    child: Text("😒", style: TextStyle(fontSize: 36)),
+                    onTap: () => showEmojiBurst("🥱"),
+                    child: Text("🥱", style: TextStyle(fontSize: 36)),
                   ),
                 ],
               ),

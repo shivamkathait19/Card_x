@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:card_x/mainFile/MakeScreen.dart';
@@ -74,8 +76,8 @@ class _BarcomsState extends State<Barcoms> {
     return Scaffold(
       appBar: AppBar(title: Column(
         children: [
-          Text("Home",style: TextStyle(color: Colors.white),),
-          Text("Screen",style: TextStyle(color: Colors.red),)
+          Text("Home",style: TextStyle(color: Colors.teal,fontStyle: FontStyle.italic),),
+          Text("Screen",style: TextStyle(color: Colors.red,fontSize: 15,fontStyle: FontStyle.italic),)
         ],
       ),
       ),
@@ -271,38 +273,56 @@ class _BlankPageState extends State<BlankPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
       child: Container(
-        height: 90,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.10),
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: const [
-            BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
+          color: Colors.black12,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12.withOpacity(0.08),
+              blurRadius: 6,
+              offset: const Offset(0, 3),
+            ),
           ],
-
+          border: Border.all(color: Colors.black12, width: 2),
         ),
         child: ListTile(
-          leading: Icon(icon, color: Colors.teal, size: 28),
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundColor: Colors.black12,
+            child: Icon(icon, color: Colors.blueAccent, size: 26),
+          ),
           title: Text(
             label,
-            style: const TextStyle(fontWeight: FontWeight.w500,fontStyle: FontStyle.italic,color: Colors.white),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 14,
+              color: Colors.white,
+            ),
           ),
-          subtitle: Text(
-            value ?? 'Not provided',
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              value ?? 'Not provided',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       ),
-
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
+      backgroundColor: Colors.brown,
       appBar: AppBar(
-        title: const Text("My Profile"),
-        backgroundColor: Colors.teal,
+        title:  Text("My Profile",style: TextStyle(fontStyle: FontStyle.italic),),
+        backgroundColor: Colors.black,
         foregroundColor: Colors.white,
         centerTitle: true,
       ),
@@ -311,8 +331,9 @@ class _BlankPageState extends State<BlankPage> {
           const SizedBox(height: 30),
           const CircleAvatar(
             radius: 50,
-            backgroundColor: Colors.teal,
-            child: Icon(Icons.person, size: 50, color: Colors.white),
+            backgroundColor: Colors.white70,
+            child: Icon(Icons.person, size: 50, color: Colors.black),
+
           ),
           SizedBox(height: 30),
           infoCard("Username", widget.username, Icons.person),
@@ -446,7 +467,7 @@ class _SettingsPageState extends State<SettingsPage> {
             _buildTile(
               icon: Icons.language,
               title: "Language",
-              subtitle: "shivam",
+              subtitle: "English",
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
