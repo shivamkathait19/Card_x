@@ -6,7 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 // ================= CardData Model =================
 class CardData {
   final String name;
-  final String number;
+
+  final String Gmail;
   final String location;
   final String duration;
   final String people;
@@ -17,7 +18,7 @@ class CardData {
 
   CardData({
     required this.name,
-    required this.number,
+    required this.Gmail,
     required this.location,
     required this.duration,
     required this.people,
@@ -27,10 +28,10 @@ class CardData {
     required this.createdAt,
   });
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap(){
     return {
       'name': name,
-      'number': number,
+      'number': Gmail,
       'location': location,
       'duration': duration,
       'people': people,
@@ -44,7 +45,7 @@ class CardData {
   factory CardData.fromMap(Map<String, dynamic> map) {
     return CardData(
       name: map['name'],
-      number: map['number'],
+      Gmail: map['number'],
       location: map['location'],
       duration: map['duration'],
       people: map['people'],
@@ -90,6 +91,7 @@ class Makescreen extends StatelessWidget {
 }
 
 // ================= Make Screen =================
+
 class MakeScreen extends StatefulWidget {
   @override
   _MakeScreenState createState() => _MakeScreenState();
@@ -98,7 +100,7 @@ class MakeScreen extends StatefulWidget {
 class _MakeScreenState extends State<MakeScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController numberController = TextEditingController();
+  final TextEditingController GmailController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
   final TextEditingController durationController = TextEditingController();
   final TextEditingController peopleController = TextEditingController();
@@ -134,7 +136,7 @@ class _MakeScreenState extends State<MakeScreen> {
 
       final newCard = CardData(
         name: nameController.text,
-        number: numberController.text,
+        Gmail: GmailController.text,
         location: locationController.text,
         duration: durationController.text,
         people: peopleController.text,
@@ -149,7 +151,7 @@ class _MakeScreenState extends State<MakeScreen> {
 
       // Clear form
       nameController.clear();
-      numberController.clear();
+      GmailController.clear();
       locationController.clear();
       durationController.clear();
       peopleController.clear();
@@ -337,8 +339,17 @@ class _MakeScreenState extends State<MakeScreen> {
                                           "Enter Name", nameController)),
                                   SizedBox(width: 10),
                                   Expanded(
-                                      child: _buildField(
-                                          "Gmail/Number", numberController)),
+                                      child:TextFormField(
+                                        controller: GmailController,
+                                        obscureText: true,
+                                        style: TextStyle(color: Colors.white),
+                                        decoration: InputDecoration(
+                                          labelText: 'Gmail',
+                                          labelStyle: TextStyle(color: Colors.white,)
+
+                                        ),
+                                          )
+                                  ),
                                 ],
                               ),
                               SizedBox(height: 16),
@@ -506,7 +517,7 @@ class _TempCardsState extends State<TempCards> {
                       color: Colors.brown,
                       fontWeight: FontWeight.bold)),
               subtitle: Text(
-                "${card.number}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                 style: TextStyle(
                   color: Colors.white.withOpacity(0.5),
                   fontStyle: FontStyle.italic,
@@ -524,8 +535,6 @@ class _TempCardsState extends State<TempCards> {
   }
 }
 
-
-// ================== HomeScreen ==================
 class Fixdetalis extends StatefulWidget {
   final List<CardData>? cards;
   Fixdetalis({this.cards});
@@ -610,7 +619,7 @@ class _FixdetalisState extends State<Fixdetalis> {
                     Divider(color: Colors.black26, thickness: 1),
                     SizedBox(height: 12),
                     _buildDetailRow(
-                        Icons.email, "Contact", card.number),
+                        Icons.email, "Contact", card.Gmail),
                     _buildDetailRow(
                         Icons.location_on, "Location", card.location),
                     _buildDetailRow(Icons.schedule, "Duration",
@@ -663,10 +672,6 @@ class _FixdetalisState extends State<Fixdetalis> {
   }
 }
 
-
-
-// aapke CardData ka model already bana hai isliye yaha dummy bana raha hu
-// agar aapke pass CardData model already hai to ye mat likhna
 
 
 class Helpsupprot extends StatefulWidget {
