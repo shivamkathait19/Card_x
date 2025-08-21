@@ -77,7 +77,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
@@ -183,19 +182,26 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: EdgeInsets.only(left: 10, right: 10,top: 30),
                             child:  TextFormField(
                               controller: _emailController,
-                              style: const TextStyle(color: Colors.white),
+                              style:  TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 labelText: 'Email',
-                                labelStyle: const TextStyle(color: Colors.white70),
-                                prefixIcon: const Icon(Icons.email, color: Colors.white70),
+                                labelStyle:  TextStyle(color: Colors.white70),
+                                prefixIcon:  Icon(Icons.email, color: Colors.white70),
                                 filled: true,
                                 fillColor: Colors.grey[900],
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                               ),
-                              validator: (value) =>
-                              value!.isEmpty ? 'Please enter your email' : null,
+                             validator: (value){
+                                if(value == null || value.isEmpty){
+                                  return 'Plase enter your email';
+                                }
+                                if (!value.endsWith("@gamil.com")){
+                                  return 'Please enter a vaild Gmail address';
+                                }
+                                return null;
+                             },
                             ),
                           ),
                           SizedBox(height: 10,),
