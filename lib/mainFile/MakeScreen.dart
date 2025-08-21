@@ -345,10 +345,13 @@ class _MakeScreenState extends State<MakeScreen> {
                                         style: TextStyle(color: Colors.white),
                                         decoration: InputDecoration(
                                           labelText: 'Gmail',
-                                          labelStyle: TextStyle(color: Colors.white,)
-
+                                          labelStyle: TextStyle(color: Colors.white,),
+                                          filled: true,
+                                          fillColor: Colors.grey[900],
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(12),
                                         ),
-                                          )
+                                          ),
                                   ),
                                 ],
                               ),
