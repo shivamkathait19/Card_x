@@ -146,7 +146,7 @@ Future<void> loadCardsFromPrefs() async {
 }
 
 // ================= Main =================
-class Makescreen extends StatelessWidget {
+/*class Makescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -155,7 +155,7 @@ class Makescreen extends StatelessWidget {
       home: MakeScreen(),
     );
   }
-}
+}*/
 
 // ================= Make Screen =================
 
