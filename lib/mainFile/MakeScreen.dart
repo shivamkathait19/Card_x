@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ================= CardData Model =================
@@ -192,6 +193,10 @@ class _MakeScreenState extends State<MakeScreen> {
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       ),
+      validator: (value){
+        if(value == null || value.isEmpty)
+          return "Enter a full details";
+      }
     );
   }
 
@@ -341,17 +346,29 @@ class _MakeScreenState extends State<MakeScreen> {
                                   Expanded(
                                       child:TextFormField(
                                         controller: GmailController,
-                                        obscureText: true,
-                                        style: TextStyle(color: Colors.white),
+                                       // obscureText: true,
+                                        style: TextStyle(color: Colors.white,fontSize: 16),
                                         decoration: InputDecoration(
                                           labelText: 'Gmail',
-                                          labelStyle: TextStyle(color: Colors.white,),
+                                          labelStyle: TextStyle(color: Colors.white,fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: 0.5,),
                                           filled: true,
-                                          fillColor: Colors.grey[900],
+                                          fillColor: Colors.white70.withOpacity(0.08),
                                           border: OutlineInputBorder(
-                                            borderRadius: BorderRadius.circular(12),
+                                            borderRadius: BorderRadius.circular(14),
+                                            borderSide: BorderSide.none,
                                         ),
                                           ),
+                                        validator: (value){
+                                          if(value == null || value.isEmpty){
+                                            return " Please enter the gmail";
+                                          }
+                                          if(!value.endsWith("@gmail.com")){
+                                            return " Please enter valid gamil";
+                                          }
+                                        },
+                                  ),
                                   ),
                                 ],
                               ),
@@ -366,9 +383,30 @@ class _MakeScreenState extends State<MakeScreen> {
                                           numberOnly: true)),
                                   SizedBox(width: 10),
                                   Expanded(
-                                      child: _buildField("People",
-                                          peopleController,
-                                          numberOnly: true)),
+                                      child:TextFormField (
+                                        controller: peopleController,
+                                        //obscureText: true,
+                                        decoration: InputDecoration(
+                                            labelText: "People",
+                                          labelStyle: TextStyle(
+                                            color: Colors.white,fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            letterSpacing: 0.5,
+                                          ),
+                                          filled: true,
+                                            fillColor: Colors.white.withOpacity(0.08),
+                                           // focusColor: Colors.white.withOpacity(0.08),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(14),
+                                            borderSide: BorderSide.none
+                                          )
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly
+                                        ],
+                                      ),
+                                  )
                                 ],
                               ),
                               SizedBox(height: 16),
