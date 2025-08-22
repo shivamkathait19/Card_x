@@ -11,8 +11,10 @@ class CardData {
   String location;
   String duration;
   String people;
+  String description;
   String serviceOption;
   String imageUrl;
+  String createdAt;
 
   CardData({
     required this.name,
@@ -22,6 +24,8 @@ class CardData {
     required this.people,
     required this.serviceOption,
     required this.imageUrl,
+    required this.description,
+    required this.createdAt,
   });
 
   Map<String, dynamic> toJson() => {
