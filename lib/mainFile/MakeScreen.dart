@@ -119,13 +119,25 @@ class CardStorage {
     await prefs.setStringList(key, jsonList);
   }*/
 
-  static Future<List<CardData>> loadCards() async {
+  /*static Future<List<CardData>> loadCards() async {
     final prefs = await SharedPreferences.getInstance();
     List<String>? jsonList = prefs.getStringList(key);
     if (jsonList == null) return [];
     return jsonList
-        .map((jsonStr) => CardData.fromMap(json.decode(jsonStr)))
+        .map((jsonStr) => CardData.fromJson(json.decode(jsonStr)))
         .toList();
+  }*/
+}
+Future<void> loadCardsFromPrefs() async {
+  final prefs = await SharedPreferences.getInstance();
+  List<String>? jsonCards = prefs.getStringList("savedCards");
+
+  if (jsonCards != null) {
+    setState(() {
+      localCards = jsonCards
+          .map((card) => CardData.fromJson(jsonDecode(card)))
+          .toList();
+    });
   }
 }
 
