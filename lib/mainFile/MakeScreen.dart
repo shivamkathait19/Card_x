@@ -528,6 +528,7 @@ class _TempCardsState extends State<TempCards> {
   }
 
   void deleteCard(int index) async {
+
     setState(() {
       localCards.removeAt(index);
     });
