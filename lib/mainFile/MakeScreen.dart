@@ -519,7 +519,8 @@ class TempCards extends StatefulWidget {
 }
 
 class _TempCardsState extends State<TempCards> {
-  late List<CardData> localCards;
+  List<CardData> tempCards = [];
+  // late List<CardData> localCards;
 
   @override
   void initState() {
@@ -528,15 +529,28 @@ class _TempCardsState extends State<TempCards> {
   }
 
   void deleteCard(int index) async {
+    final prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      localCards.removeAt(index);
-    });
+      // card jo delete karna hai
+      final removedCard = tempCards[index];
 
-    // ✅ Snackbar confirmation
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Card deleted successfully")),
-    );
+      // temp list se hata do
+      tempCards.removeAt(index);
+
+      // permanent saved list load karo
+      List<String> savedList = prefs.getStringList('cards') ?? [];
+
+      // matching card ko permanent list se bhi remove karo
+      savedList.removeWhere((cardJson) {
+        final data = CardData.fromMap(jsonDecode(cardJson));
+        return data.name == removedCard.name &&
+            data.Gmail == removedCard.Gmail;
+      });
+
+      // updated list ko dobara save karo
+      prefs.setStringList('cards', savedList);
+    });
   }
 
   @override
