@@ -514,15 +514,15 @@ class _MakeScreenState extends State<MakeScreen> {
 class TempCards extends StatefulWidget {
   final List<CardData> cards;
   TempCards({required this.cards});
-
+  @override
   _TempCardsState createState() => _TempCardsState();
 }
 
 class _TempCardsState extends State<TempCards> {
-  List<CardData> tempCards = [];
-  // late List<CardData> localCards;
+  //List<CardData> tempCards = [];
+   late List<CardData> localCards;
 
-  @override
+ @override
   void initState() {
     super.initState();
     localCards = List.from(widget.cards);
@@ -533,10 +533,10 @@ class _TempCardsState extends State<TempCards> {
 
     setState(() {
       // card jo delete karna hai
-      final removedCard = tempCards[index];
+      final removedCard = localCards[index];
 
       // temp list se hata do
-      tempCards.removeAt(index);
+      localCards.removeAt(index);
 
       // permanent saved list load karo
       List<String> savedList = prefs.getStringList('cards') ?? [];
