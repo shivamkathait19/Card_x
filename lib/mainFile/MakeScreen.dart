@@ -5,52 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ================= CardData Model =================
+
+
 class CardData {
-  String name;
-  String Gmail;
-  String location;
-  String duration;
-  String people;
-  String description;
-  String serviceOption;
-  String imageUrl;
-  String createdAt;
-
-  CardData({
-    required this.name,
-    required this.Gmail,
-    required this.location,
-    required this.duration,
-    required this.people,
-    required this.serviceOption,
-    required this.imageUrl,
-    required this.description,
-    required this.createdAt,
-  });
-
-  Map<String, dynamic> toJson() => {
-    "name": name,
-    "Gmail": Gmail,
-    "location": location,
-    "duration": duration,
-    "people": people,
-    "serviceOption": serviceOption,
-    "imageUrl": imageUrl,
-  };
-
-  factory CardData.fromJson(Map<String, dynamic> json) => CardData(
-    name: json["name"],
-    Gmail: json["Gmail"],
-    location: json["location"],
-    duration: json["duration"],
-    people: json["people"],
-    serviceOption: json["serviceOption"],
-    imageUrl: json["imageUrl"],
-  );
-}
-
-
-/*class CardData {
   final String name;
 
   final String Gmail;
@@ -102,37 +59,37 @@ class CardData {
       createdAt: map['createdAt'],
     );
   }
-}*/
+}
 
 // ================= Storage Helper =================
 class CardStorage {
   static const String key = "saved_cards";
 
 
-  Future<void>saveCardsToPrefs(List<CardData>cards)async{
+  /*Future<void>saveCardsToPrefs(List<CardData>cards)async{
     final prefs = await SharedPreferences.getInstance();
     List<String> jsonCards =
         cards.map((card)=> jsonEncode(card.toJson())).toList();
     await prefs.setStringList("savedCards", jsonCards);
   }
-
-  /* Future<void> saveCards(List<CardData> cards) async {
+*/
+    static Future<void> saveCards(List<CardData> cards) async {
     final prefs = await SharedPreferences.getInstance();
     List<String> jsonList =
-    cards.map((card) => json.encode(card.Json())).toList();
+    cards.map((card) => json.encode(card.toMap())).toList();
     await prefs.setStringList(key, jsonList);
-  }*/
+  }
 
-  /*static Future<List<CardData>> loadCards() async {
+  static Future<List<CardData>> loadCards() async {
     final prefs = await SharedPreferences.getInstance();
     List<String>? jsonList = prefs.getStringList(key);
     if (jsonList == null) return [];
     return jsonList
-        .map((jsonStr) => CardData.fromJson(json.decode(jsonStr)))
+        .map((jsonStr) => CardData.fromMap(json.decode(jsonStr)))
         .toList();
-  }*/
+  }
 }
-Future<void> loadCardsFromPrefs() async {
+/*Future<void> loadCardsFromPrefs() async {
   final prefs = await SharedPreferences.getInstance();
   List<String>? jsonCards = prefs.getStringList("savedCards");
 
@@ -144,9 +101,9 @@ Future<void> loadCardsFromPrefs() async {
     });
   }
 }
-
+*/
 // ================= Main =================
-/*class Makescreen extends StatelessWidget {
+class Makescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -155,7 +112,7 @@ Future<void> loadCardsFromPrefs() async {
       home: MakeScreen(),
     );
   }
-}*/
+}
 
 // ================= Make Screen =================
 
@@ -214,7 +171,8 @@ class _MakeScreenState extends State<MakeScreen> {
       );
 
       savedCards.add(newCard);
-      await CardStorage.saveCards(savedCards);
+     await CardStorage.saveCards(savedCards);
+
 
       // Clear form
       nameController.clear();
@@ -430,8 +388,8 @@ class _MakeScreenState extends State<MakeScreen> {
                                           if(value == null || value.isEmpty){
                                             return " Please enter the gmail";
                                           }
-                                          if(!value.endsWith("@gmail.com")){
-                                            return " Please enter valid gamil";
+                                          if(!value.endsWith('@gmail.com')){
+                                            return "enter valid gmail";
                                           }
                                         },
                                   ),
@@ -519,7 +477,7 @@ class _MakeScreenState extends State<MakeScreen> {
                           width: double.infinity,
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.deepPurpleAccent,
+                              backgroundColor: Colors.black54,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),
@@ -552,6 +510,7 @@ class _MakeScreenState extends State<MakeScreen> {
 }
 
 // ================= View Cards =================
+
 class TempCards extends StatefulWidget {
   final List<CardData> cards;
   TempCards({required this.cards});
@@ -571,17 +530,13 @@ class _TempCardsState extends State<TempCards> {
   void deleteCard(int index) async {
     setState(() {
       localCards.removeAt(index);
-      widget.cards.removeAt(index);
     });
 
     // ✅ Snackbar confirmation
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text("Card deleted successfully")),
     );
-    await saveCardsToPrefs(widget.cards);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
