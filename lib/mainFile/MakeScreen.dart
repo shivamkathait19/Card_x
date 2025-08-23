@@ -618,6 +618,7 @@ class _TempCardsState extends State<TempCards> {
 
 class Fixdetalis extends StatefulWidget {
   final List<CardData>? cards;
+
   Fixdetalis({this.cards});
   _FixdetalisState createState() => _FixdetalisState();
 }
