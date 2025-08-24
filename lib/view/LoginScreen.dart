@@ -195,10 +195,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                              validator: (value){
                                 if(value == null || value.isEmpty){
-                                  return 'Plase enter your email';
+                                  return ' Enter your email';
                                 }
-                                if (!value.endsWith("@gmail.com")){
-                                  return 'Please enter a vaild Gmail address';
+                                if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
+                                  return 'Please enter a valid Gmail address';
                                 }
                                 return null;
                              },
