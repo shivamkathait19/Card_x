@@ -388,8 +388,8 @@ class _MakeScreenState extends State<MakeScreen> {
                                           if(value == null || value.isEmpty){
                                             return " Please enter the gmail";
                                           }
-                                          if(!value.endsWith('@gmail.com')){
-                                            return "enter valid gmail";
+                                          if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
+                                            return 'Please enter a valid Gmail address';
                                           }
                                         },
                                   ),

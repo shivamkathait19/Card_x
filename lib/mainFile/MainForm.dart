@@ -218,8 +218,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                             "Email address",
 
                           ),
-                               validator: (value) =>
-                               value!.isEmpty? "Date of Birth is required" : null
+                               validator: (value) {
+                                 if (value == null || value.isEmpty) {
+                                   return 'Enter vaild email';
+                                 }
+                                 if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
+                                   return 'Please enter a valid Gmail address';
+                                 }
+                               }
                         ),
                          ),
                      SizedBox(
