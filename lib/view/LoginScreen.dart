@@ -197,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if(value == null || value.isEmpty){
                                   return 'Plase enter your email';
                                 }
-                                if (!value.endsWith("@gamil.com")){
+                                if (!value.endsWith("@gmail.com")){
                                   return 'Please enter a vaild Gmail address';
                                 }
                                 return null;

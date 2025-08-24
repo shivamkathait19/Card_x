@@ -514,15 +514,14 @@ class _MakeScreenState extends State<MakeScreen> {
 class TempCards extends StatefulWidget {
   final List<CardData> cards;
   TempCards({required this.cards});
-  @override
+
   _TempCardsState createState() => _TempCardsState();
 }
 
 class _TempCardsState extends State<TempCards> {
-  //List<CardData> tempCards = [];
-   late List<CardData> localCards;
+  late List<CardData> localCards;
 
- @override
+  @override
   void initState() {
     super.initState();
     localCards = List.from(widget.cards);
@@ -532,25 +531,14 @@ class _TempCardsState extends State<TempCards> {
     final prefs = await SharedPreferences.getInstance();
 
     setState(() {
-      // card jo delete karna hai
-      final removedCard = localCards[index];
-
-      // temp list se hata do
-      localCards.removeAt(index);
-
-      // permanent saved list load karo
-      List<String> savedList = prefs.getStringList('cards') ?? [];
-
-      // matching card ko permanent list se bhi remove karo
-      savedList.removeWhere((cardJson) {
-        final data = CardData.fromMap(jsonDecode(cardJson));
-        return data.name == removedCard.name &&
-            data.Gmail == removedCard.Gmail;
+   localCards.removeAt(index);
       });
 
-      // updated list ko dobara save karo
-      prefs.setStringList('cards', savedList);
-    });
+
+    // ✅ Snackbar confirmation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text("Card deleted successfully")),
+    );
   }
 
   @override
@@ -618,7 +606,6 @@ class _TempCardsState extends State<TempCards> {
 
 class Fixdetalis extends StatefulWidget {
   final List<CardData>? cards;
-
   Fixdetalis({this.cards});
   _FixdetalisState createState() => _FixdetalisState();
 }
