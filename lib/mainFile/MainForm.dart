@@ -98,8 +98,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
             // backgroundColor: Colors.black26,
             appBar: AppBar(
               title: Text("User Registration",style: TextStyle(fontWeight: FontWeight.bold),),
-              backgroundColor: Colors.black54,
-              foregroundColor: Colors.white70,
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.brown,
               centerTitle: true,
             ),
            //backgroundColor: Colors.white,
@@ -113,12 +113,9 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                  (key: _key,
                  child: Column(
                    children: [
-                     SizedBox(
-                          height:10,
-                        ),
-                     Container(
-                       child:
-                     Row(
+                     Card(
+
+                 child: Row(
                        children:[
                          Expanded(
                            child:  ListTile(
@@ -158,7 +155,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                          ),
                        ],
                      ),
-
              SizedBox(
                height: 10,
              ),
