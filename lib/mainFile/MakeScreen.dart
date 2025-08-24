@@ -272,10 +272,10 @@ class _MakeScreenState extends State<MakeScreen> {
                     fontStyle: FontStyle.italic),
               ),
               onTap: () {
-                Navigator.push(
+               /* Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TempCards(cards: savedCards)));
+                        builder: (context) => TempCards(cards: savedCards)));*/
               },
             ),
             ListTile(
@@ -511,7 +511,7 @@ class _MakeScreenState extends State<MakeScreen> {
 
 // ================= View Cards =================
 
-class TempCards extends StatefulWidget {
+/*class TempCards extends StatefulWidget {
   final List<CardData> cards;
   TempCards({required this.cards});
 
@@ -603,7 +603,7 @@ class _TempCardsState extends State<TempCards> {
     );
   }
 }
-
+*/
 class Fixdetalis extends StatefulWidget {
   final List<CardData>? cards;
   Fixdetalis({this.cards});

@@ -98,7 +98,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
             // backgroundColor: Colors.black26,
             appBar: AppBar(
               title: Text("User Registration",style: TextStyle(fontWeight: FontWeight.bold),),
-              backgroundColor: Colors.teal,
+              backgroundColor: Colors.black54,
               foregroundColor: Colors.white70,
               centerTitle: true,
             ),
@@ -116,6 +116,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                      SizedBox(
                           height:10,
                         ),
+                     Container(
+                       child:
                      Row(
                        children:[
                          Expanded(
@@ -156,6 +158,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                          ),
                        ],
                      ),
+
              SizedBox(
                height: 10,
              ),
@@ -222,7 +225,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                                  if (value == null || value.isEmpty) {
                                    return 'Enter vaild email';
                                  }
-                                 if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
+                                 if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false
+                                 ).hasMatch(value.trim())) {
                                    return 'Please enter a valid Gmail address';
                                  }
                                }
@@ -260,7 +264,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                      SizedBox(
                        height: 10,
                      ),
-
+                     ),
                Card(
     //   elevation: 2,
        shape: RoundedRectangleBorder(

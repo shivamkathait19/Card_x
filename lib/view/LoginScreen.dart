@@ -27,7 +27,7 @@ class _JumpingDotsState extends State<JumpingDots>
     super.initState();
     _controller = AnimationController(
         duration: const Duration(milliseconds: 800), vsync: this)
-      ..repeat(reverse: true);
+       ..repeat(reverse: true);
     _animations = List.generate(3, (i) {
       return Tween<double>(begin: 0, end: -8).animate(CurvedAnimation(
         parent: _controller,
@@ -197,8 +197,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if(value == null || value.isEmpty){
                                   return ' Enter your email';
                                 }
-                                if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
-                                  return 'Please enter a valid Gmail address';
+                                if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false).hasMatch(value.trim())){
+                                  return 'Please enter a valid gmail address';
                                 }
                                 return null;
                              },
