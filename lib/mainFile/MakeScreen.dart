@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:card_x/mainFile/Barcoms.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -213,7 +214,12 @@ class _MakeScreenState extends State<MakeScreen> {
         fillColor: Colors.white.withOpacity(0.08),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide.none,
+         // borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.white10,width:3),
+          borderRadius: BorderRadius.circular(14)
+
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       ),
@@ -272,10 +278,10 @@ class _MakeScreenState extends State<MakeScreen> {
                     fontStyle: FontStyle.italic),
               ),
               onTap: () {
-               /* Navigator.push(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TempCards(cards: savedCards)));*/
+                        builder: (context) => TempCards()));
               },
             ),
             ListTile(
@@ -459,7 +465,7 @@ class _MakeScreenState extends State<MakeScreen> {
                                 value: _wantHotel,
                                 onChanged: (val) =>
                                     setState(() => _wantHotel = val!),
-                                title: Text("Hotel Booking",
+                                title: Text("Room Service",
                                     style: TextStyle(color: Colors.white)),
                               ),
                               CheckboxListTile(
@@ -935,5 +941,85 @@ class _HelpsupprotState extends State<Helpsupprot> {
         ],
       ),
     );
+  }
+}
+class TempCards extends StatefulWidget {
+  const TempCards({super.key});
+
+  @override
+  State<TempCards> createState() => _TempCardsState();
+}
+
+class _TempCardsState extends State<TempCards> {
+  List<CardData>localCards = [];
+  
+  @override 
+  void initState(){
+    super.initState();
+    loadCards();
+  }
+  
+  void loadCards()async{
+    final loaded = await CardStorage.loadCards();
+    setState(() {
+      localCards=loaded;
+    });
+  }
+    void deleteCard(index )async{
+    setState(() {
+      localCards=localCards;
+    });
+    await CardStorage.saveCards(localCards);
+    }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cards"),
+      ),
+      body: localCards.isEmpty ? Center(
+        child: Text("No cards saved yet "),
+      ) : ListView.builder(
+          itemCount: localCards.length,
+          itemBuilder: (context, index){
+        final card = localCards[index];
+            return Card(
+              color: Colors.white.withOpacity(0.08),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+              margin: EdgeInsets.only(bottom: 12),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage("https://i.pinimg.com/736x/4b/90/5b/4b905b1342b5635310923fd10319c265.jpg"),
+                ),
+                title: Text(card.name),
+                subtitle: Text(
+                  "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                ),
+                trailing: PopupMenuButton<String>(
+                  color: Colors.white,
+                  onSelected: (value){
+                    if (value == "delete"){
+                      deleteCard(index);
+                    }
+                  },
+                  itemBuilder: (context)=>[
+                    PopupMenuItem(child: Row(
+                      children: [
+                        Icon(Icons.delete,color:Colors.red),
+                        SizedBox(width: 8,),
+                        Text("Delete",style: TextStyle(color: Colors.black),)
+                      ],
+                    ))
+                  ],
+                ),
+              ),
+            );
+      }
+      )
+    );
+
   }
 }

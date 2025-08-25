@@ -84,7 +84,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
         borderRadius: BorderRadius.circular(12),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.redAccent),
+        borderSide: BorderSide(color: Colors.red),
         borderRadius: BorderRadius.circular(12),
       ),
       filled: true,
@@ -118,7 +118,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                           height:10,
                         ),
                      Card(
-                       color: Colors.white.withOpacity(0.1),
+                       color: Colors.white10.withOpacity(0.2),
                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                        elevation: 8,
                        child: Padding(
@@ -134,7 +134,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                               TextFormField(
                                controller: usernameController, style: TextStyle(color: Colors.white),
                                decoration: _inputDecoration(
-                                   "Username"
+                                   "Username",
                                ),
                                validator: (value) {
                                  if (value == null || value.isEmpty){
@@ -294,14 +294,14 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
        setState(() => selectedGender = value),
        ),
        RadioListTile<String>(
-       title: const Text("Female",style: TextStyle(color: Colors.white)),
+       title:  Text("Female",style: TextStyle(color: Colors.white)),
        value: "Female",
        groupValue: selectedGender,
        onChanged: (value) =>
        setState(() => selectedGender = value),
        ),
        if (selectedGender == null)
-       const Padding(
+        Padding(
        padding: EdgeInsets.only(left: 16.0),
        child: Align(
        alignment: Alignment.centerLeft,
