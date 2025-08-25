@@ -1000,22 +1000,47 @@ class _TempCardsState extends State<TempCards> {
                   style: TextStyle(color: Colors.white70, fontSize: 13),
                 ),
                 trailing: PopupMenuButton<String>(
-                  color: Colors.white,
-                  onSelected: (value){
-                    if (value == "delete"){
-                      deleteCard(index);
-                    }
-                  },
-                  itemBuilder: (context)=>[
-                    PopupMenuItem(child: Row(
+                    onSelected: (value) {
+                      if (value == 'edit') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EditPages(
+                             card:localCards[index],
+                          index: index,
+                          ),
+                        ).then((updatedCard) {
+                          if (updatedCard != null) {
+                            setState(() {
+                              localCards[index] = updatedCard; // update UI
+                            });
+                          }
+                        });
+                      }
+                    },
+                  itemBuilder: (context)=> [
+                    PopupMenuItem(value: "Edit",
+                    child: Row(
                       children: [
-                        Icon(Icons.delete,color:Colors.red),
+                        Icon(Icons.edit,color: Colors.black,),
                         SizedBox(width: 8,),
-                        Text("Delete",style: TextStyle(color: Colors.black),)
+                        Text("Edit"),
                       ],
-                    ))
-                  ],
+                    ),
+                    ),
+                    PopupMenuItem(value: "Delete",
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete,color: Colors.black,),
+                        SizedBox(width: 8,),
+                        Text("Delete ")
+                      ],
+                    ),
+                    )
+
+                  ]
                 ),
+
               ),
             );
       }
@@ -1023,4 +1048,70 @@ class _TempCardsState extends State<TempCards> {
     );
 
   }
+}
+ class EditPages extends StatefulWidget {
+  final CardData card;
+  final int index ;
+  final Function(CardData) onUpdate;
+    EditPages({required this.card,required this.index,required this.onUpdate });
+
+  @override
+  State<EditPages> createState() => _EditPagesState();
+}
+
+
+
+
+class _EditPagesState extends State<EditPages> {
+
+  final _formkey = GlobalKey<FormState>();
+  late TextEditingController nameController;
+  late TextEditingController gamilController;
+  late TextEditingController locationController ;
+  late TextEditingController durationController;
+  late TextEditingController peopleController;
+  late TextEditingController descriptionController;
+
+
+  @override
+  void initState(){
+    super.initState();
+    nameController = TextEditingController(text: widget.card.name);
+    gamilController = TextEditingController(text: widget.card.Gmail);
+    locationController= TextEditingController(text: widget.card.location);
+    durationController = TextEditingController(text: widget.card.duration);
+    peopleController = TextEditingController(text: widget.card.people);
+    descriptionController = TextEditingController(text: widget.card.description);
+  }
+   void savaEdits(){
+    if (_formkey.currentState!.validate()){
+      final updatedCard = CardData(name: nameController.text, Gmail: gamilController.text, location: locationController.text, duration: durationController.text, people: peopleController.text, description: descriptionController.text, imageUrl: widget.card.imageUrl, serviceOption: widget.card.serviceOption, createdAt: widget.card.createdAt);
+       widget.onUpdate(updatedCard);
+      Navigator.pop(context);
+    }
+   }
+   @override
+   Widget build(BuildContext context) {
+     return Scaffold(
+       appBar: AppBar(
+        leading: Icon(Icons.e_mobiledata),
+       ),
+       body: Form(
+         key: _formkey,
+         child: Column(
+           children: [
+
+             TextFormField(controller: nameController,decoration: InputDecoration(labelText: "Name")),
+           TextFormField(controller: gamilController,decoration: InputDecoration(labelText: "Gmail"),),
+           TextFormField(controller: locationController,decoration: InputDecoration(labelText: "Location"),),
+             TextFormField(controller: durationController,decoration: InputDecoration(labelText: "decoration"),),
+             TextFormField(controller: peopleController, decoration: InputDecoration(labelText: "People")),
+             TextFormField(controller: descriptionController, decoration: InputDecoration(labelText: "Description")),
+              SizedBox(height: 20,),
+           ElevatedButton(onPressed: EditPages, child: Text('Update Card'))
+           ],
+         ),
+       ),
+     );
+   }
 }
