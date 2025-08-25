@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 // ================= CardData Model =================
 
 
@@ -1006,10 +1007,11 @@ class _TempCardsState extends State<TempCards> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => EditPages(
-                             card:localCards[index],
-                          index: index,
+                              card: localCards[index],
+                              index: index,
+                            ),
                           ),
-                        ).then((updatedCard) {
+                        ).then((updatedCard) {   // ✅ ab sahi jagah par
                           if (updatedCard != null) {
                             setState(() {
                               localCards[index] = updatedCard; // update UI
@@ -1018,7 +1020,8 @@ class _TempCardsState extends State<TempCards> {
                         });
                       }
                     },
-                  itemBuilder: (context)=> [
+
+                    itemBuilder: (context)=> [
                     PopupMenuItem(value: "Edit",
                     child: Row(
                       children: [
@@ -1053,7 +1056,9 @@ class _TempCardsState extends State<TempCards> {
   final CardData card;
   final int index ;
   final Function(CardData) onUpdate;
-    EditPages({required this.card,required this.index,required this.onUpdate });
+
+  EditPages({required this.card,required this.index,required this.onUpdate });
+
 
   @override
   State<EditPages> createState() => _EditPagesState();
@@ -1108,7 +1113,7 @@ class _EditPagesState extends State<EditPages> {
              TextFormField(controller: peopleController, decoration: InputDecoration(labelText: "People")),
              TextFormField(controller: descriptionController, decoration: InputDecoration(labelText: "Description")),
               SizedBox(height: 20,),
-           ElevatedButton(onPressed: EditPages, child: Text('Update Card'))
+           ElevatedButton(onPressed: savaEdits, child: Text('Update Card'))
            ],
          ),
        ),
