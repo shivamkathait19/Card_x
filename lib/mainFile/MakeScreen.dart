@@ -966,6 +966,7 @@ class _TempCardsState extends State<TempCards> {
     });
   }
     void deleteCard(index )async{
+    //final prefs = await SharedPreferences.getInstance();
     setState(() {
       localCards=localCards;
     });
