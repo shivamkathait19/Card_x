@@ -111,156 +111,169 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
            padding: EdgeInsets.all(16),
            child: Form
                  (key: _key,
+
                  child: Column(
                    children: [
-                     Card(
-
-                 child: Row(
-                       children:[
-                         Expanded(
-                           child:  ListTile(
-                             leading: Icon(Icons.person,color: Colors.white,),
-                             title:
-                            TextFormField(
-                             controller: usernameController, style: TextStyle(color: Colors.white),
-                             decoration: _inputDecoration(
-                                 "Username"
-                             ),
-                             validator: (value) {
-                               if (value == null || value.isEmpty){
-                                 return "Username is required";
-                               }
-                               return null;
-                             },
-                           ),
-                         ),
-                         ),
-                         SizedBox(width: 10), // Space between the fields
-                         Expanded(
-                           child: ListTile(leading: Icon(Icons.badge,color: Colors.white,),
-                             title: TextFormField(
-                             controller: fullnameController,style: TextStyle(color: Colors.white),
-                             decoration: _inputDecoration(
-                               "Full Name",
-                             ),
-
-                             validator: (value){
-                               if (value == null || value.isEmpty) {
-                                 return "Full Name is required";
-                               }
-                               return null;
-                             },
-                           ),
-                         ),
-                         ),
-                       ],
-                     ),
-             SizedBox(
-               height: 10,
-             ),
-                     ListTile(
-                         leading: Icon(Icons.calendar_today,color: Colors.white,),
-                         title:
-                         TextFormField(
-                          controller: dateController, style: TextStyle(color: Colors.white),
-                          readOnly: true,
-                          onTap:() async{
-                            DateTime? pickedDate =await showDatePicker(context: context,
-                              initialDate: DateTime(2000),
-                            firstDate: DateTime(1900),
-                            lastDate: DateTime.now(),
-                            );
-                           if (pickedDate != null) {
-
-                             String formattedDate =
-                                  "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-                           setState(() {
-                             dateController.text=formattedDate;
-                           });
-                             }
-                            },
-
-                             decoration: _inputDecoration("Date of Birth").copyWith(
-                               suffixIcon: const Icon(Icons.calendar_today,color: Colors.white,),
-                             ),
-                             validator: (value) =>
-                           value!.isEmpty? "Date of Birth is required" : null
-                         ),
-                       ),
                      SizedBox(
-                       height: 10,
-                     ),
-                     ListTile(
-                       leading: Icon(Icons.phone,color: Colors.white),
-                       title:
-                       TextFormField(
-                          controller: mobileController, style: TextStyle(color: Colors.white),
-                          keyboardType: TextInputType.number,
-                          inputFormatters: [
-                            FilteringTextInputFormatter.digitsOnly
-                          ],
-                          decoration: _inputDecoration("Mobile number",),
-                           validator: (value) =>
-                           value!.isEmpty? "Date of Birth is required" : null
+                          height:10,
                         ),
-                     ),
-                     SizedBox(
-                       height: 10,
-                     ),
-                        ListTile(
-                           leading: Icon(Icons.email,color: Colors.white,),
+                     Card(
+                       color: Colors.white.withOpacity(0.1),
+                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                       elevation: 8,
+                       child: Padding(
+                         padding:  EdgeInsets.all(12.0),
+                         child: Column(
+                                children: [
+                                              Row(
+                         children:[
+                           Expanded(
+                             child:  ListTile(
+                               leading: Icon(Icons.person,color: Colors.white,),
+                               title:
+                              TextFormField(
+                               controller: usernameController, style: TextStyle(color: Colors.white),
+                               decoration: _inputDecoration(
+                                   "Username"
+                               ),
+                               validator: (value) {
+                                 if (value == null || value.isEmpty){
+                                   return "Username is required";
+                                 }
+                                 return null;
+                               },
+                             ),
+                           ),
+                           ),
+                           SizedBox(width: 10), // Space between the fields
+                           Expanded(
+                             child: ListTile(leading: Icon(Icons.badge,color: Colors.white,),
+                               title: TextFormField(
+                               controller: fullnameController,style: TextStyle(color: Colors.white),
+                               decoration: _inputDecoration(
+                                 "Full Name",
+                               ),
+
+                               validator: (value){
+                                 if (value == null || value.isEmpty) {
+                                   return "Full Name is required";
+                                 }
+                                 return null;
+                               },
+                             ),
+                           ),
+                           ),
+                         ],
+                                              ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                              ListTile(
+                           leading: Icon(Icons.calendar_today,color: Colors.white,),
                            title:
                            TextFormField(
-                          controller: emailController, style: TextStyle(color: Colors.white),
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: _inputDecoration(
-                            "Email address",
+                            controller: dateController, style: TextStyle(color: Colors.white),
+                            readOnly: true,
+                            onTap:() async{
+                              DateTime? pickedDate =await showDatePicker(context: context,
+                                initialDate: DateTime(2000),
+                              firstDate: DateTime(1900),
+                              lastDate: DateTime.now(),
+                              );
+                             if (pickedDate != null) {
 
-                          ),
-                               validator: (value) {
-                                 if (value == null || value.isEmpty) {
-                                   return 'Enter vaild email';
-                                 }
-                                 if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false
-                                 ).hasMatch(value.trim())) {
-                                   return 'Please enter a valid Gmail address';
-                                 }
-                               }
-                        ),
-                         ),
-                     SizedBox(
-                       height: 10,
-                     ),
-                     ListTile(
-                         leading: Icon(Icons.password,color: Colors.white,) ,
-                       title:TextFormField(
-                       controller: passController, style: TextStyle(color: Colors.white),
-                       obscureText: _obscurePassword,
-                       decoration: _inputDecoration("Password").copyWith(
-                         suffixIcon: IconButton(
-                           icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off,color: Colors.white),
-                           onPressed: () {
+                               String formattedDate =
+                                    "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                              setState(() {
-                               _obscurePassword = !_obscurePassword;
+                               dateController.text=formattedDate;
                              });
-                           },
+                               }
+                              },
+
+                               decoration: _inputDecoration("Date of Birth").copyWith(
+                                 suffixIcon: const Icon(Icons.calendar_today,color: Colors.white,),
+                               ),
+                               validator: (value) =>
+                             value!.isEmpty? "Date of Birth is required" : null
+                           ),
                          ),
+                                              SizedBox(
+                         height: 10,
+                                              ),
+                                              ListTile(
+                         leading: Icon(Icons.phone,color: Colors.white),
+                         title:
+                         TextFormField(
+                            controller: mobileController, style: TextStyle(color: Colors.white),
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: _inputDecoration("Mobile number",),
+                             validator: (value) =>
+                             value!.isEmpty? "Date of Birth is required" : null
+                          ),
+                                              ),
+                                              SizedBox(
+                         height: 10,
+                                              ),
+                          ListTile(
+                             leading: Icon(Icons.email,color: Colors.white,),
+                             title:
+                             TextFormField(
+                            controller: emailController, style: TextStyle(color: Colors.white),
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: _inputDecoration(
+                              "Email address",
+
+                            ),
+                                 validator: (value) {
+                                   if (value == null || value.isEmpty) {
+                                     return 'Enter vaild email';
+                                   }
+                                   if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false
+                                   ).hasMatch(value.trim())) {
+                                     return 'Please enter a valid Gmail address';
+                                   }
+                                 }
+                          ),
+                           ),
+                                              SizedBox(
+                         height: 10,
+                                              ),
+                                              ListTile(
+                           leading: Icon(Icons.password,color: Colors.white,) ,
+                         title:TextFormField(
+                         controller: passController, style: TextStyle(color: Colors.white),
+                         obscureText: _obscurePassword,
+                         decoration: _inputDecoration("Password").copyWith(
+                           suffixIcon: IconButton(
+                             icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off,color: Colors.white),
+                             onPressed: () {
+                               setState(() {
+                                 _obscurePassword = !_obscurePassword;
+                               });
+                             },
+                           ),
+                         ),
+                         validator: (value) {
+                           if (value == null || value.isEmpty) {
+                             return "Password is required";
+                           }
+                           if (value.length < 6) {
+                             return "Password must be at least 6 characters";
+                           }
+                           return null;
+                         },
+                                              ),
+                                              ),
+                                              SizedBox(
+                         height: 10,
+                                              ),
+                                     ]
+                                   ),
                        ),
-                       validator: (value) {
-                         if (value == null || value.isEmpty) {
-                           return "Password is required";
-                         }
-                         if (value.length < 6) {
-                           return "Password must be at least 6 characters";
-                         }
-                         return null;
-                       },
-                     ),
-                     ),
-                     SizedBox(
-                       height: 10,
-                     ),
-                     ),
+          ),
                Card(
     //   elevation: 2,
        shape: RoundedRectangleBorder(
