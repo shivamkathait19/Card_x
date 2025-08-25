@@ -65,7 +65,11 @@ class CardData {
 
 // ================= Storage Helper =================
 class CardStorage {
+
+
   static const String key = "saved_cards";
+  static const String fixDetailsKey = "fixdetails";
+  static const String tempCardsKey = "tempcards";
 
 
   /*Future<void>saveCardsToPrefs(List<CardData>cards)async{
@@ -75,7 +79,7 @@ class CardStorage {
     await prefs.setStringList("savedCards", jsonCards);
   }
 */
-    static Future<void> saveCards(List<CardData> cards) async {
+   /* static Future<void> saveCards(List<CardData> cards) async {
     final prefs = await SharedPreferences.getInstance();
     List<String> jsonList =
     cards.map((card) => json.encode(card.toMap())).toList();
@@ -89,8 +93,8 @@ class CardStorage {
     return jsonList
         .map((jsonStr) => CardData.fromMap(json.decode(jsonStr)))
         .toList();
-  }
-}
+  }    111
+}*/
 /*Future<void> loadCardsFromPrefs() async {
   final prefs = await SharedPreferences.getInstance();
   List<String>? jsonCards = prefs.getStringList("savedCards");
@@ -104,6 +108,37 @@ class CardStorage {
   }
 }
 */
+
+  static Future<void> saveFixDetails(List<CardData> cards) async {
+    final prefs = await SharedPreferences.getInstance();
+    final data = cards.map((c) => c.toMap()).toList();
+    prefs.setString(fixDetailsKey, jsonEncode(data));
+  }
+
+  static Future<List<CardData>> loadFixDetails() async {
+    final prefs = await SharedPreferences.getInstance();
+    final data = prefs.getString(fixDetailsKey);
+    if (data == null) return [];
+    final List decoded = jsonDecode(data);
+    return decoded.map((e) => CardData.fromMap(e)).toList();
+  }
+
+  // TempCards save/load
+  static Future<void> saveTempCards(List<CardData> cards) async {
+    final prefs = await SharedPreferences.getInstance();
+    final data = cards.map((c) => c.toMap()).toList();
+    prefs.setString(tempCardsKey, jsonEncode(data));
+  }
+
+  static Future<List<CardData>> loadTempCards() async {
+    final prefs = await SharedPreferences.getInstance();
+    final data = prefs.getString(tempCardsKey);
+    if (data == null) return [];
+    final List decoded = jsonDecode(data);
+    return decoded.map((e) => CardData.fromMap(e)).toList();
+  }
+}
+
 // ================= Main =================
 class Makescreen extends StatelessWidget {
   @override
@@ -147,7 +182,7 @@ class _MakeScreenState extends State<MakeScreen> {
   }
 
   void loadSavedCards() async {
-    final loaded = await CardStorage.loadCards();
+    final loaded = await CardStorage.loadFixDetails();
     setState(() {
       savedCards = loaded;
     });
@@ -173,7 +208,7 @@ class _MakeScreenState extends State<MakeScreen> {
       );
 
       savedCards.add(newCard);
-     await CardStorage.saveCards(savedCards);
+     await CardStorage.saveFixDetails(savedCards);
 
 
       // Clear form
@@ -395,9 +430,9 @@ class _MakeScreenState extends State<MakeScreen> {
                                           if(value == null || value.isEmpty){
                                             return " Please enter the gmail";
                                           }
-                                          if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
+                                         /* if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$').hasMatch(value)) {
                                             return 'Please enter a valid Gmail address';
-                                          }
+                                          }*/
                                         },
                                   ),
                                   ),
@@ -627,7 +662,7 @@ class _FixdetalisState extends State<Fixdetalis> {
   }
 
   void loadCards() async {
-    final loaded = await CardStorage.loadCards();
+    final loaded = await CardStorage.loadFixDetails();
     setState(() {
       cards = loaded;
     });
@@ -957,22 +992,44 @@ class _TempCardsState extends State<TempCards> {
   @override 
   void initState(){
     super.initState();
-    loadCards();
+    loadTemp();
   }
-  
+
+  Future<void>loadTemp()async{
+    localCards = await CardStorage.loadTempCards();
+    setState(() {
+
+    });
+  }
+
   void loadCards()async{
-    final loaded = await CardStorage.loadCards();
+    final loaded = await CardStorage.loadTempCards();
     setState(() {
       localCards=loaded;
     });
+    await CardStorage.saveTempCards(localCards);
   }
-    void deleteCard(index )async{
+    void deleteCard(  int index )async{
     //final prefs = await SharedPreferences.getInstance();
     setState(() {
-      localCards=localCards;
+      localCards.removeAt(index);
     });
-    await CardStorage.saveCards(localCards);
+    await CardStorage.saveTempCards(localCards);
     }
+  void updateCard(int index, CardData updatedCard) async {
+    setState(() {
+      localCards[index] = updatedCard;
+    });
+    await CardStorage.saveTempCards(localCards);
+
+    // Permanent update भी
+    List<CardData> fixCards = await CardStorage.loadFixDetails();
+    if (index < fixCards.length) {
+      fixCards[index] = updatedCard;
+      await CardStorage.saveFixDetails(fixCards);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1000,25 +1057,47 @@ class _TempCardsState extends State<TempCards> {
                   "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
                   style: TextStyle(color: Colors.white70, fontSize: 13),
                 ),
-                trailing: PopupMenuButton<String>(
-                    onSelected: (value) {
-                      if (value == 'edit') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EditPages(
-                              card: localCards[index],
-                              index: index,
-                            ),
+                trailing:  PopupMenuButton<String>(
+                  onSelected: (value) {
+                    if (value == 'edit') {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditPages(
+                            card: localCards[index], // पुराना data भेज रहे हैं
+                            index: index,
+                            onUpdate: (updatedCard) async {
+                              setState(() {
+                                localCards[index] = updatedCard; // list update हो जाएगी
+                              });
+                              await CardStorage.saveTempCards(localCards);
+                            },
                           ),
-                        ).then((updatedCard) {   // ✅ ab sahi jagah par
-                          if (updatedCard != null) {
-                            setState(() {
-                              localCards[index] = updatedCard; // update UI
-                            });
-                          }
-                        });
-                      }
+                        ),
+                      );
+                    }else if (value =='delete'){
+                      deleteCard(index);
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    PopupMenuItem(value: 'edit', child: Text("Edit")),
+                    PopupMenuItem(value: 'delete', child: Text("Delete")),
+                  ],
+                ),
+
+
+                /* trailing: PopupMenuButton<String>(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditPages(
+                            card: card,
+                            index: index,
+                            onUpdate: (updatedCard) => updateCard(index, updatedCard),
+                          ),
+                        ),
+                      );
                     },
 
                     itemBuilder: (context)=> [
@@ -1042,7 +1121,7 @@ class _TempCardsState extends State<TempCards> {
                     )
 
                   ]
-                ),
+                ),*/
 
               ),
             );
@@ -1052,71 +1131,76 @@ class _TempCardsState extends State<TempCards> {
 
   }
 }
- class EditPages extends StatefulWidget {
+class EditPages extends StatefulWidget {
   final CardData card;
-  final int index ;
+  final int index;
   final Function(CardData) onUpdate;
 
-  EditPages({required this.card,required this.index,required this.onUpdate });
-
+  EditPages({required this.card, required this.index, required this.onUpdate});
 
   @override
   State<EditPages> createState() => _EditPagesState();
 }
 
-
-
-
 class _EditPagesState extends State<EditPages> {
-
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   late TextEditingController nameController;
-  late TextEditingController gamilController;
-  late TextEditingController locationController ;
+  late TextEditingController gmailController;
+  late TextEditingController locationController;
   late TextEditingController durationController;
   late TextEditingController peopleController;
   late TextEditingController descriptionController;
 
-
   @override
-  void initState(){
+  void initState() {
     super.initState();
     nameController = TextEditingController(text: widget.card.name);
-    gamilController = TextEditingController(text: widget.card.Gmail);
-    locationController= TextEditingController(text: widget.card.location);
+    gmailController = TextEditingController(text: widget.card.Gmail);
+    locationController = TextEditingController(text: widget.card.location);
     durationController = TextEditingController(text: widget.card.duration);
     peopleController = TextEditingController(text: widget.card.people);
     descriptionController = TextEditingController(text: widget.card.description);
   }
-   void savaEdits(){
-    if (_formkey.currentState!.validate()){
-      final updatedCard = CardData(name: nameController.text, Gmail: gamilController.text, location: locationController.text, duration: durationController.text, people: peopleController.text, description: descriptionController.text, imageUrl: widget.card.imageUrl, serviceOption: widget.card.serviceOption, createdAt: widget.card.createdAt);
-       widget.onUpdate(updatedCard);
-      Navigator.pop(context);
-    }
-   }
-   @override
-   Widget build(BuildContext context) {
-     return Scaffold(
-       appBar: AppBar(
-        leading: Icon(Icons.e_mobiledata),
-       ),
-       body: Form(
-         key: _formkey,
-         child: Column(
-           children: [
 
-             TextFormField(controller: nameController,decoration: InputDecoration(labelText: "Name")),
-           TextFormField(controller: gamilController,decoration: InputDecoration(labelText: "Gmail"),),
-           TextFormField(controller: locationController,decoration: InputDecoration(labelText: "Location"),),
-             TextFormField(controller: durationController,decoration: InputDecoration(labelText: "decoration"),),
-             TextFormField(controller: peopleController, decoration: InputDecoration(labelText: "People")),
-             TextFormField(controller: descriptionController, decoration: InputDecoration(labelText: "Description")),
-              SizedBox(height: 20,),
-           ElevatedButton(onPressed: savaEdits, child: Text('Update Card'))
-           ],
-         ),
-       ),
-     );
-   }
+  void saveEdits() {
+    if (_formKey.currentState!.validate()) {
+      final updatedCard = CardData(
+        name: nameController.text,
+        Gmail: gmailController.text,
+        location: locationController.text,
+        duration: durationController.text,
+        people: peopleController.text,
+        description: descriptionController.text,
+        imageUrl: widget.card.imageUrl,
+        serviceOption: widget.card.serviceOption,
+        createdAt: widget.card.createdAt,
+      );
+
+      widget.onUpdate(updatedCard); // callback को call किया
+      Navigator.pop(context); // वापस list page पर लौट जाओ
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Edit Card")),
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: EdgeInsets.all(16),
+          children: [
+            TextFormField(controller: nameController, decoration: InputDecoration(labelText: "Name")),
+            TextFormField(controller: gmailController, decoration: InputDecoration(labelText: "Gmail")),
+            TextFormField(controller: locationController, decoration: InputDecoration(labelText: "Location")),
+            TextFormField(controller: durationController, decoration: InputDecoration(labelText: "Duration")),
+            TextFormField(controller: peopleController, decoration: InputDecoration(labelText: "People")),
+            TextFormField(controller: descriptionController, decoration: InputDecoration(labelText: "Description")),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: saveEdits, child: Text("Update Card")),
+          ],
+        ),
+      ),
+    );
+  }
 }
