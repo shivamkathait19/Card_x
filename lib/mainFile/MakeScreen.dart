@@ -209,6 +209,10 @@ class _MakeScreenState extends State<MakeScreen> {
 
       savedCards.add(newCard);
      await CardStorage.saveFixDetails(savedCards);
+     List<CardData> temp  = await CardStorage.loadTempCards();
+     temp.add(newCard);
+     await CardStorage.saveTempCards(temp);
+     //await CardStorage.fixDetailsKey(savedCards);
 
 
       // Clear form
@@ -551,101 +555,6 @@ class _MakeScreenState extends State<MakeScreen> {
   }
 }
 
-// ================= View Cards =================
-
-/*class TempCards extends StatefulWidget {
-  final List<CardData> cards;
-  TempCards({required this.cards});
-
-  _TempCardsState createState() => _TempCardsState();
-}
-
-class _TempCardsState extends State<TempCards> {
-  late List<CardData> localCards;
-
-  @override
-  void initState() {
-    super.initState();
-    localCards = List.from(widget.cards);
-  }
-
-  void deleteCard(int index) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    setState(() {
-   localCards.removeAt(index);
-      });
-
-
-    // ✅ Snackbar confirmation
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Card deleted successfully")),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black12,
-      appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'View ',
-              style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple),
-            ),
-            Text(
-              'Card',
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.pinkAccent),
-            ),
-          ],
-        ),
-      ),
-      body: localCards.isEmpty
-          ? Center(
-          child: Text("No cards here",
-              style: TextStyle(color: Colors.black)))
-          : ListView.builder(
-        itemCount: localCards.length,
-        itemBuilder: (context, index) {
-          final card = localCards[index];
-          return Card(
-            color: Colors.black.withOpacity(0.50),
-            elevation: 3,
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(card.imageUrl),
-              ),
-              title: Text(card.name,
-                  style: TextStyle(
-                      color: Colors.brown,
-                      fontWeight: FontWeight.bold)),
-              subtitle: Text(
-                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              trailing: IconButton(
-                icon: Icon(Icons.delete, color: Colors.red),
-                onPressed: () => deleteCard(index),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-*/
 class Fixdetalis extends StatefulWidget {
   final List<CardData>? cards;
   Fixdetalis({this.cards});
@@ -979,6 +888,8 @@ class _HelpsupprotState extends State<Helpsupprot> {
     );
   }
 }
+
+
 class TempCards extends StatefulWidget {
   const TempCards({super.key});
 
@@ -987,42 +898,34 @@ class TempCards extends StatefulWidget {
 }
 
 class _TempCardsState extends State<TempCards> {
-  List<CardData>localCards = [];
-  
-  @override 
-  void initState(){
+  List<CardData> localCards = [];
+
+  @override
+  void initState() {
     super.initState();
     loadTemp();
   }
 
-  Future<void>loadTemp()async{
+  Future<void> loadTemp() async {
     localCards = await CardStorage.loadTempCards();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
-  void loadCards()async{
-    final loaded = await CardStorage.loadTempCards();
-    setState(() {
-      localCards=loaded;
-    });
-    await CardStorage.saveTempCards(localCards);
-  }
-    void deleteCard(  int index )async{
-    //final prefs = await SharedPreferences.getInstance();
+  void deleteCard(int index) async {
     setState(() {
       localCards.removeAt(index);
     });
     await CardStorage.saveTempCards(localCards);
-    }
-  void updateCard(int index, CardData updatedCard) async {
+  }
+
+  /// ✅ Ye function TempCards + FixDetails dono ko update karega
+  Future<void> updateCard(int index, CardData updatedCard) async {
     setState(() {
       localCards[index] = updatedCard;
     });
     await CardStorage.saveTempCards(localCards);
 
-    // Permanent update भी
+    // ✅ Permanent (FixDetails) update bhi
     List<CardData> fixCards = await CardStorage.loadFixDetails();
     if (index < fixCards.length) {
       fixCards[index] = updatedCard;
@@ -1036,101 +939,63 @@ class _TempCardsState extends State<TempCards> {
       appBar: AppBar(
         title: Text("Cards"),
       ),
-      body: localCards.isEmpty ? Center(
-        child: Text("No cards saved yet "),
-      ) : ListView.builder(
-          itemCount: localCards.length,
-          itemBuilder: (context, index){
-        final card = localCards[index];
-            return Card(
-              color: Colors.white.withOpacity(0.08),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-              margin: EdgeInsets.only(bottom: 12),
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage("https://i.pinimg.com/736x/4b/90/5b/4b905b1342b5635310923fd10319c265.jpg"),
-                ),
-                title: Text(card.name),
-                subtitle: Text(
-                  "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                  style: TextStyle(color: Colors.white70, fontSize: 13),
-                ),
-                trailing:  PopupMenuButton<String>(
-                  onSelected: (value) {
-                    if (value == 'edit') {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditPages(
-                            card: localCards[index], // पुराना data भेज रहे हैं
-                            index: index,
-                            onUpdate: (updatedCard) async {
-                              setState(() {
-                                localCards[index] = updatedCard; // list update हो जाएगी
-                              });
-                              await CardStorage.saveTempCards(localCards);
-                            },
-                          ),
-                        ),
-                      );
-                    }else if (value =='delete'){
-                      deleteCard(index);
-                    }
-                  },
-                  itemBuilder: (context) => [
-                    PopupMenuItem(value: 'edit', child: Text("Edit")),
-                    PopupMenuItem(value: 'delete', child: Text("Delete")),
-                  ],
-                ),
-
-
-                /* trailing: PopupMenuButton<String>(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditPages(
-                            card: card,
-                            index: index,
-                            onUpdate: (updatedCard) => updateCard(index, updatedCard),
-                          ),
-                        ),
-                      );
-                    },
-
-                    itemBuilder: (context)=> [
-                    PopupMenuItem(value: "Edit",
-                    child: Row(
-                      children: [
-                        Icon(Icons.edit,color: Colors.black,),
-                        SizedBox(width: 8,),
-                        Text("Edit"),
-                      ],
-                    ),
-                    ),
-                    PopupMenuItem(value: "Delete",
-                    child: Row(
-                      children: [
-                        Icon(Icons.delete,color: Colors.black,),
-                        SizedBox(width: 8,),
-                        Text("Delete ")
-                      ],
-                    ),
-                    )
-
-                  ]
-                ),*/
-
-              ),
-            );
-      }
+      body: localCards.isEmpty
+          ? Center(
+        child: Text("No cards saved yet"),
       )
+          : ListView.builder(
+        itemCount: localCards.length,
+        itemBuilder: (context, index) {
+          final card = localCards[index];
+          return Card(
+            color: Colors.white.withOpacity(0.08),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14),
+            ),
+            margin: EdgeInsets.only(bottom: 12),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    "https://i.pinimg.com/736x/4b/90/5b/4b905b1342b5635310923fd10319c265.jpg"),
+              ),
+              title: Text(card.name),
+              subtitle: Text(
+                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
+                style: TextStyle(color: Colors.white70, fontSize: 13),
+              ),
+              trailing: PopupMenuButton<String>(
+                onSelected: (value) {
+                  if (value == 'edit') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditPages(
+                          card: localCards[index],
+                          index: index,
+                          onUpdate: (updatedCard) async {
+                            /// ✅ Ab dono jagah update hoga
+                            await updateCard(index, updatedCard);
+                          },
+                        ),
+                      ),
+                    );
+                  } else if (value == 'delete') {
+                    deleteCard(index);
+                  }
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(value: 'edit', child: Text("Edit")),
+                  PopupMenuItem(value: 'delete', child: Text("Delete")),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
     );
-
   }
 }
+
 class EditPages extends StatefulWidget {
   final CardData card;
   final int index;
@@ -1150,6 +1015,7 @@ class _EditPagesState extends State<EditPages> {
   late TextEditingController durationController;
   late TextEditingController peopleController;
   late TextEditingController descriptionController;
+  late TextEditingController serviceOptionController;
 
   @override
   void initState() {
@@ -1160,6 +1026,8 @@ class _EditPagesState extends State<EditPages> {
     durationController = TextEditingController(text: widget.card.duration);
     peopleController = TextEditingController(text: widget.card.people);
     descriptionController = TextEditingController(text: widget.card.description);
+    serviceOptionController =
+        TextEditingController(text: widget.card.serviceOption);
   }
 
   void saveEdits() {
@@ -1172,12 +1040,12 @@ class _EditPagesState extends State<EditPages> {
         people: peopleController.text,
         description: descriptionController.text,
         imageUrl: widget.card.imageUrl,
-        serviceOption: widget.card.serviceOption,
+        serviceOption: serviceOptionController.text, // ✅ Fix
         createdAt: widget.card.createdAt,
       );
 
-      widget.onUpdate(updatedCard); // callback को call किया
-      Navigator.pop(context); // वापस list page पर लौट जाओ
+      widget.onUpdate(updatedCard); // callback call
+      Navigator.pop(context); // list page par wapas
     }
   }
 
@@ -1190,12 +1058,28 @@ class _EditPagesState extends State<EditPages> {
         child: ListView(
           padding: EdgeInsets.all(16),
           children: [
-            TextFormField(controller: nameController, decoration: InputDecoration(labelText: "Name")),
-            TextFormField(controller: gmailController, decoration: InputDecoration(labelText: "Gmail")),
-            TextFormField(controller: locationController, decoration: InputDecoration(labelText: "Location")),
-            TextFormField(controller: durationController, decoration: InputDecoration(labelText: "Duration")),
-            TextFormField(controller: peopleController, decoration: InputDecoration(labelText: "People")),
-            TextFormField(controller: descriptionController, decoration: InputDecoration(labelText: "Description")),
+            TextFormField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: "Name")),
+            TextFormField(
+                controller: gmailController,
+                decoration: InputDecoration(labelText: "Gmail")),
+            TextFormField(
+                controller: locationController,
+                decoration: InputDecoration(labelText: "Location")),
+            TextFormField(
+                controller: durationController,
+                decoration: InputDecoration(labelText: "Duration")),
+            TextFormField(
+                controller: peopleController,
+                decoration: InputDecoration(labelText: "People")),
+            TextFormField(
+                controller: descriptionController,
+                decoration: InputDecoration(labelText: "Description")),
+            TextFormField(
+                controller: serviceOptionController,
+                decoration: InputDecoration(labelText: "Service Option")),
+
             SizedBox(height: 20),
             ElevatedButton(onPressed: saveEdits, child: Text("Update Card")),
           ],
