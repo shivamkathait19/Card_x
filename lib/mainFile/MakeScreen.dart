@@ -70,7 +70,7 @@ class CardStorage {
   static const String key = "saved_cards";
   static const String fixDetailsKey = "fixdetails";
   static const String tempCardsKey = "tempcards";
-
+  //static String editedCardskey = "edited_cards";
 
   /*Future<void>saveCardsToPrefs(List<CardData>cards)async{
     final prefs = await SharedPreferences.getInstance();
@@ -137,6 +137,18 @@ class CardStorage {
     final List decoded = jsonDecode(data);
     return decoded.map((e) => CardData.fromMap(e)).toList();
   }
+
+
+  /*static Future<void> saveEditedCard(CardData card)async{
+    final prefs = await SharedPreferences.getInstance();
+    final editData = prefs.getStringList(editedCardskey)??[];
+    editData.add(jsonEncode(card.toMap()));
+    await prefs.setStringList(editedCardskey,editData);
+  }
+  static Future<List<CardData>> loadEditedCards()async{
+    final prefs = await SharedPreferences.getInstance();
+    final savaData.map((data)=> CardData.fromMap(jsonDecode(data))).toList();
+  }*/
 }
 
 // ================= Main =================
@@ -654,6 +666,7 @@ class _FixdetalisState extends State<Fixdetalis> {
                             : card.serviceOption),
                     _buildDetailRow(
                         Icons.access_time, "Created", card.createdAt),
+
                   ],
                 ),
               ),
@@ -900,6 +913,7 @@ class TempCards extends StatefulWidget {
 class _TempCardsState extends State<TempCards> {
   List<CardData> localCards = [];
 
+
   @override
   void initState() {
     super.initState();
@@ -916,6 +930,7 @@ class _TempCardsState extends State<TempCards> {
       localCards.removeAt(index);
     });
     await CardStorage.saveTempCards(localCards);
+   // await CardStorage.saveDeletedCard(removedcard);
   }
 
   /// ✅ Ye function TempCards + FixDetails dono ko update karega
@@ -930,6 +945,7 @@ class _TempCardsState extends State<TempCards> {
     if (index < fixCards.length) {
       fixCards[index] = updatedCard;
       await CardStorage.saveFixDetails(fixCards);
+
     }
   }
 
