@@ -918,7 +918,8 @@ class _TempCardsState extends State<TempCards> {
 
     setState(() {
       localCards.removeAt(index);
-      localCards.insert(index,newCard);
+     localCards[index] = newCard;
+      // localCards.insert(index,newCard);
     });
     await CardStorage.saveTempCards(localCards);
 
@@ -927,7 +928,8 @@ class _TempCardsState extends State<TempCards> {
 
     List<CardData> fixCards = await CardStorage.loadFixDetails();
     if (index < fixCards.length) {
-      fixCards.removeAt(index);
+      fixCards[index]=newCard;
+      //fixCards.removeAt(index);
     }
     fixCards.add(updatedCard);
     await CardStorage.saveFixDetails(fixCards);
@@ -995,7 +997,7 @@ class _TempCardsState extends State<TempCards> {
                       if( value == 'edit '){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>
                         EditPages(card: localCards[index], index: index, onUpdate: (updateCards) async{
-                          await updateCards(index,updateCards);
+                          await CardStorage.updateCard(index,updateCards);
                         }
 
                         )
@@ -1117,12 +1119,13 @@ class _EditPagesState extends State<EditPages> {
               people: peopleController.text,
               description: descriptionController.text,
               serviceOption: serviceOptionController.text,
-              imageUrl: imgUrl,
+              imageUrl: widget.card.imageUrl,
+              createdAt: DateTime.now().toString(),
 
               isEdited: true, // mark as edited
             );
+            await CardStorage.updateCard(widget.index, updatedCard);
 
-            await updateCards(widget.index, updatedCard);
             Navigator.pop(context);
           },
           child: const Text("Save Changes"),),
