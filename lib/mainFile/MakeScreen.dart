@@ -888,7 +888,7 @@ class _TempCardsState extends State<TempCards> {
   }
 
   /// ✅ Ye function TempCards + FixDetails dono ko update karega
-  /*Future<void> updateCard(int index, CardData updatedCard) async {
+  Future<void> updateCard(int index, CardData updatedCard) async {
     setState(() {
       localCards[index] = updatedCard;
     });
@@ -901,39 +901,8 @@ class _TempCardsState extends State<TempCards> {
       await CardStorage.saveFixDetails(fixCards);
 
     }
-  }*/
-  Future<void> updateCards(int index,CardData updatedCard)async{
-    final newCard = CardData(
-      name: updatedCard.name,
-      Gmail: updatedCard.Gmail,
-      location: updatedCard.location,
-      duration: updatedCard.duration,
-      people: updatedCard.people,
-      imageUrl: updatedCard.imageUrl,
-      description: updatedCard.description,
-      serviceOption: updatedCard.serviceOption,
-      createdAt: updatedCard.createdAt,
-      isEdited: true,   // ✅ mark as edited
-    );
-
-    setState(() {
-      localCards.removeAt(index);
-     localCards[index] = newCard;
-      // localCards.insert(index,newCard);
-    });
-    await CardStorage.saveTempCards(localCards);
-
-
-
-
-    List<CardData> fixCards = await CardStorage.loadFixDetails();
-    if (index < fixCards.length) {
-      fixCards[index]=newCard;
-      //fixCards.removeAt(index);
-    }
-    fixCards.add(updatedCard);
-    await CardStorage.saveFixDetails(fixCards);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -979,6 +948,7 @@ class _TempCardsState extends State<TempCards> {
                             fontSize: 16,
                           ),
                         ),
+
                     ],
                   ),
                 ),
@@ -992,25 +962,27 @@ class _TempCardsState extends State<TempCards> {
               subtitle:Text(
                 "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}", style: TextStyle(color: Colors.white70, fontSize: 13),
               ),
-                  trailing: PopupMenuButton<String>(
-                    onSelected: (value){
-                      if( value == 'edit '){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                        EditPages(card: localCards[index], index: index, onUpdate: (updateCard) async{
-                          await updateCards(index,updateCard);
-                        }
 
-                        )
-                        ));
-                      }else if (value == 'delete'){
-                        deleteCard(index);
-
-                      }
-                    },itemBuilder: (context)=>[
-                      PopupMenuItem(value: 'edit', child: Text("Edit"),),
-                    //PopupMenuItem(value:'Delete', Text("Delete"))
-                  ],
-                  ),
+trailing:PopupMenuButton<String>(
+  onSelected: (value){
+    if(value =='Edit'){
+      Navigator.push(context,MaterialPageRoute(builder: (context)=>
+      EditPages(card: localCards[index], index: index,
+          onUpdate: (updateCards)async{
+        await updateCard(index,updateCards);
+          },
+      ),
+      ),
+      );
+    }else if(value == 'delete'){
+      deleteCard(index);
+    }
+  },
+  itemBuilder: (context)=>[
+    PopupMenuItem(value: 'Edit',child: Text("Edit"),),
+    PopupMenuItem(value:'delete',child: Text("Delete",) )
+  ],
+)
                 ),
               ],
             ),
@@ -1025,18 +997,18 @@ class _TempCardsState extends State<TempCards> {
 class EditPages extends StatefulWidget {
   final CardData card;
   final int index;
- // final Function(CardData) onUpdate;
-  final Future<void>Function(CardData) onUpdate;
+  final Function(CardData) onUpdate;
+ // final Future<void>Function(CardData) onUpdate;
 
 
-  EditPages({
+ /* EditPages({
     Key?key,
     required this.card,
     required this.index,
     required this.onUpdate,
-}) :super(key: key);
+}) :super(key: key);*/
 
-  //EditPages({required this.card, required this.index, required this.onUpdate});
+  EditPages({required this.card, required this.index, required this.onUpdate});
 
   @override
   State<EditPages> createState() => _EditPagesState();
@@ -1119,8 +1091,8 @@ class _EditPagesState extends State<EditPages> {
 
             SizedBox(height: 20),
         ElevatedButton(
-          onPressed: () async {
-            CardData updatedCard = CardData(
+          onPressed: saveEdits, /*async {
+           CardData updatedCard = CardData(
               name: nameController.text,
               Gmail: gmailController.text,
               location: locationController.text,
@@ -1134,9 +1106,9 @@ class _EditPagesState extends State<EditPages> {
               isEdited: true, // mark as edited
             );
           //  await CardStorage.updateCard(widget.index, updatedCard);
-              await widget.onUpdate(updatedCard);
+               widget.onUpdate(updatedCard);
               Navigator.pop(context);
-          },
+          },*/
           child: const Text("Save Changes"),),
           ],
         ),
