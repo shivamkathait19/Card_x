@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:card_x/mainFile/Barcoms.dart';
+import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +12,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CardData {
   final String name;
-
   final String Gmail;
   final String location;
   final String duration;
@@ -1005,7 +1005,8 @@ class _TempCardsState extends State<TempCards> {
 
                       }
                     },itemBuilder: (context)=>[
-                      PopupMenuItem(value: 'edit', child: Text("Delte"),),
+                      PopupMenuItem(value: 'edit', child: Text("Edit"),),
+                    //PopupMenuItem(value:'Delete', Text("Delete"))
                   ],
                   ),
                 ),
@@ -1106,7 +1107,25 @@ class _EditPagesState extends State<EditPages> {
                 decoration: InputDecoration(labelText: "Service Option")),
 
             SizedBox(height: 20),
-            ElevatedButton(onPressed: saveEdits, child: Text("Update Card")),
+        ElevatedButton(
+          onPressed: () async {
+            CardData updatedCard = CardData(
+              name: nameController.text,
+              Gmail: gmailController.text,
+              location: locationController.text,
+              duration: durationController.text,
+              people: peopleController.text,
+              description: descriptionController.text,
+              serviceOption: serviceOptionController.text,
+              imageUrl: imgUrl,
+
+              isEdited: true, // mark as edited
+            );
+
+            await updateCards(widget.index, updatedCard);
+            Navigator.pop(context);
+          },
+          child: const Text("Save Changes"),),
           ],
         ),
       ),
