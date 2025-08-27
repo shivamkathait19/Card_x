@@ -996,8 +996,8 @@ class _TempCardsState extends State<TempCards> {
                     onSelected: (value){
                       if( value == 'edit '){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                        EditPages(card: localCards[index], index: index, onUpdate: (updateCards) async{
-                          await CardStorage.updateCard(index,updateCards);
+                        EditPages(card: localCards[index], index: index, onUpdate: (updateCard) async{
+                          await updateCards(index,updateCard);
                         }
 
                         )
@@ -1025,9 +1025,18 @@ class _TempCardsState extends State<TempCards> {
 class EditPages extends StatefulWidget {
   final CardData card;
   final int index;
-  final Function(CardData) onUpdate;
+ // final Function(CardData) onUpdate;
+  final Future<void>Function(CardData) onUpdate;
 
-  EditPages({required this.card, required this.index, required this.onUpdate});
+
+  EditPages({
+    Key?key,
+    required this.card,
+    required this.index,
+    required this.onUpdate,
+}) :super(key: key);
+
+  //EditPages({required this.card, required this.index, required this.onUpdate});
 
   @override
   State<EditPages> createState() => _EditPagesState();
@@ -1124,9 +1133,9 @@ class _EditPagesState extends State<EditPages> {
 
               isEdited: true, // mark as edited
             );
-            await CardStorage.updateCard(widget.index, updatedCard);
-
-            Navigator.pop(context);
+          //  await CardStorage.updateCard(widget.index, updatedCard);
+              await widget.onUpdate(updatedCard);
+              Navigator.pop(context);
           },
           child: const Text("Save Changes"),),
           ],
