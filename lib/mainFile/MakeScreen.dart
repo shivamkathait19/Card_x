@@ -993,9 +993,20 @@ class _TempCardsState extends State<TempCards> {
                   trailing: PopupMenuButton<String>(
                     onSelected: (value){
                       if( value == 'edit '){
-                        Nan
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                        EditPages(card: localCards[index], index: index, onUpdate: (updateCards) async{
+                          await updateCards(index,updateCards);
+                        }
+
+                        )
+                        ));
+                      }else if (value == 'delete'){
+                        deleteCard(index);
+
                       }
-                    }
+                    },itemBuilder: (context)=>[
+                      PopupMenuItem(value: 'edit', child: Text("Delte"),),
+                  ],
                   ),
                 ),
               ],
