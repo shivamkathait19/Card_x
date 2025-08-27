@@ -884,7 +884,7 @@ class _TempCardsState extends State<TempCards> {
       localCards.removeAt(index);
     });
     await CardStorage.saveTempCards(localCards);
-   // await CardStorage.saveDeletedCard(removedcard);
+   // await CardStorage.saveFixDetails(localCards);
   }
 
   /// ✅ Ye function TempCards + FixDetails dono ko update karega
