@@ -20,9 +20,9 @@ class CardData {
   final String imageUrl;
   final String serviceOption;
   final String createdAt;
+  final bool isEdited;
 
   CardData({
-
     required this.name,
     required this.Gmail,
     required this.location,
@@ -32,6 +32,7 @@ class CardData {
     required this.imageUrl,
     required this.serviceOption,
     required this.createdAt,
+    this.isEdited = false,
   });
 
   Map<String, dynamic> toMap(){
@@ -45,6 +46,7 @@ class CardData {
       'imageUrl': imageUrl,
       'serviceOption': serviceOption,
       'createdAt': createdAt,
+       'isEdited' :isEdited,
     };
   }
 
@@ -59,6 +61,7 @@ class CardData {
       imageUrl: map['imageUrl'],
       serviceOption: map['serviceOption'],
       createdAt: map['createdAt'],
+      isEdited: map['isEdited'] ?? false,
     );
   }
 }
@@ -70,44 +73,7 @@ class CardStorage {
   static const String key = "saved_cards";
   static const String fixDetailsKey = "fixdetails";
   static const String tempCardsKey = "tempcards";
-  //static String editedCardskey = "edited_cards";
 
-  /*Future<void>saveCardsToPrefs(List<CardData>cards)async{
-    final prefs = await SharedPreferences.getInstance();
-    List<String> jsonCards =
-        cards.map((card)=> jsonEncode(card.toJson())).toList();
-    await prefs.setStringList("savedCards", jsonCards);
-  }
-*/
-   /* static Future<void> saveCards(List<CardData> cards) async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String> jsonList =
-    cards.map((card) => json.encode(card.toMap())).toList();
-    await prefs.setStringList(key, jsonList);
-  }
-
-  static Future<List<CardData>> loadCards() async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String>? jsonList = prefs.getStringList(key);
-    if (jsonList == null) return [];
-    return jsonList
-        .map((jsonStr) => CardData.fromMap(json.decode(jsonStr)))
-        .toList();
-  }    111
-}*/
-/*Future<void> loadCardsFromPrefs() async {
-  final prefs = await SharedPreferences.getInstance();
-  List<String>? jsonCards = prefs.getStringList("savedCards");
-
-  if (jsonCards != null) {
-    setState(() {
-      localCards = jsonCards
-          .map((card) => CardData.fromJson(jsonDecode(card)))
-          .toList();
-    });
-  }
-}
-*/
 
   static Future<void> saveFixDetails(List<CardData> cards) async {
     final prefs = await SharedPreferences.getInstance();
@@ -137,18 +103,6 @@ class CardStorage {
     final List decoded = jsonDecode(data);
     return decoded.map((e) => CardData.fromMap(e)).toList();
   }
-
-
-  /*static Future<void> saveEditedCard(CardData card)async{
-    final prefs = await SharedPreferences.getInstance();
-    final editData = prefs.getStringList(editedCardskey)??[];
-    editData.add(jsonEncode(card.toMap()));
-    await prefs.setStringList(editedCardskey,editData);
-  }
-  static Future<List<CardData>> loadEditedCards()async{
-    final prefs = await SharedPreferences.getInstance();
-    final savaData.map((data)=> CardData.fromMap(jsonDecode(data))).toList();
-  }*/
 }
 
 // ================= Main =================
@@ -934,7 +888,7 @@ class _TempCardsState extends State<TempCards> {
   }
 
   /// ✅ Ye function TempCards + FixDetails dono ko update karega
-  Future<void> updateCard(int index, CardData updatedCard) async {
+  /*Future<void> updateCard(int index, CardData updatedCard) async {
     setState(() {
       localCards[index] = updatedCard;
     });
@@ -947,6 +901,36 @@ class _TempCardsState extends State<TempCards> {
       await CardStorage.saveFixDetails(fixCards);
 
     }
+  }*/
+  Future<void> updateCards(int index,CardData updatedCard)async{
+    final newCard = CardData(
+      name: updatedCard.name,
+      Gmail: updatedCard.Gmail,
+      location: updatedCard.location,
+      duration: updatedCard.duration,
+      people: updatedCard.people,
+      imageUrl: updatedCard.imageUrl,
+      description: updatedCard.description,
+      serviceOption: updatedCard.serviceOption,
+      createdAt: updatedCard.createdAt,
+      isEdited: true,   // ✅ mark as edited
+    );
+
+    setState(() {
+      localCards.removeAt(index);
+      localCards.insert(index,newCard);
+    });
+    await CardStorage.saveTempCards(localCards);
+
+
+
+
+    List<CardData> fixCards = await CardStorage.loadFixDetails();
+    if (index < fixCards.length) {
+      fixCards.removeAt(index);
+    }
+    fixCards.add(updatedCard);
+    await CardStorage.saveFixDetails(fixCards);
   }
 
   @override
@@ -959,55 +943,67 @@ class _TempCardsState extends State<TempCards> {
           ? Center(
         child: Text("No cards saved yet"),
       )
-          : ListView.builder(
+     : ListView.builder(
         itemCount: localCards.length,
         itemBuilder: (context, index) {
           final card = localCards[index];
           return Card(
-            color: Colors.white.withOpacity(0.08),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-            ),
-            margin: EdgeInsets.only(bottom: 12),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://i.pinimg.com/736x/4b/90/5b/4b905b1342b5635310923fd10319c265.jpg"),
-              ),
-              title: Text(card.name),
-              subtitle: Text(
-                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}",
-                style: TextStyle(color: Colors.white70, fontSize: 13),
-              ),
-              trailing: PopupMenuButton<String>(
-                onSelected: (value) {
-                  if (value == 'edit') {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EditPages(
-                          card: localCards[index],
-                          index: index,
-                          onUpdate: (updatedCard) async {
-                            /// ✅ Ab dono jagah update hoga
-                            await updateCard(index, updatedCard);
-                          },
+            margin: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ✅ Number hamesha dikhana
+                Container(
+                  width: double.infinity,
+                  color: Colors.grey[200],
+                  padding: EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "${index + 1}.",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
-                    );
-                  } else if (value == 'delete') {
-                    deleteCard(index);
-                  }
-                },
-                itemBuilder: (context) => [
-                  PopupMenuItem(value: 'edit', child: Text("Edit")),
-                  PopupMenuItem(value: 'delete', child: Text("Delete")),
-                ],
+                      // ✅ Sirf Edited Card ke liye text
+                      if (card.isEdited)
+                        Text(
+                          "Edited Card",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.orange,
+                            fontSize: 16,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+
+                // ✅ Card Details
+                ListTile(
+                 leading: CircleAvatar(
+                   backgroundImage: NetworkImage(""),
+                 ),
+                  title: Text(card.name),
+              subtitle:Text(
+                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}", style: TextStyle(color: Colors.white70, fontSize: 13),
               ),
+                  trailing: PopupMenuButton<String>(
+                    onSelected: (value){
+                      if( value == 'edit '){
+                        Nan
+                      }
+                    }
+                  ),
+                ),
+              ],
             ),
           );
         },
-      ),
+      )
+
     );
   }
 }
@@ -1044,10 +1040,12 @@ class _EditPagesState extends State<EditPages> {
     descriptionController = TextEditingController(text: widget.card.description);
     serviceOptionController =
         TextEditingController(text: widget.card.serviceOption);
+
   }
 
   void saveEdits() {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate(
+    )) {
       final updatedCard = CardData(
         name: nameController.text,
         Gmail: gmailController.text,
