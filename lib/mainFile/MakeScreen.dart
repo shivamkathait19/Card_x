@@ -584,9 +584,19 @@ class _FixdetalisState extends State<Fixdetalis> {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(
-                          radius: 28,
-                          backgroundImage: NetworkImage(card.imageUrl),
+                        Text(
+                          "${index + 1}",style: TextStyle(
+                          color: Colors.black,fontSize: 20,fontWeight: FontWeight.w500
+                        ),
+
+                        ),
+
+                        Padding(
+                          padding:  EdgeInsets.only(left: 10),
+                          child: CircleAvatar(
+                            radius: 28,
+                            backgroundImage: NetworkImage(card.imageUrl),
+                          ),
                         ),
                         SizedBox(width: 16),
                         Expanded(
@@ -999,7 +1009,15 @@ class EditPages extends StatefulWidget {
   final CardData card;
   final int index;
   final Function(CardData) onUpdate;
+ // final Future<void>Function(CardData) onUpdate;
 
+
+ /* EditPages({
+    Key?key,
+    required this.card,
+    required this.index,
+    required this.onUpdate,
+}) :super(key: key);*/
 
   EditPages({required this.card, required this.index, required this.onUpdate});
 
@@ -1017,6 +1035,19 @@ class _EditPagesState extends State<EditPages> {
   late TextEditingController descriptionController;
   late TextEditingController serviceOptionController;
 
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController(text: widget.card.name);
+    gmailController = TextEditingController(text: widget.card.Gmail);
+    locationController = TextEditingController(text: widget.card.location);
+    durationController = TextEditingController(text: widget.card.duration);
+    peopleController = TextEditingController(text: widget.card.people);
+    descriptionController = TextEditingController(text: widget.card.description);
+    serviceOptionController =
+        TextEditingController(text: widget.card.serviceOption);
+
+  }
 
   Future<void> saveEdits() async {
     // 🟢 Load cards (await जरूरी है)
@@ -1041,7 +1072,7 @@ class _EditPagesState extends State<EditPages> {
       description: descriptionController.text,
       imageUrl: widget.card.imageUrl,
       serviceOption: widget.card.serviceOption,
-      createdAt: DateTime.now().toString();
+      createdAt: DateTime.now().toString(),
       isEdited: true, // 🔥 अब यह edited है
     );
 
@@ -1058,22 +1089,7 @@ class _EditPagesState extends State<EditPages> {
   }
 
 
-
-  @override
-  void initState() {
-    super.initState();
-    nameController = TextEditingController(text: widget.card.name);
-    gmailController = TextEditingController(text: widget.card.Gmail);
-    locationController = TextEditingController(text: widget.card.location);
-    durationController = TextEditingController(text: widget.card.duration);
-    peopleController = TextEditingController(text: widget.card.people);
-    descriptionController = TextEditingController(text: widget.card.description);
-    serviceOptionController =
-        TextEditingController(text: widget.card.serviceOption);
-
-  }
-
-  void saveEdits() {
+ /* void saveEdits() {
     if (_formKey.currentState!.validate(
     )) {
       final updatedCard = CardData(
@@ -1088,11 +1104,13 @@ class _EditPagesState extends State<EditPages> {
         createdAt: widget.card.createdAt,
       );
 
+
+
       widget.onUpdate(updatedCard); // callback call
       Navigator.pop(context); // list page par wapas
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
