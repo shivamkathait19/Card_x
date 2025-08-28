@@ -259,8 +259,11 @@ class _MakeScreenState extends State<MakeScreen> {
                 ),
               ),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(
-                  "https://previews.123rf.com/images/kotangens/kotangens1109/kotangens110900008/10486923-woman-on-top-of-the-mountain-reaches-for-the-sun.jpg",
+                backgroundImage: Image.asset(
+                  'asset/solated-on-black.jpg',
+                  height: 150,
+                  width: 140,
+                  fit: BoxFit.cover,
                 ),
               ),
               accountName: Text(
@@ -595,7 +598,7 @@ class _FixdetalisState extends State<Fixdetalis> {
                           padding:  EdgeInsets.only(left: 10),
                           child: CircleAvatar(
                             radius: 28,
-                            backgroundImage: NetworkImage(card.imageUrl),
+                            backgroundImage: (),
                           ),
                         ),
                         SizedBox(width: 16),

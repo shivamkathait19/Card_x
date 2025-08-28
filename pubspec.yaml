@@ -102,3 +102,4 @@ flutter:
   assets :
     - asset/solated-on-black.jpg
     - asset/avatar-png.jpg
+    - asset/images.jpg
