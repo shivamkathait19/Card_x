@@ -936,6 +936,7 @@ class _TempCardsState extends State<TempCards> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                          color: Colors.black
                         ),
                       ),
                       // ✅ Sirf Edited Card ke liye text
@@ -998,15 +999,7 @@ class EditPages extends StatefulWidget {
   final CardData card;
   final int index;
   final Function(CardData) onUpdate;
- // final Future<void>Function(CardData) onUpdate;
 
-
- /* EditPages({
-    Key?key,
-    required this.card,
-    required this.index,
-    required this.onUpdate,
-}) :super(key: key);*/
 
   EditPages({required this.card, required this.index, required this.onUpdate});
 
@@ -1023,6 +1016,48 @@ class _EditPagesState extends State<EditPages> {
   late TextEditingController peopleController;
   late TextEditingController descriptionController;
   late TextEditingController serviceOptionController;
+
+
+  Future<void> saveEdits() async {
+    // 🟢 Load cards (await जरूरी है)
+    List<CardData> tempCards = await CardStorage.loadTempCards();
+    List<CardData> fixCards = await CardStorage.loadFixDetails();
+
+    // 🟢 पुराना card हटाओ
+    if (widget.index < tempCards.length) {
+      tempCards.removeAt(widget.index);
+    }
+    if (widget.index < fixCards.length) {
+      fixCards.removeAt(widget.index);
+    }
+
+    // 🟢 नया edited card बनाओ
+    CardData updatedCard = CardData(
+      name: nameController.text,
+      Gmail: gmailController.text,
+      location: locationController.text,
+      duration: durationController.text,
+      people: peopleController.text,
+      description: descriptionController.text,
+      imageUrl: widget.card.imageUrl,
+      serviceOption: widget.card.serviceOption,
+      createdAt: DateTime.now().toString();
+      isEdited: true, // 🔥 अब यह edited है
+    );
+
+    // 🟢 Add new card
+    tempCards.add(updatedCard);
+    fixCards.add(updatedCard);
+
+    // 🟢 Save back to storage
+    await CardStorage.saveTempCards(tempCards);
+    await CardStorage.saveFixDetails(fixCards);
+
+    // 🟢 Navigate back
+    Navigator.pop(context, updatedCard);
+  }
+
+
 
   @override
   void initState() {
