@@ -259,12 +259,7 @@ class _MakeScreenState extends State<MakeScreen> {
                 ),
               ),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: Image.asset(
-                  'asset/solated-on-black.jpg',
-                  height: 150,
-                  width: 140,
-                  fit: BoxFit.cover,
-                ),
+                backgroundImage: AssetImage("asset/solated-on-black.jpg")
               ),
               accountName: Text(
                 " Welcome",
@@ -364,7 +359,7 @@ class _MakeScreenState extends State<MakeScreen> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          child: Image.network(imageUrl,
+                          child: Image.asset("asset/Adventure-Ideas.jpg",
                               height: 180, width: 500, fit: BoxFit.cover),
                         ),
                         SizedBox(height: 24),
@@ -398,6 +393,10 @@ class _MakeScreenState extends State<MakeScreen> {
                                             borderRadius: BorderRadius.circular(14),
                                             borderSide: BorderSide.none,
                                         ),
+
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(color: Colors.white),
+                                          )
                                           ),
                                         validator: (value){
                                           if(value == null || value.isEmpty){
@@ -437,7 +436,8 @@ class _MakeScreenState extends State<MakeScreen> {
                                            // focusColor: Colors.white.withOpacity(0.08),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(14),
-                                            borderSide: BorderSide.none
+
+                                            borderSide: BorderSide(color: Colors.white),
                                           )
                                         ),
                                         keyboardType: TextInputType.number,
@@ -598,7 +598,7 @@ class _FixdetalisState extends State<Fixdetalis> {
                           padding:  EdgeInsets.only(left: 10),
                           child: CircleAvatar(
                             radius: 28,
-                            backgroundImage: (),
+                            backgroundImage: NetworkImage(card.imageUrl),
                           ),
                         ),
                         SizedBox(width: 16),
@@ -1147,24 +1147,7 @@ class _EditPagesState extends State<EditPages> {
 
             SizedBox(height: 20),
         ElevatedButton(
-          onPressed: saveEdits, /*async {
-           CardData updatedCard = CardData(
-              name: nameController.text,
-              Gmail: gmailController.text,
-              location: locationController.text,
-              duration: durationController.text,
-              people: peopleController.text,
-              description: descriptionController.text,
-              serviceOption: serviceOptionController.text,
-              imageUrl: widget.card.imageUrl,
-              createdAt: DateTime.now().toString(),
-
-              isEdited: true, // mark as edited
-            );
-          //  await CardStorage.updateCard(widget.index, updatedCard);
-               widget.onUpdate(updatedCard);
-              Navigator.pop(context);
-          },*/
+          onPressed: saveEdits,
           child: const Text("Save Changes"),),
           ],
         ),
