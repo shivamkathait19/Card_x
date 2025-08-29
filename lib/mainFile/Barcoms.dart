@@ -51,6 +51,8 @@ class _BarcomsState extends State<Barcoms> {
     );
   }
 
+
+
   void openCardScreen() {
     Navigator.push(
       context,
@@ -74,14 +76,16 @@ class _BarcomsState extends State<Barcoms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(title: Column(
         children: [
-          Text("Home",style: TextStyle(color: Colors.white70,fontStyle: FontStyle.italic),),
-          Text("Screen",style: TextStyle(color: Colors.white70,fontSize: 15,fontStyle: FontStyle.italic),)
+          Text("Home",style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic),),
+          Text("Screen",style: TextStyle(color: Colors.black,fontSize: 15,fontStyle: FontStyle.italic),)
         ],
       ),
       ),
      drawer: Drawer(
+       backgroundColor: Colors.grey,
        child: ListView(
          children: [
            DrawerHeader(
@@ -111,7 +115,7 @@ class _BarcomsState extends State<Barcoms> {
            ),
            ListTile(
              leading: Icon(Icons.person),
-             title: Text('My Profile',style: TextStyle(color: Colors.white60),),
+             title: Text('My Profile',style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic),),
              onTap: () {
                Navigator.pop(context);
                _goToBlankPage();
@@ -119,7 +123,7 @@ class _BarcomsState extends State<Barcoms> {
            ),
            ListTile(
              leading: Icon(Icons.settings),
-             title: Text('Settings',style: TextStyle(color: Colors.white60),),
+             title: Text('Settings',style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic),),
              onTap: () {
                Navigator.pop(context);
                Navigator.push(context, MaterialPageRoute(builder: (_)=>  SettingsPage(),));
@@ -127,18 +131,17 @@ class _BarcomsState extends State<Barcoms> {
            ),
            ListTile(
              leading: Icon(Icons.info_outline),
-             title: Text('About App',style: TextStyle(color: Colors.white60),),
+             title: Text('About App',style: TextStyle(color: Colors.black,fontStyle: FontStyle.italic),),
              onTap: () {
                Navigator.pop(context);
                Navigator.push(context,
                    MaterialPageRoute(builder: (_) => Aboutpage()));
              },
            ),
-
            Divider(),
            ListTile(
              leading: Icon(Icons.logout),
-             title: Text("Log Out", style: TextStyle(color: Colors.red)),
+             title: Text("Log Out", style: TextStyle(color: Colors.red,fontStyle: FontStyle.italic)),
              onTap: () {
                Navigator.pop(context);
                Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
