@@ -53,13 +53,15 @@ class _BarcomsState extends State<Barcoms> {
 
 
 
-  
+
   void openCardScreen() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CardScreen()),
     );
   }
+
+
 
   void openMakeScreen() {
     Navigator.push(
