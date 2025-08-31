@@ -54,6 +54,8 @@ class _BarcomsState extends State<Barcoms> {
 
 
 
+
+
   void openCardScreen() {
     Navigator.push(
       context,
