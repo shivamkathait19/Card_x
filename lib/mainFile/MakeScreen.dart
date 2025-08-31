@@ -50,6 +50,11 @@ class CardData {
     };
   }
 
+
+
+
+
+
   factory CardData.fromMap(Map<String, dynamic> map) {
     return CardData(
       name: map['name'],
