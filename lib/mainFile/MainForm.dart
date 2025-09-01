@@ -166,8 +166,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
                          ],
                                               ),
                                       SizedBox(
-                                        height: 10,
-                                      ),
+                                        height: 10),
                                               ListTile(
                            leading: Icon(Icons.calendar_today,color: Colors.white,),
                            title:
