@@ -68,8 +68,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
   }
 
 
-
-
   InputDecoration _inputDecoration(String label){
     return InputDecoration(
       labelText: label ,
