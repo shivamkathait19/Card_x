@@ -48,9 +48,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
     });
   }
 
-
-
-
   void _lodingcard(){
     if (_key.currentState != null && _key.currentState!.validate()){
       setState(() => isloadingdone = true);
