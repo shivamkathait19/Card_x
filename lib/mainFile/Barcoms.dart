@@ -22,6 +22,16 @@ class _BarcomsState extends State<Barcoms> {
   String mobile = "";
   String email = "";
 
+  Future<void>loadData()async{
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      username = prefs.getString('name');
+
+    });
+  }
+
+
+
   @override
   void initState() {
     super.initState();

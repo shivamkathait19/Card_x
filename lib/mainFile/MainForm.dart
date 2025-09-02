@@ -5,6 +5,7 @@ import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
   class MainForm extends StatefulWidget {
     MainForm({super.key});
@@ -24,6 +25,17 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
   TextEditingController emailController = TextEditingController();
   TextEditingController passController = TextEditingController();
   GlobalKey<FormState> _key = new GlobalKey();
+
+
+  Future<void>savaData()async{
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('name',usernameController.text);
+    await prefs.setString('full', fullnameController.text);
+    await prefs.setString('data', dateController.text);
+    await prefs.setString('mobile',mobileController.text);
+    await prefs.setString('email', emailController.text);
+    await prefs.setString('password', passController.text);
+  }
 
   bool isloadingdone = false;
   String? selectedGender;
