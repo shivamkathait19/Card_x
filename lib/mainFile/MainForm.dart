@@ -27,15 +27,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   GlobalKey<FormState> _key = new GlobalKey();
 
 
-  Future<void>savaData()async{
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('name',usernameController.text);
-    await prefs.setString('full', fullnameController.text);
-    await prefs.setString('data', dateController.text);
-    await prefs.setString('mobile',mobileController.text);
-    await prefs.setString('email', emailController.text);
-    await prefs.setString('password', passController.text);
-  }
+
 
   bool isloadingdone = false;
   String? selectedGender;
