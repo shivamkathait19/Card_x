@@ -10,6 +10,11 @@ import 'package:shared_preferences/shared_preferences.dart';
   class MainForm extends StatefulWidget {
     MainForm({super.key});
 
+
+
+
+
+
   @override
   State<MainForm> createState() => _MainFormState();
 }
@@ -17,7 +22,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 
-   class _MainFormState extends State<MainForm>{
+class _MainFormState extends State<MainForm>{
   TextEditingController usernameController = TextEditingController();
   TextEditingController fullnameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -60,7 +65,7 @@ import 'package:shared_preferences/shared_preferences.dart';
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Barcoms(
-            username: usernameController.text,
+            username : usernameController.text,
             full : fullnameController.text,
             date: dateController.text,
             mobile: mobileController.text,
@@ -70,6 +75,7 @@ import 'package:shared_preferences/shared_preferences.dart';
       });
     }
   }
+
 
 
   InputDecoration _inputDecoration(String label){
@@ -327,7 +333,17 @@ import 'package:shared_preferences/shared_preferences.dart';
                        //type: SpinKitWaveType.center,
                      )
                          : ElevatedButton(
-                       onPressed: _lodingcard,
+                       onPressed: () async{
+                         final prefs = await SharedPreferences.getInstance();
+
+                         await prefs.setString('username',usernameController.text);
+                         await prefs.setString('fullname', fullnameController.text);
+                         await prefs.setString('date', dateController.text);
+                         await prefs.setString('mobile', mobileController.text);
+                         await prefs.setString('email', emailController.text);
+
+                         Navigator.push(context, MaterialPageRoute(builder: (context)=> Barcoms()));
+                         },
                        style: ElevatedButton.styleFrom(
                          backgroundColor: Colors.teal,
                          foregroundColor: Colors.white,
