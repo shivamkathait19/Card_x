@@ -7,21 +7,36 @@ import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
+
 // ====================== BARCOMS ======================
 class Barcoms extends StatefulWidget {
-  const Barcoms({Key? key}) : super(key: key);
+  final String? username;
+  final String? full;
+  final String? date;
+  final String? mobile;
+  final String? email;
+
+  const Barcoms({
+    Key? key,
+    this.username,
+    this.full,
+    this.date,
+    this.mobile,
+    this.email,
+  }) : super(key: key);
 
   @override
   State<Barcoms> createState() => _BarcomsState();
 }
 
+
 class _BarcomsState extends State<Barcoms> {
-  String username = "";
+ /* String username = "";
   String full = "";
   String date = "";
   String mobile = "";
   String email = "";
-
 
 
 
@@ -41,7 +56,7 @@ class _BarcomsState extends State<Barcoms> {
       mobile = prefs.getString('mobile') ?? '';
       email = prefs.getString('email') ?? '';
     });
-  }
+  }*/
 
   void _goToBlankPage() {
     Navigator.push(
@@ -111,7 +126,7 @@ class _BarcomsState extends State<Barcoms> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Welcome, ${username.isNotEmpty ? username : "User"}',
+                    'Welcome',
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   SizedBox(height: 10),
@@ -337,6 +352,37 @@ class _BlankPageState extends State<BlankPage> {
     return Scaffold(
       backgroundColor: Colors.brown,
       appBar: AppBar(
+        title: const Text("My Profile", style: TextStyle(fontStyle: FontStyle.italic)),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 30),
+          const CircleAvatar(
+            radius: 50,
+            backgroundColor: Colors.white70,
+            child: Icon(Icons.person, size: 50, color: Colors.black),
+          ),
+          const SizedBox(height: 30),
+          infoCard("Username", username, Icons.person),
+          infoCard("Full Name", fullname, Icons.person_outline),
+          infoCard("Email", email, Icons.email_outlined),
+          infoCard("Date of Birth", date, Icons.cake),
+          infoCard("Mobile Number", mobile, Icons.phone_android),
+        ],
+      ),
+    );
+  }
+}
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.brown,
+      appBar: AppBar(
         title: Text("My Profile", style: TextStyle(fontStyle: FontStyle.italic)),
         backgroundColor: Colors.black,
         foregroundColor: Colors.white,
@@ -351,16 +397,16 @@ class _BlankPageState extends State<BlankPage> {
             child: Icon(Icons.person, size: 50, color: Colors.black),
           ),
           SizedBox(height: 30),
-          infoCard("Username", username, Icons.person),
+        /*  infoCard("Username", username, Icons.person),
           infoCard("Full Name", fullname, FeatherIcons.userCheck),
           infoCard("Email", email, Icons.email_outlined),
           infoCard("Date of Birth", date, Icons.cake),
-          infoCard("Mobile Number", mobile, Icons.phone_android),
+          infoCard("Mobile Number", mobile, Icons.phone_android),*/
         ],
       ),
     );
   }
-}
+
 
 // ====================== ABOUT PAGE ======================
 class Aboutpage extends StatelessWidget {
