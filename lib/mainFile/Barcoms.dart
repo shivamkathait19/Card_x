@@ -32,31 +32,7 @@ class Barcoms extends StatefulWidget {
 
 
 class _BarcomsState extends State<Barcoms> {
- /* String username = "";
-  String full = "";
-  String date = "";
-  String mobile = "";
-  String email = "";
 
-
-
-
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-  }
-
-  Future<void> _loadUserData() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      username = prefs.getString('username') ?? '';
-      full = prefs.getString('fullname') ?? '';
-      date = prefs.getString('date') ?? '';
-      mobile = prefs.getString('mobile') ?? '';
-      email = prefs.getString('email') ?? '';
-    });
-  }*/
 
   void _goToBlankPage() {
     Navigator.push(
@@ -95,7 +71,11 @@ class _BarcomsState extends State<Barcoms> {
           children: [
             Text("Home",
                 style: TextStyle(
-                    color: Colors.black, fontStyle: FontStyle.italic)),
+                    color: Colors.black, fontFamily:'StoryScript',
+                  fontWeight: FontWeight.w800,
+                )
+              ),
+
             Text("Screen",
                 style: TextStyle(
                     color: Colors.black,
