@@ -202,10 +202,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if(value == null || value.isEmpty){
                                   return ' Enter your email';
                                 }
-                                if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false).hasMatch(value.trim())){
-                                  return 'Please enter a valid gmail address';
+                                if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false
+                                ).hasMatch(value.trim())) {
+                                  return 'Please enter a valid Gmail address';
                                 }
-                                return null;
                              },
                             ),
                           ),
