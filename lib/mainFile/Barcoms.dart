@@ -71,8 +71,8 @@ class _BarcomsState extends State<Barcoms> {
           children: [
             Text("Home",
                 style: TextStyle(
-                    color: Colors.black, fontFamily:'StoryScript',
-                  fontWeight: FontWeight.w800,
+                    color: Colors.black, fontFamily: 'StoryScript-Regular',
+                 // fontWeight: FontWeight.w800,
                 )
               ),
 
@@ -80,6 +80,7 @@ class _BarcomsState extends State<Barcoms> {
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
+                    fontFamily: 'StoryScript-Regular',
                     fontStyle: FontStyle.italic)),
           ],
         ),
@@ -180,7 +181,7 @@ class _BarcomsState extends State<Barcoms> {
                 style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
-                  fontFamily: "Poppins",
+                  fontFamily:  'StoryScript-Regular',
                   color: Colors.white,
                   letterSpacing: 1.5,
                   decoration: TextDecoration.lineThrough,
@@ -214,6 +215,7 @@ class _BarcomsState extends State<Barcoms> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
+                    fontFamily: 'EBGaramond-Italic-VariableFont_wght',
                     letterSpacing: 1,
                   ),
                 ),
@@ -237,6 +239,7 @@ class _BarcomsState extends State<Barcoms> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
+                    fontFamily: 'EBGaramond-Italic-VariableFont_wght',
                     letterSpacing: 1,
                   ),
                 ),
