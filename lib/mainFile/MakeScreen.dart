@@ -616,6 +616,7 @@ class _FixdetalisState extends State<Fixdetalis> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
+                              fontFamily: 'StoryScript-Regular',
                               color: Colors.black,
                             ),
                           ),
@@ -658,20 +659,20 @@ class _FixdetalisState extends State<Fixdetalis> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: Colors.blueGrey[700], size: 20),
+          Icon(icon, color: Colors.black, size: 20),
           SizedBox(width: 10),
           SizedBox(
             width: 80,
             child: Text(
               "$label:",
               style: TextStyle(
-                  color: Colors.black87, fontWeight: FontWeight.w500),
+                  color: Colors.black, fontWeight: FontWeight.w500, fontFamily: 'EBGaramond-Italic-VariableFont_wght'),
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: TextStyle(color: Colors.black, fontSize: 15),
+              style: TextStyle(color: Colors.black, fontSize: 15,fontFamily: 'EBGaramond-Italic-VariableFont_wght'),
             ),
           ),
         ],
