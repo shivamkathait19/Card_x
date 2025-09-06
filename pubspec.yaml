@@ -43,6 +43,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   floating_action_bubble_custom: ^1.0.0+2
   flutter_feather_icons: ^2.0.0
+  clerk_flutter: ^0.0.12-beta
 
 
 dev_dependencies:
