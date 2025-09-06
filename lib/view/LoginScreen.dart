@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
+import 'package:clerk_flutter/clerk_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

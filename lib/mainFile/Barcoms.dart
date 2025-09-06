@@ -158,7 +158,7 @@ class _BarcomsState extends State<Barcoms> {
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => LoginScreen()));
+                    MaterialPageRoute(builder: (_) =>LoginScreen()));
               },
             ),
           ],

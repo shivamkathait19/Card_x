@@ -5,14 +5,14 @@ import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:clerk_flutter/clerk_flutter.dart';
 
-
-void main() /*async*/ {
-  /*WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );*/
-  runApp(MyApp());
+void main() {
+  runApp(
+      ClerkAuth(config: ClerkAuthConfig(publishableKey: "pk_test_ZXhvdGljLWdyb3VzZS0wLmNsZXJrLmFjY291bnRzLmRldiQ"),
+      child: MyApp(),
+      ),
+  );
 }
 
 class MyApp extends StatefulWidget {
