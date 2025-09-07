@@ -6,6 +6,12 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+
+dependencies {
+    implementation(platfrom("com.google.firebase:firebase-bom:34.2.0"))
+    implementation("com.google.firebase:firebase-analytics")
+}
+
 android {
     namespace = "com.example.card_x"
     compileSdk = flutter.compileSdkVersion
@@ -40,7 +46,7 @@ android {
     }
 }
 
-dependence
+
 
 flutter {
     source = "../.."
