@@ -129,10 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
         decoration: BoxDecoration(
         ),
           child: Stack(
-
     children: [
           SafeArea(
-
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +138,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 10,
                   ),
-
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
