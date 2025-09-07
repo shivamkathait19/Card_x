@@ -42,6 +42,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Card_X',
       theme: ThemeData(
         // This is the theme of your application
@@ -62,7 +63,8 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true
       ),
-        home :  /*ShowSplash? Splashscreen() :*/ Barcoms()
+        home :
+        /*ShowSplash? Splashscreen() :*/ Barcoms()
     );
   }
 }
