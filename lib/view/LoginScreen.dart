@@ -3,6 +3,7 @@ import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:clerk_flutter/clerk_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -82,6 +83,31 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
+
+
+    Future<void> loginUser(BuildContext context) async {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passController.text.trim(),
+        );
+
+        // ✅ Login successful → navigate to home
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Welcome ${userCredential.user?.email}")),
+        );
+        Navigator.pushReplacementNamed(context, "/home");
+
+      } on FirebaseAuthException catch (e) {
+        String message = "An error occurred";
+        if (e.code == 'user-not-found') {
+          message = "No user found for this email.";
+        } else if (e.code == 'wrong-password') {
+          message = "Incorrect password.";
+        }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      }
+    }
   String? _email;
   String? _pass;
 
@@ -248,7 +274,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               : Padding(
                                 padding: const EdgeInsets.only(left:10,right:10),
                                 child: ElevatedButton(
-                                  onPressed: _loginUser,
+                                  onPressed: ()=> _loginUser(context),
                                   style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue.withOpacity(0.30),
                                 foregroundColor: Colors.white,
@@ -257,7 +283,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                                           ),
-                                  child:Text('Login', style: TextStyle(fontWeight: FontWeight.bold),),
+                                  child:Text(
+                                    'Login', style: TextStyle(fontWeight: FontWeight.bold),),
                                 ),
                               ),
 

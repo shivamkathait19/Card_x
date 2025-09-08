@@ -4,15 +4,22 @@ import 'package:card_x/mainFile/MakeScreen.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:card_x/view/splashScreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:clerk_flutter/clerk_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+/*void main() {
   runApp(
       ClerkAuth(config: ClerkAuthConfig(publishableKey: "pk_test_ZXhvdGljLWdyb3VzZS0wLmNsZXJrLmFjY291bnRzLmRldiQ"),
       child: MyApp(),
       ),
   );
+}*/
+
+void main ()async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -64,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true
       ),
         home :
-        /*ShowSplash? Splashscreen() :*/ Barcoms()
+        /*ShowSplash? Splashscreen() :*/ LoginScreen()
     );
   }
 }
