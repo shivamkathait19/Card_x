@@ -15,4 +15,7 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+    <string name="app_name">card_x</string>
+    <string name="facebook_app_id">shivam kathait</string>
+    <string name="fb_login_protocol_schme">fbshivam kathait</string>
 </resources>

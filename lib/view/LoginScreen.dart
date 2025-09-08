@@ -6,6 +6,7 @@ import 'package:clerk_flutter/clerk_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 void main() {
   runApp(MaterialApp(home: LoginScreen()));
@@ -83,9 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
-
-
-    Future<void> loginUser(BuildContext context) async {
+    Future<void> _loginUser(BuildContext context) async {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
@@ -108,6 +107,34 @@ class _LoginScreenState extends State<LoginScreen> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
       }
     }
+// Facebook auth hai
+
+  Future<void> signInWithFacebook(BuildContext context) async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      if (result.status == LoginStatus.success) {
+        final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(result.accessToken!.tokenString);
+
+        await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Facebook Sign-In successful!")),
+        );
+
+        Navigator.pushReplacementNamed(context, "/home");
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Facebook Sign-In failed: ${result.message}")),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: $e")),
+      );
+    }
+  }
   String? _email;
   String? _pass;
 
@@ -116,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-  void _loginUser(){
+  void loginUser(){
     if (_formKey.currentState!.validate()){
       setState(() => isLoadinglogin = true);
       Future.delayed(const Duration(seconds: 2), () {
@@ -295,9 +322,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10,right: 10),
                               child: ElevatedButton.icon(
-                                onPressed: (){
-                                  // Add Facebook login logic here
-                                },
+                                onPressed: () => signInWithFacebook(context),
                                 icon:  Icon(Icons.facebook, color: Colors.white),
                                 label: const Text("Continue with Facebook"),
                                 style: ElevatedButton.styleFrom(
@@ -312,7 +337,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Text("Or",style: TextStyle(fontSize:12,color: Colors.white60),),
-                          SizedBox(
+                         /* SizedBox(
                             width: double.infinity,
                             height: 45,
                             child: Padding(
@@ -336,7 +361,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                          ),
+                          ),*/
 
                           SizedBox(
                             height: 20,

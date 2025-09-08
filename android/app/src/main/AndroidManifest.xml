@@ -1,11 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.card_x">
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:label="card_x"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- ✅ Aapki MainActivity jaisi thi waisi hi rehne do -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -26,6 +29,22 @@
             </intent-filter>
         </activity>
 
+        <!-- ✅ Facebook SDK configuration yaha add karo -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider Shivam kathait"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+
+        <!-- Flutter ke liye zaroori meta-data -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
