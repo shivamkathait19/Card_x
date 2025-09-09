@@ -46,8 +46,7 @@ dependencies:
   firebase_core: ^4.1.0
   firebase_auth: ^6.0.2
   flutter_facebook_auth: ^7.1.2
-  clerk_flutter: ^0.0.12-beta
-
+  google_sign_in: 6.2.1
 
 dev_dependencies:
   flutter_test:
