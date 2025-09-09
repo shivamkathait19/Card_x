@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
-import 'package:clerk_flutter/clerk_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void main() {
   runApp(MaterialApp(home: LoginScreen()));
@@ -84,7 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
-    Future<void> _loginUser(BuildContext context) async {
+
+  Future<void> _loginUser(BuildContext context) async {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
@@ -108,6 +109,26 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
 // Facebook auth hai
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+    ],
+  );
+  Future<UserCredential?> login()async{
+    try{
+final GoogleSignInAccount? googleuser = await GoogleSignIn().signIn();
+if( googleuser == null){
+  print("❌ User cancelled login");
+    return null;
+}
+final GoogleSignInAuthentication googleAuth = await googleuser.authentication;
+final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
+   return await FirebaseAuth.instance.signInWithCredential(credential);
+    }catch(e){
+      return null;
+    }
+  }
+
 
   Future<void> signInWithFacebook(BuildContext context) async {
     try {
@@ -140,6 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
  bool isLoadinglogin = false;
  bool isLoadingsingup = false;
+
+
 
 
 
@@ -337,13 +360,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Text("Or",style: TextStyle(fontSize:12,color: Colors.white60),),
-                         /* SizedBox(
+                          SizedBox(
                             width: double.infinity,
                             height: 45,
                             child: Padding(
                               padding: EdgeInsets.only(left: 10,right: 10),
                               child: ElevatedButton.icon(
-                                onPressed: (){
+                                onPressed: ()async{
+                                  final UserCredential = await login();
+                                  if(UserCredential != null){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
+                                  }
                                   // Add Google login logic here
                                 },
                                 icon:  Icon(
@@ -361,7 +388,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                          ),*/
+                          ),
 
                           SizedBox(
                             height: 20,
