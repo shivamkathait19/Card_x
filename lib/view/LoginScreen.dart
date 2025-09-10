@@ -129,6 +129,14 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
     }
   }
 
+
+
+
+
+
+
+
+
   Future<void> signInWithFacebook(BuildContext context) async {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
