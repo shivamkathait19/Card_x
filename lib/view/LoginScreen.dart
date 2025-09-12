@@ -130,7 +130,21 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
   }
   
 
-  Future<void> signInWithFacebook(BuildContext context) async {
+  final FacebookSignIn _FacebookSign = FacebookSignIN(
+    scopes :[
+      'FaceBook',
+    ]
+  )
+
+
+
+
+
+
+
+
+
+ /* Future<void> signInWithFacebook(BuildContext context) async {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
 
@@ -155,7 +169,7 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
         SnackBar(content: Text("Error: $e")),
       );
     }
-  }
+  }*/
   String? _email;
   String? _pass;
 
@@ -345,7 +359,7 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
                             child: Padding(
                               padding: const EdgeInsets.only(left: 10,right: 10),
                               child: ElevatedButton.icon(
-                                onPressed: () => signInWithFacebook(context),
+                                onPressed: () {},
                                 icon:  Icon(Icons.facebook, color: Colors.white),
                                 label: const Text("Continue with Facebook"),
                                 style: ElevatedButton.styleFrom(
