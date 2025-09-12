@@ -128,15 +128,7 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
       return null;
     }
   }
-  
-
-  final FacebookSignIn _FacebookSign = FacebookSignIN(
-    scopes :[
-      'FaceBook',
-    ]
-  )
-
-  /* Future<void> signInWithFacebook(BuildContext context) async {
+   Future<void> signInWithFacebook(BuildContext context) async {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
 
@@ -161,18 +153,14 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
         SnackBar(content: Text("Error: $e")),
       );
     }
-  }*/
+  }
   String? _email;
   String? _pass;
 
  bool isLoadinglogin = false;
  bool isLoadingsingup = false;
 
-
-
-
-
-  void loginUser(){
+ void loginUser(){
     if (_formKey.currentState!.validate()){
       setState(() => isLoadinglogin = true);
       Future.delayed(const Duration(seconds: 2), () {
