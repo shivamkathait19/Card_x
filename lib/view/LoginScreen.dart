@@ -109,7 +109,45 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }
 // Facebook auth hai
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email', 'profile'],
+  );
+
+  Future<User?> signInWithGoogle() async {
+    try {
+      // 1) account chooser
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        // user canceled the sign-in
+        print('Google sign-in cancelled by user');
+        return null;
+      }
+
+      // 2) get auth details
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      // 3) create credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // 4) sign in to Firebase
+      final UserCredential userCred = await _auth.signInWithCredential(credential);
+      final User? user = userCred.user;
+
+      print('Signed in as ${user?.displayName} (${user?.email})');
+      return user;
+    } catch (e, stack) {
+      print('Error in signInWithGoogle: $e');
+      print(stack);
+      rethrow; // ya handle karo
+    }
+  }
+
+  /*final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
     ],
@@ -127,7 +165,7 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
     }catch(e){
       return null;
     }
-  }
+  }*/
    Future<void> signInWithFacebook(BuildContext context) async {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
