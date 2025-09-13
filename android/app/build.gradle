@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'com.facebook.android:facebook-android-sdk:latest.release'
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
 
     // Firebase dependencies add karna ho to yaha karo
 }
