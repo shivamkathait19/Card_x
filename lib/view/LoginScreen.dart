@@ -110,8 +110,43 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 // Facebook auth hai
 
-Future<UserCredential?>login()async{
+  Future<void>signInWithGoogle() async {
+    try {
+      // Step 1: Google account select karna
+      final GoogleSignInAccount? googleUser = await GoogleSignIn(
+        clientId: "YOUR_WEB_CLIENT_ID.apps.googleusercontent.com",
+      ).signIn();
 
+      if (googleUser == null) {
+        print("❌ User cancelled the sign-in");
+        return;
+      }
+
+      // Step 2: Authentication tokens lena
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      // Step 3: Firebase credential banana
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Step 4: Firebase me login karna
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+      print("✅ Sign-in successful: ${userCredential.user?.email}");
+    } catch (e, st) {
+      print("❌ Error during Google sign-in: $e");
+      print("StackTrace: $st");
+    }
+  }
+
+/*Future<UserCredential?>login()async{
+
+
+    final GoogleSignIn _googleSignIn = GoogleSignIn(
+      clientId: " your_Web_Client_Id.app.googleusercontent.com",
+    );
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
   if (googleUser != null) {
@@ -128,7 +163,7 @@ Future<UserCredential?>login()async{
 
 
 }
-
+*/
  /* final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
@@ -381,8 +416,8 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
                               padding: EdgeInsets.only(left: 10,right: 10),
                               child: ElevatedButton.icon(
                                 onPressed: ()async{
-                                  final UserCredential = await login();
-                                  if(UserCredential != null){
+                                  final UserCredential = await signInWithGoogle();
+                                  if(signInWithGoogle != null){
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }
                                   // Add Google login logic here
