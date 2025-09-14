@@ -84,6 +84,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
 
+  String? _email;
+  String? _pass;
+
+  bool _isLoading = false ;
+  bool isLoadinglogin = false;
+  bool isLoadingsingup = false;
+
 
   Future<void> _loginUser(BuildContext context) async {
       try {
@@ -111,6 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
 // Facebook auth hai
 
   Future<void>signInWithGoogle() async {
+    setState(() {
+      _isLoading = true;
+    });
     try {
       // Step 1: Google account select karna
       final GoogleSignInAccount? googleUser = await GoogleSignIn(
@@ -118,6 +128,10 @@ class _LoginScreenState extends State<LoginScreen> {
       ).signIn();
 
       if (googleUser == null) {
+        setState(() {
+          _isLoading = false;
+
+        });
         print("❌ User cancelled the sign-in");
         return;
       }
@@ -133,8 +147,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
       // Step 4: Firebase me login karna
       final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-
       print("✅ Sign-in successful: ${userCredential.user?.email}");
+
+      await Future.delayed(Duration(seconds: 5));
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Barcoms()));
     } catch (e, st) {
       print("❌ Error during Google sign-in: $e");
       print("StackTrace: $st");
@@ -211,11 +232,7 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
       );
     }
   }*/
-  String? _email;
-  String? _pass;
 
- bool isLoadinglogin = false;
- bool isLoadingsingup = false;
 
  void loginUser(){
     if (_formKey.currentState!.validate()){
