@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(MaterialApp(home: LoginScreen()));
@@ -150,6 +151,22 @@ class _LoginScreenState extends State<LoginScreen> {
       // Step 4: Firebase me login karna
       final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       print("✅ Sign-in successful: ${userCredential.user?.email}");
+
+
+      if (user != null){
+final name = user.displayusername?? googleUser.displayName ?? "";
+final email = user.email ?? googleUser.email ?? "";
+//final fullname = user.full ?? googleUser. ?? "";
+//final date = user.date ?? googleUser.date ?? "";
+//final mobile = user.mobile ?? googleUser.moble ?? "";
+
+     final prefs = await SharedPreferences.getInstance();
+     await prefs.setString("user_name", name);
+     await prefs.setString("user_email", email);
+     //await prefs.setString("user_photo", photo);
+
+        print(" Google Sign_In Succes :$name - $email");
+      }
 
 
       setState(() {
@@ -405,6 +422,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }
                                   // Add Google login logic here
+                                final user = await signInWithGoogle();
+                                  if(user != null){
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
+                                  }
                                 },
                                 icon:  Icon(
                                   FontAwesomeIcons.google,
