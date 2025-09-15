@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // ====================== BARCOMS ======================
 class Barcoms extends StatefulWidget {
+
   final String? username;
   final String? full;
   final String? date;
