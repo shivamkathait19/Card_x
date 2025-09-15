@@ -121,6 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
     });
+    await Future.delayed(Duration(seconds: 5));
+
     try {
       // Step 1: Google account select karna
       final GoogleSignInAccount? googleUser = await GoogleSignIn(
@@ -149,7 +151,6 @@ class _LoginScreenState extends State<LoginScreen> {
       final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       print("✅ Sign-in successful: ${userCredential.user?.email}");
 
-      await Future.delayed(Duration(seconds: 5));
 
       setState(() {
         _isLoading = false;
@@ -162,49 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-/*Future<UserCredential?>login()async{
 
-
-    final GoogleSignIn _googleSignIn = GoogleSignIn(
-      clientId: " your_Web_Client_Id.app.googleusercontent.com",
-    );
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  if (googleUser != null) {
-    final GoogleSignInAuthentication googleAuth =
-    await googleUser.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-
-}
-*/
- /* final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-    ],
-  );
-  Future<UserCredential?> login()async{
-    try{
-final GoogleSignInAccount? googleuser = await GoogleSignIn().signIn();
-if( googleuser == null){
-  print("❌ User cancelled login");
-    return null;
-}
-final GoogleSignInAuthentication googleAuth = await googleuser.authentication;
-final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
-   return await FirebaseAuth.instance.signInWithCredential(credential);
-    }catch(e){
-      return null;
-    }
-  }
-*/
 
  /*  Future<void> signInWithFacebook(BuildContext context) async {
     try {
@@ -431,7 +390,15 @@ final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
                             height: 45,
                             child: Padding(
                               padding: EdgeInsets.only(left: 10,right: 10),
-                              child: ElevatedButton.icon(
+                              child : _isLoading ? Column(
+
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CircularProgressIndicator(),
+                                  SizedBox(height: 15,),
+                                  Text(" Signing in , please wait ")
+                                ],
+                              ) : ElevatedButton.icon(
                                 onPressed: ()async{
                                   final UserCredential = await signInWithGoogle();
                                   if(signInWithGoogle != null){
