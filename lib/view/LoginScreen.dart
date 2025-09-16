@@ -3,6 +3,7 @@ import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -118,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 // Facebook auth hai
 
-  Future<void>signInWithGoogle() async {
+ /* Future<User?>signInWithGoogle() async {
     setState(() {
       _isLoading = true;
     });
@@ -131,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ).signIn();
 
       if (googleUser == null) {
+
         setState(() {
           _isLoading = false;
 
@@ -149,26 +151,22 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       // Step 4: Firebase me login karna
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      print("✅ Sign-in successful: ${userCredential.user?.email}");
+      /*final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      print("✅ Sign-in successful: ${userCredential.user?.email}");*/
+
+      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = userCredential.user;
 
 
-      if (user != null){
-final name = user.displayusername?? googleUser.displayName ?? "";
-final email = user.email ?? googleUser.email ?? "";
-//final fullname = user.full ?? googleUser. ?? "";
-//final date = user.date ?? googleUser.date ?? "";
-//final mobile = user.mobile ?? googleUser.moble ?? "";
-
-     final prefs = await SharedPreferences.getInstance();
-     await prefs.setString("user_name", name);
-     await prefs.setString("user_email", email);
-     //await prefs.setString("user_photo", photo);
-
-        print(" Google Sign_In Succes :$name - $email");
+      if (user != null) {
+        // ✅ Save Gmail details into SharedPreferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('username', user.displayName ?? googleUser.displayName ?? '');
+        await prefs.setString('email', user.email ?? googleUser.email);
+        await prefs.setString('photoUrl', user.photoURL ?? googleUser.photoUrl ?? '');
       }
 
-
+ return user;
       setState(() {
         _isLoading = false;
       });
@@ -178,8 +176,39 @@ final email = user.email ?? googleUser.email ?? "";
       print("❌ Error during Google sign-in: $e");
       print("StackTrace: $st");
     }
-  }
+  }*/
 
+  Future<User?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return null;
+
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? user = userCredential.user;
+
+      // save in SharedPreferences
+      if (user != null) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('username', user.displayName ?? "");
+        await prefs.setString('email', user.email ?? "");
+        await prefs.setString('photoUrl', user.photoURL ?? "");
+      }
+
+      return user; // 👈 important
+    } catch (e) {
+      print("Google Sign-In Error: $e");
+      return null;
+    }
+  }
 
 
  /*  Future<void> signInWithFacebook(BuildContext context) async {
@@ -417,13 +446,13 @@ final email = user.email ?? googleUser.email ?? "";
                                 ],
                               ) : ElevatedButton.icon(
                                 onPressed: ()async{
-                                  final UserCredential = await signInWithGoogle();
+                                 /* final UserCredential = await signInWithGoogle();
                                   if(signInWithGoogle != null){
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
-                                  }
+                                  }*/
                                   // Add Google login logic here
                                 final user = await signInWithGoogle();
-                                  if(user != null){
+                                  if( user != null){
                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }
                                 },

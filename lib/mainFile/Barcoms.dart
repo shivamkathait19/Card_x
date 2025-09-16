@@ -277,6 +277,11 @@ class _BlankPageState extends State<BlankPage> {
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
+      fullname = prefs.getString('user_namr') ?? '' ;
+      email = prefs.getString('user_email') ?? '';
+
+
+      
       username = prefs.getString('username') ?? '';
       fullname = prefs.getString('fullname') ?? '';
       date = prefs.getString('date') ?? '';
