@@ -166,9 +166,12 @@ class _LoginScreenState extends State<LoginScreen> {
         await prefs.setString('email', user.email ?? googleUser.email);
         await prefs.setString('photoUrl', user.photoURL ?? googleUser.photoUrl ?? '');
       }
+
+
       setState(() {
         _isLoading = false;
       });
+
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Barcoms()));
     } catch (e, st) {
       print("❌ Error during Google sign-in: $e");
