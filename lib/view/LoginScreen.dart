@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 // Facebook auth hai
 
- /* Future<User?>signInWithGoogle() async {
+  Future<void>signInWithGoogle() async {
     setState(() {
       _isLoading = true;
     });
@@ -133,6 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (googleUser == null) {
 
+        return;
         setState(() {
           _isLoading = false;
 
@@ -165,50 +166,16 @@ class _LoginScreenState extends State<LoginScreen> {
         await prefs.setString('email', user.email ?? googleUser.email);
         await prefs.setString('photoUrl', user.photoURL ?? googleUser.photoUrl ?? '');
       }
-
- return user;
       setState(() {
         _isLoading = false;
       });
-
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Barcoms()));
     } catch (e, st) {
       print("❌ Error during Google sign-in: $e");
       print("StackTrace: $st");
     }
-  }*/
-
-  Future<User?> signInWithGoogle() async {
-    try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-      if (googleUser == null) return null;
-
-      final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithCredential(credential);
-      final User? user = userCredential.user;
-
-      // save in SharedPreferences
-      if (user != null) {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('username', user.displayName ?? "");
-        await prefs.setString('email', user.email ?? "");
-        await prefs.setString('photoUrl', user.photoURL ?? "");
-      }
-
-      return user; // 👈 important
-    } catch (e) {
-      print("Google Sign-In Error: $e");
-      return null;
-    }
   }
+
 
 
  /*  Future<void> signInWithFacebook(BuildContext context) async {
@@ -446,15 +413,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ],
                               ) : ElevatedButton.icon(
                                 onPressed: ()async{
-                                 /* final UserCredential = await signInWithGoogle();
+                                  final UserCredential = await signInWithGoogle();
                                   if(signInWithGoogle != null){
                                     Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
-                                  }*/
+                                  }
                                   // Add Google login logic here
-                                final user = await signInWithGoogle();
+                                /*final user = await signInWithGoogle();
                                   if( user != null){
                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
-                                  }
+                                  }*/
                                 },
                                 icon:  Icon(
                                   FontAwesomeIcons.google,
