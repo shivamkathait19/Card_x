@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:card_x/view/LoginScreen.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +36,22 @@ class Barcoms extends StatefulWidget {
 
 class _BarcomsState extends State<Barcoms> {
 
+Future<void> logout(BuildContext context) async{
+  try{
+    await FirebaseAuth.instance.signOut();
+
+    final prefs  = await SharedPreferences.getInstance();
+    await prefs.clear();
+
+    Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(builder: (context)=> LoginScreen()),
+  (route)=> false,
+    );
+  }catch(e) {
+    print("Logout Error $e");
+  }
+}
+
 
   void _goToBlankPage() {
     Navigator.push(
@@ -58,7 +76,7 @@ class _BarcomsState extends State<Barcoms> {
     );
   }
 
-  void logout() {
+  void log() {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
@@ -151,7 +169,7 @@ class _BarcomsState extends State<Barcoms> {
               },
             ),
             Divider(),
-            ListTile(
+          /*  ListTile(
               leading: Icon(Icons.logout),
               title: Text("Log Out",
                   style: TextStyle(
@@ -161,7 +179,13 @@ class _BarcomsState extends State<Barcoms> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) =>LoginScreen()));
               },
-            ),
+            ),*/
+            ElevatedButton(onPressed: (){
+              logout(context);
+            },
+                child: Text("Logout",style: TextStyle(
+                    color: Colors.red, fontStyle: FontStyle.italic
+                ),)),
           ],
         ),
       ),
@@ -281,7 +305,7 @@ class _BlankPageState extends State<BlankPage> {
       email = prefs.getString('user_email') ?? '';
 
 
-      
+
       username = prefs.getString('username') ?? '';
       fullname = prefs.getString('fullname') ?? '';
       date = prefs.getString('date') ?? '';
