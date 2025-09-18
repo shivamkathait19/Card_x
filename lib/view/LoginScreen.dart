@@ -93,8 +93,43 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoadinglogin = false;
   bool isLoadingsingup = false;
 
+  Future<void> loginWithEmailPassword(
+      BuildContext context, String email, String password) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-  Future<void> _loginUser(BuildContext context) async {
+      // Login success → next screen pe bhejo
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Barcoms()),
+      );
+    } on FirebaseAuthException catch (e) {
+      String message;
+      if (e.code == 'user-not-found') {
+        message = "इस email से कोई account नहीं मिला";
+      } else if (e.code == 'wrong-password') {
+        message = "गलत password डाला गया है";
+      } else if (e.code == 'invalid-email') {
+        message = "Email format गलत है";
+      } else {
+        message = "Login failed: ${e.message}";
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: $e")),
+      );
+    }
+  }
+
+
+  /* Future<void> _loginUser(BuildContext context) async {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailController.text.trim(),
@@ -116,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
         }
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
       }
-    }
+    }*/
 // Facebook auth hai
 
   Future<void>signInWithGoogle() async {
@@ -365,7 +400,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               : Padding(
                                 padding: const EdgeInsets.only(left:10,right:10),
                                 child: ElevatedButton(
-                                  onPressed: ()=> _loginUser(context),
+                                  onPressed: ()=> loginUser(),
                                   style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue.withOpacity(0.30),
                                 foregroundColor: Colors.white,
