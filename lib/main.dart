@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true
       ),
         home :
-        /*ShowSplash? Splashscreen() :*/ Barcoms()
+        /*ShowSplash? Splashscreen() :*/ LoginScreen()
     );
   }
 }
