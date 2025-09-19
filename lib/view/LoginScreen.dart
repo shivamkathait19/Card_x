@@ -408,8 +408,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                                          ),
-                                  child:Text(
+                                                          ), child:Text(
                                     'Login', style: TextStyle(fontWeight: FontWeight.bold),),
                                 ),
                               ),
