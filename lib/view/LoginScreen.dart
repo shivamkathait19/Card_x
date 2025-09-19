@@ -413,8 +413,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     'Login', style: TextStyle(fontWeight: FontWeight.bold),),
                                 ),
                               ),
-
-                           SizedBox(height: 80,) ,
+                          SizedBox(height: 80,) ,
                           SizedBox(
                             width: double.infinity,
                             height: 45,
