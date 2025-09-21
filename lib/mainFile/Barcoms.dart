@@ -52,8 +52,7 @@ Future<void> logout(BuildContext context) async{
   }
 }
 
-
-  void _goToBlankPage() {
+void _goToBlankPage() {
     Navigator.push(
       context,
       MaterialPageRoute(
