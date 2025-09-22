@@ -61,6 +61,8 @@ void _goToBlankPage() {
     );
   }
 
+
+
   void openCardScreen() {
     Navigator.push(
       context,
