@@ -400,19 +400,34 @@ class _LoginScreenState extends State<LoginScreen> {
                               : Padding(
                                 padding: const EdgeInsets.only(left:10,right:10),
                                 child: ElevatedButton(
-                                  onPressed: ()=> loginUser(),
+                                  onPressed: () async {
+                                    if (_formKey.currentState!.validate()) {
+                                      setState(() => isLoadinglogin = true);
+
+                                      await loginWithEmailPassword(
+                                        context,
+                                        _emailController.text.trim(),
+                                        _passController.text.trim(),
+                                      );
+
+                                      setState(() => isLoadinglogin = false);
+                                    }
+                                  },
                                   style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue.withOpacity(0.30),
-                                foregroundColor: Colors.white,
-                                minimumSize: Size(double.infinity,50,),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                    backgroundColor: Colors.blue.withOpacity(0.30),
+                                    foregroundColor: Colors.white,
+                                    minimumSize: const Size(double.infinity, 50),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'Login',
+                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                                                          ),
-                                  child:Text(
-                                    'Login', style: TextStyle(fontWeight: FontWeight.bold),),
-                                ),
-                              ),
+
+                          ),
                           SizedBox(height: 80,) ,
                           SizedBox(
                             width: double.infinity,
