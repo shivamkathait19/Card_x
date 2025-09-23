@@ -68,12 +68,14 @@ void _goToBlankPage() {
     );
   }
 
+
   void openMakeScreen() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Makescreen()),
     );
   }
+
 
   void log() {
     Navigator.pushReplacement(
@@ -94,7 +96,8 @@ void _goToBlankPage() {
                 )
               ),
 
-            Text("Screen",
+            Text(
+                "Screen",
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 15,
