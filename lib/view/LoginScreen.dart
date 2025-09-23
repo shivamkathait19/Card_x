@@ -429,7 +429,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           ),
                           SizedBox(height: 80,) ,
-                          SizedBox(
+                        /*  SizedBox(
                             width: double.infinity,
                             height: 45,
                             child: Padding(
@@ -448,8 +448,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
+                          ),*/
+                          Padding(
+                            padding:  EdgeInsets.only(bottom: 10),
+                            child: Text("Or",style: TextStyle(fontSize:12,color: Colors.white60,fontFamily: GravitasOne-Regular),),
                           ),
-                          Text("Or",style: TextStyle(fontSize:12,color: Colors.white60),),
                           SizedBox(
                             width: double.infinity,
                             height: 45,
