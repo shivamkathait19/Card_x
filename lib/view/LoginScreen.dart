@@ -109,11 +109,11 @@ class _LoginScreenState extends State<LoginScreen> {
     } on FirebaseAuthException catch (e) {
       String message;
       if (e.code == 'user-not-found') {
-        message = "इस email से कोई account नहीं मिला";
+        message = "";
       } else if (e.code == 'wrong-password') {
-        message = "गलत password डाला गया है";
+        message = "Wrong password ";
       } else if (e.code == 'invalid-email') {
-        message = "Email format गलत है";
+        message = "Email format wrong";
       } else {
         message = "Login failed: ${e.message}";
       }
@@ -125,6 +125,14 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Error: $e")),
       );
+    }
+    final User? user = FirebaseAuth.instance.currentUser;
+    if(user !=null){
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString("uid", user.uid);
+      await prefs.setString('uid', user.uid);
+      await prefs.setString('uid',user.uid);
+      await prefs.setString('uid', user.uid);
     }
   }
 
@@ -451,11 +459,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),*/
                           Padding(
                             padding:  EdgeInsets.only(bottom: 10),
-                            child: Text("Or",style: TextStyle(fontSize:12,color: Colors.white60,fontFamily: GravitasOne-Regular),),
+                            child: Text("Or",style: TextStyle(fontSize:12,color: Colors.white60,fontFamily: 'StoryScript-Regular'),),
                           ),
                           SizedBox(
                             width: double.infinity,
-                            height: 45,
+                            height: 30,
                             child: Padding(
                               padding: EdgeInsets.only(left: 10,right: 10),
                               child : _isLoading ? Column(
