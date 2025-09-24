@@ -7,6 +7,7 @@ import 'package:card_x/view/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /*void main() {
   runApp(
@@ -19,7 +20,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 void main ()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+
+
+  final prefs = await SharedPreferences.getInstance();
+   final uid = prefs.getString("uid");
+  runApp(MaterialApp(
+    home: uid != null ? Barcoms() : LoginScreen(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
