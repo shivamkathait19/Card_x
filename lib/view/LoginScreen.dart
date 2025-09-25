@@ -93,6 +93,23 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoadinglogin = false;
   bool isLoadingsingup = false;
 
+  @override
+  void initState(){
+    super.initState(){
+      _loadSavedUser();
+    }
+  }
+Future<void>_loadSavedUser()async{
+    final prefs = await SharedPreferences.getInstance();
+    final user = FirebaseAuth.instance.currentUser;
+    if(user != null){
+      setState(() {
+
+      });
+    }
+}
+
+
   Future<void> loginWithEmailPassword(
       BuildContext context, String email, String password) async {
     try {
