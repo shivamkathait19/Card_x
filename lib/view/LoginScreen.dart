@@ -136,7 +136,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-
   /* Future<void> _loginUser(BuildContext context) async {
       try {
         UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
