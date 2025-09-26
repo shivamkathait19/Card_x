@@ -584,7 +584,7 @@ Future<void>_loadUserData()async{
     );
   }
 }
- class UserDataManger{
+ /*class UserDataManger{
   static Future<void> savedDataForUSer(String key , String value)async{
     final User? user = FirebaseAuth.instance.currentUser;
     if(user != null){
@@ -599,4 +599,4 @@ Future<void>_loadUserData()async{
       return prefs.getString("${user.uid}_$key");
     } return null ;
    }
- }
+ }*/
