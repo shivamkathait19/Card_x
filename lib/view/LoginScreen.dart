@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
 Future<void>_loadUserData()async{
-    final prefs = await SharedPreferences.getInstance();
+   // final prefs = await SharedPreferences.getInstance();
     final user = FirebaseAuth.instance.currentUser;
     if(user != null){
       String? savedCards = await UserDataManger.loadData("cards");
@@ -592,7 +592,7 @@ Future<void>_loadUserData()async{
       await prefs.setString("${user.uid}_$key", value);
     }
   }
-   static Future<String>loadData(String key)async{
+   static Future loadData(String key)async{
     final User? user = FirebaseAuth.instance.currentUser;
     if(user !=null){
       final prefs = await SharedPreferences.getInstance();
