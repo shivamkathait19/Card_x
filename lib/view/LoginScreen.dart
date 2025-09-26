@@ -96,10 +96,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState(){
     super.initState();
-      _loadUserData();
+      //_loadUserData();
     }
 
-Future<void>_loadUserData()async{
+/*Future<void>_loadUserData()async{
    // final prefs = await SharedPreferences.getInstance();
     final user = FirebaseAuth.instance.currentUser;
     if(user != null){
@@ -114,7 +114,7 @@ Future<void>_loadUserData()async{
         print("preview cards for ${user.uid} : $savedCards");
       }
     }
-}
+}*/
 
 
   Future<void> loginWithEmailPassword(
@@ -600,3 +600,52 @@ Future<void>_loadUserData()async{
     } return null ;
    }
  }*/
+class UserDataManager {
+  static Future<List<String>> loadUserCards() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return [];
+
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getStringList("${user.uid}_cards");
+    return saved ?? [];
+  }
+
+  static Future<void> saveUserCards(List<String> cards) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList("${user.uid}_cards", cards);
+  }
+
+  static Future<List<String>> loadUserMemes() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return [];
+
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getStringList("${user.uid}_memes");
+    return saved ?? [];
+  }
+
+  static Future<void> saveUserMemes(List<String> memes) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList("${user.uid}_memes", memes);
+  }
+  /// 🔹 Save user memes
+  static Future<void> savedMemes(List<String> memes) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList("${user.uid}_memes", memes);
+  }
+
+  /// 🔹 Clear all saved data when user logs out
+  static Future<void> clearUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+}
