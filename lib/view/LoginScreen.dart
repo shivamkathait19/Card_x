@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui';import 'dart:async';
 import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/MainForm.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
@@ -95,17 +95,24 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState(){
-    super.initState(){
-      _loadSavedUser();
+    super.initState();
+      _loadUserData();
     }
-  }
-Future<void>_loadSavedUser()async{
+
+Future<void>_loadUserData()async{
     final prefs = await SharedPreferences.getInstance();
     final user = FirebaseAuth.instance.currentUser;
     if(user != null){
-      setState(() {
+      String? savedCards = await UserDataManger.loadData("cards");
+      String? savedMemes = await UserDataManger.loadData("memes");
 
-      });
+      if(savedCards !=null){
+        print("preview cards for ${user.uid}: $savedCards");
+
+      }
+      if (savedCards != null){
+        print("preview cards for ${user.uid} : $savedCards");
+      }
     }
 }
 
@@ -577,4 +584,19 @@ Future<void>_loadSavedUser()async{
     );
   }
 }
-
+ class UserDataManger{
+  static Future<void> savedDataForUSer(String key , String value)async{
+    final User? user = FirebaseAuth.instance.currentUser;
+    if(user != null){
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString("${user.uid}_$key", value);
+    }
+  }
+   static Future<String>loadData(String key)async{
+    final User? user = FirebaseAuth.instance.currentUser;
+    if(user !=null){
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getString("${user.uid}_$key");
+    } return null ;
+   }
+ }
