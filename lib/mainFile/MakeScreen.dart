@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:card_x/mainFile/Barcoms.dart';
 import 'package:card_x/mainFile/cardScreen.dart';
+import 'package:card_x/view/LoginScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 // ================= CardData Model =================
 
@@ -151,6 +153,37 @@ class _MakeScreenState extends State<MakeScreen> {
     super.initState();
     loadSavedCards();
 
+  }
+  Future<void> loadCards() async {
+    final snapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.user.uid)
+        .collection("cards")
+        .get();
+
+    setState(() {
+       cards = snapshot.docs.map((doc) => doc["title"] as String).toList();
+    });
+  }
+
+  Future<void> addCard(String title) async {
+    await FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.user.uid)
+        .collection("cards")
+        .add({"title": title});
+
+    loadCards(); // refresh after adding
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    }
   }
 
   void loadSavedCards() async {

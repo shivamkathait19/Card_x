@@ -184,8 +184,35 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }*/
 // Facebook auth hai
+  Future<User?> signInWithGoogle() async {
+    setState(() => _isLoading = true);
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        setState(() => _isLoading = false);
+        return null;
+      }
 
-  Future<void>signInWithGoogle() async {
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final user =
+          (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+
+      return user;
+    } catch (e) {
+      debugPrint("Error: $e");
+      return null;
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+  /*Future<void>signInWithGoogle() async {
     setState(() {
       _isLoading = true;
     });
@@ -243,7 +270,7 @@ class _LoginScreenState extends State<LoginScreen> {
       print("❌ Error during Google sign-in: $e");
       print("StackTrace: $st");
     }
-  }
+  }*/
 
 
 
