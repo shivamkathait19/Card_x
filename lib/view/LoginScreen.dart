@@ -300,7 +300,12 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }*/
-
+ static Future<void>clearUserData()async{
+   final user = FirebaseAuth.instance.currentUSer;
+   if(user == null) return;
+   final prefs = await SharedPreferences.getInstance();
+   await prefs.remove(${user)
+ }
 
  void loginUser(){
     if (_formKey.currentState!.validate()){
