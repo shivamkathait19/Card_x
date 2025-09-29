@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+//import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -530,14 +530,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 30,
                             child: Padding(
                               padding: EdgeInsets.only(left: 10,right: 10),
-                              child : _isLoading ? Column(
-
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CircularProgressIndicator(),
-                                  SizedBox(height: 15,),
-                                  Text(" Signing in , please wait ")
-                                ],
+                              child : _isLoading ? Padding(
+                                padding: const EdgeInsets.only(bottom: 20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    CircularProgressIndicator(),
+                                    SizedBox(height: 15,),
+                                    Text(" Signing in , please wait ")
+                                  ],
+                                ),
                               ) : ElevatedButton.icon(
                                 onPressed: ()async{
                                   final UserCredential = await signInWithGoogle();
