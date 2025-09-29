@@ -118,6 +118,7 @@ class CardStorage {
 // ================= Make Screen =================
 
 class MakeScreen extends StatefulWidget {
+  final User user;
   Widget build (BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -126,9 +127,9 @@ class MakeScreen extends StatefulWidget {
     );
   }
 
-  final User user;
 
-  MakeScreen({super.key, required this.user});
+
+  MakeScreen({super.key /*required this.user*/});
   @override
   _MakeScreenState createState() => _MakeScreenState();
 }
@@ -141,6 +142,16 @@ class _MakeScreenState extends State<MakeScreen> {
   final TextEditingController durationController = TextEditingController();
   final TextEditingController peopleController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
+
+
+ Future<>
+
+
+
+
+
+
+
   List <String>cards = [];
   List<CardData> savedCards = [];
   String imageUrl =
