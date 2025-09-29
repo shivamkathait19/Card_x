@@ -301,10 +301,19 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }*/
  static Future<void>clearUserData()async{
-   final user = FirebaseAuth.instance.currentUSer;
+   final user = FirebaseAuth.instance.currentUser;
    if(user == null) return;
    final prefs = await SharedPreferences.getInstance();
-   await prefs.remove(${user)
+   await prefs.remove("${user.uid}_cards");
+   await prefs.remove("${user.uid}_memes");
+   await prefs.remove("uid");
+ }
+
+
+ Future<void>logout(BuildContext context)async{
+   await FirebaseAuth.instance.signOut();
+   await UserDataManager.clearUserData();
+   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
  }
 
  void loginUser(){
