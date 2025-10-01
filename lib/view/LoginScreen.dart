@@ -311,11 +311,7 @@ class _LoginScreenState extends State<LoginScreen> {
  }
 
 
- Future<void>logout(BuildContext context)async{
-   await FirebaseAuth.instance.signOut();
-   await UserDataManager.clearUserData();
-   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
- }
+
 
  void loginUser(){
     if (_formKey.currentState!.validate()){
@@ -644,52 +640,4 @@ class _LoginScreenState extends State<LoginScreen> {
     } return null ;
    }
  }*/
-class UserDataManager {
-  static Future<List<String>> loadUserCards() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return [];
 
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getStringList("${user.uid}_cards");
-    return saved ?? [];
-  }
-
-  static Future<void> saveUserCards(List<String> cards) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList("${user.uid}_cards", cards);
-  }
-
-  static Future<List<String>> loadUserMemes() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return [];
-
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getStringList("${user.uid}_memes");
-    return saved ?? [];
-  }
-
-  static Future<void> saveUserMemes(List<String> memes) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList("${user.uid}_memes", memes);
-  }
-  /// 🔹 Save user memes
-  static Future<void> savedMemes(List<String> memes) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList("${user.uid}_memes", memes);
-  }
-
-  /// 🔹 Clear all saved data when user logs out
-  static Future<void> clearUserData() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-  }
-}

@@ -69,13 +69,16 @@ void _goToBlankPage() {
   }
 
 
-  void openMakeScreen() {
+void openMakeScreen() {
   //final user = FirebaseAuth.instance.currentUser;
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => MakeScreen(user:,)));
 
-  }
+ //if (user != null) {
+   Navigator.push(
+     context,
+     MaterialPageRoute(builder: (context) => MakeScreen()),
+   );
+
+}
 
 
   void log() {
@@ -304,7 +307,7 @@ class _BlankPageState extends State<BlankPage> {
   Future<void> _loadUserData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      fullname = prefs.getString('user_namr') ?? '' ;
+      fullname = prefs.getString('user_name') ?? '' ;
       email = prefs.getString('user_email') ?? '';
 
 

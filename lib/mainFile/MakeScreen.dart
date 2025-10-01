@@ -118,18 +118,18 @@ class CardStorage {
 // ================= Make Screen =================
 
 class MakeScreen extends StatefulWidget {
-  final User user;
+  //final User user;
   Widget build (BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: MakeScreen(user: user)
+      home: MakeScreen(),
     );
   }
 
 
 
-  MakeScreen({super.key /*required this.user*/});
+  MakeScreen({super.key , required });
   @override
   _MakeScreenState createState() => _MakeScreenState();
 }
@@ -144,9 +144,19 @@ class _MakeScreenState extends State<MakeScreen> {
   final TextEditingController descriptionController = TextEditingController();
 
 
- Future<>
+ Future<void> savaData()async {
+   final prefs = await SharedPreferences.getInstance();
+   await prefs.setString('username', nameController.text);
+   await prefs.setString('email', GmailController.text);
+   await prefs.setString('location',locationController.text  );
+   await prefs.setString('duration', durationController.text);
+   await prefs.setString('people', peopleController.text);
 
 
+   ScaffoldMessenger.of(context).showSnackBar(
+     SnackBar(content: Text("Data saved Succfully"),)
+   );
+ }
 
 
 
@@ -167,7 +177,7 @@ class _MakeScreenState extends State<MakeScreen> {
     loadSavedCards();
 
   }
-  Future<void> loadCards() async {
+  /*Future<void> loadCards() async {
     final snapshot = await FirebaseFirestore.instance
         .collection("users")
         .doc(widget.user.uid)
@@ -177,9 +187,9 @@ class _MakeScreenState extends State<MakeScreen> {
     setState(() {
        cards = snapshot.docs.map((doc) => doc["title"] as String).toList();
     });
-  }
+  }*/
 
-  Future<void> addCard(String title) async {
+  /*Future<void> addCard(String title) async {
     await FirebaseFirestore.instance
         .collection("users")
         .doc(widget.user.uid)
@@ -187,7 +197,7 @@ class _MakeScreenState extends State<MakeScreen> {
         .add({"title": title});
 
     loadCards(); // refresh after adding
-  }
+  }*/
 
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
@@ -1030,7 +1040,7 @@ class _TempCardsState extends State<TempCards> {
                  ),
                   title: Text(card.name),
               subtitle:Text(
-                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}", style: TextStyle(color: Colors.white70, fontSize: 13),
+                "${card.Gmail}\n${card.location} | ${card.duration} days\nPeople: ${card.people}\nService: ${card.serviceOption}", style: TextStyle(color: Colors.black, fontSize: 13),
               ),
 
 trailing:PopupMenuButton<String>(
