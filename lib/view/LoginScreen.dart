@@ -301,15 +301,14 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }*/
- static Future<void>clearUserData()async{
+ /*static Future<void>clearUserData()async{
    final user = FirebaseAuth.instance.currentUser;
    if(user == null) return;
    final prefs = await SharedPreferences.getInstance();
    await prefs.remove("${user.uid}_cards");
    await prefs.remove("${user.uid}_memes");
    await prefs.remove("uid");
- }
-
+ }*/
 
 
 
@@ -387,6 +386,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Container(
+                  height: 570,
                   //padding: const EdgeInsets.all(),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.15),
@@ -519,7 +519,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),*/
                           Padding(
-                            padding:  EdgeInsets.only(bottom: 10),
+                            padding:  EdgeInsets.only(bottom: 10,top: 10),
                             child: Text("Or",style: TextStyle(fontSize:12,color: Colors.white60,fontFamily: 'StoryScript-Regular'),),
                           ),
                           SizedBox(
