@@ -401,8 +401,8 @@ await Future.delayed(Duration(milliseconds: 2)); // 0.7
               Padding(
                 padding: const EdgeInsets.all(20),
                 child: Container(
-                  height: 570,
-                  width: 200,
+                  height: 550,
+                  width: 500,
                   //padding: const EdgeInsets.all(),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.15),
@@ -536,15 +536,15 @@ await Future.delayed(Duration(milliseconds: 2)); // 0.7
                           ),*/
                           Padding(
                             padding:  EdgeInsets.only(bottom: 10,top: 10),
-                            child: Text("Or",style: TextStyle(fontSize:12,color: Colors.white60,fontFamily: 'StoryScript-Regular'),),
+                            child: Text("Or",style: TextStyle(fontSize:17,color: Colors.white60,fontFamily: 'StoryScript-Regular'),),
                           ),
                           SizedBox(
                             width: double.infinity,
-                            height: 30,
+                            height: 40,
                             child: Padding(
                               padding: EdgeInsets.only(left: 10,right: 10),
                               child : _isLoading ? Padding(
-                                padding: const EdgeInsets.only(bottom: 20),
+                                padding: const EdgeInsets.only(bottom: 50),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -570,6 +570,7 @@ await Future.delayed(Duration(milliseconds: 2)); // 0.7
                                   color: Colors.white,
                                 ),
                                 label: Text("Continue with Google"),
+
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:  Colors.blue.withOpacity(0.70), // Google red
                                 // padding:  EdgeInsets.symmetric(vertical:5),
