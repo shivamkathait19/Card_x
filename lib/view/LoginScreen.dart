@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
   }
-  /*Future<void>signInWithGoogle() async {
+  Future<void>signWithGoogle() async {
     setState(() {
       _isLoading = true;
     });
@@ -226,6 +226,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ).signIn();
 
       if (googleUser == null) {
+         debugPrint(" User cancelled");
 
         return;
         setState(() {
@@ -252,14 +253,25 @@ class _LoginScreenState extends State<LoginScreen> {
       final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
       final User? user = userCredential.user;
 
+showDialog(context: context,
+    barrierDismissible: false,
+    builder: (_)=>Center(
 
-      if (user != null) {
+      child: CircularProgressIndicator(),
+    )
+);
+await FirebaseAuth.instance.signInWithCredential(credential);
+await Future.delayed(Duration(milliseconds: 2)); // 0.7
+       Navigator.of(context).pop();
+
+
+      /*if (user != null) {
         // ✅ Save Gmail details into SharedPreferences
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('username', user.displayName ?? googleUser.displayName ?? '');
         await prefs.setString('email', user.email ?? googleUser.email);
         await prefs.setString('photoUrl', user.photoURL ?? googleUser.photoUrl ?? '');
-      }
+      }*/
 
 
       setState(() {
@@ -268,10 +280,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Barcoms()));
     } catch (e, st) {
-      print("❌ Error during Google sign-in: $e");
-      print("StackTrace: $st");
+      Navigator.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login failed")));
+
+
+
     }
-  }*/
+  }
 
 
 
@@ -387,6 +402,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.all(20),
                 child: Container(
                   height: 570,
+                  width: 200,
                   //padding: const EdgeInsets.all(),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.15),
