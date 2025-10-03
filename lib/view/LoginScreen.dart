@@ -184,15 +184,24 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     }*/
 // Facebook auth hai
+
   Future<User?> signInWithGoogle() async {
     setState(() => _isLoading = true);
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
       if (googleUser == null) {
+        // 👉 User ne cancel / bg pe click kiya
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("❌ Please select a Gmail account")),
+          );
+        }
         setState(() => _isLoading = false);
-        return null;
+        return null; // ❌ yaha se return ho jayega, aage nahi jayega
       }
 
+      // ✅ Agar user ne account select kiya
       final GoogleSignInAuthentication googleAuth =
       await googleUser.authentication;
 
@@ -204,93 +213,26 @@ class _LoginScreenState extends State<LoginScreen> {
       final user =
           (await FirebaseAuth.instance.signInWithCredential(credential)).user;
 
+
+
       return user;
     } catch (e) {
-      debugPrint("Error: $e");
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Login failed: $e")),
+        );
+      }
       return null;
     } finally {
       setState(() => _isLoading = false);
     }
-
-  }
-  Future<void>signWithGoogle() async {
-    setState(() {
-      _isLoading = true;
-    });
-    await Future.delayed(Duration(seconds: 5));
-
-    try {
-      // Step 1: Google account select karna
-      final GoogleSignInAccount? googleUser = await GoogleSignIn(
-        clientId: "YOUR_WEB_CLIENT_ID.apps.googleusercontent.com",
-      ).signIn();
-
-      if (googleUser == null) {
-         debugPrint(" User cancelled");
-
-        return;
-        setState(() {
-          _isLoading = false;
-
-        });
-        print("❌ User cancelled the sign-in");
-        return;
-      }
-
-      // Step 2: Authentication tokens lena
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
-      // Step 3: Firebase credential banana
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      // Step 4: Firebase me login karna
-      /*final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      print("✅ Sign-in successful: ${userCredential.user?.email}");*/
-
-      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      final User? user = userCredential.user;
-
-showDialog(context: context,
-    barrierDismissible: false,
-    builder: (_)=>Center(
-
-      child: CircularProgressIndicator(),
-    )
-);
-await FirebaseAuth.instance.signInWithCredential(credential);
-await Future.delayed(Duration(milliseconds: 2)); // 0.7
-       Navigator.of(context).pop();
-
-
-      /*if (user != null) {
-        // ✅ Save Gmail details into SharedPreferences
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('username', user.displayName ?? googleUser.displayName ?? '');
-        await prefs.setString('email', user.email ?? googleUser.email);
-        await prefs.setString('photoUrl', user.photoURL ?? googleUser.photoUrl ?? '');
-      }*/
-
-
-      setState(() {
-        _isLoading = false;
-      });
-
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Barcoms()));
-    } catch (e, st) {
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login failed")));
-
-
-
-    }
   }
 
 
 
- /*  Future<void> signInWithFacebook(BuildContext context) async {
+
+
+  /*  Future<void> signInWithFacebook(BuildContext context) async {
     try {
       final LoginResult result = await FacebookAuth.instance.login();
 
@@ -555,10 +497,16 @@ await Future.delayed(Duration(milliseconds: 2)); // 0.7
                                 ),
                               ) : ElevatedButton.icon(
                                 onPressed: ()async{
-                                  final UserCredential = await signInWithGoogle();
-                                  if(signInWithGoogle != null){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Barcoms()));
+                                  setState(() {
+                                    _isLoading = true;
+                                  });
+                                  final user = await signInWithGoogle();
+                                  if(signInWithGoogle!=null){
+                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }
+                                  /*final UserCredential = await signInWithGoogle();
+                                  if(signInWithGoogle != null){
+                                  }*/
                                   // Add Google login logic here
                                 /*final user = await signInWithGoogle();
                                   if( user != null){
@@ -584,7 +532,7 @@ await Future.delayed(Duration(milliseconds: 2)); // 0.7
                           ),
 
                           SizedBox(
-                            height: 20,
+                            height: 7,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
