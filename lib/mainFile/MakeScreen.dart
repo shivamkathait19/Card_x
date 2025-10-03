@@ -321,7 +321,7 @@ class _MakeScreenState extends State<MakeScreen> {
                 ),
               ),
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("assets/asset/solated-on-black.jpg")
+                backgroundImage: AssetImage("asset/solated-on-black.jpg")
               ),
               accountName: Text(
                 " Welcome",
