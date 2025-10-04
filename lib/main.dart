@@ -22,11 +22,11 @@ void main ()async{
   await Firebase.initializeApp();
 
 
-  final prefs = await SharedPreferences.getInstance();
+ /* final prefs = await SharedPreferences.getInstance();
    final uid = prefs.getString("uid");
   runApp(MaterialApp(
     home: uid != null ? Barcoms() : LoginScreen(),
-  ));
+  ));*/
 }
 
 class MyApp extends StatefulWidget {

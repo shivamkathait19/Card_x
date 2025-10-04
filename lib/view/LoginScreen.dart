@@ -160,29 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  /* Future<void> _loginUser(BuildContext context) async {
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passController.text.trim(),
-        );
-
-        // ✅ Login successful → navigate to home
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Welcome ${userCredential.user?.email}")),
-        );
-        Navigator.pushReplacementNamed(context, "/home");
-
-      } on FirebaseAuthException catch (e) {
-        String message = "An error occurred";
-        if (e.code == 'user-not-found') {
-          message = "No user found for this email.";
-        } else if (e.code == 'wrong-password') {
-          message = "Incorrect password.";
-        }
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-      }
-    }*/
+ 
 // Facebook auth hai
 
   Future<User?> signInWithGoogle() async {
@@ -191,9 +169,6 @@ class _LoginScreenState extends State<LoginScreen> {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       if (googleUser == null) {
-        // 👉 User ne cancel / bg pe click kiya
-
-
         setState(() => _isLoading = false);
         return null; // ❌ yaha se return ho jayega, aage nahi jayega
       }
@@ -209,12 +184,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final user =
           (await FirebaseAuth.instance.signInWithCredential(credential)).user;
-
-
-
       return user;
     } catch (e) {
-      
+print("Google Sign-In Error: $e");
       return null;
     } finally {
       setState(() => _isLoading = false);
@@ -448,8 +420,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
 
                           ),
-                          SizedBox(height: 80,) ,
-                        /*  SizedBox(
+                          SizedBox(height: 50,) ,
+                          SizedBox(
                             width: double.infinity,
                             height: 45,
                             child: Padding(
@@ -468,10 +440,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               ),
                             ),
-                          ),*/
+                          ),
                           Padding(
                             padding:  EdgeInsets.only(bottom: 10,top: 10),
-                            child: Text("Or",style: TextStyle(fontSize:17,color: Colors.white60,fontFamily: 'StoryScript-Regular'),),
+                            child: Text("Or",style: TextStyle(fontSize:10,color: Colors.white60,fontFamily: 'StoryScript-Regular'),),
                           ),
                           SizedBox(
                             width: double.infinity,
@@ -484,12 +456,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CircularProgressIndicator(),
-                                    SizedBox(height: 15,),
+                                    SizedBox(height: 5,),
                                     Text(" Signing in , please wait ")
                                   ],
                                 ),
                               ) : ElevatedButton.icon(
-                                onPressed: ()async{
+                               onPressed:()async{
+
+                                 final user = await signInWithGoogle();
+                                 Navigator.pushReplacement(context,
+                                     MaterialPageRoute(builder: (context)=>Barcoms()));
+
+                               }
+                                /* onPressed: ()async{
                                   setState(() {
                                     _isLoading = true;
                                   });
@@ -505,13 +484,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if( user != null){
                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }*/
-                                },
+                                },*/,
                                 icon:  Icon(
                                   FontAwesomeIcons.google,
                                   color: Colors.white,
                                 ),
                                 label: Text("Continue with Google"),
-
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:  Colors.blue.withOpacity(0.70), // Google red
                                 // padding:  EdgeInsets.symmetric(vertical:5),
