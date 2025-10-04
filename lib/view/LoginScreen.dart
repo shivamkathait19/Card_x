@@ -192,11 +192,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (googleUser == null) {
         // 👉 User ne cancel / bg pe click kiya
-        if (context.mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("❌ Please select a Gmail account")),
-          );
-        }
+
+
         setState(() => _isLoading = false);
         return null; // ❌ yaha se return ho jayega, aage nahi jayega
       }
@@ -217,11 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       return user;
     } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Login failed: $e")),
-        );
-      }
+      
       return null;
     } finally {
       setState(() => _isLoading = false);
