@@ -160,7 +160,29 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
- 
+  /* Future<void> _loginUser(BuildContext context) async {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passController.text.trim(),
+        );
+
+        // ✅ Login successful → navigate to home
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Welcome ${userCredential.user?.email}")),
+        );
+        Navigator.pushReplacementNamed(context, "/home");
+
+      } on FirebaseAuthException catch (e) {
+        String message = "An error occurred";
+        if (e.code == 'user-not-found') {
+          message = "No user found for this email.";
+        } else if (e.code == 'wrong-password') {
+          message = "Incorrect password.";
+        }
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      }
+    }*/
 // Facebook auth hai
 
   Future<User?> signInWithGoogle() async {
@@ -169,6 +191,9 @@ class _LoginScreenState extends State<LoginScreen> {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
       if (googleUser == null) {
+        // 👉 User ne cancel / bg pe click kiya
+
+
         setState(() => _isLoading = false);
         return null; // ❌ yaha se return ho jayega, aage nahi jayega
       }
@@ -184,9 +209,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       final user =
           (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+
+
+
       return user;
     } catch (e) {
-print("Google Sign-In Error: $e");
+
       return null;
     } finally {
       setState(() => _isLoading = false);
@@ -461,14 +489,8 @@ print("Google Sign-In Error: $e");
                                   ],
                                 ),
                               ) : ElevatedButton.icon(
-                               onPressed:()async{
 
-                                 final user = await signInWithGoogle();
-                                 Navigator.pushReplacement(context,
-                                     MaterialPageRoute(builder: (context)=>Barcoms()));
-
-                               }
-                                /* onPressed: ()async{
+                                onPressed: ()async{
                                   setState(() {
                                     _isLoading = true;
                                   });
@@ -484,7 +506,7 @@ print("Google Sign-In Error: $e");
                                   if( user != null){
                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }*/
-                                },*/,
+                                },
                                 icon:  Icon(
                                   FontAwesomeIcons.google,
                                   color: Colors.white,
