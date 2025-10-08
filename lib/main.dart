@@ -9,7 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
+/*void main() {
+  runApp(
+      ClerkAuth(config: ClerkAuthConfig(publishableKey: "pk_test_ZXhvdGljLWdyb3VzZS0wLmNsZXJrLmFjY291bnRzLmRldiQ"),
+      child: MyApp(),
+      ),
+  );
+}*/
 
 void main ()async{
   WidgetsFlutterBinding.ensureInitialized();
