@@ -15,7 +15,6 @@ void main ()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-
   final prefs = await SharedPreferences.getInstance();
    final uid = prefs.getString("uid");
   runApp(MaterialApp(
