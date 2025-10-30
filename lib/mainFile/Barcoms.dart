@@ -175,17 +175,7 @@ void openMakeScreen() {
               },
             ),
             Divider(),
-          /*  ListTile(
-              leading: Icon(Icons.logout),
-              title: Text("Log Out",
-                  style: TextStyle(
-                      color: Colors.red, fontStyle: FontStyle.italic)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) =>LoginScreen()));
-              },
-            ),*/
+          
             ElevatedButton(onPressed: (){
               logout(context);
             },
