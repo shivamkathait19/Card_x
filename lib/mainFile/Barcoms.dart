@@ -175,7 +175,7 @@ void openMakeScreen() {
               },
             ),
             Divider(),
-          
+
             ElevatedButton(onPressed: (){
               logout(context);
             },
@@ -406,11 +406,6 @@ class _BlankPageState extends State<BlankPage> {
             child: Icon(Icons.person, size: 50, color: Colors.black),
           ),
           SizedBox(height: 30),
-        /*  infoCard("Username", username, Icons.person),
-          infoCard("Full Name", fullname, FeatherIcons.userCheck),
-          infoCard("Email", email, Icons.email_outlined),
-          infoCard("Date of Birth", date, Icons.cake),
-          infoCard("Mobile Number", mobile, Icons.phone_android),*/
         ],
       ),
     );
