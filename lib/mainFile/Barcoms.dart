@@ -426,8 +426,7 @@ class Aboutpage extends StatelessWidget {
         title: Padding(
           padding: EdgeInsets.only(right: 50),
           child: Center(
-              child: Text("About phone",
-                  style: TextStyle(color: Colors.black))),
+              child: Text("About phone", style: TextStyle(color: Colors.black))),
         ),
         backgroundColor: Colors.teal,
       ),
