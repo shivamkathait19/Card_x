@@ -184,44 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-
-
-
-
-  /*  Future<void> signInWithFacebook(BuildContext context) async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login();
-
-      if (result.status == LoginStatus.success) {
-        final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(result.accessToken!.tokenString);
-
-        await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Facebook Sign-In successful!")),
-        );
-
-        Navigator.pushReplacementNamed(context, "/home");
-      }else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Facebook Sign-In failed: ${result.message}")),
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: $e")),
-      );
-    }
-  }*/
- /*static Future<void>clearUserData()async{
-   final user = FirebaseAuth.instance.currentUser;
-   if(user == null) return;
-   final prefs = await SharedPreferences.getInstance();
-   await prefs.remove("${user.uid}_cards");
-   await prefs.remove("${user.uid}_memes");
-   await prefs.remove("uid");
- }*/
+  
 
 
 
