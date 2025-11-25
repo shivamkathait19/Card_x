@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  
+
 
 
 
@@ -508,20 +508,5 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
- /*class UserDataManger{
-  static Future<void> savedDataForUSer(String key , String value)async{
-    final User? user = FirebaseAuth.instance.currentUser;
-    if(user != null){
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString("${user.uid}_$key", value);
-    }
-  }
-   static Future loadData(String key)async{
-    final User? user = FirebaseAuth.instance.currentUser;
-    if(user !=null){
-      final prefs = await SharedPreferences.getInstance();
-      return prefs.getString("${user.uid}_$key");
-    } return null ;
-   }
- }*/
+
 
