@@ -99,22 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
       //_loadUserData();
     }
 
-/*Future<void>_loadUserData()async{
-   // final prefs = await SharedPreferences.getInstance();
-    final user = FirebaseAuth.instance.currentUser;
-    if(user != null){
-      String? savedCards = await UserDataManger.loadData("cards");
-      String? savedMemes = await UserDataManger.loadData("memes");
 
-      if(savedCards !=null){
-        print("preview cards for ${user.uid}: $savedCards");
-
-      }
-      if (savedCards != null){
-        print("preview cards for ${user.uid} : $savedCards");
-      }
-    }
-}*/
 
 
   Future<void> loginWithEmailPassword(
