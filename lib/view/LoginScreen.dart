@@ -145,29 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  /* Future<void> _loginUser(BuildContext context) async {
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passController.text.trim(),
-        );
 
-        // ✅ Login successful → navigate to home
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Welcome ${userCredential.user?.email}")),
-        );
-        Navigator.pushReplacementNamed(context, "/home");
-
-      } on FirebaseAuthException catch (e) {
-        String message = "An error occurred";
-        if (e.code == 'user-not-found') {
-          message = "No user found for this email.";
-        } else if (e.code == 'wrong-password') {
-          message = "Incorrect password.";
-        }
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-      }
-    }*/
 // Facebook auth hai
 
   Future<User?> signInWithGoogle() async {
