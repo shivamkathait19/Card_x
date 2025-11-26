@@ -177,27 +177,7 @@ class _MakeScreenState extends State<MakeScreen> {
     loadSavedCards();
 
   }
-  /*Future<void> loadCards() async {
-    final snapshot = await FirebaseFirestore.instance
-        .collection("users")
-        .doc(widget.user.uid)
-        .collection("cards")
-        .get();
-
-    setState(() {
-       cards = snapshot.docs.map((doc) => doc["title"] as String).toList();
-    });
-  }*/
-
-  /*Future<void> addCard(String title) async {
-    await FirebaseFirestore.instance
-        .collection("users")
-        .doc(widget.user.uid)
-        .collection("cards")
-        .add({"title": title});
-
-    loadCards(); // refresh after adding
-  }*/
+ 
 
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
