@@ -177,7 +177,7 @@ class _MakeScreenState extends State<MakeScreen> {
     loadSavedCards();
 
   }
- 
+
 
   Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
@@ -1138,28 +1138,7 @@ class _EditPagesState extends State<EditPages> {
   }
 
 
- /* void saveEdits() {
-    if (_formKey.currentState!.validate(
-    )) {
-      final updatedCard = CardData(
-        name: nameController.text,
-        Gmail: gmailController.text,
-        location: locationController.text,
-        duration: durationController.text,
-        people: peopleController.text,
-        description: descriptionController.text,
-        imageUrl: widget.card.imageUrl,
-        serviceOption: serviceOptionController.text, // ✅ Fix
-        createdAt: widget.card.createdAt,
-      );
 
-
-
-      widget.onUpdate(updatedCard); // callback call
-      Navigator.pop(context); // list page par wapas
-    }
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
