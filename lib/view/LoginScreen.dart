@@ -424,14 +424,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if(signInWithGoogle!=null){
                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }
-                                  /*final UserCredential = await signInWithGoogle();
-                                  if(signInWithGoogle != null){
-                                  }*/
-                                  // Add Google login logic here
-                                /*final user = await signInWithGoogle();
-                                  if( user != null){
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
-                                  }*/
+                                 
                                 },
                                 icon:  Icon(
                                   FontAwesomeIcons.google,
