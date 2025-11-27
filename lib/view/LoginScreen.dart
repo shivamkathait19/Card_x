@@ -424,7 +424,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if(signInWithGoogle!=null){
                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Barcoms()));
                                   }
-                                 
+
                                 },
                                 icon:  Icon(
                                   FontAwesomeIcons.google,
