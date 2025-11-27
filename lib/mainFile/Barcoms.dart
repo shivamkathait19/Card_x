@@ -70,9 +70,7 @@ void _goToBlankPage() {
 
 
 void openMakeScreen() {
-  //final user = FirebaseAuth.instance.currentUser;
-
- //if (user != null) {
+ 
    Navigator.push(
      context,
      MaterialPageRoute(builder: (context) => MakeScreen()),
