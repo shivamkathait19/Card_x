@@ -70,7 +70,7 @@ void _goToBlankPage() {
 
 
 void openMakeScreen() {
- 
+
    Navigator.push(
      context,
      MaterialPageRoute(builder: (context) => MakeScreen()),
