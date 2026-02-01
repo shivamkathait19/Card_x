@@ -101,8 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
 
-
-  Future<void> loginWithEmailPassword(
+ Future<void> loginWithEmailPassword(
       BuildContext context, String email, String password) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -277,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  child:   Form(
+                  child : Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -299,6 +298,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                              validator: (value){
                                 if(value == null || value.isEmpty){
+                                    
                                   return ' Enter your email';
                                 }
                                 if (!RegExp(r'^[a-zA-Z0-9._%+-]+@gmail\.com$',caseSensitive: false
